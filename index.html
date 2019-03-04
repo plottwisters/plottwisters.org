@@ -48,7 +48,7 @@
 	h3 {
 		margin: 40px auto;
 		font-weight: 500;
-		font-size: 1.2em;
+		font-size: 1.15em;
 		max-width: 400px;
 	}
 
@@ -65,11 +65,16 @@
 	}
 
 	#slide {
-		margin: 25px 25px 20px;
+		position: relative;
+		width: 80vw;
+		max-width: 800px;
+		margin: -175px auto -50px;
 		padding: 50px 10px;
 		text-align: center;
 		border-radius: 6px;
 		border: 1px solid black;
+		background: #fff;
+		z-index: 100;
 	}
 
 	.divider {
@@ -80,6 +85,11 @@
 		height: 8px;
 		background: #000;
 		border-radius: 3px;
+	}
+
+	#mc_embed_signup {
+		width: 300px;
+		margin: auto;
 	}
 
 	.button, #mce-EMAIL {
@@ -104,11 +114,28 @@
 		color: #fff;
 	}
 
+	.banner {
+		height: 200px;
+		width: 100%;
+		background: url('img/worksheet-footer.jpg') no-repeat;
+		background-size: cover;
+		/* border-top: 1px solid black; */
+		border-bottom: 1px solid black;
+	}
+
+		.banner.bottom {
+			border-top: 1px solid black;
+		}
+
 	@media screen
 			and (min-device-width: 600px)
 			and (min-width: 600px) {
 
-				h1 { font-size: 8em; }
+				#slide {
+					margin-top: -100px;
+				}
+
+				h1 { font-size: 6em; }
 
 					.border-only {
 						-webkit-text-stroke: 2px black;
@@ -129,6 +156,8 @@
 </head>
 
 <body>
+
+	<div class="banner"></div>
 
 
 	<div id="slide">
@@ -198,6 +227,8 @@
 		<div class="divider"></div>
 
 	</div>
+
+	<div class="banner bottom"></div>
 </body>
 
 </html>
