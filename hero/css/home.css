@@ -1,0 +1,140 @@
+.wrap {
+  position: relative;
+  width: 100vw;
+  max-width: 800px;
+  margin: 2vw auto;
+  padding: 50px 0 20px;
+  text-align: center;
+  z-index: 100;
+  /* overflow: hidden; */
+}
+
+#title {
+  margin: 0 auto 10px;
+  background: url('../img/title.gif') no-repeat;
+  background-size: 100% auto;
+  width: 93%;
+  padding-bottom: 14%;
+}
+
+  #title:hover {
+    background: url('../img/title-hover.gif') no-repeat;
+    background-size: 100% auto;
+  }
+
+.hero {
+  position: relative;
+  background: url('../img/hero.png') no-repeat center;
+  background-size: 101% auto;
+  width: 100%;
+  padding-bottom: 68%;
+  transform-style: preserve-3d;
+  overflow: hidden;
+}
+
+  #floats {
+    position: relative;
+    width: 100%;
+    padding-bottom: 67%;
+    margin-bottom: -67%;
+    transform-style: preserve-3d;
+    z-index: 9;
+  }
+
+  .chat-right, .chat-left, .debris, .trail {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    transform-style: preserve-3d;
+  }
+
+    #folders {
+      position: absolute;
+      top: 85vw;
+      left: 15px;
+      width: 145px;
+      z-index: 100;
+    }
+
+    #email-jenny {
+      position: absolute;
+      top: 91vw;
+      right: 7px;
+      width: 51px;
+      z-index: 100;
+    }
+
+  .chat-right { transform: translateZ(50px); }
+  .chat-left { transform: translateZ(15px); }
+  .debris { transform: translateZ(80px); }
+  .trail { transform: translateZ(25px); }
+
+  .refresh {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50px;
+    height: 50px;
+    border-left: 1px solid black;
+    background: url('../img/refresh.png') no-repeat;
+    background-size: 30px;
+    background-position: 10px 10px;
+  }
+
+    .refresh:hover {
+      background: url('../img/refresh-hover.png') no-repeat;
+      background-size: 30px;
+      background-position: 10px 10px;
+    }
+
+@media screen
+    and (min-device-width: 605px)
+    and (min-width: 605px) {
+
+      .wrap {
+        padding: 40px 0 20px;
+        max-width: 600px;
+      }
+
+      #title { width: 100%; }
+
+      .hero { background-size: 100% auto; }
+
+      #folders {
+        top: 485px;
+        left: 30px;
+      }
+
+      #email-jenny {
+        top: 525px;
+        right: 20px;
+      }
+
+      h4.tagline {
+        display: block;
+        font-size: 20.2px;
+        letter-spacing: 0.015em;
+        margin: 15px 0 10px;
+      }
+
+      h4.tagline .mobile-toggle { display: inline; }
+
+  @media screen
+      and (min-device-width: 860px)
+      and (min-width: 860px) {
+        .wrap {
+          padding: 20px 0;
+        }
+        #folders { top: 465px; }
+
+        #email-jenny { top: 505px; }
+      }
+
+  @media screen
+      and (min-device-width: 960px)
+      and (min-width: 960px) {
+
+      }
+
+}

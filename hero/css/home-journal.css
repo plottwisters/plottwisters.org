@@ -1,0 +1,83 @@
+/* ------------ Jenny's Journal */
+
+.open-journal:hover {
+	background: #fff url('../img/open.png') no-repeat;
+	background-size: 30px auto;
+	background-position: right center;
+}
+
+			.entry {
+				margin: 0;
+				padding: 0;
+				display: table-cell;
+				width: 99vw;
+				border-bottom: 1px solid black;
+			}
+
+			.entry:hover { background: rgba(255, 255, 255, 0.6); }
+
+			.entry .words {
+				vertical-align: middle;
+				display: inline-block;
+				margin: 0 0 0 5px;
+				padding: 10px 10px;
+				width: auto;
+				/* border: 1px solid black; */
+			}
+
+				.entry h2 {
+					font-size: 1.2em;
+					margin: 0 0 2px;
+					padding: 0;
+					border: none;
+				}
+
+				.entry h3 {
+					margin: 0;
+					font-size: 1em;
+				}
+
+			.entry .thumb {
+				vertical-align: middle;
+				display: inline-block;
+				width: 28vw;
+				border-right: 1px solid black;
+			}
+
+				.entry .thumb img { width: 100%; }
+
+@media screen
+    and (min-device-width: 605px)
+    and (min-width: 605px) {
+
+
+
+      /* ------------ Jenny's Journal */
+      							.entry {
+      								float: left;
+      								width: 197.6px;
+      								border: none;
+      								border-right: 1px solid black;
+      							}
+
+      								.entry .words {
+      									margin: 0;
+      									padding: 15px 10px;
+      									border: none;
+      								}
+
+      									.entry h2 {
+      										font-size: 1.2em;
+      									}
+
+      									.entry h3 {
+      										font-size: 0.95em;
+      									}
+
+      								.entry .thumb {
+                        width: 100%;
+      									border: none;
+      									border-bottom: 1px solid black;
+      								}
+
+}
