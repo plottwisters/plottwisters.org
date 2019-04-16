@@ -3,7 +3,7 @@
   width: 100vw;
   max-width: 800px;
   margin: 2vw auto;
-  padding: 50px 0 20px;
+  padding: 20px 0 20px; /* 50px when language bar avail */
   text-align: center;
   z-index: 100;
   /* overflow: hidden; */
@@ -17,10 +17,10 @@
   padding-bottom: 14%;
 }
 
-  #title:hover {
+  /* #title:hover {
     background: url('../img/title-hover.gif') no-repeat;
     background-size: 100% auto;
-  }
+  } */
 
 .hero {
   position: relative;
@@ -51,17 +51,17 @@
 
     #folders {
       position: absolute;
-      top: 85vw;
+      top: 80vw;
       left: 15px;
-      width: 145px;
+      width: 115px;
       z-index: 100;
     }
 
     #email-jenny {
       position: absolute;
-      top: 91vw;
+      top: 88vw;
       right: 7px;
-      width: 51px;
+      width: 41px;
       z-index: 100;
     }
 
@@ -102,13 +102,15 @@
       .hero { background-size: 100% auto; }
 
       #folders {
+        width: 165px;
         top: 485px;
-        left: 30px;
+        left: 20px;
       }
 
       #email-jenny {
+        width: 61px;
         top: 525px;
-        right: 20px;
+        right: 15px;
       }
 
       h4.tagline {

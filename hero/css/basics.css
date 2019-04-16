@@ -1,7 +1,11 @@
+	html {
+		scroll-behavior: smooth;
+	}
+
 	body {
 		margin: 0;
 		font-family: freight-text-pro, serif;
-		background: url('../img/bg.jpg') fixed repeat;
+		background: #eae6da url('../img/bg.jpg') fixed repeat;
 		background-size: 800px auto;
 		overflow-x: hidden;
 	}
@@ -86,6 +90,16 @@
 			text-align: right;
 		}
 
+	input {
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		appearance: none;
+		border: none;
+		box-sizing: border-box;
+	}
+
+		input:focus { outline: none; }
+
 	#version-id { display: none; }
 
 	select#language {
@@ -132,9 +146,6 @@
 			}
 
 			#footer input {
-				-webkit-appearance: none;
-			  -moz-appearance: none;
-			  appearance: none;
 				border: 1px solid black;
 				padding: 15px;
 				font-family: benton-sans-compressed, sans-serif;
@@ -151,7 +162,7 @@
 				}
 
 				#footer input.submit {
-					width: 332px;
+					width: 300px;
 					background: #19426b;
 					color: #fff;
 					border-top: none;
