@@ -209,6 +209,10 @@
                     text-align: center;
                   }
 
+										.threes h2.fsf {
+											width: auto;
+										}
+
         					.threes h3 {
                     margin: auto;
                     max-width: 160px;
