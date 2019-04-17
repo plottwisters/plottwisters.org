@@ -17,7 +17,7 @@ var quotes = [
   },
   {
     quote: "Not everyone can become a great artist, but a great artist can come from anywhere.",
-    person: "Eleanor Roosevelt"
+    person: "Pixar's Ratatouille"
   },
   {
     quote: "Fantasy. Lunacy. All revolutions are, until they happen, then they are historical inevitabilities.",
