@@ -1,4 +1,7 @@
 /* ------------ Jenny's Journal */
+.open-journal {
+	background: #e9e2d7;
+}
 
 .open-journal:hover {
 	background: #fff url('../img/open.png') no-repeat;
