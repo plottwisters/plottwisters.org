@@ -58,10 +58,15 @@
       /* ------------ Jenny's Journal */
       							.entry {
       								float: left;
-      								width: 196px;
+      								width: 198.5px;
       								border: none;
       								border-right: 1px solid black;
+											box-sizing: border-box;
       							}
+
+											.entry:last-child {
+												margin: 0;
+											}
 
       								.entry .words {
       									margin: 0;
