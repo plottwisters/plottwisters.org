@@ -12,7 +12,7 @@ var quotes = [
     person: "Eleanor Roosevelt"
   },
   {
-    quote: "Part of the education of every child to show it as many as possible of the various types of lives which make up the world around it.",
+    quote: "Part of the education of every child is to show it as many as possible of the various types of lives which make up the world around it.",
     person: "Eleanor Roosevelt"
   },
   {
