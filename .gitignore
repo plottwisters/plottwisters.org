@@ -1,1 +1,3 @@
 games/node_modules
+games/.cache
+games/dist/*.map
