@@ -1,0 +1,25 @@
+[{
+  "user": {
+    "password": "",
+    "username": "",
+    "cookie_trail": [{
+        "math": [{
+          "time": 0-100,
+          "future": 0-100,
+          "emotions": null,
+          "values": ,
+          "play": 0-100
+        }]
+      },
+      {
+        "writing": [{
+
+        }]
+      }, {
+        "music": [{
+
+        }]
+      }
+    ]
+  }
+}]

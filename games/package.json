@@ -1,0 +1,29 @@
+{
+  "name": "games-plottwister",
+  "version": "1.0.0",
+  "description": "Games for Plot Twisters",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "phaser": "^3.17.0",
+    "preact": "^8.4.2",
+    "preact-compat": "^3.18.5",
+    "react-router-dom": "^5.0.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  },
+  "alias": {
+    "react": "preact-compat",
+    "react-dom": "preact-compat"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "sass": "^1.20.1"
+  }
+}
