@@ -4,6 +4,7 @@ import Phaser from 'phaser';
 
 
 class TwoBirdsOneStone extends Component {
+
   componentDidMount() {
 
     let config = {
@@ -16,7 +17,8 @@ class TwoBirdsOneStone extends Component {
         },
         scene: {
             preload: this.preload,
-            create: this.create
+            create: this.create,
+            update: this.update
         }
     };
     new Phaser.Game(config);
@@ -44,6 +46,8 @@ class TwoBirdsOneStone extends Component {
           "name": "Task 4"
         }
       ]);
+      this.textCollision = null;
+
   }
   create ()
   {
@@ -57,6 +61,7 @@ class TwoBirdsOneStone extends Component {
         this.physics.world.enable(task);
         this.input.setDraggable(task);
         task.body.onOverlap = true;
+
         this.input.on('drag', function (pointer, gameObject, dragX, dragY) {
           gameObject.x = dragX;
           gameObject.y = dragY;
@@ -64,20 +69,50 @@ class TwoBirdsOneStone extends Component {
 
         return task;
       });
+      var tasksGroup = this.physics.add.group({});
+      tasksGroup.addMultiple(tasks);
 
-      this.physics.world.addOverlap(tasks[0], tasks[1]);
+      var textOverlapCallback =(obj1, obj2) => {
+        let x = (obj1.x + obj2.x)/2;
+        let y = (obj1.y + obj2.y)/2;
+
+        if(this.textCollision == null) {
+          this.textCollision = {};
+          this.textCollision.circle = this.add.ellipse(x, y, obj1.width *  2, obj1.width * 2, obj1.width, 0.4);
+          this.textCollision.objectA = obj1;
+          this.textCollision.objectB = obj2;
+        }
+
+      }
+
+      this.physics.add.collider(tasksGroup, tasksGroup, textOverlapCallback);
 
 
-      this.physics.world.on('overlap', function(){
-        console.log('Testing. Hello.');
-    });﻿
+
 
 
   }
 
   update() {
-    console.log()
+    function checkOverlap(spriteA, spriteB) {
+
+      var boundsA = spriteA.getBounds();
+      var boundsB = spriteB.getBounds();
+
+      return Phaser.Geom.Intersects.RectangleToRectangle(boundsA, boundsB);
+
+    }
+    if (this.textCollision != null) {
+
+      if (!checkOverlap(this.textCollision.objectA, this.textCollision.objectB)) {
+
+        this.textCollision.circle.destroy();
+        this.textCollision = null;
+
+      }
+    }
   }
+
   render() {
     return (
       <div id="tbos-canvas"/>
