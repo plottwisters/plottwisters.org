@@ -1,9 +1,11 @@
 import Phaser from 'phaser';
 class MainView extends Phaser.Scene {
-  constructor() {
+  constructor(outerContext) {
       super({
           key: 'MainView'
       })
+      this.outerContext = outerContext;
+
   }
   checkOverlap(spriteA, spriteB) {
 
@@ -54,7 +56,9 @@ class MainView extends Phaser.Scene {
 
           if (this.textCollision != null) {
               if (this.checkOverlap(this.textCollision.objectA, this.textCollision.objectB)) {
-                console.log("he")
+
+                this.outerContext.setState({display:"block"});
+                
               }
             }
         }, this);

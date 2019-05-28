@@ -2,14 +2,19 @@ import React, {Component} from 'react';
 import Phaser from 'phaser';
 import DragPlugin from './plugins/rexdragplugin.min.js';
 import MainView from './scenes/main_view.js';
-
+import CreateTask from './components/create_task.js';
 class TwoBirdsOneStone extends Component {
 
 
 
+  constructor(props) {
+    super(props);
+    this.state = {display: "none"};
 
+  }
   componentDidMount() {
 
+    let newScene = new MainView(this);
     let config = {
         type: Phaser.AUTO,
         width: "100",
@@ -18,7 +23,7 @@ class TwoBirdsOneStone extends Component {
         physics: {
             default: 'arcade'
         },
-        scene: MainView,
+        scene: newScene,
         plugins: {
         global: [{
             key: 'rexDrag',
@@ -28,19 +33,26 @@ class TwoBirdsOneStone extends Component {
         }
 
     };
+
+
     
-    new Phaser.Game(config);
+    this.game = new Phaser.Game(config);
+
   }
 
 
   render() {
+
     return (
-      <div id="tbos-canvas"/>
+      <div>
+        <div id="tbos-canvas"/>
+        <CreateTask display={this.state.display}/>
+      </div>
     );
   }
-  shouldComponentUpdate() {
-    return false;
-  }
+  // shouldComponentUpdate() {
+  //   return false;
+  // }
 }
 
 export default TwoBirdsOneStone;
