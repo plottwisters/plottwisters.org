@@ -20,9 +20,10 @@ class CreateTask extends Component {
     );
   }
 
-  handleKeyPress() {
-    if (e.key === 'Enter') {
 
+  handleKeyPress(e) {
+    if (e.key === 'Enter') {
+     this.props.createNewTask(e.target.value);
      e.preventDefault();
    }
   }
