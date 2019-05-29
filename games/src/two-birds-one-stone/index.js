@@ -22,7 +22,7 @@ class TwoBirdsOneStone extends Component {
 
     this.setState({
       tasks: tasks,
-      taskRoot: []
+      rootPath: []
     });
     this.createNewTask =  this.createNewTask.bind(this);
   }

@@ -58,8 +58,29 @@ class MainView extends Phaser.Scene {
     }, this);
 
     task.drag.drag();
+    task.on('pointerdown', function (pointer) {
+      //console.log(this.findRoot());
+      console.log(this.text);
+      //this.outerContext.state.rootPath.push(this.text);
+
+      // if(Object.keys(this.findRoot()).length == 0) {
+      //   rootPath.pop();
+      // }
+    });
     this.renderedTasks[key] = task;
+
     this.tasksGroup.add(this.renderedTasks[key]);
+  }
+
+
+
+  findRoot() {
+    let rootPath = this.outerContext.state.rootPath;
+    let tasksData = this.data.get("tasks");
+    for(let key of rootPath) {
+      tasksData = tasksData[key];
+    }
+    return tasksData;
   }
 
   create ()
@@ -101,7 +122,9 @@ class MainView extends Phaser.Scene {
   }
 
   rerender() {
-    let tasks = new Set(Object.keys(this.data.get("tasks")));
+
+
+    let tasks = new Set(Object.keys(this.findRoot()));
 
     //add new tasks
     for(let task of tasks) {
