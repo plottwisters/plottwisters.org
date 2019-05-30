@@ -48,7 +48,6 @@ class MainView extends Phaser.Scene {
     task.drag = this.plugins.get('rexDrag').add(task);
 
     task.on('dragend', function(pointer, dragX, dragY, dropped) {
-
       if (this.textCollision != null) {
 
           if (this.checkOverlap(this.textCollision.objectA, this.textCollision.objectB)) {
@@ -57,16 +56,18 @@ class MainView extends Phaser.Scene {
         }
     }, this);
 
-    task.drag.drag();
-    task.on('pointerdown', function (pointer) {
-      //console.log(this.findRoot());
-      console.log(this.text);
-      //this.outerContext.state.rootPath.push(this.text);
 
-      // if(Object.keys(this.findRoot()).length == 0) {
-      //   rootPath.pop();
-      // }
-    });
+    task.on('pointerup', (function(outerThis) {
+
+      return function(pointer) {
+        if(pointer.getDistance() == 0) {
+          outerThis.outerContext.state.rootPath.push(this.text);
+          if (Object.keys(outerThis.findRoot()).length == 0) {
+            outerThis.outerContext.state.rootPath.pop();
+          }
+        }
+      }
+    })(this));
     this.renderedTasks[key] = task;
 
     this.tasksGroup.add(this.renderedTasks[key]);
