@@ -9,7 +9,6 @@ class MainView extends Phaser.Scene {
           key: 'MainView'
       })
       this.outerContext = outerContext;
-
   }
   checkOverlap(spriteA, spriteB) {
 
@@ -29,6 +28,7 @@ class MainView extends Phaser.Scene {
   }
   preload ()
   {
+      this.load.image('back', 'https://cdn3.iconfinder.com/data/icons/glyph/227/Button-Back-1-512.png');
       this.load.setBaseURL('http://labs.phaser.io');
 
       this.load.image('sky', 'assets/skies/space3.png');
@@ -64,6 +64,7 @@ class MainView extends Phaser.Scene {
           outerThis.outerContext.state.rootPath.push(this.text);
           if (Object.keys(outerThis.findRoot()).length == 0) {
             outerThis.outerContext.state.rootPath.pop();
+            
           }
         }
       }
@@ -86,8 +87,7 @@ class MainView extends Phaser.Scene {
 
   create ()
   {
-
-
+    
       let tasksData = this.data.get("tasks");
       for(let task of Object.keys(tasksData)) {
         const {x, y} = this.placeNewTask();
@@ -123,13 +123,21 @@ class MainView extends Phaser.Scene {
   }
 
   rerender() {
-
+    if (this.outerContext.state.rootPath.length !=0) {
+      this.backButton = this.add.image(100, 100, 'back').setInteractive();
+      this.backButton.setScale(0.2, 0.2);      
+      this.backButton.on('pointerdown', ()=> {
+        this.outerContext.state.rootPath.pop();
+      });
+    } else if(this.backButton != null) {
+      this.backButton.destroy();
+      this.backButton = null;
+    }
 
     let tasks = new Set(Object.keys(this.findRoot()));
 
     //add new tasks
     for(let task of tasks) {
-
       if(this.renderedTasks[task] ==  undefined) {
 
         let x;
