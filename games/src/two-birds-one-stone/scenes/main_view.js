@@ -61,8 +61,8 @@ class MainView extends Phaser.Scene {
       if(this.trashOverlap != null){
         if (this.checkOverlap(this.trashOverlap.objectA, this.trashOverlap.objectB)) {
           let rootData = this.findRoot();
-          console.log(this.trashOverlap.objectB.text);
-          delete rootData[this.trashOverlap.objectB.text];
+          console.log(this.trashOverlap.objectA.text);
+          delete rootData[this.trashOverlap.objectA.text];
 
           this.setRootData();
 
