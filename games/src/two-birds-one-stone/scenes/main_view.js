@@ -24,22 +24,25 @@ class MainView extends Phaser.Scene {
     this.textCollision.circle.destroy();
     this.textCollision = null;
   }
+
+  destroyTrashOverlap() {
+
+    this.trashOverlap.circle.destroy();
+    this.trashOverlap = null;
+  }
   placeNewTask() {
     return {"x": Math.random() * this.game.scale.width, "y": Math.random() * this.game.scale.height};
   }
   preload ()
   {
-      this.load.setBaseURL('http://labs.phaser.io');
+      this.load.setBaseURL('http://localhost:1234/');
 
-      this.load.image('sky', 'assets/skies/space3.png');
-      this.load.image('logo', 'assets/sprites/phaser3-logo.png');
-      this.load.image('red', 'assets/particles/red.png');
 
       this.data.set("tasks",this.outerContext.state.tasks);
       this.textCollision = null;
       this.renderedTasks = {}
       this.tasksGroup = this.physics.add.group({});
-
+      this.trash = this.load.image('trash','trash_can-512.png');
   }
 
   createNewTaskGameObject(xPosition, yPosition, key) {
@@ -53,7 +56,19 @@ class MainView extends Phaser.Scene {
           if (this.checkOverlap(this.textCollision.objectA, this.textCollision.objectB)) {
             this.outerContext.setState({display:"block"});
           }
+
         }
+      if(this.trashOverlap != null){
+        if (this.checkOverlap(this.trashOverlap.objectA, this.trashOverlap.objectB)) {
+          let rootData = this.findRoot();
+          console.log(this.trashOverlap.objectB.text);
+          delete rootData[this.trashOverlap.objectB.text];
+
+          this.setRootData();
+
+
+        }
+      }
     }, this);
 
 
@@ -84,11 +99,16 @@ class MainView extends Phaser.Scene {
     return tasksData;
   }
 
+  setRootData() {
+    this.outerContext.setState({tasks:this.data.get("tasks")});
+  }
+
   create ()
   {
 
+      this.trash = this.physics.add.image(45,680,'trash').setInteractive();
+      let tasksData = this.findRoot();
 
-      let tasksData = this.data.get("tasks");
       for(let task of Object.keys(tasksData)) {
         const {x, y} = this.placeNewTask();
         this.createNewTaskGameObject(x, y, task);
@@ -113,10 +133,22 @@ class MainView extends Phaser.Scene {
         }
       }
 
+      var trashOverlapCallback = (obj1, trash) => {
+
+        if(this.trashOverlap == null ){
+
+          this.trashOverlap = {};
+          this.trashOverlap.circle = this.add.ellipse(45, 680, trash.width * 2, trash.width * 2, trash.width, 0.4);
+          console.log(trash);
+          this.trashOverlap.objectA = trash;
+          this.trashOverlap.objectB = obj1;
+        }
+      }
 
 
       this.physics.add.collider(this.tasksGroup, this.tasksGroup, textOverlapCallback);
 
+      this.physics.add.collider(this.trash, this.tasksGroup, trashOverlapCallback);
 
 
 
@@ -168,7 +200,14 @@ class MainView extends Phaser.Scene {
       } else {
         this.textCollision.circle.x =  (this.textCollision.objectA.x + this.textCollision.objectB.x)/2
         this.textCollision.circle.y =  (this.textCollision.objectA.y + this.textCollision.objectB.y)/2
+      }
+    }
 
+    if (this.trashOverlap != null) {
+
+      if (!this.checkOverlap(this.trashOverlap.objectA, this.trashOverlap.objectB)) {
+        console.log("here");
+        this.destroyTrashOverlap();
       }
     }
     this.rerender()
