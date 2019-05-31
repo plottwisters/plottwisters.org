@@ -3,6 +3,8 @@ import Phaser from 'phaser';
 import DragPlugin from './plugins/rexdragplugin.min.js';
 import MainView from './scenes/main_view.js';
 import CreateTask from './components/create_task.js';
+import ToDo from './components/todo.js';
+
 class TwoBirdsOneStone extends Component {
 
 
@@ -10,7 +12,8 @@ class TwoBirdsOneStone extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      display: "none"
+      display: "none",
+      displayCreate: "none"
     };
     let tasks = {
       "Cat 1": {
@@ -25,6 +28,7 @@ class TwoBirdsOneStone extends Component {
       rootPath: []
     });
     this.createNewTask =  this.createNewTask.bind(this);
+    this.openCreateView = this.openCreateView.bind(this);
   }
   componentDidMount() {
 
@@ -61,7 +65,14 @@ class TwoBirdsOneStone extends Component {
 
     this.setState({
       tasks: tasks,
-      display:  "none"
+      display:  "none",
+      displayCreate: "none"
+    });
+  }
+
+  openCreateView() {
+    this.setState({
+      displayCreate: "block"
     });
   }
 
@@ -70,8 +81,11 @@ class TwoBirdsOneStone extends Component {
     return (
       <div>
         <div id="tbos-canvas"/>
+
+        <div className="button-new-task" onClick={this.openCreateView} ><img className="img-tbos-nav" src="https://cdn3.iconfinder.com/data/icons/buttons/512/Icon_31-512.png"></img></div>
         <CreateTask display={this.state.display} createNewTask={this.createNewTask}/>
-      </div>
+        <ToDo display={this.state.displayCreate} />
+        </div>
     );
   }
   // shouldComponentUpdate() {
