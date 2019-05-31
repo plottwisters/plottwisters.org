@@ -10,9 +10,11 @@ class MainView extends Phaser.Scene {
       })
       this.outerContext = outerContext;
 
+
   }
   checkOverlap(spriteA, spriteB) {
-
+    if(spriteA == undefined || spriteB == undefined)
+      return false;
     var boundsA = spriteA.getBounds();
     var boundsB = spriteB.getBounds();
 
@@ -49,7 +51,11 @@ class MainView extends Phaser.Scene {
     let task = this.add.text(xPosition, yPosition, key, {fontSize:(this.game.scale.width < 400)?20:40}).setInteractive();
 
     task.drag = this.plugins.get('rexDrag').add(task);
-
+    task.on('dragstart',function(pointer){
+      pointer.start = {}
+      pointer.start.x = pointer.x;
+      pointer.start.y = pointer.y;
+    });
     task.on('dragend', function(pointer, dragX, dragY, dropped) {
       if (this.textCollision != null) {
 
@@ -63,23 +69,30 @@ class MainView extends Phaser.Scene {
           let rootData = this.findRoot();
 
           delete rootData[this.trashOverlap.objectA.text];
-          this.setRootData();
-
-          this.destroyTrashOverlap();
-
-
-
+          this.syncRootData();
         }
       }
+
+
     }, this);
 
 
     task.on('pointerup', (function(outerThis) {
 
       return function(pointer) {
-        if(pointer.getDistance() == 0) {
+        let distance = 0;
+        if(pointer.start!= null) {
+          distance = (pointer.y - pointer.start.y)*(pointer.y - pointer.start.y)  +  (pointer.x - pointer.start.x)*(pointer.x - pointer.start.x);
+          distance = Math.sqrt(distance);
+          pointer.start = null;
+        }
+        if(distance == 0) {
+
           outerThis.outerContext.state.rootPath.push(this.text);
-          if (Object.keys(outerThis.findRoot()).length == 0) {
+
+          if (outerThis.findRoot() == undefined || Object.keys(outerThis.findRoot()).length == 0) {
+
+
             outerThis.outerContext.state.rootPath.pop();
           }
         }
@@ -101,7 +114,7 @@ class MainView extends Phaser.Scene {
     return tasksData;
   }
 
-  setRootData() {
+  syncRootData() {
     this.outerContext.setState({tasks:this.data.get("tasks")});
   }
 
@@ -163,24 +176,13 @@ class MainView extends Phaser.Scene {
 
     //add new tasks
     for(let task of tasks) {
-
       if(this.renderedTasks[task] ==  undefined) {
-
         let x;
         let y;
-        if(this.textCollision != null) {
-
-          x = (this.textCollision.objectA.x + this.textCollision.objectB.x)/2;
-          y = (this.textCollision.objectA.y +  this.textCollision.objectB.y)/2;
-          this.destroyTextCollision();
-
-        } else {
-          let point = this.placeNewTask();
-          x = point.x;
-          y  = point.y;
-        }
+        let point = this.placeNewTask();
+        x = point.x;
+        y  = point.y;
         this.createNewTaskGameObject(x, y, task);
-
       }
     }
 
@@ -188,7 +190,15 @@ class MainView extends Phaser.Scene {
     let difference = new Set([...Object.keys(this.renderedTasks)].filter(x => !tasks.has(x)));
 
     for(let key of difference) {
+      if(this.textCollision != null && this.renderedTasks[key] == this.textCollision.objectA) {
+        this.textCollision.objectA = null;
+        this.textCollision.objectB = null;
+      }
+      if(this.trashOverlap != null && this.renderedTasks[key] == this.trashOverlap.objectA) {
+        this.trashOverlap.objectA = null;
 
+
+      }
       this.renderedTasks[key].destroy();
       delete this.renderedTasks[key];
     }
@@ -196,8 +206,8 @@ class MainView extends Phaser.Scene {
   update() {
 
     if (this.textCollision != null) {
-
       if (!this.checkOverlap(this.textCollision.objectA, this.textCollision.objectB)) {
+
         this.destroyTextCollision();
       } else {
         this.textCollision.circle.x =  (this.textCollision.objectA.x + this.textCollision.objectB.x)/2

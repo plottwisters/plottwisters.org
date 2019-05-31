@@ -16,11 +16,12 @@ class TwoBirdsOneStone extends Component {
       displayCreate: "none"
     };
     let tasks = {
-      "Cat 1": {
-        "Task 1": {}
-      },
+
       "Task 2": {},
       "Task 3": {},
+      "Cat 1": {
+        "Task 1": {}
+      }
     };
 
     this.setState({
