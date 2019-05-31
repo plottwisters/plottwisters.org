@@ -61,10 +61,12 @@ class MainView extends Phaser.Scene {
       if(this.trashOverlap != null){
         if (this.checkOverlap(this.trashOverlap.objectA, this.trashOverlap.objectB)) {
           let rootData = this.findRoot();
-          console.log(this.trashOverlap.objectA.text);
-          delete rootData[this.trashOverlap.objectA.text];
 
+          delete rootData[this.trashOverlap.objectA.text];
           this.setRootData();
+
+          this.destroyTrashOverlap();
+
 
 
         }
@@ -139,7 +141,7 @@ class MainView extends Phaser.Scene {
 
           this.trashOverlap = {};
           this.trashOverlap.circle = this.add.ellipse(45, 680, trash.width * 2, trash.width * 2, trash.width, 0.4);
-          console.log(trash);
+
           this.trashOverlap.objectA = trash;
           this.trashOverlap.objectB = obj1;
         }
@@ -206,7 +208,7 @@ class MainView extends Phaser.Scene {
     if (this.trashOverlap != null) {
 
       if (!this.checkOverlap(this.trashOverlap.objectA, this.trashOverlap.objectB)) {
-        console.log("here");
+
         this.destroyTrashOverlap();
       }
     }
