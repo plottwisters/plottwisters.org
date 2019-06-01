@@ -150,8 +150,26 @@ class MainView extends Phaser.Scene {
   }
   //**************
 
-  //update the rendered tasks based on parent state
-  rerender() {
+  //for re-rendering back button based on current parent state
+  rerenderBackButton() {
+    if (this.outerContext.state.rootPath.length!=0) {
+      if (this.backButton == null) {
+        this.backButton = this.add.image(100, 100, 'back').setInteractive();
+
+        this.backButton.setScale(0.2, 0.2);
+        this.backButton.on('pointerdown', () => {
+          this.outerContext.state.rootPath.pop();
+        });
+      }
+    } else if(this.backButton != null) {
+
+      this.backButton.destroy();
+      this.backButton = null;
+    }
+  }
+
+  //for re-rendering tasks  based on current parent state
+  rerenderTasks() {
     let tasks = new Set(Object.keys(this.findRoot()));
 
     //add new tasks
@@ -187,19 +205,33 @@ class MainView extends Phaser.Scene {
     }
   }
 
+  //update the rendered tasks and back button navigation based on parent state
+  rerender() {
+    this.rerenderBackButton();
+    this.rerenderTasks();
+
+  }
+
   //loads and defines all scene scope assets
   preload ()
   {
+      //assets
+      this.load.image('back', 'https://cdn3.iconfinder.com/data/icons/glyph/227/Button-Back-1-512.png');
+      this.backButton = null;
       this.load.setBaseURL('http://localhost:1234/');
+      this.trash = this.load.image('trash','trash_can-512.png');
 
-
-      this.data.set("tasks",this.outerContext.state.tasks);
+      //collisions
       this.collisions = {};
       this.collisions.textToText = null;
       this.collisions.widget = null;
+
+      //tasks
+      this.data.set("tasks",this.outerContext.state.tasks);
       this.renderedTasks = {}
       this.tasksGroup = this.physics.add.group({});
-      this.trash = this.load.image('trash','trash_can-512.png');
+
+      //callbacks
       this.widgetOverlapCallback = this.widgetOverlapCallback.bind(this);
       this.textOverlapCallback = this.textOverlapCallback.bind(this);
 
