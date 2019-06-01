@@ -4,14 +4,16 @@ import Phaser from 'phaser';
 
 
 class MainView extends Phaser.Scene {
+  //constructor that takes in state from parent component as parameter
   constructor(outerContext) {
       super({
           key: 'MainView'
       })
       this.outerContext = outerContext;
-
-
   }
+  //helper function that checks if parameters overlap
+  //@spriteA - first GameObject
+  //@spriteB - second GameObject
   checkOverlap(spriteA, spriteB) {
     if(spriteA == undefined || spriteB == undefined)
       return false;
@@ -19,56 +21,50 @@ class MainView extends Phaser.Scene {
     var boundsB = spriteB.getBounds();
 
     return Phaser.Geom.Intersects.RectangleToRectangle(boundsA, boundsB);
-
-  }
-  destroyTextCollision() {
-
-    this.textCollision.circle.destroy();
-    this.textCollision = null;
   }
 
-  destroyTrashOverlap() {
-
-    this.trashOverlap.circle.destroy();
-    this.trashOverlap = null;
+  //helper to destroy a collision object
+  destroyCollision(collision) {
+    collision.circle.destroy();
+    return null;
   }
+
+  //randomly placed a new task in the scene
   placeNewTask() {
     return {"x": Math.random() * this.game.scale.width, "y": Math.random() * this.game.scale.height};
   }
-  preload ()
-  {
-      this.load.setBaseURL('http://localhost:1234/');
 
-
-      this.data.set("tasks",this.outerContext.state.tasks);
-      this.textCollision = null;
-      this.renderedTasks = {}
-      this.tasksGroup = this.physics.add.group({});
-      this.trash = this.load.image('trash','trash_can-512.png');
-  }
-
+  //creates a new task
   createNewTaskGameObject(xPosition, yPosition, key) {
+    //turnary conditional for responsiveness
+    //TODO: replace hard coded values with reference to responsiveness configuration file
     let task = this.add.text(xPosition, yPosition, key, {fontSize:(this.game.scale.width < 400)?20:40}).setInteractive();
 
+    //turns on dragging
     task.drag = this.plugins.get('rexDrag').add(task);
+
+    //get original position to calculate displacement for pointerup later
+    //to distinguish between category navigation and dropping dragged task
     task.on('dragstart',function(pointer){
       pointer.start = {}
       pointer.start.x = pointer.x;
       pointer.start.y = pointer.y;
     });
-    task.on('dragend', function(pointer, dragX, dragY, dropped) {
-      if (this.textCollision != null) {
 
-          if (this.checkOverlap(this.textCollision.objectA, this.textCollision.objectB)) {
+    //modifies parent component state if tasks dragged together or task dragged to interactive widget(checkmark or trash)
+    task.on('dragend', function(pointer, dragX, dragY, dropped) {
+      if (this.collisions.textToText != null) {
+
+          if (this.checkOverlap(this.collisions.textToText.objectA, this.collisions.textToText.objectB)) {
             this.outerContext.setState({display:"block"});
           }
 
         }
-      if(this.trashOverlap != null){
-        if (this.checkOverlap(this.trashOverlap.objectA, this.trashOverlap.objectB)) {
+      if(this.collisions.widget != null){
+        if (this.checkOverlap(this.collisions.widget.objectA, this.collisions.widget.objectB)) {
           let rootData = this.findRoot();
 
-          delete rootData[this.trashOverlap.objectA.text];
+          delete rootData[this.collisions.widget.objectA.text];
           this.syncRootData();
         }
       }
@@ -76,23 +72,20 @@ class MainView extends Phaser.Scene {
 
     }, this);
 
-
+    //nested category navigation if category clicked
     task.on('pointerup', (function(outerThis) {
 
       return function(pointer) {
         let distance = 0;
-        if(pointer.start!= null) {
+        if(pointer.start!= null) { //calculate displacement from pointer start dragging (same as pointer down)
           distance = (pointer.y - pointer.start.y)*(pointer.y - pointer.start.y)  +  (pointer.x - pointer.start.x)*(pointer.x - pointer.start.x);
           distance = Math.sqrt(distance);
           pointer.start = null;
         }
-        if(distance == 0) {
 
+        if(distance == 0) { //navigate if click release on category and not at end of dragging
           outerThis.outerContext.state.rootPath.push(this.text);
-
-          if (outerThis.findRoot() == undefined || Object.keys(outerThis.findRoot()).length == 0) {
-
-
+          if (outerThis.findRoot() == undefined || Object.keys(outerThis.findRoot()).length == 0) { //undefined check needed for tasks deleted
             outerThis.outerContext.state.rootPath.pop();
           }
         }
@@ -104,7 +97,8 @@ class MainView extends Phaser.Scene {
   }
 
 
-
+  //find where you are in the task tree
+  //and return it as the root
   findRoot() {
     let rootPath = this.outerContext.state.rootPath;
     let tasksData = this.data.get("tasks");
@@ -114,64 +108,50 @@ class MainView extends Phaser.Scene {
     return tasksData;
   }
 
+  //sync state of parent state with scene state
   syncRootData() {
     this.outerContext.setState({tasks:this.data.get("tasks")});
   }
 
-  create ()
-  {
 
-      this.trash = this.physics.add.image(45,680,'trash').setInteractive();
-      let tasksData = this.findRoot();
+  //**************overlap callbacks for when one object overlaps with another
 
-      for(let task of Object.keys(tasksData)) {
-        const {x, y} = this.placeNewTask();
-        this.createNewTaskGameObject(x, y, task);
+  //when text overlaps with text
+  textOverlapCallback(obj1, obj2) {
+
+    if (obj1.drag.isDragging|| obj2.drag.isDragging) {
+      let x = (obj1.x + obj2.x) / 2;
+      let y = (obj1.y + obj2.y) / 2;
+
+
+      if (this.collisions.textToText == null) {
+
+        this.collisions.textToText = {};
+        this.collisions.textToText.circle = this.add.ellipse(x, y, obj1.width * 2, obj1.width * 2, obj1.width, 0.4);
+
+        this.collisions.textToText.objectA = obj1;
+        this.collisions.textToText.objectB = obj2;
       }
 
-
-      var textOverlapCallback = (obj1, obj2) => {
-
-        if (obj1.drag.isDragging|| obj2.drag.isDragging) {
-          let x = (obj1.x + obj2.x) / 2;
-          let y = (obj1.y + obj2.y) / 2;
-
-
-          if (this.textCollision == null) {
-            this.textCollision = {};
-            this.textCollision.circle = this.add.ellipse(x, y, obj1.width * 2, obj1.width * 2, obj1.width, 0.4);
-
-            this.textCollision.objectA = obj1;
-            this.textCollision.objectB = obj2;
-          }
-
-        }
-      }
-
-      var trashOverlapCallback = (obj1, trash) => {
-
-        if(this.trashOverlap == null ){
-
-          this.trashOverlap = {};
-          this.trashOverlap.circle = this.add.ellipse(45, 680, trash.width * 2, trash.width * 2, trash.width, 0.4);
-
-          this.trashOverlap.objectA = trash;
-          this.trashOverlap.objectB = obj1;
-        }
-      }
-
-
-      this.physics.add.collider(this.tasksGroup, this.tasksGroup, textOverlapCallback);
-
-      this.physics.add.collider(this.trash, this.tasksGroup, trashOverlapCallback);
-
-
-
+    }
   }
 
+  //when text overlaps with widget icon
+  widgetOverlapCallback(widget, obj1) {
+    if (obj1.drag.isDragging) {
+      if(this.collisions.widget == null){
+
+        this.collisions.widget = {};
+        this.collisions.widget.circle = this.add.ellipse(widget.x, widget.y, widget.width * 2, widget.width * 2, widget.width, 0.4);
+        this.collisions.widget.objectA = obj1;
+        this.collisions.widget.objectB = widget;
+      }
+    }
+  }
+  //**************
+
+  //update the rendered tasks based on parent state
   rerender() {
-
-
     let tasks = new Set(Object.keys(this.findRoot()));
 
     //add new tasks
@@ -189,40 +169,87 @@ class MainView extends Phaser.Scene {
     //remove deleted tasks
     let difference = new Set([...Object.keys(this.renderedTasks)].filter(x => !tasks.has(x)));
 
+
+
     for(let key of difference) {
-      if(this.textCollision != null && this.renderedTasks[key] == this.textCollision.objectA) {
-        this.textCollision.objectA = null;
-        this.textCollision.objectB = null;
+      //if task deleted was part of a collision, remove dangling references in respective collision objects
+      if(this.collisions.textToText != null && this.renderedTasks[key] == this.collisions.textToText.objectA) {
+        this.collisions.textToText.objectA = null;
+        this.collisions.textToText.objectB = null;
       }
-      if(this.trashOverlap != null && this.renderedTasks[key] == this.trashOverlap.objectA) {
-        this.trashOverlap.objectA = null;
+      if(this.collisions.widget != null && this.renderedTasks[key] == this.collisions.widget.objectA) {
+        this.collisions.widget.objectA = null;
+      }
 
 
-      }
       this.renderedTasks[key].destroy();
       delete this.renderedTasks[key];
     }
   }
+
+  //loads and defines all scene scope assets
+  preload ()
+  {
+      this.load.setBaseURL('http://localhost:1234/');
+
+
+      this.data.set("tasks",this.outerContext.state.tasks);
+      this.collisions = {};
+      this.collisions.textToText = null;
+      this.collisions.widget = null;
+      this.renderedTasks = {}
+      this.tasksGroup = this.physics.add.group({});
+      this.trash = this.load.image('trash','trash_can-512.png');
+      this.widgetOverlapCallback = this.widgetOverlapCallback.bind(this);
+      this.textOverlapCallback = this.textOverlapCallback.bind(this);
+
+  }
+
+
+  //instantiates all assets in the scene
+  create ()
+  {
+
+      //instantiate UI widgets
+      this.trash = this.physics.add.image(45,680,'trash').setInteractive();
+
+      //tasks
+      let tasksData = this.findRoot();
+      for(let task of Object.keys(tasksData)) {
+        const {x, y} = this.placeNewTask();
+        this.createNewTaskGameObject(x, y, task);
+      }
+
+      //register overlap callbacks
+      this.physics.add.collider(this.tasksGroup, this.tasksGroup, this.textOverlapCallback);
+      this.physics.add.collider(this.trash, this.tasksGroup, this.widgetOverlapCallback);
+
+
+
+  }
+
+
+
+  //runs every frame - used to call renrender function and to destroy and update text collision objects
+  //on appropriate events
   update() {
 
-    if (this.textCollision != null) {
-      if (!this.checkOverlap(this.textCollision.objectA, this.textCollision.objectB)) {
+    if (this.collisions.textToText != null) {
+      if (!this.checkOverlap(this.collisions.textToText.objectA, this.collisions.textToText.objectB)) {
 
-        this.destroyTextCollision();
+        this.collisions.textToText = this.destroyCollision(this.collisions.textToText);
       } else {
-        this.textCollision.circle.x =  (this.textCollision.objectA.x + this.textCollision.objectB.x)/2
-        this.textCollision.circle.y =  (this.textCollision.objectA.y + this.textCollision.objectB.y)/2
+        this.collisions.textToText.circle.x =  (this.collisions.textToText.objectA.x + this.collisions.textToText.objectB.x)/2
+        this.collisions.textToText.circle.y =  (this.collisions.textToText.objectA.y + this.collisions.textToText.objectB.y)/2
       }
     }
 
-    if (this.trashOverlap != null) {
-
-      if (!this.checkOverlap(this.trashOverlap.objectA, this.trashOverlap.objectB)) {
-
-        this.destroyTrashOverlap();
+    if (this.collisions.widget != null) {
+      if (!this.checkOverlap(this.collisions.widget.objectA, this.collisions.widget.objectB)) {
+        this.collisions.widget = this.destroyCollision(this.collisions.widget);
       }
     }
-    this.rerender()
+    this.rerender();
   }
 
 }

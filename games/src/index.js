@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import TwoBirdsOneStone from './two-birds-one-stone/index.js';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
+//registry of all games - or different urls
 let globalGameRegistry = {
   "two-birds-one-stone":TwoBirdsOneStone
 }
@@ -10,14 +11,15 @@ let globalGameRegistry = {
 class App extends Component {
   constructor(props) {
       super(props);
-      this.games = ["Two Birds One Stone"];
+      this.games = Object.keys(globalGameRegistry);
     }
   render() {
 
     let renderedGamesLinks = []
     let routes = []
-    for (let game of this.games) {
-      let original = game.toLowerCase().trim().split(" ").join("-");
+    //create list of links to games and routes to games
+    for (let original of this.games) {
+
       let simplified = "/" + original;
       let link = (
       <li key={original}>
@@ -25,7 +27,7 @@ class App extends Component {
           className="app-link"
           to={simplified}
         >
-          {game}
+          {original}
         </Link>
       </li>);
       let route = (<Route path={simplified} exact component={globalGameRegistry[original]} />);
@@ -34,17 +36,21 @@ class App extends Component {
       routes.push(route);
     }
 
+    //contains links and routes
     let gameLinksContainer =  ()=> (  <div>
         <ul>
           {renderedGamesLinks}
         </ul>
         {routes}
       </div>);
+    //contains just routes
     let gamesContainer = ()=>(
       <div>
         {routes}
       </div>
     );
+
+    //for "/" show variable above with links for all other urls include only routes
     return (
 
       <Router>

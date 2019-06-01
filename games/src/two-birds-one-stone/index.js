@@ -8,7 +8,7 @@ import ToDo from './components/todo.js';
 class TwoBirdsOneStone extends Component {
 
 
-
+  //react parent component
   constructor(props) {
     super(props);
     this.state = {
@@ -16,7 +16,6 @@ class TwoBirdsOneStone extends Component {
       displayCreate: "none"
     };
     let tasks = {
-
       "Task 2": {},
       "Task 3": {},
       "Cat 1": {
@@ -31,6 +30,52 @@ class TwoBirdsOneStone extends Component {
     this.createNewTask =  this.createNewTask.bind(this);
     this.openCreateView = this.openCreateView.bind(this);
   }
+
+  //handler for creating a new task from create new task view from pulling together
+  //other tasks
+  createNewTask(taskName) {
+    let tasks = this.state.tasks;
+    tasks[taskName] = {}
+    let taskAKey = this.game.scene.getScene("MainView").collisions.textToText.objectA.text;
+    let taskBKey = this.game.scene.getScene("MainView").collisions.textToText.objectB.text;
+
+    tasks[taskName] = {}
+    tasks[taskName][taskAKey] = tasks[taskAKey];
+    tasks[taskName][taskBKey] = tasks[taskBKey];  
+    delete tasks[taskAKey];
+    delete tasks[taskBKey];
+
+    this.setState({
+      tasks: tasks,
+      display:  "none",
+      displayCreate: "none"
+    });
+  }
+
+
+
+  openCreateView() {
+    this.setState({
+      displayCreate: "block"
+    });
+  }
+
+
+  //add game container and hidden views into DOM
+  render() {
+
+    return (
+      <div>
+        <div id="tbos-canvas"/>
+
+        <div className="button-new-task" onClick={this.openCreateView} ><img className="img-tbos-nav" src="https://cdn3.iconfinder.com/data/icons/buttons/512/Icon_31-512.png"></img></div>
+        <CreateTask display={this.state.display} createNewTask={this.createNewTask}/>
+        <ToDo display={this.state.displayCreate} />
+        </div>
+    );
+  }
+
+  //instantiate phaser game after render
   componentDidMount() {
 
     let newScene = new MainView(this);
@@ -53,42 +98,12 @@ class TwoBirdsOneStone extends Component {
 
     };
 
-
-
     this.game = new Phaser.Game(config);
-
-  }
-  createNewTask(taskName) {
-    let tasks = this.state.tasks;
-    tasks[taskName] = {}
-    delete tasks[this.game.scene.getScene("MainView").textCollision.objectA.text];
-    delete tasks[this.game.scene.getScene("MainView").textCollision.objectB.text];
-
-    this.setState({
-      tasks: tasks,
-      display:  "none",
-      displayCreate: "none"
-    });
   }
 
-  openCreateView() {
-    this.setState({
-      displayCreate: "block"
-    });
-  }
-
-  render() {
-
-    return (
-      <div>
-        <div id="tbos-canvas"/>
-
-        <div className="button-new-task" onClick={this.openCreateView} ><img className="img-tbos-nav" src="https://cdn3.iconfinder.com/data/icons/buttons/512/Icon_31-512.png"></img></div>
-        <CreateTask display={this.state.display} createNewTask={this.createNewTask}/>
-        <ToDo display={this.state.displayCreate} />
-        </div>
-    );
-  }
+  //commented out for now - this is not important as long as there is no need for the
+  //immediate dom parent of the phaser game to rerender - but may be important
+  //if there is a need
   // shouldComponentUpdate() {
   //   return false;
   // }

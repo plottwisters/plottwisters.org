@@ -7,7 +7,6 @@ class CreateTask extends Component {
       this.handleKeyPress = this.handleKeyPress.bind(this);
     }
   render() {
-    console.log(this.props.display);
 
     return (
       <div style={"display:" + this.props.display} className="tbos-overlay">
@@ -20,7 +19,7 @@ class CreateTask extends Component {
     );
   }
 
-
+  //on press enter a new task is created with the appropriate name
   handleKeyPress(e) {
     if (e.key === 'Enter') {
      this.props.createNewTask(e.target.value);
