@@ -12,7 +12,7 @@
   position: fixed;
   width: 100%;
   /* Full width (cover the whole page) */
-  height: 100%;
+  height: 100vh;
   top: 0;
   left: 0;
   right: 0;
@@ -21,7 +21,7 @@
   z-index: 2;
 }
 
-.center-container, .todo-content-container, .todo {
+.center-container, .todo {
   width: 100%;
   height: 100%;
   display: flex;
@@ -36,21 +36,54 @@ canvas {
 
 .todo {
   background: #f6f6f6;
-  overflow-y: auto;
   justify-content: start;
 }
 
 .todo-content-container {
+  position: absolute;
+  height: auto;
+  display: block;
+  bottom: 0px;
+  top: 0px;
   width: 80%;
-  justify-content: start;
   margin-top: 10%;
-  margin-bottom: 10%;
+  text-align: center;
+  align-items: center;
 }
 
-.todo-header {
+.todo-tasks-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  overflow-y: auto;
+  bottom: 0px;
+  top: 0px;
+  margin-top: 100px;
+  position: absolute;
+  width: 100%;
+}
+
+.full-screen-popup-header h1 {
   color: black;
   font-weight: 400;
+}
+
+.full-screen-popup-header button {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+  background-color: transparent;
+  font-weight: bold;
+  font-size: 18px;
+  color: #008aff;
+  border: 0px;
+}
+
+.full-screen-popup-header {
   margin-bottom: 40px;
+  position: relative;
 }
 
 .todo-add {
@@ -108,6 +141,7 @@ canvas {
 
 .todo-input-form {
   margin-top: 50px;
+  margin-bottom: 40px;
   display: flex;
   flex-direction: row;
   justify-content: center;

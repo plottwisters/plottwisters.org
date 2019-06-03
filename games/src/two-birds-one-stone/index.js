@@ -4,60 +4,59 @@ import DragPlugin from './plugins/rexdragplugin.min.js';
 import MainView from './scenes/main_view.js';
 import CreateTask from './components/create_task.js';
 import ToDo from './components/todo.js';
-
+import * from tbosConstants as './tbos_constants'
 class TwoBirdsOneStone extends Component {
 
 
   //react parent component
   constructor(props) {
     super(props);
-    this.state = {
-      display: "none",
-      displayCreate: "none"
-    };
-    let tasks = {
-      "Task 2": {},
-      "Task 3": {},
-      "Cat 1": {
-        "Task 1": {}
-      }
-    };
-
+    let displayTypes = tbosConstants.displayTypes;
+    let display = {};
+    for (var type of Object.keys(displayTypes)) {
+      display[type] = "none";
+    }
+    let roothPath = [];
     this.setState({
-      tasks: tasks,
-      rootPath: []
+      display,
+      rootPath
     });
     this.createNewTask =  this.createNewTask.bind(this);
-    this.openCreateView = this.openCreateView.bind(this);
+    this.toggleCreateView = this.toggleCreateView.bind(this);
+    this.changeDisplay = this.changeDisplay.bind(this);
+  }
+
+  addToRootPath(category) {
+    this.setState({rootPath: [...rootPath, category]})
+  }
+
+  removeFromRootPath() {
+    let rootPath = [...this.state.rootPath];
+    rootPath.pop();
+    this.setState({rootPath});
   }
 
   //handler for creating a new task from create new task view from pulling together
   //other tasks
   createNewTask(taskName) {
-    let tasks = this.state.tasks;
+    let tasks = this.props.tasks;
     tasks[taskName] = {}
     let taskAKey = this.game.scene.getScene("MainView").collisions.textToText.objectA.text;
     let taskBKey = this.game.scene.getScene("MainView").collisions.textToText.objectB.text;
-
-    tasks[taskName] = {}
-    tasks[taskName][taskAKey] = tasks[taskAKey];
-    tasks[taskName][taskBKey] = tasks[taskBKey];  
-    delete tasks[taskAKey];
-    delete tasks[taskBKey];
-
-    this.setState({
-      tasks: tasks,
-      display:  "none",
-      displayCreate: "none"
-    });
+    createNewTaskAction(taskAKey, taskBKey); //dispatches action to make a new task from two subtasks
+    this.changeDisplay(tbosConstants.displayTypes.createOne);
   }
 
 
 
-  openCreateView() {
-    this.setState({
-      displayCreate: "block"
-    });
+  changeDisplay(view) {
+    let newDisplayState = Object.assign({}, this.props.display);
+    newDisplayState[view] = newDisplayState[view] == "block" ? "none": "block";
+    this.setState({"display": newDisplayState});
+  }
+
+  toggleCreateView() {
+    this.changeDisplay(tbosConstants.displayTypes.createMany);
   }
 
 
@@ -68,9 +67,9 @@ class TwoBirdsOneStone extends Component {
       <div>
         <div id="tbos-canvas"/>
 
-        <div className="button-new-task" onClick={this.openCreateView} ><img className="img-tbos-nav" src="https://cdn3.iconfinder.com/data/icons/buttons/512/Icon_31-512.png"></img></div>
-        <CreateTask display={this.state.display} createNewTask={this.createNewTask}/>
-        <ToDo display={this.state.displayCreate} />
+        <div className="button-new-task" onClick={this.toggleCreateView} ><img className="img-tbos-nav" src="https://cdn3.iconfinder.com/data/icons/buttons/512/Icon_31-512.png"></img></div>
+        <CreateTask display={this.state.display[tbosConstants.displayTypes.createOne]} createNewTask={this.createNewTask}/>
+        <ToDo display={this.state.display[tbosConstants.displayTypes.createMany]} toggleCreateView={this.toggleCreateView} />
         </div>
     );
   }

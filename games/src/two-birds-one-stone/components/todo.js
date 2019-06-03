@@ -59,9 +59,12 @@ class ToDo extends Component {
 
           <div className="todo">
             <div className="todo-content-container">
-              <h1 className="todo-header">Add Things to Do</h1>
 
-
+              <div className="full-screen-popup-header">
+              <h1 >Add Things to Do</h1>
+              <button> Done </button>
+              </div>
+              <div className="todo-tasks-container">
                   {this.state.list.map((item) => {
                           return <ToDoItem
                                             key={item.name}
@@ -77,8 +80,10 @@ class ToDo extends Component {
                  <input  value={this.state.newTaskInput} className="todo-input" onChange={this.handleInput} type="text"  onKeyPress={this.handleKey}/>
                  <button className="todo-add" onClick={this.createItem}>+</button>
               </div>
-
               </div>
+              </div>
+
+
           </div>
 
         </div>
