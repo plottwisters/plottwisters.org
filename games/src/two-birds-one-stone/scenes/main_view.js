@@ -82,7 +82,7 @@ class MainView extends Phaser.Scene {
 
         if(distance == 0) { //navigate if click release on category and not at end of dragging
           outerThis.outerContext.addToRootPath(this.text);
-          if (outerThis.findRoot() == undefined || Object.keys(outerThis.findRoot()).length == 0) { //undefined check needed for tasks deleted
+          if (outerThis.findRoot() == undefined || outerThis.findRoot().length == 0) { //undefined check needed for tasks deleted
             outerThis.outerContext.removeFromRootPath();
         }
       }
