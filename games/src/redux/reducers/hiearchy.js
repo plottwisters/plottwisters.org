@@ -1,4 +1,4 @@
-import * as ActionType from '../actions/action_type'
+import ActionType from './../actions/action_type'
 
 function hiearchy(state = {}, action) {
   let newState = state;

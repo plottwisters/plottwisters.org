@@ -1,4 +1,4 @@
-import * as ActionType from './../actions/action_type'
+import ActionType from './../actions/action_type'
 import reverseHiearchy from './reverse_hiearchy'
 import hiearchy from './hiearchy'
 import active from './active'

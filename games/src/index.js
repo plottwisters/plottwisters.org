@@ -46,7 +46,13 @@ let dummyData = {
     "id2": "idroot",
     "id4": "idroot"
   },
-  "tbosRootPath": ["idroot"]
+  "tbosRootPath": ["idroot"],
+  "nameToTasks": {
+    "Task 1": ["id1"],
+    "Task 2": ["id2"],
+    "Task 3": ["id3"],
+    "Cat 1": ["id4"]
+  }
 };
 
 

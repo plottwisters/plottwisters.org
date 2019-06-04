@@ -33,11 +33,11 @@ class TwoBirdsOneStone extends Component {
 
   //handler for creating a new task from create new task view from pulling together
   //other tasks
-  createNewTask(taskName) {
+  createNewTask(taskId) {
 
     let taskAKey = this.game.scene.getScene("MainView").collisions.textToText.objectA.id;
     let taskBKey = this.game.scene.getScene("MainView").collisions.textToText.objectB.id;
-    createNewTaskAction(taskAKey, taskBKey, taskName, this.getRootId()); //dispatches action to make a new task from two subtasks
+    createNewTaskAction(taskAKey, taskBKey, taskId, this.getRootId()); //dispatches action to make a new task from two subtasks
     this.changeDisplay(tbosConstants.displayTypes.createOne);
   }
 
