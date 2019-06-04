@@ -62,7 +62,7 @@ class MainView extends Phaser.Scene {
         }
       if(this.collisions.widget != null){
         if (this.checkOverlap(this.collisions.widget.objectA, this.collisions.widget.objectB)) {
-          deleteTaskAction(this.outerContext.state.rootPath, this.collisions.widget.objectA.text);
+          deleteTaskAction(this.collisions.widget.objectA.text, this.outerContext.getRootName());
         }
       }
 
@@ -74,31 +74,25 @@ class MainView extends Phaser.Scene {
 
       return function(pointer) {
         let distance = 0;
-        if(pointer.start!= null) { //calculate displacement from pointer start dragging (same as pointer down)
-          distance = (pointer.y - pointer.start.y)*(pointer.y - pointer.start.y)  +  (pointer.x - pointer.start.x)*(pointer.x - pointer.start.x);
+        if (pointer.start != null) { //calculate displacement from pointer start dragging (same as pointer down)
+          distance = (pointer.y - pointer.start.y) * (pointer.y - pointer.start.y) + (pointer.x - pointer.start.x) * (pointer.x - pointer.start.x);
           distance = Math.sqrt(distance);
           pointer.start = null;
         }
 
-        if(distance == 0) { //navigate if click release on category and not at end of dragging
+        if (distance == 0) { //navigate if click release on category and not at end of dragging
           outerThis.outerContext.addToRootPath(this.text);
-          if (outerThis.findRoot() == undefined || outerThis.findRoot().length == 0) { //undefined check needed for tasks deleted
+          if (!outerThis.outerContext.active[outerThis.outerContext.getRootName()] //undefined check needed for tasks deleted
+            ||
+            outerThis.outerContext.getRootTasksAsArray().length == 0) {
             outerThis.outerContext.removeFromRootPath();
+          }
         }
       }
     })(this));
+
     this.renderedTasks[key] = task;
-
     this.tasksGroup.add(this.renderedTasks[key]);
-  }
-
-
-  //find where you are in the task tree
-  //and return it as the root
-  findRoot() {
-    let rootPath = this.outerContext.state.rootPath;
-    let tasksData = this.data.get("tasks");
-    return tasksData[rootPath[-1]].children;
   }
 
 
@@ -142,7 +136,7 @@ class MainView extends Phaser.Scene {
 
   //for re-rendering back button based on current parent state
   rerenderBackButton() {
-    if (this.outerContext.state.rootPath.length!=0) {
+    if (this.outerContext.state.rootPath.length!=1) { // !=1 instead of !=0 because "root" container task exists
       if (this.backButton == null) {
         this.backButton = this.add.image(100, 100, 'back').setInteractive();
 
@@ -160,7 +154,7 @@ class MainView extends Phaser.Scene {
 
   //for re-rendering tasks  based on current parent state
   rerenderTasks() {
-    let tasks = new Set(this.findRoot());
+    let tasks = new Set(this.outerContext.getRootTasksAsArray());
 
     //add new tasks
     for(let task of tasks) {
@@ -217,14 +211,13 @@ class MainView extends Phaser.Scene {
       this.collisions.widget = null;
 
       //tasks
-      this.data.set("tasks",this.outerContext.props.tasks);
+
       this.renderedTasks = {}
       this.tasksGroup = this.physics.add.group({});
 
       //callbacks
       this.widgetOverlapCallback = this.widgetOverlapCallback.bind(this);
       this.textOverlapCallback = this.textOverlapCallback.bind(this);
-
   }
 
 
@@ -236,7 +229,7 @@ class MainView extends Phaser.Scene {
       this.trash = this.physics.add.image(45,680,'trash').setInteractive();
 
       //tasks
-      let tasksData = this.findRoot();
+      let tasksData = this.outerContext.getRootTasksAsArray();
       for(let task of tasksData) {
         const {x, y} = this.placeNewTask();
         this.createNewTaskGameObject(x, y, task);

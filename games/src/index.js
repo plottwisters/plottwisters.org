@@ -6,25 +6,37 @@ import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 
 let dummyData = {
-  "tasks": {
+  "hiearchy": {
     "Task 1": {
-      "children": [],
-      "data": []
     },
     "Task 2": {
-      "children": [],
-      "data": []
     },
     "Task 3": {
-      "children": [],
-      "data": []
     },
     "Cat 1": {
-      "children": ["Task 1"],
-      "data": []
     }
+  },
+  "active": {
+    "Task 1": true,
+    "Task 2": true,
+    "Task 3": true,
+    "Cat 1": true
+  },
+  "cookieTrailData":  {
+    "Task 1" : [],
+    "Task 2" : [],
+    "Task 3" : [],
+    "Cat 1":  []
+  },
+  "reverseHiearchy":{
+    "Task 1": "Cat 1",
+    "Cat 1": "root", //TODO: root becomes a reserved word aka. a task can't be named root - add field validation for this when creating task
+    "Task 2": "root",
+    "Task 3": "root"
   }
 };
+
+
 
 let store = createStore(dummyData);
 
