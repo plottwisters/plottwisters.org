@@ -16,36 +16,13 @@ class TwoBirdsOneStone extends Component {
     for (var type of Object.keys(displayTypes)) {
       display[type] = "none";
     }
-    let rootPath = ["root"];
     this.setState({
-      display,
-      rootPath
+      display
     });
     this.createNewTask =  this.createNewTask.bind(this);
     this.toggleCreateView = this.toggleCreateView.bind(this);
     this.changeDisplay = this.changeDisplay.bind(this);
   }
-
-  addToRootPath(category) {
-    this.setState({rootPath: [...rootPath, category]})
-  }
-
-  removeFromRootPath() {
-    let rootPath = [...this.state.rootPath];
-    rootPath.pop();
-    this.setState({rootPath});
-  }
-
-  //handler for creating a new task from create new task view from pulling together
-  //other tasks
-  createNewTask(taskName) {
-
-    let taskAKey = this.game.scene.getScene("MainView").collisions.textToText.objectA.text;
-    let taskBKey = this.game.scene.getScene("MainView").collisions.textToText.objectB.text;
-    createNewTaskAction(taskAKey, taskBKey, taskName, this.getRootName()); //dispatches action to make a new task from two subtasks
-    this.changeDisplay(tbosConstants.displayTypes.createOne);
-  }
-
 
 
   changeDisplay(view) {
@@ -54,17 +31,27 @@ class TwoBirdsOneStone extends Component {
     this.setState({"display": newDisplayState});
   }
 
+  //handler for creating a new task from create new task view from pulling together
+  //other tasks
+  createNewTask(taskName) {
+
+    let taskAKey = this.game.scene.getScene("MainView").collisions.textToText.objectA.id;
+    let taskBKey = this.game.scene.getScene("MainView").collisions.textToText.objectB.id;
+    createNewTaskAction(taskAKey, taskBKey, taskName, this.getRootId()); //dispatches action to make a new task from two subtasks
+    this.changeDisplay(tbosConstants.displayTypes.createOne);
+  }
+
   toggleCreateView() {
     this.changeDisplay(tbosConstants.displayTypes.createMany);
   }
 
 
-  getRootName() {
-    return this.state.rootPath[-1];
+  getRootId() {
+    return this.props.tbosRootPath[-1];
   }
 
   getRootTasksAsArray() {
-    let tasks = Object.keys(this.props.tasks[this.getRootName()])
+    let tasks = Object.keys(this.props.tasks[this.getRootId()])
     return tasks.filter(task=> this.props.active);
   }
 

@@ -5,8 +5,8 @@ function hiearchy(state = {}, action) {
   //create new task action
   case ActionType.CREATE_TASK_COLLISION:
     newState = {...state}
-    newState[action.taskName] = {action.taskA: action.taskA, action.taskB: action.taskB};
-    newState[action.currentRoot] = action.taskName
+    newState[action.taskId] = {action.taskA: action.taskA, action.taskB: action.taskB};
+    newState[action.currentRoot] = action.taskId
     delete newState[action.currentRoot][action.taskA];
     delete newState[action.currentRoot][action.taskB];
 
@@ -14,9 +14,9 @@ function hiearchy(state = {}, action) {
   case ActionType.CREATE_TASKS:
     newState = {...state};
     //update tasks tree
-    for(let task of action.taskNames) {
-      newState[task]  = {};
-      newState[action.currentRoot][task] =  task;
+    for(let task of action.taskIds) {
+      newState[task.id]  = {};
+      newState[action.currentRoot][task.id] =  task.id;
     }
   default:
     break;

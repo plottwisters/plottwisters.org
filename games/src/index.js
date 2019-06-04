@@ -7,33 +7,46 @@ import { createStore } from 'redux'
 
 let dummyData = {
   "hiearchy": {
-    "Task 1": {
+    "idroot": {
+      "id1": "id1",
+      "id2": "id2",
+      "id3": "id3"
+    }
+    "id1": {
     },
-    "Task 2": {
+    "id2": {
     },
-    "Task 3": {
+    "id3": {
     },
-    "Cat 1": {
+    "id4": {
+      "id3": "id3"
     }
   },
+  "names": {
+    "id1": "Task 1",
+    "id2": "Task 2",
+    "id3": "Task 3",
+    "id4": "Cat 1"
+  },
   "active": {
-    "Task 1": true,
-    "Task 2": true,
-    "Task 3": true,
-    "Cat 1": true
+    "id1": true,
+    "id2": true,
+    "id3": true,
+    "id4": true
   },
   "cookieTrailData":  {
-    "Task 1" : [],
-    "Task 2" : [],
-    "Task 3" : [],
-    "Cat 1":  []
+    "id1" : [],
+    "id2" : [],
+    "id3" : [],
+    "id4":  []
   },
   "reverseHiearchy":{
-    "Task 1": "Cat 1",
-    "Cat 1": "root", //TODO: root becomes a reserved word aka. a task can't be named root - add field validation for this when creating task
-    "Task 2": "root",
-    "Task 3": "root"
-  }
+    "id3": "id4",
+    "id1": "idroot",
+    "id2": "idroot",
+    "id4": "idroot"
+  },
+  "tbosRootPath": ["idroot"]
 };
 
 

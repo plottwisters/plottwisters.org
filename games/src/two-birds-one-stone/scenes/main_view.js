@@ -35,11 +35,11 @@ class MainView extends Phaser.Scene {
   }
 
   //creates a new task
-  createNewTaskGameObject(xPosition, yPosition, key) {
+  createNewTaskGameObject(xPosition, yPosition, name, key) {
     //turnary conditional for responsiveness
     //TODO: replace hard coded values with reference to responsiveness configuration object in external const file
-    let task = this.add.text(xPosition, yPosition, key, {fontSize:(this.game.scale.width < 400)?20:40}).setInteractive();
-
+    let task = this.add.text(xPosition, yPosition, name, {fontSize:(this.game.scale.width < 400)?20:40}).setInteractive();
+    task.key = key;
     //turns on dragging
     task.drag = this.plugins.get('rexDrag').add(task);
 
@@ -62,7 +62,7 @@ class MainView extends Phaser.Scene {
         }
       if(this.collisions.widget != null){
         if (this.checkOverlap(this.collisions.widget.objectA, this.collisions.widget.objectB)) {
-          deleteTaskAction(this.collisions.widget.objectA.text, this.outerContext.getRootName());
+          deleteTaskAction(this.collisions.widget.objectA.id, this.outerContext.getRootId());
         }
       }
 
@@ -81,11 +81,11 @@ class MainView extends Phaser.Scene {
         }
 
         if (distance == 0) { //navigate if click release on category and not at end of dragging
-          outerThis.outerContext.addToRootPath(this.text);
-          if (!outerThis.outerContext.active[outerThis.outerContext.getRootName()] //undefined check needed for tasks deleted
+          outerThis.outerContext.addToRootPathAction(this.key);
+          if (!outerThis.outerContext.active[outerThis.outerContext.getRootId()] //undefined check needed for tasks deleted
             ||
             outerThis.outerContext.getRootTasksAsArray().length == 0) {
-            outerThis.outerContext.removeFromRootPath();
+            outerThis.outerContext.removeFromRootPathAction();
           }
         }
       }
@@ -136,13 +136,13 @@ class MainView extends Phaser.Scene {
 
   //for re-rendering back button based on current parent state
   rerenderBackButton() {
-    if (this.outerContext.state.rootPath.length!=1) { // !=1 instead of !=0 because "root" container task exists
+    if (this.outerContext.props.tbosRootPath.length!=1) { // !=1 instead of !=0 because "root" container task exists
       if (this.backButton == null) {
         this.backButton = this.add.image(100, 100, 'back').setInteractive();
 
         this.backButton.setScale(0.2, 0.2);
         this.backButton.on('pointerdown', () => {
-          this.outerContext.removeFromRootPath();
+          this.outerContext.removeFromRootPathAction();
         });
       }
     } else if(this.backButton != null) {
@@ -164,7 +164,7 @@ class MainView extends Phaser.Scene {
         let point = this.placeNewTask();
         x = point.x;
         y  = point.y;
-        this.createNewTaskGameObject(x, y, task);
+        this.createNewTaskGameObject(x, y, this.outerContext.props.name[task], task);
       }
     }
 
@@ -232,7 +232,7 @@ class MainView extends Phaser.Scene {
       let tasksData = this.outerContext.getRootTasksAsArray();
       for(let task of tasksData) {
         const {x, y} = this.placeNewTask();
-        this.createNewTaskGameObject(x, y, task);
+        this.createNewTaskGameObject(x, y,this.outerContext.props.name[task], task);
       }
 
       //register overlap callbacks
@@ -253,7 +253,7 @@ class MainView extends Phaser.Scene {
       if (!this.checkOverlap(this.collisions.textToText.objectA, this.collisions.textToText.objectB)) {
 
         this.collisions.textToText = this.destroyCollision(this.collisions.textToText);
-      } else {
+      } else { //move the collision circle
         this.collisions.textToText.circle.x =  (this.collisions.textToText.objectA.x + this.collisions.textToText.objectB.x)/2
         this.collisions.textToText.circle.y =  (this.collisions.textToText.objectA.y + this.collisions.textToText.objectB.y)/2
       }
