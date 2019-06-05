@@ -81,11 +81,11 @@ class MainView extends Phaser.Scene {
         }
 
         if (distance == 0) { //navigate if click release on category and not at end of dragging
-          outerThis.outerContext.addToRootPathAction(this.key);
+          outerThis.outerContext.boundActionCreators.addTaskTbosRoot(this.key);
           if (!outerThis.outerContext.active[outerThis.outerContext.getRootId()] //undefined check needed for tasks deleted
             ||
             outerThis.outerContext.getRootTasksAsArray().length == 0) {
-            outerThis.outerContext.removeFromRootPathAction();
+            outerThis.outerContext.boundActionCreators.popTaskTbosRoot();
           }
         }
       }
@@ -142,7 +142,7 @@ class MainView extends Phaser.Scene {
 
         this.backButton.setScale(0.2, 0.2);
         this.backButton.on('pointerdown', () => {
-          this.outerContext.removeFromRootPathAction();
+          this.outerContext.popTaskTbosRoot();
         });
       }
     } else if(this.backButton != null) {

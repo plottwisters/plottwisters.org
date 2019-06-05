@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
-import TwoBirdsOneStone from './two-birds-one-stone/index.js';
+import TwoBirdsOneStone from './two-birds-one-stone';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
-
+import twisterLandReducers from './redux/reducers'
+const store = createStore(twisterLandReducers);
 let dummyData = {
   "hiearchy": {
     "idroot": {
@@ -109,7 +110,7 @@ class App extends Component {
 
     //for "/" show variable above with links for all other urls include only routes
     return (
-      <Provider>
+      <Provider store={store}>
         <Router>
           <div>
             <Route path="/" exact component={gameLinksContainer}/>

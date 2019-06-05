@@ -4,7 +4,9 @@ import DragPlugin from './plugins/rexdragplugin.min.js';
 import MainView from './scenes/main_view.js';
 import CreateTask from './components/create_task.js';
 import ToDo from './components/todo.js';
-import * from tbosConstants as './tbos_constants'
+import { connect } from 'react-redux'
+import * as tbosConstants from './tbos_constants';
+import * as tbosActionCreators from './../redux/actions/tbos'
 class TwoBirdsOneStone extends Component {
 
 
@@ -22,6 +24,8 @@ class TwoBirdsOneStone extends Component {
     this.createNewTask =  this.createNewTask.bind(this);
     this.toggleCreateView = this.toggleCreateView.bind(this);
     this.changeDisplay = this.changeDisplay.bind(this);
+    const { dispatch } = props
+    this.boundActionCreators = bindActionCreators(tbosActionCreators, dispatch);
   }
 
 
@@ -37,7 +41,7 @@ class TwoBirdsOneStone extends Component {
 
     let taskAKey = this.game.scene.getScene("MainView").collisions.textToText.objectA.id;
     let taskBKey = this.game.scene.getScene("MainView").collisions.textToText.objectB.id;
-    createNewTaskAction(taskAKey, taskBKey, taskId, this.getRootId()); //dispatches action to make a new task from two subtasks
+    this.boundActionCreators.createNewTaskAction(taskAKey, taskBKey, taskId, this.getRootId()); //dispatches action to make a new task from two subtasks
     this.changeDisplay(tbosConstants.displayTypes.createOne);
   }
 
@@ -64,7 +68,7 @@ class TwoBirdsOneStone extends Component {
 
         <div className="button-new-task" onClick={this.toggleCreateView} ><img className="img-tbos-nav" src="https://cdn3.iconfinder.com/data/icons/buttons/512/Icon_31-512.png"></img></div>
         <CreateTask display={this.state.display[tbosConstants.displayTypes.createOne]} createNewTask={this.createNewTask}/>
-        <ToDo display={this.state.display[tbosConstants.displayTypes.createMany]} toggleCreateView={this.toggleCreateView} />
+        <ToDo {...this.boundActionCreators} display={this.state.display[tbosConstants.displayTypes.createMany]} toggleCreateView={this.toggleCreateView} />
         </div>
     );
   }
@@ -103,4 +107,7 @@ class TwoBirdsOneStone extends Component {
   // }
 }
 
-export default TwoBirdsOneStone;
+function mapStateToProps(state){
+  return state;
+}
+export default connect(mapStateToProps)(TwoBirdsOneStone);

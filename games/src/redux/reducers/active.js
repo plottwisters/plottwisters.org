@@ -1,4 +1,4 @@
-import ActionType from './../actions/action_type'
+import ActionType from './../actions/tbos/action_type'
 
 export default function active(state = {}, action) {
   let newState = state;

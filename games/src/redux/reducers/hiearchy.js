@@ -1,6 +1,6 @@
-import ActionType from './../actions/action_type'
+import ActionType from './../actions/tbos/action_type'
 
-function hiearchy(state = {}, action) {
+export default function hiearchy(state = {}, action) {
   let newState = state;
   //create new task action
   case ActionType.CREATE_TASK_COLLISION:
