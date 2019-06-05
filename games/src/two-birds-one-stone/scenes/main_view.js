@@ -10,6 +10,9 @@ class MainView extends Phaser.Scene {
           key: 'MainView'
       })
       this.outerContext = outerContext;
+      for(let actionCreator of this.outerContext.boundActionCreators) {
+        this[actionCreator.name] = actionCreator;
+      }
   }
   //helper function that checks if parameters overlap
   //@spriteA - first GameObject
@@ -62,7 +65,7 @@ class MainView extends Phaser.Scene {
         }
       if(this.collisions.widget != null){
         if (this.checkOverlap(this.collisions.widget.objectA, this.collisions.widget.objectB)) {
-          deleteTaskAction(this.collisions.widget.objectA.id, this.outerContext.getRootId());
+          this.deleteTaskAction(this.collisions.widget.objectA.id, this.outerContext.getRootId());
         }
       }
 
@@ -81,11 +84,11 @@ class MainView extends Phaser.Scene {
         }
 
         if (distance == 0) { //navigate if click release on category and not at end of dragging
-          outerThis.outerContext.boundActionCreators.addTaskTbosRoot(this.key);
+          outerThis.addTaskTbosRoot(this.key);
           if (!outerThis.outerContext.active[outerThis.outerContext.getRootId()] //undefined check needed for tasks deleted
             ||
             outerThis.outerContext.getRootTasksAsArray().length == 0) {
-            outerThis.outerContext.boundActionCreators.popTaskTbosRoot();
+            outerThis.popTaskTbosRoot();
           }
         }
       }
