@@ -12,7 +12,7 @@ export function deleteTaskAction(taskId, currentRoot) {
 export function createNewTaskAction(taskAKey, taskBKey, name, currentRoot) {
   let uuid=uuidv1();
   uuid=(uuid.split('-').join(""))
-  
+
   return {
     type: ActionType.CREATE_TASK_COLLISION,
     taskA: taskAKey,
@@ -22,7 +22,6 @@ export function createNewTaskAction(taskAKey, taskBKey, name, currentRoot) {
     currentRoot
   }
 }
-
 export function createNewTasksAction(tasks, currentRoot) {
   return {
     type: ActionType.CREATE_TASKS,
