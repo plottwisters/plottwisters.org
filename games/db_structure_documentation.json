@@ -2,24 +2,21 @@
   "user": {
     "password": "",
     "username": "",
-    "cookie_trail": [{
-        "math": [{
-          "time": 0-100,
-          "future": 0-100,
-          "emotions": null,
-          "values": ,
-          "play": 0-100
-        }]
-      },
-      {
-        "writing": [{
-
-        }]
-      }, {
-        "music": [{
-
-        }]
-      }
-    ]
+    "tasks": {
+      "Cat A": {"children":["Task A"], "data":[{
+        "time": 0-100,
+        "future": 0-100,
+        "emotions": null,
+        "values": ,
+        "play": 0-100
+      }]},
+      "Task A": {"children":[], "data":[{
+        "time": 0-100,
+        "future": 0-100,
+        "emotions": null,
+        "values": ,
+        "play": 0-100
+      }]}
+    }
   }
 }]

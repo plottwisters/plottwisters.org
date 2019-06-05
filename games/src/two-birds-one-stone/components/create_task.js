@@ -9,7 +9,7 @@ class CreateTask extends Component {
   render() {
 
     return (
-      <div style={"display:" + this.props.display} className="tbos-overlay">
+      <div style={{display:this.props.display}} className="tbos-overlay">
         <div className="center-container">
           <form>
              <input type="search" placeholder="Name Your Task..." onKeyPress={this.handleKeyPress} results/>

@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-
+import * as tbosConstants from './../tbos_constants';
 
 
 
@@ -10,6 +10,12 @@ class MainView extends Phaser.Scene {
           key: 'MainView'
       })
       this.outerContext = outerContext;
+      ;
+      for(let actionCreator in this.outerContext.boundActionCreators) {
+
+        this[actionCreator] = this.outerContext.boundActionCreators[actionCreator];
+
+      }
   }
   //helper function that checks if parameters overlap
   //@spriteA - first GameObject
@@ -35,11 +41,11 @@ class MainView extends Phaser.Scene {
   }
 
   //creates a new task
-  createNewTaskGameObject(xPosition, yPosition, key) {
+  createNewTaskGameObject(xPosition, yPosition, name, key) {
     //turnary conditional for responsiveness
-    //TODO: replace hard coded values with reference to responsiveness configuration file
-    let task = this.add.text(xPosition, yPosition, key, {fontSize:(this.game.scale.width < 400)?20:40}).setInteractive();
-
+    //TODO: replace hard coded values with reference to responsiveness configuration object in external const file
+    let task = this.add.text(xPosition, yPosition, name, {fontSize:(this.game.scale.width < 400)?20:40}).setInteractive();
+    task.idTbos = key;
     //turns on dragging
     task.drag = this.plugins.get('rexDrag').add(task);
 
@@ -56,16 +62,14 @@ class MainView extends Phaser.Scene {
       if (this.collisions.textToText != null) {
 
           if (this.checkOverlap(this.collisions.textToText.objectA, this.collisions.textToText.objectB)) {
-            this.outerContext.setState({display:"block"});
+            this.outerContext.changeDisplay(tbosConstants.displayTypes.createOne);
           }
 
         }
       if(this.collisions.widget != null){
         if (this.checkOverlap(this.collisions.widget.objectA, this.collisions.widget.objectB)) {
-          let rootData = this.findRoot();
 
-          delete rootData[this.collisions.widget.objectA.text];
-          this.syncRootData();
+          this.deleteTaskAction(this.collisions.widget.objectA.idTbos, this.outerContext.getRootId());
         }
       }
 
@@ -77,41 +81,29 @@ class MainView extends Phaser.Scene {
 
       return function(pointer) {
         let distance = 0;
-        if(pointer.start!= null) { //calculate displacement from pointer start dragging (same as pointer down)
-          distance = (pointer.y - pointer.start.y)*(pointer.y - pointer.start.y)  +  (pointer.x - pointer.start.x)*(pointer.x - pointer.start.x);
+        if (pointer.start != null) { //calculate displacement from pointer start dragging (same as pointer down)
+          distance = (pointer.y - pointer.start.y) * (pointer.y - pointer.start.y) + (pointer.x - pointer.start.x) * (pointer.x - pointer.start.x);
           distance = Math.sqrt(distance);
           pointer.start = null;
         }
 
-        if(distance == 0) { //navigate if click release on category and not at end of dragging
-          outerThis.outerContext.state.rootPath.push(this.text);
-          if (outerThis.findRoot() == undefined || Object.keys(outerThis.findRoot()).length == 0) { //undefined check needed for tasks deleted
-            outerThis.outerContext.state.rootPath.pop();
+        if (distance == 0) { //navigate if click release on category and not at end of dragging
+          outerThis.addTaskTbosRoot(this.idTbos);
+          
+          if (!outerThis.outerContext.props.active[outerThis.outerContext.getRootId()] //undefined check needed for tasks deleted
+            ||
+            outerThis.outerContext.getRootTasksAsArray().length == 0) {
+            outerThis.popTaskTbosRoot();
           }
         }
       }
     })(this));
-    this.renderedTasks[key] = task;
 
+    this.renderedTasks[key] = task;
     this.tasksGroup.add(this.renderedTasks[key]);
   }
 
 
-  //find where you are in the task tree
-  //and return it as the root
-  findRoot() {
-    let rootPath = this.outerContext.state.rootPath;
-    let tasksData = this.data.get("tasks");
-    for(let key of rootPath) {
-      tasksData = tasksData[key];
-    }
-    return tasksData;
-  }
-
-  //sync state of parent state with scene state
-  syncRootData() {
-    this.outerContext.setState({tasks:this.data.get("tasks")});
-  }
 
 
   //**************overlap callbacks for when one object overlaps with another
@@ -152,13 +144,13 @@ class MainView extends Phaser.Scene {
 
   //for re-rendering back button based on current parent state
   rerenderBackButton() {
-    if (this.outerContext.state.rootPath.length!=0) {
+    if (this.outerContext.props.tbosRootPath.length!=1) { // !=1 instead of !=0 because "root" container task exists
       if (this.backButton == null) {
         this.backButton = this.add.image(100, 100, 'back').setInteractive();
 
         this.backButton.setScale(0.2, 0.2);
         this.backButton.on('pointerdown', () => {
-          this.outerContext.state.rootPath.pop();
+          this.popTaskTbosRoot();
         });
       }
     } else if(this.backButton != null) {
@@ -170,7 +162,8 @@ class MainView extends Phaser.Scene {
 
   //for re-rendering tasks  based on current parent state
   rerenderTasks() {
-    let tasks = new Set(Object.keys(this.findRoot()));
+
+    let tasks = new Set(this.outerContext.getRootTasksAsArray());
 
     //add new tasks
     for(let task of tasks) {
@@ -180,7 +173,7 @@ class MainView extends Phaser.Scene {
         let point = this.placeNewTask();
         x = point.x;
         y  = point.y;
-        this.createNewTaskGameObject(x, y, task);
+        this.createNewTaskGameObject(x, y, this.outerContext.props.name[task], task);
       }
     }
 
@@ -227,14 +220,13 @@ class MainView extends Phaser.Scene {
       this.collisions.widget = null;
 
       //tasks
-      this.data.set("tasks",this.outerContext.state.tasks);
+
       this.renderedTasks = {}
       this.tasksGroup = this.physics.add.group({});
 
       //callbacks
       this.widgetOverlapCallback = this.widgetOverlapCallback.bind(this);
       this.textOverlapCallback = this.textOverlapCallback.bind(this);
-
   }
 
 
@@ -246,10 +238,10 @@ class MainView extends Phaser.Scene {
       this.trash = this.physics.add.image(45,680,'trash').setInteractive();
 
       //tasks
-      let tasksData = this.findRoot();
-      for(let task of Object.keys(tasksData)) {
+      let tasksData = this.outerContext.getRootTasksAsArray();
+      for(let task of tasksData) {
         const {x, y} = this.placeNewTask();
-        this.createNewTaskGameObject(x, y, task);
+        this.createNewTaskGameObject(x, y,this.outerContext.props.name[task], task);
       }
 
       //register overlap callbacks
@@ -270,7 +262,7 @@ class MainView extends Phaser.Scene {
       if (!this.checkOverlap(this.collisions.textToText.objectA, this.collisions.textToText.objectB)) {
 
         this.collisions.textToText = this.destroyCollision(this.collisions.textToText);
-      } else {
+      } else { //move the collision circle
         this.collisions.textToText.circle.x =  (this.collisions.textToText.objectA.x + this.collisions.textToText.objectB.x)/2
         this.collisions.textToText.circle.y =  (this.collisions.textToText.objectA.y + this.collisions.textToText.objectB.y)/2
       }

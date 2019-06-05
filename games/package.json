@@ -15,11 +15,10 @@
     "react": "^16.8.6",
     "react-addons-update": "^15.6.2",
     "react-dom": "^16.8.6",
-    "react-router-dom": "^5.0.0"
-  },
-  "alias": {
-    "react": "preact-compat",
-    "react-dom": "preact-compat"
+    "react-redux": "^7.0.3",
+    "react-router-dom": "^5.0.0",
+    "redux": "^4.0.1",
+    "uuid": "^3.3.2"
   },
   "devDependencies": {
     "@babel/core": "^7.4.5",

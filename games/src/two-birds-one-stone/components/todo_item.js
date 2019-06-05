@@ -5,14 +5,13 @@ class ToDoItem extends Component {
 
     render() {
         return (
-            <div className="ToDoItem">
-                <p className="ToDoItem-Text">{this.props.item}</p>
-                <button className="ToDoItem-Delete"
-                     onClick={this.props.delete_item}>-
+            <div className="todo-item">
+                <p className="todo-item-text">{this.props.name}</p>
+                <button className="todo-item-delete" onClick={this.props.deleteItem}>-
                 </button>
             </div>
         );
     }
 }
 
-export default ToDoItem; 
+export default ToDoItem;

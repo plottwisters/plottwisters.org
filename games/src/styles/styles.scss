@@ -11,14 +11,15 @@
 .tbos-overlay {
   position: fixed;
   width: 100%; /* Full width (cover the whole page) */
-  height: 100%;
+  height: 100vh;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   background-color: rgba(0,0,0,0.5);
   z-index: 2;
-  
+
+
 }
 
 .center-container {
@@ -28,68 +29,90 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
 }
 canvas {
   margin-bottom: -10px;
+
 }
 
+.todo {
 
-.ToDo-Body {
-  margin: 0;
-  padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Arial, sans-serif;
-  background: linear-gradient(#58AFD0, #58d0b5);
-  height: auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.ToDo {
-  text-align: center;
-  border: 1px solid white;
-  width: 80vw;
-  height: auto;
-  box-shadow: 2px 3px 15px rgba(0, 0, 0, 0.5);
+  @extend .center-container;
   background: #f6f6f6;
-  padding-bottom: 60px;
-  margin: 40px auto;
+
+  justify-content: start;
+
 }
 
-.ToDo-Header {
+.todo-content-container {
+  position: absolute;
+  height: auto;
+  display: block;
+  bottom: 0px;
+  top:0px;
+  width: 80%;
+  margin-top:10%;
+  text-align: center;
+  align-items: center;
+
+}
+
+.todo-tasks-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  overflow-y: auto;
+  bottom: 0px;
+  top:0px;
+  margin-top: 100px;
+  position: absolute;
+  width: 100%;
+}
+
+.full-screen-popup-header h1 {
   color: black;
-  font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Arial, sans-serif;
   font-weight: 400;
-  text-transform: uppercase;
-  margin: 70px auto 30px;
 }
 
-.ToDo-Add {
+.full-screen-popup-header button {
+  position: absolute;
+  right: 0px;
+  top:0px;
+  bottom: 0px;
+  background-color: transparent;
+  font-weight: bold;
+  font-size: 18px;
+  color: rgba(0, 138, 255, 1);
+  border: 0px;
+}
+
+.full-screen-popup-header {
+
+  margin-bottom: 40px;
+  position: relative;
+}
+
+
+.todo-add {
   color: white;
   font-size: 2em;
   width: 40px;
   height: 40px;
-  padding: 0px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  margin-left: 20px;
   cursor: pointer;
   background: #73ff73;
   border-radius: 10px;
   box-shadow: 1px 1px 1px #47a947;
-  margin: 20px auto 0;
+
 }
 
-.ToDo-Add:hover {
+.todo-add:hover {
   box-shadow: none;
   margin-left: calc(auto + 1px);
 }
 
-.ToDo-Container {
-  width: 80%;
-  margin: 0 auto;
-}
 
 .button-new-task {
   position: fixed;
@@ -103,30 +126,40 @@ canvas {
   width: 50px;
   height: 50px;
 }
-.ToDo-input {
-  width: 60%;
-  padding: 10px;
+.todo-input {
   font-size: 1em;
-  margin: 10px auto;
-  box-shadow: 1px 3px 20px 0px rgba(0, 0, 0, 0.3)
+  box-shadow: 1px 3px 20px 0px rgba(0, 0, 0, 0.3);
+  width:90%;
 }
 
-.ToDoItem {
+.todo-item {
     display: flex;
     justify-content: center;
     align-items: center;
+    width:100%;
 }
 
-.ToDoItem-Text {
+.todo-item-text {
     width: 90%;
     background-color: white;
     border: 1px solid lightgrey;
     box-shadow: 1px 1px 1px lightgrey;
     padding: 12px;
     margin-right: 10px;
+    height: 1.5em;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
+.todo-input-form {
+  margin-top: 50px;
+  margin-bottom: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
 
-.ToDoItem-Delete {
+}
+.todo-item-delete {
     width: 35px;
     /*padding: 5px;*/
     height: 35px;
@@ -138,8 +171,10 @@ canvas {
     font-size: 18px;
     margin-right: 5px;
 }
+.todo-confirm {
 
-.ToDoItem-Delete:hover {
+}
+.todo-item-delete:hover {
     box-shadow: none;
     margin-top: 1px;
     margin-left: 1px;

@@ -6,85 +6,87 @@ class ToDo extends Component {
   constructor(props) {
       super(props);
       this.state = {
-          list: [
-              {
-                  'todo': 'do the create new tasks'
-              },
-              {
-                  'todo': 'review Phaser'
-              },
-              {
-                  'todo': 'review React'
-              },
-              {
-                  'todo': 'buy bread and milk'
-              }
-          ],
-          todo: ''
+          list: [],
+          newTaskInput: ''
       };
+      this.handleKey = this.handleKey.bind(this);
+      this.handleInput = this.handleInput.bind(this);
+      this.createItem = this.createItem.bind(this);
   };
 
-  create_item = () => {
-    this.setState(({ list, todo }) => ({
+  createItem() {
+
+    this.setState(({ list, newTaskInput }) => {
+      console.log(newTaskInput);
+      return {
       list: [
           ...list,
         {
-          todo
+          "name": newTaskInput
         }
       ],
-      todo: ''
-    }));
+      newTaskInput: ''
+      }
+    });
+
   };
 
+  handleInput(e) {
 
-  handle_key = e => {
+    this.setState({
+      newTaskInput: e.target.value
+    });
+  };
+
+  handleKey(e) {
+
       if (e.target.value !== '') {
         if (e.key === 'Enter') {
-          this.create_item();
+          this.createItem();
         }
       }
   };
 
-  handle_input = e => {
-    this.setState({
-      todo: e.target.value
-    });
-  };
-
-
-  delete_item = item => {
+  deleteItem(item) {
     this.setState(({ list }) => ({
-      list: list.filter((toDo, index) => index !== item)
-    }));
+     list: list.filter((currItem) =>  currItem.name !== item)
+   }));
+
   };
-
-
   render() {
       return (
-        <div style={"display:" + this.props.display} className="tbos-overlay">
-        <div className="ToDo-Body">
-          <div className="ToDo">
-              <h1 className="ToDo-Header">To Do</h1>
-              <div className="ToDo-Container">
-                  <div className="ToDo-Content">
-                      {this.state.list.map((item, key) => {
-                              return <ToDoItem
-                                                key={key}
-                                                item={item.todo}
-                                                delete_item={this.delete_item.bind(this, key)}
-                                            />
-                        }
-                      )}
-                  </div>
-                  <div>
-                     <input className="ToDo-input" type="text" value={this.state.todo} onChange={this.handle_input} onKeyPress={this.handle_key}/>
-                     <button className="ToDo-Add" onClick={this.create_item}>+</button>
-                  </div>
+        <div style={{display:this.props.display}} className="tbos-overlay">
 
+          <div className="todo">
+            <div className="todo-content-container">
+
+              <div className="full-screen-popup-header">
+              <h1 >Add Things to Do</h1>
+              <button> Done </button>
               </div>
+              <div className="todo-tasks-container">
+                  {this.state.list.map((item) => {
+                          return <ToDoItem
+                                            key={item.name}
+                                            name={item.name}
+                                            deleteItem={this.deleteItem.bind(this, item.name)}
+                                        />
+                    }
+                  )}
+
+
+              {/*create task input*/}
+              <div class="todo-input-form">
+                 <input  value={this.state.newTaskInput} className="todo-input" onChange={this.handleInput} type="text"  onKeyPress={this.handleKey}/>
+                 <button className="todo-add" onClick={this.createItem}>+</button>
+              </div>
+              </div>
+              </div>
+
+
           </div>
-          </div>
-          </div>
+
+        </div>
       );
   }
 }

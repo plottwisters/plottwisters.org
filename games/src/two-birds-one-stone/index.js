@@ -4,73 +4,78 @@ import DragPlugin from './plugins/rexdragplugin.min.js';
 import MainView from './scenes/main_view.js';
 import CreateTask from './components/create_task.js';
 import ToDo from './components/todo.js';
-
+import { connect } from 'react-redux'
+import * as tbosConstants from './tbos_constants';
+import * as tbosActionCreators from './../redux/actions/tbos'
+import {bindActionCreators} from 'redux';
 class TwoBirdsOneStone extends Component {
 
 
   //react parent component
   constructor(props) {
     super(props);
+    let displayTypes = tbosConstants.displayTypes;
+    let display = {};
+    for (var type of Object.keys(displayTypes)) {
+      display[type] = "none";
+    }
     this.state = {
-      display: "none",
-      displayCreate: "none"
-    };
-    let tasks = {
-      "Task 2": {},
-      "Task 3": {},
-      "Cat 1": {
-        "Task 1": {}
-      }
+      display
     };
 
-    this.setState({
-      tasks: tasks,
-      rootPath: []
-    });
+
+
     this.createNewTask =  this.createNewTask.bind(this);
-    this.openCreateView = this.openCreateView.bind(this);
+    this.toggleCreateView = this.toggleCreateView.bind(this);
+    this.changeDisplay = this.changeDisplay.bind(this);
+    const { dispatch } = props
+    this.boundActionCreators = bindActionCreators(tbosActionCreators, dispatch);
+  }
+
+
+  changeDisplay(view) {
+    let newDisplayState = {...this.state.display};
+    newDisplayState[view] = newDisplayState[view] == "block" ? "none": "block";
+    this.setState({"display": newDisplayState});
   }
 
   //handler for creating a new task from create new task view from pulling together
   //other tasks
-  createNewTask(taskName) {
-    let tasks = this.state.tasks;
-    tasks[taskName] = {}
-    let taskAKey = this.game.scene.getScene("MainView").collisions.textToText.objectA.text;
-    let taskBKey = this.game.scene.getScene("MainView").collisions.textToText.objectB.text;
+  createNewTask(taskId) {
 
-    tasks[taskName] = {}
-    tasks[taskName][taskAKey] = tasks[taskAKey];
-    tasks[taskName][taskBKey] = tasks[taskBKey];  
-    delete tasks[taskAKey];
-    delete tasks[taskBKey];
+    let taskAKey = this.game.scene.getScene("MainView").collisions.textToText.objectA.idTbos;
+    let taskBKey = this.game.scene.getScene("MainView").collisions.textToText.objectB.idTbos;
+    this.boundActionCreators.createNewTaskAction(taskAKey, taskBKey, taskId, this.getRootId()); //dispatches action to make a new task from two subtasks
+    this.changeDisplay(tbosConstants.displayTypes.createOne);
+  }
 
-    this.setState({
-      tasks: tasks,
-      display:  "none",
-      displayCreate: "none"
-    });
+  toggleCreateView() {
+    this.changeDisplay(tbosConstants.displayTypes.createMany);
   }
 
 
+  getRootId() {
 
-  openCreateView() {
-    this.setState({
-      displayCreate: "block"
-    });
+    return this.props.tbosRootPath[this.props.tbosRootPath.length - 1];
   }
 
+  getRootTasksAsArray() {
+
+
+    let tasks = Object.keys(this.props.hiearchy[this.getRootId()])
+    return tasks.filter(task => this.props.active[task]);
+  }
 
   //add game container and hidden views into DOM
   render() {
-
+console.log(this.props);
     return (
       <div>
         <div id="tbos-canvas"/>
 
-        <div className="button-new-task" onClick={this.openCreateView} ><img className="img-tbos-nav" src="https://cdn3.iconfinder.com/data/icons/buttons/512/Icon_31-512.png"></img></div>
-        <CreateTask display={this.state.display} createNewTask={this.createNewTask}/>
-        <ToDo display={this.state.displayCreate} />
+        <div className="button-new-task" onClick={this.toggleCreateView} ><img className="img-tbos-nav" src="https://cdn3.iconfinder.com/data/icons/buttons/512/Icon_31-512.png"></img></div>
+        <CreateTask display={this.state.display[tbosConstants.displayTypes.createOne]} createNewTask={this.createNewTask}/>
+        <ToDo {...this.boundActionCreators} display={this.state.display[tbosConstants.displayTypes.createMany]} toggleCreateView={this.toggleCreateView} />
         </div>
     );
   }
@@ -105,8 +110,12 @@ class TwoBirdsOneStone extends Component {
   //immediate dom parent of the phaser game to rerender - but may be important
   //if there is a need
   // shouldComponentUpdate() {
-  //   return false;
+  //   console.log(this.state.display);
+  //   return true;
   // }
 }
 
-export default TwoBirdsOneStone;
+function mapStateToProps(state){
+  return state;
+}
+export default connect(mapStateToProps)(TwoBirdsOneStone);
