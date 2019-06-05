@@ -12,7 +12,7 @@ class CreateTask extends Component {
       <div style={{display:this.props.display}} className="tbos-overlay">
         <div className="center-container">
           <form>
-             <input type="search" placeholder="Name Your Task..." onKeyPress={this.handleKeyPress} results/>
+             <input type="search" placeholder="Name Your Task..." onKeyPress={this.handleKeyPress}/>
           </form>
         </div>
       </div>
@@ -22,6 +22,7 @@ class CreateTask extends Component {
   //on press enter a new task is created with the appropriate name
   handleKeyPress(e) {
     if (e.key === 'Enter') {
+
      this.props.createNewTask(e.target.value);
      e.preventDefault();
    }

@@ -45,7 +45,9 @@ class TwoBirdsOneStone extends Component {
 
     let taskAKey = this.game.scene.getScene("MainView").collisions.textToText.objectA.idTbos;
     let taskBKey = this.game.scene.getScene("MainView").collisions.textToText.objectB.idTbos;
+    
     this.boundActionCreators.createNewTaskAction(taskAKey, taskBKey, taskId, this.getRootId()); //dispatches action to make a new task from two subtasks
+
     this.changeDisplay(tbosConstants.displayTypes.createOne);
   }
 
