@@ -2,17 +2,17 @@ import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import TwoBirdsOneStone from './two-birds-one-stone';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import { Provider } from 'react-redux'
-import { createStore } from 'redux'
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
 import twisterLandReducers from './redux/reducers'
-const store = createStore(twisterLandReducers);
+
 let dummyData = {
   "hiearchy": {
     "idroot": {
       "id1": "id1",
       "id2": "id2",
       "id3": "id3"
-    }
+    },
     "id1": {
     },
     "id2": {
@@ -23,7 +23,7 @@ let dummyData = {
       "id3": "id3"
     }
   },
-  "names": {
+  "name": {
     "id1": "Task 1",
     "id2": "Task 2",
     "id3": "Task 3",
@@ -56,10 +56,7 @@ let dummyData = {
   }
 };
 
-
-
-let store = createStore(dummyData);
-
+const store = createStore(twisterLandReducers, dummyData);
 
 //registry of all games - or different urls
 let globalGameRegistry = {
@@ -70,6 +67,7 @@ class App extends Component {
   constructor(props) {
       super(props);
       this.games = Object.keys(globalGameRegistry);
+
     }
   render() {
 
@@ -88,7 +86,7 @@ class App extends Component {
           {original}
         </Link>
       </li>);
-      let route = (<Route path={simplified} exact component={globalGameRegistry[original]} />);
+      let route = (<Route path={simplified} key={simplified} exact component={globalGameRegistry[original]} />);
 
       renderedGamesLinks.push(link);
       routes.push(route);

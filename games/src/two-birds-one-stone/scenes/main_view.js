@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import * from tbosConstants as './tbos_constants'
+import * as tbosConstants from './../tbos_constants';
 
 
 
@@ -10,8 +10,11 @@ class MainView extends Phaser.Scene {
           key: 'MainView'
       })
       this.outerContext = outerContext;
-      for(let actionCreator of this.outerContext.boundActionCreators) {
-        this[actionCreator.name] = actionCreator;
+      ;
+      for(let actionCreator in this.outerContext.boundActionCreators) {
+
+        this[actionCreator] = this.outerContext.boundActionCreators[actionCreator];
+
       }
   }
   //helper function that checks if parameters overlap
@@ -42,7 +45,7 @@ class MainView extends Phaser.Scene {
     //turnary conditional for responsiveness
     //TODO: replace hard coded values with reference to responsiveness configuration object in external const file
     let task = this.add.text(xPosition, yPosition, name, {fontSize:(this.game.scale.width < 400)?20:40}).setInteractive();
-    task.key = key;
+    task.idTbos = key;
     //turns on dragging
     task.drag = this.plugins.get('rexDrag').add(task);
 
@@ -65,7 +68,8 @@ class MainView extends Phaser.Scene {
         }
       if(this.collisions.widget != null){
         if (this.checkOverlap(this.collisions.widget.objectA, this.collisions.widget.objectB)) {
-          this.deleteTaskAction(this.collisions.widget.objectA.id, this.outerContext.getRootId());
+
+          this.deleteTaskAction(this.collisions.widget.objectA.idTbos, this.outerContext.getRootId());
         }
       }
 
@@ -84,8 +88,9 @@ class MainView extends Phaser.Scene {
         }
 
         if (distance == 0) { //navigate if click release on category and not at end of dragging
-          outerThis.addTaskTbosRoot(this.key);
-          if (!outerThis.outerContext.active[outerThis.outerContext.getRootId()] //undefined check needed for tasks deleted
+          outerThis.addTaskTbosRoot(this.idTbos);
+          
+          if (!outerThis.outerContext.props.active[outerThis.outerContext.getRootId()] //undefined check needed for tasks deleted
             ||
             outerThis.outerContext.getRootTasksAsArray().length == 0) {
             outerThis.popTaskTbosRoot();
@@ -145,7 +150,7 @@ class MainView extends Phaser.Scene {
 
         this.backButton.setScale(0.2, 0.2);
         this.backButton.on('pointerdown', () => {
-          this.outerContext.popTaskTbosRoot();
+          this.popTaskTbosRoot();
         });
       }
     } else if(this.backButton != null) {
@@ -157,6 +162,7 @@ class MainView extends Phaser.Scene {
 
   //for re-rendering tasks  based on current parent state
   rerenderTasks() {
+
     let tasks = new Set(this.outerContext.getRootTasksAsArray());
 
     //add new tasks

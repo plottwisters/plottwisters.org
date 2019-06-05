@@ -7,6 +7,7 @@ import ToDo from './components/todo.js';
 import { connect } from 'react-redux'
 import * as tbosConstants from './tbos_constants';
 import * as tbosActionCreators from './../redux/actions/tbos'
+import {bindActionCreators} from 'redux';
 class TwoBirdsOneStone extends Component {
 
 
@@ -18,9 +19,12 @@ class TwoBirdsOneStone extends Component {
     for (var type of Object.keys(displayTypes)) {
       display[type] = "none";
     }
-    this.setState({
+    this.state = {
       display
-    });
+    };
+
+
+
     this.createNewTask =  this.createNewTask.bind(this);
     this.toggleCreateView = this.toggleCreateView.bind(this);
     this.changeDisplay = this.changeDisplay.bind(this);
@@ -30,7 +34,7 @@ class TwoBirdsOneStone extends Component {
 
 
   changeDisplay(view) {
-    let newDisplayState = Object.assign({}, this.props.display);
+    let newDisplayState = {...this.state.display};
     newDisplayState[view] = newDisplayState[view] == "block" ? "none": "block";
     this.setState({"display": newDisplayState});
   }
@@ -39,8 +43,8 @@ class TwoBirdsOneStone extends Component {
   //other tasks
   createNewTask(taskId) {
 
-    let taskAKey = this.game.scene.getScene("MainView").collisions.textToText.objectA.id;
-    let taskBKey = this.game.scene.getScene("MainView").collisions.textToText.objectB.id;
+    let taskAKey = this.game.scene.getScene("MainView").collisions.textToText.objectA.idTbos;
+    let taskBKey = this.game.scene.getScene("MainView").collisions.textToText.objectB.idTbos;
     this.boundActionCreators.createNewTaskAction(taskAKey, taskBKey, taskId, this.getRootId()); //dispatches action to make a new task from two subtasks
     this.changeDisplay(tbosConstants.displayTypes.createOne);
   }
@@ -51,17 +55,20 @@ class TwoBirdsOneStone extends Component {
 
 
   getRootId() {
-    return this.props.tbosRootPath[-1];
+
+    return this.props.tbosRootPath[this.props.tbosRootPath.length - 1];
   }
 
   getRootTasksAsArray() {
-    let tasks = Object.keys(this.props.tasks[this.getRootId()])
-    return tasks.filter(task=> this.props.active);
+
+
+    let tasks = Object.keys(this.props.hiearchy[this.getRootId()])
+    return tasks.filter(task => this.props.active[task]);
   }
 
   //add game container and hidden views into DOM
   render() {
-
+console.log(this.props);
     return (
       <div>
         <div id="tbos-canvas"/>
@@ -103,7 +110,8 @@ class TwoBirdsOneStone extends Component {
   //immediate dom parent of the phaser game to rerender - but may be important
   //if there is a need
   // shouldComponentUpdate() {
-  //   return false;
+  //   console.log(this.state.display);
+  //   return true;
   // }
 }
 

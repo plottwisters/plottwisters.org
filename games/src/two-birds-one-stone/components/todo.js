@@ -55,7 +55,7 @@ class ToDo extends Component {
   };
   render() {
       return (
-        <div style={"display:" + this.props.display} className="tbos-overlay">
+        <div style={{display:this.props.display}} className="tbos-overlay">
 
           <div className="todo">
             <div className="todo-content-container">

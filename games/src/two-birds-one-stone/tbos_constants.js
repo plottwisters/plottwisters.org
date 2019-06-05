@@ -1,1 +1,1 @@
-const displayTypes = { createOne: "createOne", createMany, "createMany", checkList: "checkList"};
+export const displayTypes = { createOne: "createOne", createMany: "createMany", checkList: "checkList"};

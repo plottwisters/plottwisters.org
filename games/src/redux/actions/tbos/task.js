@@ -1,4 +1,4 @@
-import ActionType from './action_type'
+import {ActionType} from './action_type'
 const uuidv1 = require('uuid/v1');
 
 export function deleteTaskAction(taskId, currentRoot) {
@@ -10,11 +10,14 @@ export function deleteTaskAction(taskId, currentRoot) {
 }
 
 export function createNewTaskAction(taskAKey, taskBKey, name, currentRoot) {
+  let uuid=uuidv1();
+  uuid=(uuid.split('-').join(""))
+  
   return {
     type: ActionType.CREATE_TASK_COLLISION,
     taskA: taskAKey,
     taskB: taskBKey,
-    taskId: uuidv1(),
+    taskId: uuid,
     taskName: name,
     currentRoot
   }
