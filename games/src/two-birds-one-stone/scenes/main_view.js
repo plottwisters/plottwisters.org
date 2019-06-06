@@ -1,6 +1,6 @@
 import Phaser from 'phaser';
 import * as tbosConstants from './../tbos_constants';
-
+import {TaskState} from './../../global_constants';
 
 
 class MainView extends Phaser.Scene {
@@ -89,8 +89,8 @@ class MainView extends Phaser.Scene {
 
         if (distance == 0) { //navigate if click release on category and not at end of dragging
           outerThis.addTaskTbosRoot(this.idTbos);
-          
-          if (!outerThis.outerContext.props.active[outerThis.outerContext.getRootId()] //undefined check needed for tasks deleted
+
+          if (!(outerThis.outerContext.props.active[outerThis.outerContext.getRootId()] == TaskState.active)//undefined check needed for tasks deleted
             ||
             outerThis.outerContext.getRootTasksAsArray().length == 0) {
             outerThis.popTaskTbosRoot();

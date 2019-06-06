@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import twisterLandReducers from './redux/reducers'
+import {TaskState} from './global_constants'
 
 let dummyData = {
   "hiearchy": {
@@ -30,12 +31,12 @@ let dummyData = {
     "id4": "Cat 1"
   },
   "active": {
-    "id1": true,
-    "id2": true,
-    "id3": true,
-    "id4": true
+    "id1": TaskState.active,
+    "id2": TaskState.active,
+    "id3": TaskState.active,
+    "id4": TaskState.active
   },
-  "cookieTrailData":  {
+  "cookieTrail":  {
     "id1" : [],
     "id2" : [],
     "id3" : [],
