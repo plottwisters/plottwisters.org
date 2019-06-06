@@ -27,28 +27,7 @@ class CheckView extends Component {
           todo: ''
       };
   };
-
-  create_item = () => {
-    this.setState(({ list, todo }) => ({
-      list: [
-          ...list,
-        {
-          todo
-        }
-      ],
-      todo: ''
-    }));
-  };
-
-
-  handle_key = e => {
-      if (e.target.value !== '') {
-        if (e.key === 'Enter') {
-          this.create_item();
-        }
-      }
-  };
-
+  
 
   delete_item = item => {
     this.setState(({ list }) => ({
