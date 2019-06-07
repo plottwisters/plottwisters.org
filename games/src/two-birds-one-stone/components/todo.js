@@ -76,7 +76,7 @@ class ToDo extends Component {
 
 
               {/*create task input*/}
-              <div class="todo-input-form">
+              <div className="todo-input-form">
                  <input  value={this.state.newTaskInput} className="todo-input" onChange={this.handleInput} type="text"  onKeyPress={this.handleKey}/>
                  <button className="todo-add" onClick={this.createItem}>+</button>
               </div>

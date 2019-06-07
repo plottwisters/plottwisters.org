@@ -8,6 +8,7 @@ import { connect } from 'react-redux'
 import * as tbosConstants from './tbos_constants';
 import * as tbosActionCreators from './../redux/actions/tbos'
 import {bindActionCreators} from 'redux';
+import {TaskState} from './../global_constants';
 class TwoBirdsOneStone extends Component {
 
 
@@ -45,7 +46,9 @@ class TwoBirdsOneStone extends Component {
 
     let taskAKey = this.game.scene.getScene("MainView").collisions.textToText.objectA.idTbos;
     let taskBKey = this.game.scene.getScene("MainView").collisions.textToText.objectB.idTbos;
+
     this.boundActionCreators.createNewTaskAction(taskAKey, taskBKey, taskId, this.getRootId()); //dispatches action to make a new task from two subtasks
+
     this.changeDisplay(tbosConstants.displayTypes.createOne);
   }
 
@@ -63,12 +66,12 @@ class TwoBirdsOneStone extends Component {
 
 
     let tasks = Object.keys(this.props.hiearchy[this.getRootId()])
-    return tasks.filter(task => this.props.active[task]);
+    return tasks.filter(task => this.props.active[task] == TaskState.active);
   }
 
   //add game container and hidden views into DOM
   render() {
-console.log(this.props);
+    console.log(this.props);
     return (
       <div>
         <div id="tbos-canvas"/>
