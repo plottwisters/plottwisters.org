@@ -54,6 +54,33 @@ let dummyData = {
     "Task 2": ["id2"],
     "Task 3": ["id3"],
     "Cat 1": ["id4"]
+  },
+  "taskAggregates": {
+    "id1": {
+      "completed": 0,
+      "deleted": 0,
+      "total": 0
+    },
+    "id2": {
+      "completed": 0,
+      "deleted": 0,
+      "total": 0
+    },
+    "id3": {
+      "completed": 0,
+      "deleted": 0,
+      "total": 0
+    },
+    "id4": {
+      "completed": 0,
+      "deleted": 0,
+      "total": 1
+    },
+    "idroot": {
+      "completed": 0,
+      "deleted": 0,
+      "total": 3
+    }
   }
 };
 
