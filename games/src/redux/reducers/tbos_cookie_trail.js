@@ -1,24 +1,24 @@
 import {ActionType} from './../actions/tbos/action_type'
 import {TaskState} from './../../global_constants'
-function calculateActiveLeafTasks(agg) {
-  return agg["total"] - agg["completed"] - agg["deleted"];
+function calculateLeafTasks(agg) {
+  return agg["total"];
 }
 
 function calculateCategoryVisionScore(category, state) {
   let agg = state["taskAggregates"][category];
   let rootLevelTasks = Object.keys(state["hiearchy"][category]);
-  rootLevelTasks = rootLevelTasks.filter(taskId=> state["active"][taskId] == TaskState.active)
-  let numRootTasks = rootLevelTasks.length
+  let numRootTasks = rootLevelTasks.length;
 
-  let activeTasks = calculateActiveLeafTasks(agg);
+  let numTasks = calculateLeafTasks(agg);
 
-  let visionScore = (activeTasks - numRootTasks)/activeTasks;
+  let visionScore = (numTasks - numRootTasks)/numTasks;
   return visionScore;
 }
 
 function calculateProductivityScore(category, state) {
   let agg = state["taskAggregates"][category];
-
+  if(agg["total"] == agg["deleted"])
+    return 0;
   return agg["completed"]/(agg["total"] - agg["deleted"]);
 }
 
@@ -54,23 +54,10 @@ export default function tbosCookieTrail(state = {}, action) {
       let currentTask = action.currentRoot; //score gets updated for every task above the task deleted or completed
       let currentTaskScore;
 
-      let anyRemaining = anyActiveTasks(state ,currentTask);
-
-      //current root iteration
-      if(anyRemaining) { //current root does not get updated if completed (no tasks under it)
-        currentTaskScore = calculateScore(currentTask,state, globalVision);
-        newState[currentTask] = [...newState[currentTask], currentTaskScore];
-      } else { //an edge case where the current task has zero subtasks remaining
-        newState[currentTask] = [...newState[currentTask], globalVision * 0.3 + (newState[currentTask]["completed"]>0?1:0) * 0.4 + 0.15];
-      }
-      currentTask = state["reverseHiearchy"][currentTask];
-
-
       //subsequent iterations
       while(currentTask != undefined) {
         currentTaskScore = calculateScore(currentTask,state, globalVision);
         newState[currentTask] = [...newState[currentTask], currentTaskScore];
-
         currentTask = state["reverseHiearchy"][currentTask];
       }
       break;

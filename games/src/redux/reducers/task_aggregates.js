@@ -24,14 +24,14 @@ export default function taskAggregates(state= {}, action) {
 
       let toDeleteTaskCount = newState[action.taskId]["total"] - newState[action.taskId]["completed"] -  newState[action.taskId]["deleted"]
       let currentDeleted;
-      let totalRemaining = Object.keys(state["hiearchy"][currentTask]);
-      totalRemaining = totalRemaining.filter(task => state["active"][task] == TaskState.active);
-      totalRemaining = totalRemaining.length;
-      let totalAdded = (totalRemaining)?0:1;
+
+      //for total tasks added
+
+
       while(currentTask != undefined) {
         currentDeleted = newState[currentTask]["deleted"];
         currentTotal = newState[currentTask]["total"];
-        newState[currentTask] = {...newState[currentTask], "deleted":(currentDeleted + toDeleteTaskCount), "total":(currentTotal + totalAdded)};
+        newState[currentTask] = {...newState[currentTask], "deleted":(currentDeleted + toDeleteTaskCount)};
         currentTask = reverseHiearchy[currentTask];
       }
 
