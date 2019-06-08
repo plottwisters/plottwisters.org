@@ -14,15 +14,6 @@ export default function taskAggregates(state= {}, action) {
       for(let key in newState[action.taskB]) {
         taskAValue = newState[action.taskA][key];
         taskBValue = newState[action.taskB][key];
-        if(key == "total") {
-
-          if(taskAValue == 0) {
-            taskAValue = 1;
-          }
-          if(taskBValue == 0) {
-            taskBValue = 1;
-          }
-        }
         let count =  taskAValue + taskBValue;
         newState[action.taskId][key] = count;
       }
@@ -43,7 +34,7 @@ export default function taskAggregates(state= {}, action) {
     case ActionType.CREATE_TASKS:
       newState = {...newState};
       for(let task of action.tasks) {
-        newState[task.id] =  {"completed": 0, "deleted": 0, "total": 0};
+        newState[task.id] =  {"completed": 0, "deleted": 0, "total": 1};
       }
       let totalTasksAdded = action.tasks.length;
       let currentTotal;

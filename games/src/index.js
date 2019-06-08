@@ -59,22 +59,22 @@ let dummyData = {
     "id1": {
       "completed": 0,
       "deleted": 0,
-      "total": 0
+      "total": 1
     },
     "id2": {
       "completed": 0,
       "deleted": 0,
-      "total": 0
+      "total": 1
     },
     "id3": {
       "completed": 0,
       "deleted": 0,
-      "total": 0
+      "total": 1
     },
     "id4": {
       "completed": 0,
       "deleted": 0,
-      "total": 1
+      "total": 2
     },
     "idroot": {
       "completed": 0,
