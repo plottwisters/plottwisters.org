@@ -5,8 +5,9 @@ import name from './name'
 import tbosRootPath from './tbos_root_path'
 import nameToTasks from './name_to_tasks'
 import taskAggregates from './task_aggregates'
+import tbosCookieTrail from './tbos_cookie_trail'
 export default function reducers(state = {}, action) {
-  let results = {
+  let intermediateResults = {
     reverseHiearchy: reverseHiearchy(state.reverseHiearchy, action),
     hiearchy: hiearchy(state.hiearchy, action),
     active: active(state, action),
@@ -14,6 +15,9 @@ export default function reducers(state = {}, action) {
     tbosRootPath:tbosRootPath(state.tbosRootPath, action),
     nameToTasks: nameToTasks(state.nameToTasks, action)
   }
-  results = Object.assign(results, {taskAggregates: taskAggregates(state, action)})
-  return results;
+  intermediateResults["taskAggregates"] = state["taskAggregates"];
+  intermediateResults = Object.assign(intermediateResults, {taskAggregates: taskAggregates(intermediateResults, action)})
+  intermediateResults["tbosCookieTrail"] = state["tbosCookieTrail"];
+  intermediateResults = Object.assign(intermediateResults, {tbosCookieTrail: tbosCookieTrail(intermediateResults, action)})
+  return intermediateResults;
 }
