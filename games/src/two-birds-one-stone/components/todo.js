@@ -1,91 +1,109 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import ToDoItem from './todo_item';
 
 
 class ToDo extends Component {
   constructor(props) {
-      super(props);
-      this.state = {
-          list: [
-              {
-                  'todo': 'do the create new tasks'
-              },
-              {
-                  'todo': 'review Phaser'
-              },
-              {
-                  'todo': 'review React'
-              },
-              {
-                  'todo': 'buy bread and milk'
-              }
-          ],
-          todo: ''
-      };
+    super(props);
+    this.state = {
+      list: [],
+      newTaskInput: ''
+    };
+    this.handleKey = this.handleKey.bind(this);
+    this.handleInput = this.handleInput.bind(this);
+    this.createItem = this.createItem.bind(this);
+
   };
 
-  create_item = () => {
-    this.setState(({ list, todo }) => ({
-      list: [
+  createItem() {
+
+    this.setState(({ list, newTaskInput }) => {
+      // console.log(newTaskInput);
+      let uuid = require('uuid/v1');
+      return {
+        list: [
           ...list,
-        {
-          todo
-        }
-      ],
-      todo: ''
-    }));
-  };
-
-
-  handle_key = e => {
-      if (e.target.value !== '') {
-        if (e.key === 'Enter') {
-          this.create_item();
-        }
+          {
+            "name": newTaskInput,
+            "key": uuid().split('-').join("")
+          }
+        ],
+        newTaskInput: ''
       }
+    });
+
   };
 
-  handle_input = e => {
+  handleInput(e) {
     this.setState({
-      todo: e.target.value
+      newTaskInput: e.target.value
     });
   };
 
+  handleKey(e) {
 
-  delete_item = item => {
+    if (e.target.value !== '') {
+      if (e.key === 'Enter') {
+        this.createItem();
+      }
+    }
+  };
+
+  deleteItem(item) {
     this.setState(({ list }) => ({
-      list: list.filter((toDo, index) => index !== item)
+      list: list.filter((currItem) => currItem.key !== item)
     }));
+
+  };
+
+  addToRedux() {
+    // console.log(this.props.createNewTaskAction({ 'id': uuid(), 'name': 'hello' }, { 'id': 'hrderfchbdr4gxd', 'name': 'hello' }, 'nnn', 'root'))
+    for(let val of this.state.list) {
+      this.props.createNewTaskAction(null, null, val['name'], val['key']);
+      // console.log(val['name']);
+      console.log(this.props.createNewTaskAction(null, null, val['name'], val['key']));        
+    }
+    this.props.toggleCreateView();
+
   };
 
 
   render() {
-      return (
-        <div style={"display:" + this.props.display} className="tbos-overlay">
-        <div className="ToDo-Body">
-          <div className="ToDo">
-              <h1 className="ToDo-Header">To Do</h1>
-              <div className="ToDo-Container">
-                  <div className="ToDo-Content">
-                      {this.state.list.map((item, key) => {
-                              return <ToDoItem
-                                                key={key}
-                                                item={item.todo}
-                                                delete_item={this.delete_item.bind(this, key)}
-                                            />
-                        }
-                      )}
-                  </div>
-                  <div>
-                     <input className="ToDo-input" type="text" value={this.state.todo} onChange={this.handle_input} onKeyPress={this.handle_key}/>
-                     <button className="ToDo-Add" onClick={this.create_item}>+</button>
-                  </div>
+    return (
+      <div style={{ display: this.props.display }} className="tbos-overlay">
 
+        <div className="todo">
+          <div className="todo-content-container">
+
+            <div className="full-screen-popup-header">
+              <h1 >Add Things to Do</h1>
+            </div>
+            <div className="todo-tasks-container">
+              {this.state.list.map((item) => {
+                return <ToDoItem
+                  key={item.key}
+                  name={item.name}
+                  deleteItem={this.deleteItem.bind(this, item.key)}
+                />
+              }
+              )}
+
+
+              {/*create task input*/}
+              <div className="todo-input-form">
+                <input value={this.state.newTaskInput} className="todo-input" onChange={this.handleInput} type="text" onKeyPress={this.handleKey} />
+                <button className="todo-add" onClick={this.createItem}>+</button>
+                
               </div>
+              <button className='ToDo-OK' onClick={this.addToRedux.bind(this)}> Done </button>
+            </div>
           </div>
-          </div>
-          </div>
-      );
+
+
+        </div>
+
+      </div>
+    );
   }
 }
 
