@@ -22,9 +22,9 @@ function calculateProductivityScore(category, state) {
   return agg["completed"]/(agg["total"] - agg["deleted"]);
 }
 
-function calculateScore(category, state){
+function makeDataPoint(category, state, stopBoolean){
   console.log({"category": category, "vision": calculateCategoryVisionScore(category, state), "productivity":calculateProductivityScore(category, state) })
-  return {"productivity": calculateProductivityScore(category, state), "vision": calculateCategoryVisionScore(category, state), "timestamp":new Date().getTime()}
+  return {"productivity": calculateProductivityScore(category, state), "vision": calculateCategoryVisionScore(category, state), "timestamp":new Date().getTime(), "stop": stopBoolean}
 }
 
 function anyActiveTasks(state, currentTask) {
@@ -40,21 +40,33 @@ export default function tbosCookieTrail(state = {}, action) {
   let globalVision = calculateCategoryVisionScore("idroot", state);
   switch(action.type) {
     case ActionType.CREATE_TASK_COLLISION:
-      let currentRootScore = calculateScore(action.currentRoot, state);
 
-      newState[action.currentRoot] = [...newState[action.currentRoot], currentRootScore];
-      let newCategoryScore = calculateScore(action.taskId, state);
+      //create data point for new category
+      let newCategoryScore = makeDataPoint(action.taskId, state, false);
       newState[action.taskId] = [newCategoryScore];
+
+
+      //update score of ancestor
+      let currentRootScore = makeDataPoint(action.currentRoot, state, false);
+      newState[action.currentRoot] = [...newState[action.currentRoot], currentRootScore];
+
       break;
     case ActionType.DELETE_TASK:
     case ActionType.CREATE_TASKS:
       newState = {...newState}
-      let currentTask = action.currentRoot; //score gets updated for every task above the task deleted or completed
+
+      //if delete task record stop boolean
+      if(action.type == ActionType.DELETE_TASK) {
+        if(Object.keys(state["hiearchy"][action.taskId]).length != 0)
+          newState[action.taskId] = [...newState[action.taskId], makeDataPoint(action.taskId, state, true)];
+      }
+
+      //update score of ancestors
+      let currentTask = action.currentRoot;
       let currentTaskScore;
 
-      //subsequent iterations
       while(currentTask != undefined) {
-        currentTaskScore = calculateScore(currentTask,state);
+        currentTaskScore = makeDataPoint(currentTask,state, false);
         newState[currentTask] = [...newState[currentTask], currentTaskScore];
         currentTask = state["reverseHiearchy"][currentTask];
       }

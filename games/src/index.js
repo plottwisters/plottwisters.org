@@ -83,7 +83,7 @@ let dummyData = {
     }
   },
   "tbosCookieTrail": {
-    "idroot": [{"productivity":0, "vision":0, "timestamp": new Date().getTime()}]
+    "idroot": [{"productivity":0, "vision":0, "timestamp": new Date().getTime(), "stop":false}]
   }
 };
 
