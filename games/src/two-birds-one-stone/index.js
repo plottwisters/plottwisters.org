@@ -78,7 +78,7 @@ class TwoBirdsOneStone extends Component {
 
         <div className="button-new-task" onClick={this.toggleCreateView} ><img className="img-tbos-nav" src="https://cdn3.iconfinder.com/data/icons/buttons/512/Icon_31-512.png"></img></div>
         <CreateTask display={this.state.display[tbosConstants.displayTypes.createOne]} createNewTask={this.createNewTask}/>
-        <ToDo {...this.boundActionCreators} display={this.state.display[tbosConstants.displayTypes.createMany]} toggleCreateView={this.toggleCreateView} />
+        <ToDo {...this.boundActionCreators} outerProps = {this.props}  display={this.state.display[tbosConstants.displayTypes.createMany]} toggleCreateView={this.toggleCreateView} />
         </div>
     );
   }

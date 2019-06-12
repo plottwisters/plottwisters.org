@@ -19,7 +19,7 @@ function calculateProductivityScore(category, state) {
   let agg = state["taskAggregates"][category];
   if(agg["total"] == agg["deleted"])
     return 0;
-  
+
   return agg["completed"]/(agg["total"] - agg["deleted"]);
 }
 
@@ -73,12 +73,7 @@ export default function tbosCookieTrail(state = {}, action) {
       break;
     case ActionType.CREATE_TASKS:
       newState = {...newState};
-
-
       //update score of ancestors
-
-
-
       while(currentTask != undefined) {
         currentTaskScore = makeDataPoint(currentTask,state, false);
         newState[currentTask] = [...newState[currentTask], currentTaskScore];
