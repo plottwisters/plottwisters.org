@@ -1,38 +1,40 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import ToDoItem from './todo_item';
 
 
 class ToDo extends Component {
   constructor(props) {
-      super(props);
-      this.state = {
-          list: [],
-          newTaskInput: ''
-      };
-      this.handleKey = this.handleKey.bind(this);
-      this.handleInput = this.handleInput.bind(this);
-      this.createItem = this.createItem.bind(this);
+    super(props);
+    this.state = {
+      list: [],
+      newTaskInput: ''
+    };
+    this.handleKey = this.handleKey.bind(this);
+    this.handleInput = this.handleInput.bind(this);
+    this.createItem = this.createItem.bind(this);
+
   };
 
   createItem() {
 
     this.setState(({ list, newTaskInput }) => {
-      console.log(newTaskInput);
+      // console.log(newTaskInput);
+      let uuid = require('uuid/v1');
       return {
-      list: [
+        list: [
           ...list,
-        {
-          "name": newTaskInput
-        }
-      ],
-      newTaskInput: ''
+          {
+            "name": newTaskInput,
+            "key": uuid().split('-').join("")
+          }
+        ],
+        newTaskInput: ''
       }
     });
 
   };
 
   handleInput(e) {
-
     this.setState({
       newTaskInput: e.target.value
     });
@@ -40,54 +42,68 @@ class ToDo extends Component {
 
   handleKey(e) {
 
-      if (e.target.value !== '') {
-        if (e.key === 'Enter') {
-          this.createItem();
-        }
+    if (e.target.value !== '') {
+      if (e.key === 'Enter') {
+        this.createItem();
       }
+    }
   };
 
   deleteItem(item) {
     this.setState(({ list }) => ({
-     list: list.filter((currItem) =>  currItem.name !== item)
-   }));
+      list: list.filter((currItem) => currItem.key !== item)
+    }));
 
   };
+
+  addToRedux() {
+    // console.log(this.props.createNewTaskAction({ 'id': uuid(), 'name': 'hello' }, { 'id': 'hrderfchbdr4gxd', 'name': 'hello' }, 'nnn', 'root'))
+    for(let val of this.state.list) {
+      this.props.createNewTaskAction(null, null, val['name'], val['key']);
+      // console.log(val['name']);
+      console.log(this.props.createNewTaskAction(null, null, val['name'], val['key']));        
+    }
+    this.props.toggleCreateView();
+
+  };
+
+
   render() {
-      return (
-        <div style={{display:this.props.display}} className="tbos-overlay">
+    return (
+      <div style={{ display: this.props.display }} className="tbos-overlay">
 
-          <div className="todo">
-            <div className="todo-content-container">
+        <div className="todo">
+          <div className="todo-content-container">
 
-              <div className="full-screen-popup-header">
+            <div className="full-screen-popup-header">
               <h1 >Add Things to Do</h1>
-              <button> Done </button>
-              </div>
-              <div className="todo-tasks-container">
-                  {this.state.list.map((item) => {
-                          return <ToDoItem
-                                            key={item.name}
-                                            name={item.name}
-                                            deleteItem={this.deleteItem.bind(this, item.name)}
-                                        />
-                    }
-                  )}
+            </div>
+            <div className="todo-tasks-container">
+              {this.state.list.map((item) => {
+                return <ToDoItem
+                  key={item.key}
+                  name={item.name}
+                  deleteItem={this.deleteItem.bind(this, item.key)}
+                />
+              }
+              )}
 
 
               {/*create task input*/}
               <div className="todo-input-form">
-                 <input  value={this.state.newTaskInput} className="todo-input" onChange={this.handleInput} type="text"  onKeyPress={this.handleKey}/>
-                 <button className="todo-add" onClick={this.createItem}>+</button>
+                <input value={this.state.newTaskInput} className="todo-input" onChange={this.handleInput} type="text" onKeyPress={this.handleKey} />
+                <button className="todo-add" onClick={this.createItem}>+</button>
+                
               </div>
-              </div>
-              </div>
-
-
+              <button className='ToDo-OK' onClick={this.addToRedux.bind(this)}> Done </button>
+            </div>
           </div>
 
+
         </div>
-      );
+
+      </div>
+    );
   }
 }
 
