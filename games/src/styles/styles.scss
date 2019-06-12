@@ -179,3 +179,44 @@ canvas {
     margin-top: 1px;
     margin-left: 1px;
 }
+
+
+
+
+.ToDoItem-Text-completed {
+  width: 90%;
+  background-color: white;
+  border: 1px solid lightgrey;
+  box-shadow: 1px 1px 1px lightgrey;
+  padding: 12px;
+  margin-right: 10px;
+  text-decoration: line-through;
+}
+
+.ToDo-OK {
+  color: white;
+  font-size: 1em;
+  width: 80px;
+  height: 40px;
+  padding: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background: #1f55b8;
+  border-radius: 10px;
+  box-shadow: 1px 1px 1px #4795a9;
+  margin: 20px auto 0;
+}
+
+.chkbox {
+  width: 35px;
+  /*padding: 5px;*/
+  height: 35px;
+  cursor: pointer;
+  background: #24268b;
+  border-radius: 10px;
+  color: white;
+  font-size: 18px;
+  margin-right: 5px;
+}

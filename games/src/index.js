@@ -12,7 +12,8 @@ let dummyData = {
     "idroot": {
       "id1": "id1",
       "id2": "id2",
-      "id4": "id4"
+      "id3": "id3",
+      "id4": "id4",
     },
     "id1": {
     },
@@ -21,14 +22,13 @@ let dummyData = {
     "id3": {
     },
     "id4": {
-      "id3": "id3"
     }
   },
   "name": {
     "id1": "Task 1",
     "id2": "Task 2",
     "id3": "Task 3",
-    "id4": "Cat 1"
+    "id4": "Task 4"
   },
   "active": {
     "id1": TaskState.active,
@@ -43,7 +43,7 @@ let dummyData = {
     "id4":  []
   },
   "reverseHiearchy":{
-    "id3": "id4",
+    "id3": "idroot",
     "id1": "idroot",
     "id2": "idroot",
     "id4": "idroot"
@@ -53,23 +53,23 @@ let dummyData = {
     "Task 1": ["id1"],
     "Task 2": ["id2"],
     "Task 3": ["id3"],
-    "Cat 1": ["id4"]
+    "Task 4": ["id4"]
   },
   "taskAggregates": {
     "id1": {
       "completed": 0,
       "deleted": 0,
-      "total": 0
+      "total": 1
     },
     "id2": {
       "completed": 0,
       "deleted": 0,
-      "total": 0
+      "total": 1
     },
     "id3": {
       "completed": 0,
       "deleted": 0,
-      "total": 0
+      "total": 1
     },
     "id4": {
       "completed": 0,
@@ -79,8 +79,11 @@ let dummyData = {
     "idroot": {
       "completed": 0,
       "deleted": 0,
-      "total": 3
+      "total": 4
     }
+  },
+  "tbosCookieTrail": {
+    "idroot": [{"productivity":0, "vision":0, "timestamp": new Date().getTime(), "stop":false}]
   }
 };
 

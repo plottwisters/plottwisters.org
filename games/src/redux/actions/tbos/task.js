@@ -9,6 +9,15 @@ export function deleteTaskAction(taskId, currentRoot) {
   }
 }
 
+export function completeTaskAction(taskId, currentRoot) {
+  return {
+    type: ActionType.COMPLETE_TASK,
+    taskId,
+    currentRoot
+  }
+}
+
+
 export function createNewTaskAction(taskAKey, taskBKey, name, currentRoot) {
   let uuid=uuidv1();
   uuid=(uuid.split('-').join(""))

@@ -1,44 +1,87 @@
 import {ActionType} from './../actions/tbos/action_type'
-
-function calculateActiveLeafTasks(agg) {
-  return agg["total"] - agg["completed"] - agg["deleted"];
+import {TaskState} from './../../global_constants'
+function calculateLeafTasks(agg) {
+  return agg["total"];
 }
 
 function calculateCategoryVisionScore(category, state) {
-  let agg = state["aggregates"][category];
-  let numRootTasks = Object.keys(state["hiearchy"][category]).length
-  let activeTasks = calculateActiveTasks(agg);
-  let visionScore = (activeTasks - numRootTasks)/activeTasks;
+  let agg = state["taskAggregates"][category];
+  let rootLevelTasks = Object.keys(state["hiearchy"][category]);
+  let numRootTasks = rootLevelTasks.length;
+
+  let numTasks = calculateLeafTasks(agg);
+
+  let visionScore = (numTasks - numRootTasks)/numTasks;
+  return visionScore;
 }
 
 function calculateProductivityScore(category, state) {
-  let agg = state["aggregates"][category];
+  let agg = state["taskAggregates"][category];
+  if(agg["total"] == agg["deleted"])
+    return 0;
+  
   return agg["completed"]/(agg["total"] - agg["deleted"]);
 }
 
-function calculateScore(category, state, globalVision=null){
-  if(globalVision == null)
-    globalVision = calculateCategoryVisionScore("idroot", state);
-  return 0.3 * globalVision + 0.4 * calculateProductivityScore(category, state) + 0.3 * calculateCategoryVisionScore(category, state)
+function makeDataPoint(category, state, stopBoolean){
+  console.log({"category": category, "vision": calculateCategoryVisionScore(category, state), "productivity":calculateProductivityScore(category, state) })
+  return {"productivity": calculateProductivityScore(category, state), "vision": calculateCategoryVisionScore(category, state), "timestamp":new Date().getTime(), "stop": stopBoolean}
 }
 
+function anyActiveTasks(state, currentTask) {
+  let totalRemaining = Object.keys(state["hiearchy"][currentTask]);
+  totalRemaining = totalRemaining.filter(task => state["active"][task] == TaskState.active);
+  totalRemaining = totalRemaining.length;
+  return (totalRemaining > 0);
+}
 
 export default function tbosCookieTrail(state = {}, action) {
+
   let newState = state["tbosCookieTrail"];
+  let currentTask = action.currentRoot;
+  let currentTaskScore;
   let globalVision = calculateCategoryVisionScore("idroot", state);
   switch(action.type) {
     case ActionType.CREATE_TASK_COLLISION:
-      let currentRootScore = calculateScore(action.currentRoot, state, globalVision);
+
+      //create data point for new category
+      let newCategoryScore = makeDataPoint(action.taskId, state, false);
+      newState[action.taskId] = [newCategoryScore];
+
+
+      //update score of ancestor
+      let currentRootScore = makeDataPoint(action.currentRoot, state, false);
       newState[action.currentRoot] = [...newState[action.currentRoot], currentRootScore];
-      let newCategoryScore = calculateScore(action.taskId, state, globalVision);
-      newState[action.taskId] = [...newState[action.taskId], newCategoryScore];
+
       break;
+    case ActionType.COMPLETE_TASK:
     case ActionType.DELETE_TASK:
-    case ActionType.CREATE_TASKS:
-      newState = {...state}
-      let currentTask = action.taskId;
+      newState = {...newState};
+      if(Object.keys(state["hiearchy"][action.taskId]).length != 0)
+        newState[action.taskId] = [...newState[action.taskId], makeDataPoint(action.taskId, state, true)];
+
+
+      //update score of ancestors
+
+
+
       while(currentTask != undefined) {
-        newState[currentTask] = [...newState[currentTask], calculateScore(action.taskId,state, globalVision)];
+        currentTaskScore = makeDataPoint(currentTask,state, false);
+        newState[currentTask] = [...newState[currentTask], currentTaskScore];
+        currentTask = state["reverseHiearchy"][currentTask];
+      }
+      break;
+    case ActionType.CREATE_TASKS:
+      newState = {...newState};
+
+
+      //update score of ancestors
+
+
+
+      while(currentTask != undefined) {
+        currentTaskScore = makeDataPoint(currentTask,state, false);
+        newState[currentTask] = [...newState[currentTask], currentTaskScore];
         currentTask = state["reverseHiearchy"][currentTask];
       }
       break;

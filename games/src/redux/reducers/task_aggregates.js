@@ -1,5 +1,9 @@
-import {ActionType} from './../actions/tbos/action_type'
+import {ActionType} from './../actions/tbos/action_type';
+import {TaskState} from './../../global_constants';
 
+function calculateActiveTasks(agg) {
+  return agg["total"] - agg["completed"] -  agg["deleted"];
+}
 export default function taskAggregates(state= {}, action) {
   let newState = state["taskAggregates"];
   let reverseHiearchy = state["reverseHiearchy"];
@@ -14,36 +18,75 @@ export default function taskAggregates(state= {}, action) {
       for(let key in newState[action.taskB]) {
         taskAValue = newState[action.taskA][key];
         taskBValue = newState[action.taskB][key];
-        if(key == "total") {
-
-          if(taskAValue == 0) {
-            taskAValue = 1;
-          }
-          if(taskBValue == 0) {
-            taskBValue = 1;
-          }
-        }
         let count =  taskAValue + taskBValue;
         newState[action.taskId][key] = count;
       }
       break;
+    case ActionType.COMPLETE_TASK:
+        newState = {...newState};
+
+
+        let toCompleteTaskCount = newState[action.taskId]["total"] - newState[action.taskId]["completed"] -  newState[action.taskId]["deleted"];
+        let currentCompleted;
+
+        //for total tasks added
+
+
+        while(currentTask != undefined) {
+          currentCompleted = newState[currentTask]["completed"];
+          currentTotal = newState[currentTask]["total"];
+          newState[currentTask] = {...newState[currentTask], "completed":(currentCompleted + toCompleteTaskCount)};
+          currentTask = reverseHiearchy[currentTask];
+        }
+        let tasksToComplete = [action.taskId];
+
+        while(tasksToComplete.length > 0) {
+          currentTask = tasksToComplete.pop();
+
+          if(Object.keys(state["hiearchy"][currentTask]).length == 0)
+            continue;
+          currentCompleted = newState[currentTask]["completed"];
+          newState[currentTask] = {...newState[currentTask], "completed": currentCompleted + calculateActiveTasks(newState[currentTask])};
+          for(let child in state["hiearchy"][currentTask]) {
+            tasksToComplete.push(child);
+          }
+        }
+
+        break;
     case ActionType.DELETE_TASK:
       newState = {...newState};
 
 
-      let toDeleteTaskCount = newState[action.taskId]["total"] - newState[action.taskId]["completed"] -  newState[action.taskId]["deleted"]
+      let toDeleteTaskCount = calculateActiveTasks(newState[action.taskId])
       let currentDeleted;
+
+      //for total tasks added
+
 
       while(currentTask != undefined) {
         currentDeleted = newState[currentTask]["deleted"];
+        currentTotal = newState[currentTask]["total"];
         newState[currentTask] = {...newState[currentTask], "deleted":(currentDeleted + toDeleteTaskCount)};
         currentTask = reverseHiearchy[currentTask];
+      }
+      let tasksToDelete = [action.taskId];
+
+      //delete the task and all tasks that are a child of the task
+      while(tasksToDelete.length > 0) {
+        currentTask = tasksToDelete.pop();
+        if(Object.keys(state["hiearchy"][currentTask]).length == 0)
+          continue;
+        currentDeleted = newState[currentTask]["deleted"];
+        newState[currentTask] = {...newState[currentTask], "deleted": currentDeleted + calculateActiveTasks(newState[currentTask])};
+        for(let child in state["hiearchy"][currentTask]) {
+          tasksToDelete.push(child);
+        }
       }
       break;
     case ActionType.CREATE_TASKS:
       newState = {...newState};
       for(let task of action.tasks) {
-        newState[task.id] =  {"completed": 0, "deleted": 0, "total": 0};
+        newState[task.id] =  {"completed": 0, "deleted": 0, "total": 1};
       }
       let totalTasksAdded = action.tasks.length;
       let currentTotal;
