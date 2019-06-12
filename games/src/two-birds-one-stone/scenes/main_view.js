@@ -68,8 +68,11 @@ class MainView extends Phaser.Scene {
         }
       if(this.collisions.widget != null){
         if (this.checkOverlap(this.collisions.widget.objectA, this.collisions.widget.objectB)) {
-
-          this.deleteTaskAction(this.collisions.widget.objectA.idTbos, this.outerContext.getRootId());
+          let currentWidget = this.collisions.widget.objectB;
+          if(currentWidget.name == "trash")
+            this.deleteTaskAction(this.collisions.widget.objectA.idTbos, this.outerContext.getRootId());
+          else if(currentWidget.name == "checkmark")
+            this.completeTaskAction(this.collisions.widget.objectA.idTbos, this.outerContext.getRootId());
         }
       }
 
@@ -235,8 +238,12 @@ class MainView extends Phaser.Scene {
   {
 
       //instantiate UI widgets
-      this.trash = this.physics.add.image(45,680,'trash').setInteractive();
+      this.trash = this.physics.add.image(0.1 * this.game.scale.width,0.9 * this.game.scale.height,'trash').setInteractive();
 
+      this.trash.name = "trash";
+
+      this.checkmark = this.physics.add.image(0.9 * this.game.scale.width ,0.9 * this.game.scale.height,'checkmark').setInteractive();
+      this.checkmark.name = "checkmark";
       //tasks
       let tasksData = this.outerContext.getRootTasksAsArray();
       for(let task of tasksData) {
@@ -247,6 +254,7 @@ class MainView extends Phaser.Scene {
       //register overlap callbacks
       this.physics.add.collider(this.tasksGroup, this.tasksGroup, this.textOverlapCallback);
       this.physics.add.collider(this.trash, this.tasksGroup, this.widgetOverlapCallback);
+      this.physics.add.collider(this.checkmark, this.tasksGroup, this.widgetOverlapCallback);
 
 
 

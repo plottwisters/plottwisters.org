@@ -19,6 +19,7 @@ function calculateProductivityScore(category, state) {
   let agg = state["taskAggregates"][category];
   if(agg["total"] == agg["deleted"])
     return 0;
+  
   return agg["completed"]/(agg["total"] - agg["deleted"]);
 }
 
@@ -37,6 +38,8 @@ function anyActiveTasks(state, currentTask) {
 export default function tbosCookieTrail(state = {}, action) {
 
   let newState = state["tbosCookieTrail"];
+  let currentTask = action.currentRoot;
+  let currentTaskScore;
   let globalVision = calculateCategoryVisionScore("idroot", state);
   switch(action.type) {
     case ActionType.CREATE_TASK_COLLISION:
@@ -51,19 +54,30 @@ export default function tbosCookieTrail(state = {}, action) {
       newState[action.currentRoot] = [...newState[action.currentRoot], currentRootScore];
 
       break;
+    case ActionType.COMPLETE_TASK:
     case ActionType.DELETE_TASK:
-    case ActionType.CREATE_TASKS:
-      newState = {...newState}
+      newState = {...newState};
+      if(Object.keys(state["hiearchy"][action.taskId]).length != 0)
+        newState[action.taskId] = [...newState[action.taskId], makeDataPoint(action.taskId, state, true)];
 
-      //if delete task record stop boolean
-      if(action.type == ActionType.DELETE_TASK) {
-        if(Object.keys(state["hiearchy"][action.taskId]).length != 0)
-          newState[action.taskId] = [...newState[action.taskId], makeDataPoint(action.taskId, state, true)];
-      }
 
       //update score of ancestors
-      let currentTask = action.currentRoot;
-      let currentTaskScore;
+
+
+
+      while(currentTask != undefined) {
+        currentTaskScore = makeDataPoint(currentTask,state, false);
+        newState[currentTask] = [...newState[currentTask], currentTaskScore];
+        currentTask = state["reverseHiearchy"][currentTask];
+      }
+      break;
+    case ActionType.CREATE_TASKS:
+      newState = {...newState};
+
+
+      //update score of ancestors
+
+
 
       while(currentTask != undefined) {
         currentTaskScore = makeDataPoint(currentTask,state, false);
