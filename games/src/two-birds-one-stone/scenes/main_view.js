@@ -83,7 +83,6 @@ class MainView extends Phaser.Scene {
     task.on('pointerup', (function(outerThis) {
 
       return function(pointer) {
-<<<<<<< HEAD
         let distance = 0;
         if (pointer.start != null) { //calculate displacement from pointer start dragging (same as pointer down)
           distance = (pointer.y - pointer.start.y) * (pointer.y - pointer.start.y) + (pointer.x - pointer.start.x) * (pointer.x - pointer.start.x);
