@@ -1,25 +1,22 @@
 import React, {Component} from 'react';
 import Chart from 'chart.js';
 import { connect } from 'react-redux';
-import {TaskState} from './../global_constants';
+import {TaskState} from './../../global_constants';
 import CheckboxTree from 'react-checkbox-tree';
+import 'react-checkbox-tree/src/scss/react-checkbox-tree.scss';
+import 'font-awesome/scss/font-awesome.scss';
 class ChartNavigator extends Component {
 
 
   //react parent component
   constructor(props) {
     super(props);
-    let displayTypes = tbosConstants.displayTypes;
-    let display = {};
-    for (var type of Object.keys(displayTypes)) {
-      display[type] = "none";
-    }
+
 
     let hiearchy = this.props.hiearchy;
     let active = this.props.active;
-    let currentNodes = [idroot];
-    let currentRoot;
-    let nodesAdded = 0;
+    let name = this.props.name;
+
     function processCurrentName(currentName) {
 
       let currentRoot = hiearchy[currentName];
@@ -30,48 +27,54 @@ class ChartNavigator extends Component {
           }
           childrenNames.push(child);
       }
-      let newTreeNodes = {children: [], name: };
+      let newTreeNodes = {children: [], className: 'hiearchy-cookie-trail-checkbox', value: currentName, label: name[currentName], isValid: true};
       let currentChildNode;
 
-      if(nodesAdded != 0) {
-        for(let name of childrenNames) {
-          currentChildNode = processCurrentName(name);
-          if(currentChildNode.children.length > 0)
-            newTreeNodes.children.append(currentChildNode);
+      if(childrenNames.length > 0) {
+        for(let childName of childrenNames) {
+          currentChildNode = processCurrentName(childName);
+          if(currentChildNode.isValid)
+            newTreeNodes.children.push(currentChildNode);
         }
-        newTreeNodes
+      } else {
+        newTreeNodes["isValid"] = false;
       }
-
       return newTreeNodes;
     }
-    }
-    while (currentNodes.length > 0) {
-      let currentName = currentNodes.pop();
-      currentRoot = hiearchy[currentName];
-      nodesAdded = 0;
-      for(let child in currentRoot) {
-          if(active[child] == TaskState.deleted) {
-            continue;
-          }
-          ++nodesAdded;
-          currentNodes.push(child);
-      }
-      if(nodesAdded != 0) {
-        currentRoot["children"].append()
-      }
-    }
+
+    this.treeNodes = [processCurrentName("idroot")];
+
     this.state = {
         checked: [],
         expanded: [],
     };
+    this.onCheck = this.onCheck.bind(this);
+    this.onExpand = this.onExpand.bind(this);
   }
 
+  onCheck(checked) {
+    this.props.toggleCookieTrail(checked);
+  }
 
+  onExpand(expanded) {
+    this.setState({ expanded });
+
+  }
 
   //add game container and hidden views into DOM
   render() {
+    const { checked, expanded } = this.state;
     return (
-      <div id="">
+      <div id="checkbox-tree-cookie-trail">
+        <CheckboxTree
+                checked={this.props.checkedCookieTrails}
+                expanded={expanded}
+                noCascade
+                nodes={this.treeNodes}
+                onCheck={this.onCheck}
+                onExpand={this.onExpand}
+                showNodeIcon={false}
+            />
       </div>
     );
   }
@@ -91,7 +94,4 @@ class ChartNavigator extends Component {
   // }
 }
 
-function mapStateToProps(state){
-  return state;
-}
 export default ChartNavigator;

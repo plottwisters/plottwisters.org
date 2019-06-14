@@ -51,6 +51,7 @@ let dummyData = {
     "id4": "idroot"
   },
   "tbosRootPath": ["idroot"],
+  "checkedCookieTrails": ["idroot"],
   "nameToTasks": {
     "Task 1": ["id1"],
     "Task 2": ["id2"],
@@ -146,7 +147,7 @@ class App extends Component {
         <Router>
           <div>
             <Route component={gameLinksContainer}/>
-            
+
           </div>
         </Router>
       </Provider>

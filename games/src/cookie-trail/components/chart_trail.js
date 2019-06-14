@@ -14,12 +14,45 @@ class ChartTrail extends Component {
 
 
   render() {
+
     return (
       <canvas id="chart-navigator">
       </canvas>
     );
   }
+  componentDidUpdate() {
+    for (let cookie of this.props.tbosCookieTrail["idroot"]) {
+      this.rootDatabyTimeMap[cookie["timestamp"]] = cookie;
+      console.log(this.rootDatabyTimeMap[cookie["timestamp"]]);
+    }
+    let newActiveSet = new Set([]);
+    for(let cookieTrailId of this.props.checkedCookieTrails) {
+      newActiveSet.add(cookieTrailId);
+      if(this.activeSet.has(cookieTrailId))
+        continue;
+      let totalSet = {};
+      totalSet["label"] = this.props.name[cookieTrailId];
+      totalSet["trailId"] = cookieTrailId;
+      totalSet["data"] = this.props.tbosCookieTrail[cookieTrailId].map((trail) => {
+        console.log(trail);
+        
+        console.log(trail["vision"]);
+        return {
+          x: trail["timestamp"],
+          y: 0.4 * trail["productivity"] + 0.3 * this.rootDatabyTimeMap[trail["timestamp"]]["vision"] + 0.3 * trail["vision"]
+        }
+      }, this);
+      this.myLineChart.data.datasets.push(totalSet);
 
+    }
+    let subtraction = new Set([...this.activeSet].filter(x => !newActiveSet.has(x)));
+
+
+    this.myLineChart.data.datasets = this.myLineChart.data.datasets.filter(trail => !(subtraction.has(trail.trailId)));
+    this.activeSet = newActiveSet;
+
+    this.myLineChart.update();
+  }
   componentDidMount() {
     let chartNavigationDiv = document.getElementById('chart-navigator');
 
@@ -29,29 +62,33 @@ class ChartTrail extends Component {
         "cubicInterpolationMode":  "monotone",
         "tension": 0
       });
-    let rootDatabyTimeMap = {};
+    this.rootDatabyTimeMap = {};
     for (let cookie of this.props.tbosCookieTrail["idroot"]) {
-      rootDatabyTimeMap[cookie["timestamp"]] = cookie;
+      this.rootDatabyTimeMap[cookie["timestamp"]] = cookie;
+    }
+    this.checkedCookieTrails = [];
+    this.activeSet = new Set([]);
+    for(let cookieTrailId of this.props.checkedCookieTrails) {
+      let totalSet = {};
+      totalSet["label"] = this.props.name[cookieTrailId];
+      totalSet["trailId"] = cookieTrailId;
+      totalSet["data"] = this.props.tbosCookieTrail[cookieTrailId].map((trail) => {
+        return {
+          x: trail["timestamp"],
+          y: 0.4 * trail["productivity"] + 0.3 * this.rootDatabyTimeMap[trail["timestamp"]]["vision"] + 0.3 * trail["vision"]
+        }
+      }, this);
+      this.checkedCookieTrails.push(totalSet);
+      this.activeSet.add(cookieTrailId);
     }
 
-    let dataset = this.props.tbosCookieTrail["idroot"].map((trail) => {
-      return {
-        x: trail["timestamp"],
-        y: 0.4 * trail["productivity"] + 0.3 * rootDatabyTimeMap[trail["timestamp"]]["vision"] + 0.3 * trail["vision"]
-      }
-    }, this);
 
 
-    
 
-    let myLineChart = new Chart(chartNavigationDiv, {
+    this.myLineChart = new Chart(chartNavigationDiv, {
       type: 'line',
       data: {
-
-        datasets: [{
-          label: 'Test Data Set',
-          data: dataset
-        }]
+        datasets: this.checkedCookieTrails
       },
 
       options: {

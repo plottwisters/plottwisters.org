@@ -29,7 +29,7 @@ class TwoBirdsOneStone extends Component {
     this.createNewTask =  this.createNewTask.bind(this);
     this.toggleCreateView = this.toggleCreateView.bind(this);
     this.changeDisplay = this.changeDisplay.bind(this);
-    const { dispatch } = props
+    const { dispatch } = props;
     this.boundActionCreators = bindActionCreators(tbosActionCreators, dispatch);
   }
 

@@ -2,14 +2,17 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import {TaskState} from './../global_constants';
 import ChartTrail from './components/chart_trail.js';
-
+import ChartNavigator from './components/chart_navigator.js';
+import * as cookieTrailActionCreators from './../redux/actions/trail_viewer.js';
+import {bindActionCreators} from 'redux';
 class CookieTrail extends Component {
 
 
   //react parent component
   constructor(props) {
     super(props);
-
+    const { dispatch } = props;
+    this.boundActionCreators = bindActionCreators(cookieTrailActionCreators, dispatch);
   }
 
 
@@ -17,17 +20,17 @@ class CookieTrail extends Component {
 
   //add game container and hidden views into DOM
   render() {
-    console.log(this.props.tbosCookieTrail)
+
     return (
-      <div>
-        <ChartTrail {...this.props} />
+      <div id="cookie-trail-container">
+        <ChartTrail {...this.boundActionCreators} {...this.props} />
+        <ChartNavigator {...this.boundActionCreators} {...this.props}/>
       </div>
     );
   }
 
   //instantiate phaser game after render
   componentDidMount() {
-    console.log(this.props);
 
   }
 
@@ -41,7 +44,6 @@ class CookieTrail extends Component {
 }
 
 function mapStateToProps(state){
-  console.log(state);
   return state;
 }
 export default connect(mapStateToProps)(CookieTrail);
