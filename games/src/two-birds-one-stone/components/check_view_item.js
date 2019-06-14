@@ -9,11 +9,10 @@ class CheckViewItem extends Component {
             todo: this.props.item.todo,
             completed: this.props.item.completed,
         }
-    } 
+    }
 
     toggleCompleted(){
-        this.setState({completed: !this.state.completed})
-//         console.log(this.state.completed);
+        this.setState({completed: !this.state.completed});
     }
 
     render() {
@@ -26,4 +25,4 @@ class CheckViewItem extends Component {
     }
 }
 
-export default CheckViewItem; 
+export default CheckViewItem;

@@ -6,7 +6,7 @@ import CreateTask from './components/create_task.js';
 import ToDo from './components/todo.js';
 import { connect } from 'react-redux'
 import * as tbosConstants from './tbos_constants';
-import * as tbosActionCreators from './../redux/actions/tbos'
+import * as tbosActionCreators from './../redux/actions/tbos';
 import {bindActionCreators} from 'redux';
 import {TaskState} from './../global_constants';
 class TwoBirdsOneStone extends Component {
