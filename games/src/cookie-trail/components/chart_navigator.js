@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Chart from 'chart.js';
 import { connect } from 'react-redux';
 import {TaskState} from './../global_constants';
+import CheckboxTree from 'react-checkbox-tree';
 class ChartNavigator extends Component {
 
 
@@ -13,17 +14,56 @@ class ChartNavigator extends Component {
     for (var type of Object.keys(displayTypes)) {
       display[type] = "none";
     }
+
+    let hiearchy = this.props.hiearchy;
+    let active = this.props.active;
+    let currentNodes = [idroot];
+    let currentRoot;
+    let nodesAdded = 0;
+    function processCurrentName(currentName) {
+
+      let currentRoot = hiearchy[currentName];
+      let childrenNames = [];
+      for(let child in currentRoot) {
+          if(active[child] == TaskState.deleted) {
+            continue;
+          }
+          childrenNames.push(child);
+      }
+      let newTreeNodes = {children: [], name: };
+      let currentChildNode;
+
+      if(nodesAdded != 0) {
+        for(let name of childrenNames) {
+          currentChildNode = processCurrentName(name);
+          if(currentChildNode.children.length > 0)
+            newTreeNodes.children.append(currentChildNode);
+        }
+        newTreeNodes
+      }
+
+      return newTreeNodes;
+    }
+    }
+    while (currentNodes.length > 0) {
+      let currentName = currentNodes.pop();
+      currentRoot = hiearchy[currentName];
+      nodesAdded = 0;
+      for(let child in currentRoot) {
+          if(active[child] == TaskState.deleted) {
+            continue;
+          }
+          ++nodesAdded;
+          currentNodes.push(child);
+      }
+      if(nodesAdded != 0) {
+        currentRoot["children"].append()
+      }
+    }
     this.state = {
-      display
+        checked: [],
+        expanded: [],
     };
-
-
-
-    this.createNewTask =  this.createNewTask.bind(this);
-    this.toggleCreateView = this.toggleCreateView.bind(this);
-    this.changeDisplay = this.changeDisplay.bind(this);
-    const { dispatch } = props
-    this.boundActionCreators = bindActionCreators(tbosActionCreators, dispatch);
   }
 
 
