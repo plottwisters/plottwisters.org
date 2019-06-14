@@ -100,6 +100,11 @@ class ToDo extends Component {
                 <input value={this.state.newTaskInput} className="todo-input" onChange={this.handleInput} type="text" onKeyPress={this.handleKey} />
                 <button className="todo-add" onClick={this.createItem}>+</button>
 
+              {/*create task input*/}
+              <div className="todo-input-form">
+                <input value={this.state.newTaskInput} className="todo-input" onChange={this.handleInput} type="text" onKeyPress={this.handleKey} />
+                <button className="todo-add" onClick={this.createItem}>+</button>
+                
               </div>
               <button className='ToDo-OK' onClick={this.addToRedux}> Done </button>
             </div>
