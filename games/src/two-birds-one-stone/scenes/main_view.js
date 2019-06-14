@@ -164,6 +164,24 @@ class MainView extends Phaser.Scene {
     }
   }
 
+  //create new task button
+  renderNewTaskButton() {
+    this.new_task = this.add.image(0.97 * this.game.scale.width, 0.05 * this.game.scale.height, 'new_task').setInteractive();
+    this.new_task.setScale(0.1,0.1);
+    this.new_task.on('pointerdown', () => {
+      this.outerContext.changeDisplay(tbosConstants.displayTypes.createMany);
+    });
+  }
+  
+  //checklist view button
+  renderChecklistButton() {
+    this.checkList = this.add.image(0.97 * this.game.scale.width, 0.15 * this.game.scale.height, 'checklist').setInteractive();
+    this.checkList.setScale(0.25,0.25);
+    this.checkList.on('pointerdown', () => {
+      this.outerContext.changeDisplay(tbosConstants.displayTypes.checkList);
+    });
+  }
+
   //for re-rendering tasks  based on current parent state
   rerenderTasks() {
 
@@ -206,7 +224,8 @@ class MainView extends Phaser.Scene {
   rerender() {
     this.rerenderBackButton();
     this.rerenderTasks();
-
+    this.renderNewTaskButton();
+    this.renderChecklistButton();
   }
 
   //loads and defines all scene scope assets
@@ -231,6 +250,15 @@ class MainView extends Phaser.Scene {
       //callbacks
       this.widgetOverlapCallback = this.widgetOverlapCallback.bind(this);
       this.textOverlapCallback = this.textOverlapCallback.bind(this);
+
+      //create new task button
+      this.load.image('new_task', 'https://cdn3.iconfinder.com/data/icons/buttons/512/Icon_31-512.png');
+      this.new_task = null
+
+      //checklist button
+      //create new task button
+      this.load.image('checklist', 'https://cdn2.iconfinder.com/data/icons/viiva-business/32/document_checklist-256.png');
+      this.checkList = null
   }
 
 

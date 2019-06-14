@@ -4,6 +4,7 @@ import DragPlugin from './plugins/rexdragplugin.min.js';
 import MainView from './scenes/main_view.js';
 import CreateTask from './components/create_task.js';
 import ToDo from './components/todo.js';
+import CheckView from './components/check_view.js';
 import { connect } from 'react-redux'
 import * as tbosConstants from './tbos_constants';
 import * as tbosActionCreators from './../redux/actions/tbos'
@@ -28,6 +29,7 @@ class TwoBirdsOneStone extends Component {
 
     this.createNewTask =  this.createNewTask.bind(this);
     this.toggleCreateView = this.toggleCreateView.bind(this);
+    this.toggleChecklistView = this.toggleChecklistView.bind(this);
     this.changeDisplay = this.changeDisplay.bind(this);
     const { dispatch } = props
     this.boundActionCreators = bindActionCreators(tbosActionCreators, dispatch);
@@ -56,6 +58,9 @@ class TwoBirdsOneStone extends Component {
     this.changeDisplay(tbosConstants.displayTypes.createMany);
   }
 
+  toggleChecklistView() {
+    this.changeDisplay(tbosConstants.displayTypes.checkList);
+  }
 
   getRootId() {
 
@@ -75,10 +80,9 @@ class TwoBirdsOneStone extends Component {
     return (
       <div>
         <div id="tbos-canvas"/>
-
-        <div className="button-new-task" onClick={this.toggleCreateView} ><img className="img-tbos-nav" src="https://cdn3.iconfinder.com/data/icons/buttons/512/Icon_31-512.png"></img></div>
         <CreateTask display={this.state.display[tbosConstants.displayTypes.createOne]} createNewTask={this.createNewTask}/>
         <ToDo {...this.boundActionCreators} outerProps = {this.props}  display={this.state.display[tbosConstants.displayTypes.createMany]} toggleCreateView={this.toggleCreateView} />
+        <CheckView {...this.boundActionCreators} outerProps = {this.props}  display={this.state.display[tbosConstants.displayTypes.checkList]} toggleChecklistView={this.toggleChecklistView} />
         </div>
     );
   }
