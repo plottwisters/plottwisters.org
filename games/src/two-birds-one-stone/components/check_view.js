@@ -9,17 +9,18 @@ class CheckView extends Component {
         this.state = {
             list: []
         };
-        
-        
+
+
     };
 
-    createItem() {
+    test() {
         console.log('checklist');
         let currentRoot = this.props.outerProps.tbosRootPath;
+        // let temp = new Set();
+        // temp = this.state.list;
         for (var item in this.props.outerProps.hiearchy[currentRoot]) {
-            console.log(item);
-            
-            this.setState(({ list }) => {
+            // console.log(item);
+            this.setState(({list}) => {
                 return {
                     list: [
                         ...list,
@@ -49,11 +50,15 @@ class CheckView extends Component {
         console.log("hello");
         let currentRoot = this.props.outerProps.tbosRootPath;
         for (var item in this.props.outerProps.hiearchy[currentRoot]) {
-            console.log(this.state.list);
+            // console.log(this.state.list);
             this.state.list.push({'name': this.props.outerProps.name[item], 'key': item})
         }
         // console.log(this.state.list);
     }
+
+    // componentDidUpdate() {
+    //     this.test();
+    // }
 
     render() {
 
