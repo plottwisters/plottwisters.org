@@ -5,10 +5,14 @@ class CheckViewItem extends Component {
 
     constructor(){
         super(...arguments);
+<<<<<<< HEAD
         this.state = {
             todo: this.props.item.todo,
             completed: this.props.item.completed,
         }
+=======
+        
+>>>>>>> master
     }
 
     toggleCompleted(){
@@ -17,8 +21,8 @@ class CheckViewItem extends Component {
 
     render() {
         return (
-            <div className="ToDoItem">
-                {this.state.completed ? <p className="ToDoItem-Text-completed">{this.state.todo}</p> : <p className="ToDoItem-Text">{this.state.todo}</p>}
+            <div className="todo-item">
+                <p className="todo-item-text">{this.props.name}</p>
                 <input className="chkbox" type="checkbox" value="" onChange={() => this.toggleCompleted()} />
             </div>
         );

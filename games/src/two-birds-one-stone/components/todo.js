@@ -57,20 +57,20 @@ class ToDo extends Component {
   };
 
   addToRedux() {
-    console.log("redux log");
-    console.log(this.props.outerProps);
+    // console.log("redux log");
+    // console.log(this.props.outerProps);
     // console.log(this.props.createNewTaskAction({ 'id': uuid(), 'name': 'hello' }, { 'id': 'hrderfchbdr4gxd', 'name': 'hello' }, 'nnn', 'root'))
     let tasks = this.state.list.map(
-      (task) => {return {
-        "id": task['key'],
-        "name": task['name']
-      } }
+      (task) => {
+        return {
+          "id": task['key'],
+          "name": task['name']
+        }
+      }
     );
-    console.log(this.props.outerProps.tbosRootPath);
+    // console.log(this.props.outerProps.tbosRootPath);
     this.props.createNewTasksAction(tasks, this.props.outerProps.tbosRootPath[this.props.outerProps.tbosRootPath.length - 1]);
-
     this.props.toggleCreateView();
-
   };
 
 
@@ -83,6 +83,7 @@ class ToDo extends Component {
 
             <div className="full-screen-popup-header">
               <h1 >Add Things to Do</h1>
+              <button className='ToDo-OK' onClick={this.addToRedux}> Done </button>
             </div>
             <div className="todo-tasks-container">
               {this.state.list.map((item) => {
@@ -94,20 +95,14 @@ class ToDo extends Component {
               }
               )}
 
-
               {/*create task input*/}
               <div className="todo-input-form">
                 <input value={this.state.newTaskInput} className="todo-input" onChange={this.handleInput} type="text" onKeyPress={this.handleKey} />
                 <button className="todo-add" onClick={this.createItem}>+</button>
-
               </div>
-              <button className='ToDo-OK' onClick={this.addToRedux}> Done </button>
             </div>
           </div>
-
-
         </div>
-
       </div>
     );
   }
