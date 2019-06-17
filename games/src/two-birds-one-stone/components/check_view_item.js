@@ -5,7 +5,14 @@ class CheckViewItem extends Component {
 
     constructor(){
         super(...arguments);
+<<<<<<< HEAD
+        this.state = {
+            todo: this.props.item.todo,
+            completed: this.props.item.completed,
+        }
+=======
         
+>>>>>>> master
     }
 
     toggleCompleted(){

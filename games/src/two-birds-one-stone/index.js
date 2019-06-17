@@ -7,7 +7,7 @@ import ToDo from './components/todo.js';
 import CheckView from './components/check_view.js';
 import { connect } from 'react-redux'
 import * as tbosConstants from './tbos_constants';
-import * as tbosActionCreators from './../redux/actions/tbos'
+import * as tbosActionCreators from './../redux/actions/tbos';
 import {bindActionCreators} from 'redux';
 import {TaskState} from './../global_constants';
 class TwoBirdsOneStone extends Component {
@@ -31,7 +31,7 @@ class TwoBirdsOneStone extends Component {
     this.toggleCreateView = this.toggleCreateView.bind(this);
     this.toggleChecklistView = this.toggleChecklistView.bind(this);
     this.changeDisplay = this.changeDisplay.bind(this);
-    const { dispatch } = props
+    const { dispatch } = props;
     this.boundActionCreators = bindActionCreators(tbosActionCreators, dispatch);
   }
 

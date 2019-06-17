@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import TwoBirdsOneStone from './two-birds-one-stone';
+import CookieTrail from './cookie-trail';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
@@ -28,7 +29,8 @@ let dummyData = {
     "id1": "Task 1",
     "id2": "Task 2",
     "id3": "Task 3",
-    "id4": "Task 4"
+    "id4": "Task 4",
+    "idroot": "Your Main Trail"
   },
   "active": {
     "id1": TaskState.active,
@@ -49,6 +51,7 @@ let dummyData = {
     "id4": "idroot"
   },
   "tbosRootPath": ["idroot"],
+  "checkedCookieTrails": ["idroot"],
   "nameToTasks": {
     "Task 1": ["id1"],
     "Task 2": ["id2"],
@@ -91,7 +94,8 @@ const store = createStore(twisterLandReducers, dummyData);
 
 //registry of all games - or different urls
 let globalGameRegistry = {
-  "two-birds-one-stone":TwoBirdsOneStone
+  "two-birds-one-stone":TwoBirdsOneStone,
+  "cookie-trail": CookieTrail
 }
 
 class App extends Component {
@@ -142,8 +146,7 @@ class App extends Component {
       <Provider store={store}>
         <Router>
           <div>
-            <Route path="/" exact component={gameLinksContainer}/>
-            <Route component={gamesContainer}/>
+            <Route component={gameLinksContainer}/>
 
           </div>
         </Router>
