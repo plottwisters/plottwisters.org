@@ -31,6 +31,7 @@ class TwoBirdsOneStone extends Component {
     this.toggleCreateView = this.toggleCreateView.bind(this);
     this.toggleChecklistView = this.toggleChecklistView.bind(this);
     this.changeDisplay = this.changeDisplay.bind(this);
+    this.toggleCreateTask = this.toggleCreateTask.bind(this);
     const { dispatch } = props;
     this.boundActionCreators = bindActionCreators(tbosActionCreators, dispatch);
     console.log(this.boundActionCreators);
@@ -52,9 +53,11 @@ class TwoBirdsOneStone extends Component {
 
     this.boundActionCreators.createNewTaskAction(taskAKey, taskBKey, taskId, this.getRootId()); //dispatches action to make a new task from two subtasks
 
+    this.toggleCreateTask();
+  }
+  toggleCreateTask() {
     this.changeDisplay(tbosConstants.displayTypes.createOne);
   }
-
   toggleCreateView() {
     this.changeDisplay(tbosConstants.displayTypes.createMany);
   }
@@ -81,7 +84,7 @@ class TwoBirdsOneStone extends Component {
     return (
       <div>
         <div id="tbos-canvas"/>
-        <CreateTask display={this.state.display[tbosConstants.displayTypes.createOne]} createNewTask={this.createNewTask}/>
+        <CreateTask display={this.state.display[tbosConstants.displayTypes.createOne]} cancelNewTask={this.toggleCreateTask} createNewTask={this.createNewTask}/>
         <ToDo {...this.boundActionCreators} outerProps = {this.props}  display={this.state.display[tbosConstants.displayTypes.createMany]} toggleCreateView={this.toggleCreateView} />
         <CheckView {...this.boundActionCreators} outerProps = {this.props}  display={this.state.display[tbosConstants.displayTypes.checkList]} toggleChecklistView={this.toggleChecklistView} />
         </div>

@@ -35,9 +35,7 @@ class ChartTrail extends Component {
       totalSet["label"] = this.props.name[cookieTrailId];
       totalSet["trailId"] = cookieTrailId;
       totalSet["data"] = this.props.tbosCookieTrail[cookieTrailId].map((trail) => {
-        console.log(trail);
-
-        console.log(trail["vision"]);
+        
         return {
           x: trail["timestamp"],
           y: 0.5 * trail["productivity"] + 0.5 * (trail["vision"]/this.props.maxCookieVision)

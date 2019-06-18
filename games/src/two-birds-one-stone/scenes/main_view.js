@@ -36,7 +36,7 @@ class MainView extends Phaser.Scene {
 
   //randomly placed a new task in the scene
   placeNewTask() {
-    return {"x": Math.random() * this.game.scale.width, "y": Math.random() * this.game.scale.height};
+    return {"x": Math.random() * this.game.scale.width * 0.8 + 0.1, "y": Math.random() * this.game.scale.height * 0.8 + 0.1};
   }
 
   //creates a new task

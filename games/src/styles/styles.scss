@@ -2,11 +2,34 @@
   padding: 0px;
   margin: 0px;
 }
+
+.form-combine-task-style {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 12px;
+}
+
+.popup-submit-button {
+  font-size: 2em;
+  border-radius: 5px;
+  padding: 10px;
+
+}
+
+.popup-footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-top: 10px;
+
+}
 #tbos-canvas {
   width: 100%;
   height: 100vh;
 
 }
+
 
 .tbos-overlay {
   position: fixed;
@@ -130,6 +153,12 @@ canvas {
   font-size: 1em;
   box-shadow: 1px 3px 20px 0px rgba(0, 0, 0, 0.3);
   width:90%;
+}
+
+.popup-input-text {
+  font-size: 2em;
+  padding: 20px;
+  box-shadow: 1px 3px 20px 0px rgba(0, 0, 0, 0.3);
 }
 
 .todo-item {
