@@ -44,6 +44,6 @@ class CookieTrail extends Component {
 }
 
 function mapStateToProps(state){
-  return state;
+  return state.present;
 }
 export default connect(mapStateToProps)(CookieTrail);

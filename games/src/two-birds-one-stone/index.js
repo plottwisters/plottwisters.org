@@ -33,6 +33,7 @@ class TwoBirdsOneStone extends Component {
     this.changeDisplay = this.changeDisplay.bind(this);
     const { dispatch } = props;
     this.boundActionCreators = bindActionCreators(tbosActionCreators, dispatch);
+    console.log(this.boundActionCreators);
   }
 
 
@@ -123,6 +124,6 @@ class TwoBirdsOneStone extends Component {
 }
 
 function mapStateToProps(state){
-  return state;
+  return state.present;
 }
 export default connect(mapStateToProps)(TwoBirdsOneStone);

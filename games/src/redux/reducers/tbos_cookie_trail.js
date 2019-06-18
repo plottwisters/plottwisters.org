@@ -50,10 +50,8 @@ export default function tbosCookieTrail(state = {}, action) {
 
   let newState = state["tbosCookieTrail"];
   let newMax = state["maxCookieVision"];
-  let currentTask = action.currentRoot;
-  let currentTaskScore;
-  let globalVision = calculateCategoryVisionScore("idroot", state);
-  let timestamp = new Date().getTime();
+  let currentTask;
+  let timestamp = action.timestamp;
 
   switch(action.type) {
     case ActionType.CREATE_TASK_COLLISION:
@@ -65,26 +63,28 @@ export default function tbosCookieTrail(state = {}, action) {
       newState = {...newState};
       let trailsToUpdate = [action.taskId];
       let currentTrailToUpdate;
-      
-      let newDataPoint = makeDataPointv2(action.taskId,state, false, timestamp)
-      newMax = Math.max(state["maxCookieVision"], newDataPoint["vision"]);
-      console.log(newDataPoint);
-      //if it is a category make a data point
-      if(Object.keys(state["hiearchy"][action.taskId]).length != 0)
-        newState[action.taskId] = [...newState[action.taskId], newDataPoint];
-
-
-      //update score of ancestors
-
-
-
-      while(currentTask != undefined) {
-        console.log(currentTask);
-
-        console.log(newState[currentTask]);
-        newState[currentTask] = [...newState[currentTask], newDataPoint];
-        currentTask = state["reverseHiearchy"][currentTask];
+      let activeChildren;
+      let newDataPoint;
+      while(trailsToUpdate.length > 0) {
+        currentTrailToUpdate = trailsToUpdate.pop();
+        activeChildren = false;
+        for(let child in state["hiearchy"][currentTask]) {
+          if(state["active"][child] == TaskState.active) {
+            trailsToUpdate.push(child);
+            activeChildren = true;
+          }
+        }
+        if(!activeChildren) {
+          newDataPoint = makeDataPointv2(currentTrailToUpdate,state, false, timestamp);
+          newMax = Math.max(state["maxCookieVision"], newDataPoint["vision"]);
+          currentTask = state["reverseHiearchy"][currentTrailToUpdate];
+          while(currentTask != undefined) {
+            newState[currentTask] = [...newState[currentTask], newDataPoint];
+            currentTask = state["reverseHiearchy"][currentTask];
+          }
+        }
       }
+
       break;
     default:
       break;

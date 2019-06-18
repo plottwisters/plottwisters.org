@@ -7,7 +7,9 @@ import nameToTasks from './name_to_tasks'
 import taskAggregates from './task_aggregates'
 import tbosCookieTrail from './tbos_cookie_trail'
 import checkedCookieTrails from './checked_cookie_trails'
-export default function reducers(state = {}, action) {
+import undoable, { distinctState , excludeAction} from 'redux-undo'
+import {ActionType} from './../actions/tbos/action_type'
+function tbosReducers(state = {}, action) {
   let intermediateResults = {
     reverseHiearchy: reverseHiearchy(state.reverseHiearchy, action),
     hiearchy: hiearchy(state.hiearchy, action),
@@ -15,9 +17,9 @@ export default function reducers(state = {}, action) {
     name: name(state.name, action),
     tbosRootPath:tbosRootPath(state.tbosRootPath, action),
     nameToTasks: nameToTasks(state.nameToTasks, action),
-    checkedCookieTrails: checkedCookieTrails(state.checkedCookieTrails, action),
     maxCookieVision: state["maxCookieVision"]
   }
+
   intermediateResults["taskAggregates"] = state["taskAggregates"];
   intermediateResults = Object.assign(intermediateResults, {taskAggregates: taskAggregates(intermediateResults, action)})
   intermediateResults["tbosCookieTrail"] = state["tbosCookieTrail"];
@@ -25,3 +27,15 @@ export default function reducers(state = {}, action) {
   intermediateResults = Object.assign(intermediateResults, tbosCookieTrail(intermediateResults, action))
   return intermediateResults;
 }
+
+function reducers(state = {}, action) {
+
+  let firstResult = tbosReducers(state, action);
+  return Object.assign(firstResult, {checkedCookieTrails: checkedCookieTrails(state.checkedCookieTrails, action)});
+}
+
+const undoableState = undoable(reducers, {
+  filter: excludeAction([ActionType.TOGGLE_TRAIL])
+});
+
+export default undoableState;

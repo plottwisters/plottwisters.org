@@ -51,9 +51,10 @@ class CheckView extends Component {
     };
 
     goback() {
+        let currentTimestamp = new Date().getTime();
         for(let checkItem in this.state["completed"]) {
           console.log(checkItem)
-          this.props.completeTaskAction(checkItem, this.props.outerProps.tbosRootPath[this.props.outerProps.tbosRootPath.length - 1]);
+          this.props.completeTaskAction(checkItem, this.props.outerProps.tbosRootPath[this.props.outerProps.tbosRootPath.length - 1], currentTimestamp);
         }
         this.props.toggleChecklistView();
 

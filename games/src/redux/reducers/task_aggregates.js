@@ -16,6 +16,7 @@ export default function taskAggregates(state= {}, action) {
     case ActionType.CREATE_TASK_COLLISION:
 
       newState = {...newState};
+
       newState[action.taskId] = createAggregate();
 
       let taskAValue;
@@ -29,6 +30,7 @@ export default function taskAggregates(state= {}, action) {
           newState[action.taskId][key] = count;
         }
       }
+
       newState[action.taskA]["moved"] += 1;
       newState[action.taskB]["moved"] += 1;
 

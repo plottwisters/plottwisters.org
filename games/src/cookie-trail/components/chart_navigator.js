@@ -17,6 +17,7 @@ class ChartNavigator extends Component {
     let active = this.props.active;
     let name = this.props.name;
     let cookieTrail = this.props.tbosCookieTrail;
+    console.log(this.props);
     console.log(cookieTrail);
     function processCurrentName(currentName) {
 

@@ -9,11 +9,12 @@ export function deleteTaskAction(taskId, currentRoot) {
   }
 }
 
-export function completeTaskAction(taskId, currentRoot) {
+export function completeTaskAction(taskId, currentRoot, timestamp = new Date().getTime()) {
   return {
     type: ActionType.COMPLETE_TASK,
     taskId,
-    currentRoot
+    currentRoot,
+    timestamp
   }
 }
 
