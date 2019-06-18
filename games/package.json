@@ -11,6 +11,7 @@
   "dependencies": {
     "chart.js": "^2.8.0",
     "font-awesome": "^4.7.0",
+    "memoize-one": "^5.0.4",
     "phaser": "^3.17.0",
     "preact": "^8.4.2",
     "preact-compat": "^3.18.5",

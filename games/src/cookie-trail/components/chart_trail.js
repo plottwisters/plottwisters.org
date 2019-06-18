@@ -27,6 +27,7 @@ class ChartTrail extends Component {
     }
     let newActiveSet = new Set([]);
     for(let cookieTrailId of this.props.checkedCookieTrails) {
+
       newActiveSet.add(cookieTrailId);
       if(this.activeSet.has(cookieTrailId))
         continue;
@@ -35,11 +36,11 @@ class ChartTrail extends Component {
       totalSet["trailId"] = cookieTrailId;
       totalSet["data"] = this.props.tbosCookieTrail[cookieTrailId].map((trail) => {
         console.log(trail);
-        
+
         console.log(trail["vision"]);
         return {
           x: trail["timestamp"],
-          y: 0.4 * trail["productivity"] + 0.3 * this.rootDatabyTimeMap[trail["timestamp"]]["vision"] + 0.3 * trail["vision"]
+          y: 0.5 * trail["productivity"] + 0.5 * (trail["vision"]/this.props.maxCookieVision)
         }
       }, this);
       this.myLineChart.data.datasets.push(totalSet);
@@ -60,7 +61,9 @@ class ChartTrail extends Component {
       {
         "fill": false,
         "cubicInterpolationMode":  "monotone",
-        "tension": 0
+        "tension": 0,
+        "backgroundColor":'rgba(0, 0, 0, 1)',
+        "borderColor":'rgba(0, 0, 0, 1)'
       });
     this.rootDatabyTimeMap = {};
     for (let cookie of this.props.tbosCookieTrail["idroot"]) {
@@ -69,13 +72,14 @@ class ChartTrail extends Component {
     this.checkedCookieTrails = [];
     this.activeSet = new Set([]);
     for(let cookieTrailId of this.props.checkedCookieTrails) {
+
       let totalSet = {};
       totalSet["label"] = this.props.name[cookieTrailId];
       totalSet["trailId"] = cookieTrailId;
       totalSet["data"] = this.props.tbosCookieTrail[cookieTrailId].map((trail) => {
         return {
           x: trail["timestamp"],
-          y: 0.4 * trail["productivity"] + 0.3 * this.rootDatabyTimeMap[trail["timestamp"]]["vision"] + 0.3 * trail["vision"]
+          y: 0.5 * trail["productivity"] + 0.5 * (trail["vision"]/this.props.maxCookieVision)
         }
       }, this);
       this.checkedCookieTrails.push(totalSet);

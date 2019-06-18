@@ -4,6 +4,7 @@ import React, {Component} from 'react';
 class ToDoItem extends Component {
 
     render() {
+      
         return (
             <div className="todo-item">
                 <p className="todo-item-text">{this.props.name}</p>

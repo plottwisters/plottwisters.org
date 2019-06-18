@@ -4,6 +4,7 @@ import ToDoItem from './todo_item';
 
 class ToDo extends Component {
   constructor(props) {
+
     super(props);
     this.state = {
       list: [],
@@ -75,6 +76,7 @@ class ToDo extends Component {
 
 
   render() {
+    
     return (
       <div style={{ display: this.props.display }} className="tbos-overlay">
 

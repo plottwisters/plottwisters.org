@@ -169,15 +169,17 @@ class MainView extends Phaser.Scene {
     this.new_task = this.add.image(0.97 * this.game.scale.width, 0.05 * this.game.scale.height, 'new_task').setInteractive();
     this.new_task.setScale(0.1,0.1);
     this.new_task.on('pointerdown', () => {
+
       this.outerContext.changeDisplay(tbosConstants.displayTypes.createMany);
     });
   }
-  
+
   //checklist view button
   renderChecklistButton() {
     this.checkList = this.add.image(0.97 * this.game.scale.width, 0.15 * this.game.scale.height, 'checklist').setInteractive();
     this.checkList.setScale(0.25,0.25);
     this.checkList.on('pointerdown', () => {
+      
       this.outerContext.changeDisplay(tbosConstants.displayTypes.checkList);
     });
   }

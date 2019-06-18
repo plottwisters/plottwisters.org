@@ -3,27 +3,20 @@ import React, {Component} from 'react';
 
 class CheckViewItem extends Component {
 
-    constructor(){
-        super(...arguments);
-<<<<<<< HEAD
-        this.state = {
-            todo: this.props.item.todo,
-            completed: this.props.item.completed,
-        }
-=======
-        
->>>>>>> master
+    constructor(props){
+        super(props);
+        this.toggleCompleted = this.toggleCompleted.bind(this);
     }
 
     toggleCompleted(){
-        this.setState({completed: !this.state.completed});
+        this.props.toggleCheck(this.props.id);
     }
 
     render() {
         return (
             <div className="todo-item">
                 <p className="todo-item-text">{this.props.name}</p>
-                <input className="chkbox" type="checkbox" value="" onChange={() => this.toggleCompleted()} />
+                <input className="chkbox" type="checkbox" value="" onChange={this.toggleCompleted} />
             </div>
         );
     }

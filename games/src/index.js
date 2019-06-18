@@ -62,32 +62,38 @@ let dummyData = {
     "id1": {
       "completed": 0,
       "deleted": 0,
-      "total": 1
+      "total": 1,
+      "moved": 0
     },
     "id2": {
       "completed": 0,
       "deleted": 0,
-      "total": 1
+      "total": 1,
+      "moved": 0
     },
     "id3": {
       "completed": 0,
       "deleted": 0,
-      "total": 1
+      "total": 1,
+      "moved": 0
     },
     "id4": {
       "completed": 0,
       "deleted": 0,
-      "total": 1
+      "total": 1,
+      "moved": 0
     },
     "idroot": {
       "completed": 0,
       "deleted": 0,
-      "total": 4
+      "total": 4,
+      "moved": 0
     }
   },
   "tbosCookieTrail": {
     "idroot": [{"productivity":0, "vision":0, "timestamp": new Date().getTime(), "stop":false}]
-  }
+  },
+  "maxCookieVision": 1
 };
 
 const store = createStore(twisterLandReducers, dummyData);

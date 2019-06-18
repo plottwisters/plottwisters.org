@@ -15,6 +15,11 @@ function calculateCategoryVisionScore(category, state) {
   return visionScore;
 }
 
+
+function calculateCategoryVisionScorev2(category, state) {
+  return state["taskAggregates"][category]["moved"];
+}
+
 function calculateProductivityScore(category, state) {
   let agg = state["taskAggregates"][category];
   if(agg["total"] == agg["deleted"])
@@ -23,9 +28,15 @@ function calculateProductivityScore(category, state) {
   return agg["completed"]/(agg["total"] - agg["deleted"]);
 }
 
+
 function makeDataPoint(category, state, stopBoolean, timestamp){
   console.log({"category": category, "vision": calculateCategoryVisionScore(category, state), "productivity":calculateProductivityScore(category, state) })
   return {"productivity": calculateProductivityScore(category, state), "vision": calculateCategoryVisionScore(category, state), "timestamp":timestamp, "stop": stopBoolean}
+}
+
+function makeDataPointv2(category, state, stopBoolean, timestamp) {
+  console.log({"category": category, state, stopBoolean, timestamp })
+  return {"productivity": calculateProductivityScore("idroot", state), "vision": calculateCategoryVisionScorev2(category, state), "timestamp":timestamp, "stop": stopBoolean}
 }
 
 function anyActiveTasks(state, currentTask) {
@@ -38,29 +49,29 @@ function anyActiveTasks(state, currentTask) {
 export default function tbosCookieTrail(state = {}, action) {
 
   let newState = state["tbosCookieTrail"];
+  let newMax = state["maxCookieVision"];
   let currentTask = action.currentRoot;
   let currentTaskScore;
   let globalVision = calculateCategoryVisionScore("idroot", state);
   let timestamp = new Date().getTime();
+
   switch(action.type) {
     case ActionType.CREATE_TASK_COLLISION:
-
+      newState = {...newState};
       //create data point for new category
-      let newCategoryScore = makeDataPoint(action.taskId, state, false, timestamp);
-      newState[action.taskId] = [newCategoryScore];
-      while(currentTask != undefined) {
-        currentTaskScore = makeDataPoint(currentTask,state, false, timestamp);
-        newState[currentTask] = [...newState[currentTask], currentTaskScore];
-        currentTask = state["reverseHiearchy"][currentTask];
-      }
-
-      
+      newState[action.taskId] = [];
       break;
     case ActionType.COMPLETE_TASK:
-    case ActionType.DELETE_TASK:
       newState = {...newState};
+      let trailsToUpdate = [action.taskId];
+      let currentTrailToUpdate;
+      
+      let newDataPoint = makeDataPointv2(action.taskId,state, false, timestamp)
+      newMax = Math.max(state["maxCookieVision"], newDataPoint["vision"]);
+      console.log(newDataPoint);
+      //if it is a category make a data point
       if(Object.keys(state["hiearchy"][action.taskId]).length != 0)
-        newState[action.taskId] = [...newState[action.taskId], makeDataPoint(action.taskId, state, true, timestamp)];
+        newState[action.taskId] = [...newState[action.taskId], newDataPoint];
 
 
       //update score of ancestors
@@ -68,17 +79,10 @@ export default function tbosCookieTrail(state = {}, action) {
 
 
       while(currentTask != undefined) {
-        currentTaskScore = makeDataPoint(currentTask,state, false, timestamp);
-        newState[currentTask] = [...newState[currentTask], currentTaskScore];
-        currentTask = state["reverseHiearchy"][currentTask];
-      }
-      break;
-    case ActionType.CREATE_TASKS:
-      newState = {...newState};
-      //update score of ancestors
-      while(currentTask != undefined) {
-        currentTaskScore = makeDataPoint(currentTask,state, false, timestamp);
-        newState[currentTask] = [...newState[currentTask], currentTaskScore];
+        console.log(currentTask);
+
+        console.log(newState[currentTask]);
+        newState[currentTask] = [...newState[currentTask], newDataPoint];
         currentTask = state["reverseHiearchy"][currentTask];
       }
       break;
@@ -86,5 +90,5 @@ export default function tbosCookieTrail(state = {}, action) {
       break;
   }
 
-  return newState;
+  return {"tbosCookieTrail":newState, "maxCookieVision": newMax};
 }

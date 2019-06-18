@@ -7,7 +7,7 @@ class CreateTask extends Component {
       this.handleKeyPress = this.handleKeyPress.bind(this);
     }
   render() {
-
+    
     return (
       <div style={{display:this.props.display}} className="tbos-overlay">
         <div className="center-container">

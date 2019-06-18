@@ -15,11 +15,13 @@ export default function reducers(state = {}, action) {
     name: name(state.name, action),
     tbosRootPath:tbosRootPath(state.tbosRootPath, action),
     nameToTasks: nameToTasks(state.nameToTasks, action),
-    checkedCookieTrails: checkedCookieTrails(state.checkedCookieTrails, action)
+    checkedCookieTrails: checkedCookieTrails(state.checkedCookieTrails, action),
+    maxCookieVision: state["maxCookieVision"]
   }
   intermediateResults["taskAggregates"] = state["taskAggregates"];
   intermediateResults = Object.assign(intermediateResults, {taskAggregates: taskAggregates(intermediateResults, action)})
   intermediateResults["tbosCookieTrail"] = state["tbosCookieTrail"];
-  intermediateResults = Object.assign(intermediateResults, {tbosCookieTrail: tbosCookieTrail(intermediateResults, action)})
+
+  intermediateResults = Object.assign(intermediateResults, tbosCookieTrail(intermediateResults, action))
   return intermediateResults;
 }

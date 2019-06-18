@@ -4,6 +4,10 @@ import {TaskState} from './../../global_constants';
 function calculateActiveTasks(agg) {
   return agg["total"] - agg["completed"] -  agg["deleted"];
 }
+
+function createAggregate() {
+  return {"completed": 0, "deleted": 0, "total": 1, "moved": 0};
+}
 export default function taskAggregates(state= {}, action) {
   let newState = state["taskAggregates"];
   let reverseHiearchy = state["reverseHiearchy"];
@@ -12,15 +16,22 @@ export default function taskAggregates(state= {}, action) {
     case ActionType.CREATE_TASK_COLLISION:
 
       newState = {...newState};
-      newState[action.taskId] =  {};
+      newState[action.taskId] = createAggregate();
+
       let taskAValue;
       let taskBValue;
       for(let key in newState[action.taskB]) {
-        taskAValue = newState[action.taskA][key];
-        taskBValue = newState[action.taskB][key];
-        let count =  taskAValue + taskBValue;
-        newState[action.taskId][key] = count;
+        if(key != "moved") {
+          taskAValue = newState[action.taskA][key];
+          taskBValue = newState[action.taskB][key];
+
+          let count =  taskAValue + taskBValue;
+          newState[action.taskId][key] = count;
+        }
       }
+      newState[action.taskA]["moved"] += 1;
+      newState[action.taskB]["moved"] += 1;
+
       break;
     case ActionType.COMPLETE_TASK:
         newState = {...newState};
@@ -86,7 +97,7 @@ export default function taskAggregates(state= {}, action) {
     case ActionType.CREATE_TASKS:
       newState = {...newState};
       for(let task of action.tasks) {
-        newState[task.id] =  {"completed": 0, "deleted": 0, "total": 1};
+        newState[task.id] =  createAggregate();
       }
       let totalTasksAdded = action.tasks.length;
       let currentTotal;
