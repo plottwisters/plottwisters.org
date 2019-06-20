@@ -15,6 +15,11 @@ function calculateCategoryVisionScore(category, state) {
   return visionScore;
 }
 
+
+function calculateCategoryVisionScorev2(category, state) {
+  return state["taskAggregates"][category]["moved"];
+}
+
 function calculateProductivityScore(category, state) {
   let agg = state["taskAggregates"][category];
   if(agg["total"] == agg["deleted"])
@@ -23,9 +28,14 @@ function calculateProductivityScore(category, state) {
   return agg["completed"]/(agg["total"] - agg["deleted"]);
 }
 
+
 function makeDataPoint(category, state, stopBoolean, timestamp){
-  console.log({"category": category, "vision": calculateCategoryVisionScore(category, state), "productivity":calculateProductivityScore(category, state) })
   return {"productivity": calculateProductivityScore(category, state), "vision": calculateCategoryVisionScore(category, state), "timestamp":timestamp, "stop": stopBoolean}
+}
+
+function makeDataPointv2(category, state, stopBoolean, timestamp) {
+  console.log({"category": category, state, stopBoolean, timestamp })
+  return {"productivity": calculateProductivityScore("idroot", state), "vision": calculateCategoryVisionScorev2(category, state), "timestamp":timestamp, "stop": stopBoolean}
 }
 
 function anyActiveTasks(state, currentTask) {
@@ -38,53 +48,51 @@ function anyActiveTasks(state, currentTask) {
 export default function tbosCookieTrail(state = {}, action) {
 
   let newState = state["tbosCookieTrail"];
-  let currentTask = action.currentRoot;
-  let currentTaskScore;
-  let globalVision = calculateCategoryVisionScore("idroot", state);
-  let timestamp = new Date().getTime();
+  let newMax = state["maxCookieVision"];
+  let currentTask;
+  let timestamp = action.timestamp;
+
   switch(action.type) {
     case ActionType.CREATE_TASK_COLLISION:
-
+      newState = {...newState};
       //create data point for new category
-      let newCategoryScore = makeDataPoint(action.taskId, state, false, timestamp);
-      newState[action.taskId] = [newCategoryScore];
-      while(currentTask != undefined) {
-        currentTaskScore = makeDataPoint(currentTask,state, false, timestamp);
-        newState[currentTask] = [...newState[currentTask], currentTaskScore];
-        currentTask = state["reverseHiearchy"][currentTask];
-      }
+      let arrA = ((newState[action.taskA]==undefined)?[]:newState[action.taskA]);
+      let arrB = ((newState[action.taskB]==undefined)?[]:newState[action.taskB]);
+      let total = [...arrA, ...arrB];
+      total.sort((object)=>object.timestamp);
+      newState[action.taskId] = total;
 
-      
       break;
     case ActionType.COMPLETE_TASK:
-    case ActionType.DELETE_TASK:
       newState = {...newState};
-      if(Object.keys(state["hiearchy"][action.taskId]).length != 0)
-        newState[action.taskId] = [...newState[action.taskId], makeDataPoint(action.taskId, state, true, timestamp)];
-
-
-      //update score of ancestors
-
-
-
-      while(currentTask != undefined) {
-        currentTaskScore = makeDataPoint(currentTask,state, false, timestamp);
-        newState[currentTask] = [...newState[currentTask], currentTaskScore];
-        currentTask = state["reverseHiearchy"][currentTask];
+      let trailsToUpdate = [action.taskId];
+      let currentTrailToUpdate;
+      let activeChildren;
+      let newDataPoint;
+      while(trailsToUpdate.length > 0) {
+        currentTrailToUpdate = trailsToUpdate.pop();
+        activeChildren = false;
+        for(let child in state["hiearchy"][currentTask]) {
+          if(state["active"][child] == TaskState.active) {
+            trailsToUpdate.push(child);
+            activeChildren = true;
+          }
+        }
+        if(!activeChildren) {
+          newDataPoint = makeDataPointv2(currentTrailToUpdate,state, false, timestamp);
+          newMax = Math.max(state["maxCookieVision"], newDataPoint["vision"]);
+          currentTask = state["reverseHiearchy"][currentTrailToUpdate];
+          while(currentTask != undefined) {
+            newState[currentTask] = [...newState[currentTask], newDataPoint];
+            currentTask = state["reverseHiearchy"][currentTask];
+          }
+        }
       }
-      break;
-    case ActionType.CREATE_TASKS:
-      newState = {...newState};
-      //update score of ancestors
-      while(currentTask != undefined) {
-        currentTaskScore = makeDataPoint(currentTask,state, false, timestamp);
-        newState[currentTask] = [...newState[currentTask], currentTaskScore];
-        currentTask = state["reverseHiearchy"][currentTask];
-      }
+
       break;
     default:
       break;
   }
 
-  return newState;
+  return {"tbosCookieTrail":newState, "maxCookieVision": newMax};
 }

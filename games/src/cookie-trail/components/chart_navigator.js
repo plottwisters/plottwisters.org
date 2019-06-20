@@ -16,7 +16,8 @@ class ChartNavigator extends Component {
     let hiearchy = this.props.hiearchy;
     let active = this.props.active;
     let name = this.props.name;
-
+    let cookieTrail = this.props.tbosCookieTrail;
+    
     function processCurrentName(currentName) {
 
       let currentRoot = hiearchy[currentName];
@@ -32,9 +33,12 @@ class ChartNavigator extends Component {
 
       if(childrenNames.length > 0) {
         for(let childName of childrenNames) {
+
+
           currentChildNode = processCurrentName(childName);
-          if(currentChildNode.isValid)
+          if(currentChildNode.isValid && cookieTrail[childName].length > 0) {
             newTreeNodes.children.push(currentChildNode);
+          }
         }
       } else {
         newTreeNodes["isValid"] = false;

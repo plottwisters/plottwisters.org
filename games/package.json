@@ -11,6 +11,7 @@
   "dependencies": {
     "chart.js": "^2.8.0",
     "font-awesome": "^4.7.0",
+    "memoize-one": "^5.0.4",
     "phaser": "^3.17.0",
     "preact": "^8.4.2",
     "preact-compat": "^3.18.5",
@@ -22,7 +23,7 @@
     "react-router-dom": "^5.0.0",
     "react-router-redux": "^4.0.8",
     "redux": "^4.0.1",
-    "redux-persist": "^5.10.0",
+    "redux-undo": "^1.0.0-beta9-9-7",
     "uuid": "^3.3.2"
   },
   "devDependencies": {
@@ -31,6 +32,7 @@
     "babel-core": "^6.26.3",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
+    "cssnano": "^4.1.10",
     "sass": "^1.21.0"
   }
 }

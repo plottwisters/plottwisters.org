@@ -2,65 +2,69 @@ import React, { Component } from 'react';
 import CheckViewItem from './check_view_item';
 import { log } from 'util';
 
-
+import {TaskState} from './../../global_constants';
+import memoize from "memoize-one";
 class CheckView extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            list: []
+          "completed": {}
         };
-
-
+        this.processTasksState = this.processTasksState.bind(this);
+        this.goback = this.goback.bind(this);
     };
 
-    test() {
-        console.log('checklist');
-        let currentRoot = this.props.outerProps.tbosRootPath;
-        // let temp = new Set();
-        // temp = this.state.list;
-        for (var item in this.props.outerProps.hiearchy[currentRoot]) {
-            // console.log(item);
-            this.setState(({list}) => {
-                return {
-                    list: [
-                        ...list,
-                        {
-                            "name": this.props.outerProps.name[item],
-                            "key": item
-                        }
-                    ]
-                }
+    processTasksState(outerProps) {
+        let tasksToAdd = [];
+        let searchNodes = [outerProps.tbosRootPath[outerProps.tbosRootPath.length - 1]];
+        let currentNode;
+        let isLeaf;
+        while(searchNodes.length > 0) {
+          currentNode = searchNodes.pop();
+          isLeaf = false;
+          for (let key in outerProps.hiearchy[currentNode]) {
+            if(outerProps.active[key]== TaskState.active) {
+              isLeaf = true;
+              searchNodes.push(key);
+            }
+          }
+          if(!isLeaf) {
+            tasksToAdd.push({
+                "name": outerProps.name[currentNode],
+                "key": currentNode
             });
+          }
         }
-    };
+        return tasksToAdd;
+    }
 
 
-    delete_item = item => {
-        this.setState(({ list }) => ({
-            list: list.filter((toDo, index) => index !== item)
-        }));
+    toggleCheck = item => {
+        let completed = Object.assign({}, this.state["completed"]);
+        if(completed[item] != undefined) {
+          delete completed[item];
+        } else {
+          completed[item] = item;
+        }
+        this.setState({completed});
+
     };
 
     goback() {
+        let currentTimestamp = new Date().getTime();
+        for(let checkItem in this.state["completed"]) {
+          
+          this.props.completeTaskAction(checkItem, this.props.outerProps.tbosRootPath[this.props.outerProps.tbosRootPath.length - 1], currentTimestamp);
+        }
         this.props.toggleChecklistView();
 
     };
 
-    componentDidMount() {
-        console.log("hello");
-        let currentRoot = this.props.outerProps.tbosRootPath;
-        for (var item in this.props.outerProps.hiearchy[currentRoot]) {
-            // console.log(this.state.list);
-            this.state.list.push({'name': this.props.outerProps.name[item], 'key': item})
-        }
-        // console.log(this.state.list);
-    }
-
-    // componentDidUpdate() {
-    //     this.test();
-    // }
-
+    processTasksStateMain = memoize(
+    (outerProps) => this.processTasksState(outerProps)
+  );
     render() {
+        const stateResult = this.processTasksStateMain(this.props.outerProps);
 
         return (
             <div style={{ display: this.props.display }} className="tbos-overlay">
@@ -68,14 +72,15 @@ class CheckView extends Component {
                     <div className="todo-content-container">
                         <div className="full-screen-popup-header">
                             <h1>Checklist view</h1>
-                            <button className="ToDo-OK" onClick={this.goback.bind(this)}>OK</button>
+                            <button className="ToDo-OK" onClick={this.goback}>OK</button>
                         </div>
                         <div className="todo-tasks-container">
-                            {this.state.list.map((item) => {
+                            {stateResult.map((item) => {
                                 return <CheckViewItem
                                     key={item.key}
+                                    id={item.key}
                                     name={item.name}
-                                    delete_item={this.delete_item.bind(this, item.key)}
+                                    toggleCheck={this.toggleCheck}
                                 />
                             }
                             )}

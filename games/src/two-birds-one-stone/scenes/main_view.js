@@ -2,7 +2,6 @@ import Phaser from 'phaser';
 import * as tbosConstants from './../tbos_constants';
 import {TaskState} from './../../global_constants';
 
-
 class MainView extends Phaser.Scene {
   //constructor that takes in state from parent component as parameter
   constructor(outerContext) {
@@ -37,7 +36,7 @@ class MainView extends Phaser.Scene {
 
   //randomly placed a new task in the scene
   placeNewTask() {
-    return {"x": Math.random() * this.game.scale.width, "y": Math.random() * this.game.scale.height};
+    return {"x": Math.random() * this.game.scale.width * 0.8 + 0.1, "y": Math.random() * this.game.scale.height * 0.8 + 0.1};
   }
 
   //creates a new task
@@ -150,9 +149,9 @@ class MainView extends Phaser.Scene {
   rerenderBackButton() {
     if (this.outerContext.props.tbosRootPath.length!=1) { // !=1 instead of !=0 because "root" container task exists
       if (this.backButton == null) {
-        this.backButton = this.add.image(100, 100, 'back').setInteractive();
+        this.backButton = this.add.image(0.07 * this.game.scale.width, 0.2 * this.game.scale.height, 'back').setInteractive();
 
-        this.backButton.setScale(0.2, 0.2);
+        this.backButton.setScale(0.1, 0.1);
         this.backButton.on('pointerdown', () => {
           this.popTaskTbosRoot();
         });
@@ -169,15 +168,17 @@ class MainView extends Phaser.Scene {
     this.new_task = this.add.image(0.97 * this.game.scale.width, 0.05 * this.game.scale.height, 'new_task').setInteractive();
     this.new_task.setScale(0.1,0.1);
     this.new_task.on('pointerdown', () => {
+
       this.outerContext.changeDisplay(tbosConstants.displayTypes.createMany);
     });
   }
-  
+
   //checklist view button
   renderChecklistButton() {
     this.checkList = this.add.image(0.97 * this.game.scale.width, 0.15 * this.game.scale.height, 'checklist').setInteractive();
     this.checkList.setScale(0.25,0.25);
     this.checkList.on('pointerdown', () => {
+
       this.outerContext.changeDisplay(tbosConstants.displayTypes.checkList);
     });
   }
@@ -226,6 +227,8 @@ class MainView extends Phaser.Scene {
     this.rerenderTasks();
     this.renderNewTaskButton();
     this.renderChecklistButton();
+    this.renderUndoButton();
+    this.renderRedoButton();
   }
 
   //loads and defines all scene scope assets
@@ -235,8 +238,8 @@ class MainView extends Phaser.Scene {
       this.load.image('back', 'https://cdn3.iconfinder.com/data/icons/glyph/227/Button-Back-1-512.png');
       this.backButton = null;
       this.load.setBaseURL('http://localhost:1234/');
-      this.trash = this.load.image('trash','trash_can-512.png');
-
+      this.trash = this.load.image('trash','trash-2-256.png');
+      this.checkmark =  this.load.image('checkmark', 'check-mark-256.png');
       //collisions
       this.collisions = {};
       this.collisions.textToText = null;
@@ -259,6 +262,13 @@ class MainView extends Phaser.Scene {
       //create new task button
       this.load.image('checklist', 'https://cdn2.iconfinder.com/data/icons/viiva-business/32/document_checklist-256.png');
       this.checkList = null
+
+
+      //undo redo buttons
+      this.load.image('undo','https://iconsplace.com/wp-content/uploads/_icons/ffffff/256/png/rewind-icon-18-256.png');
+      this.load.image('redo','https://iconsplace.com/wp-content/uploads/_icons/ffffff/256/png/fast-forward-icon-18-256.png');
+      this.undoButton = null
+      this.redoButton = null
   }
 
 
@@ -268,10 +278,11 @@ class MainView extends Phaser.Scene {
 
       //instantiate UI widgets
       this.trash = this.physics.add.image(0.1 * this.game.scale.width,0.9 * this.game.scale.height,'trash').setInteractive();
-
+      this.trash.setScale(0.2, 0.2);
       this.trash.name = "trash";
 
       this.checkmark = this.physics.add.image(0.9 * this.game.scale.width ,0.9 * this.game.scale.height,'checkmark').setInteractive();
+      this.checkmark.setScale(0.2, 0.2);
       this.checkmark.name = "checkmark";
       //tasks
       let tasksData = this.outerContext.getRootTasksAsArray();
@@ -313,6 +324,21 @@ class MainView extends Phaser.Scene {
     this.rerender();
   }
 
+
+  renderUndoButton() {
+    this.undoButton = this.add.image(0.07 * this.game.scale.width, 0.05 * this.game.scale.height, 'undo').setInteractive();
+    this.undoButton.setScale(0.2, 0.2);
+    this.undoButton.on('pointerdown', () => {
+      this.undo()
+    });
+  }
+  renderRedoButton() {
+    this.redoButton = this.add.image(0.02 * this.game.scale.width, 0.05 * this.game.scale.height, 'redo').setInteractive();
+    this.redoButton.setScale(0.2, 0.2);
+    this.redoButton.on('pointerdown', () => {
+      this.redo()
+    });
+  }
 }
 
 export default MainView;
