@@ -149,9 +149,9 @@ class MainView extends Phaser.Scene {
   rerenderBackButton() {
     if (this.outerContext.props.tbosRootPath.length!=1) { // !=1 instead of !=0 because "root" container task exists
       if (this.backButton == null) {
-        this.backButton = this.add.image(100, 100, 'back').setInteractive();
+        this.backButton = this.add.image(0.07 * this.game.scale.width, 0.2 * this.game.scale.height, 'back').setInteractive();
 
-        this.backButton.setScale(0.2, 0.2);
+        this.backButton.setScale(0.1, 0.1);
         this.backButton.on('pointerdown', () => {
           this.popTaskTbosRoot();
         });
@@ -238,8 +238,8 @@ class MainView extends Phaser.Scene {
       this.load.image('back', 'https://cdn3.iconfinder.com/data/icons/glyph/227/Button-Back-1-512.png');
       this.backButton = null;
       this.load.setBaseURL('http://localhost:1234/');
-      this.trash = this.load.image('trash','trash_can-512.png');
-
+      this.trash = this.load.image('trash','trash-2-256.png');
+      this.checkmark =  this.load.image('checkmark', 'check-mark-256.png');
       //collisions
       this.collisions = {};
       this.collisions.textToText = null;
@@ -278,10 +278,11 @@ class MainView extends Phaser.Scene {
 
       //instantiate UI widgets
       this.trash = this.physics.add.image(0.1 * this.game.scale.width,0.9 * this.game.scale.height,'trash').setInteractive();
-
+      this.trash.setScale(0.2, 0.2);
       this.trash.name = "trash";
 
       this.checkmark = this.physics.add.image(0.9 * this.game.scale.width ,0.9 * this.game.scale.height,'checkmark').setInteractive();
+      this.checkmark.setScale(0.2, 0.2);
       this.checkmark.name = "checkmark";
       //tasks
       let tasksData = this.outerContext.getRootTasksAsArray();
