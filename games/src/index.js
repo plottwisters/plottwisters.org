@@ -25,7 +25,7 @@ class App extends Component {
     //create list of links to games and routes to games
     for (let original of this.games) {
 
-      let simplified = "games/dist/" + original;
+      let simplified = original;
       let link = (
       <li key={original}>
         <Link
