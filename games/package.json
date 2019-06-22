@@ -34,5 +34,6 @@
     "babel-preset-react": "^6.24.1",
     "cssnano": "^4.1.10",
     "sass": "^1.21.0"
-  }
+  },
+  "homepage": "http://plottwisters.org/games"
 }

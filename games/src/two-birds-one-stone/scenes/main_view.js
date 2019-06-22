@@ -1,7 +1,7 @@
 import Phaser from 'phaser';
 import * as tbosConstants from './../tbos_constants';
 import {TaskState} from './../../global_constants';
-
+import {store} from './../../store'
 class MainView extends Phaser.Scene {
   //constructor that takes in state from parent component as parameter
   constructor(outerContext) {
@@ -13,9 +13,9 @@ class MainView extends Phaser.Scene {
       for(let actionCreator in this.outerContext.boundActionCreators) {
 
         this[actionCreator] = this.outerContext.boundActionCreators[actionCreator];
-
       }
   }
+
   //helper function that checks if parameters overlap
   //@spriteA - first GameObject
   //@spriteB - second GameObject
@@ -161,6 +161,7 @@ class MainView extends Phaser.Scene {
       this.backButton.destroy();
       this.backButton = null;
     }
+
   }
 
   //create new task button
@@ -187,7 +188,6 @@ class MainView extends Phaser.Scene {
   rerenderTasks() {
 
     let tasks = new Set(this.outerContext.getRootTasksAsArray());
-
     //add new tasks
     for(let task of tasks) {
       if(this.renderedTasks[task] ==  undefined) {
@@ -219,17 +219,17 @@ class MainView extends Phaser.Scene {
       this.renderedTasks[key].destroy();
       delete this.renderedTasks[key];
     }
+
   }
 
   //update the rendered tasks and back button navigation based on parent state
   rerender() {
+
     this.rerenderBackButton();
     this.rerenderTasks();
-    this.renderNewTaskButton();
-    this.renderChecklistButton();
-    this.renderUndoButton();
-    this.renderRedoButton();
   }
+
+
 
   //loads and defines all scene scope assets
   preload ()
@@ -295,6 +295,10 @@ class MainView extends Phaser.Scene {
       this.physics.add.collider(this.tasksGroup, this.tasksGroup, this.textOverlapCallback);
       this.physics.add.collider(this.trash, this.tasksGroup, this.widgetOverlapCallback);
       this.physics.add.collider(this.checkmark, this.tasksGroup, this.widgetOverlapCallback);
+      this.renderNewTaskButton();
+      this.renderChecklistButton();
+      this.renderUndoButton();
+      this.renderRedoButton();
 
 
 
@@ -321,7 +325,6 @@ class MainView extends Phaser.Scene {
         this.collisions.widget = this.destroyCollision(this.collisions.widget);
       }
     }
-    this.rerender();
   }
 
 

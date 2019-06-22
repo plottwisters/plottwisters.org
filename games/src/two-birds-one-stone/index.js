@@ -80,7 +80,7 @@ class TwoBirdsOneStone extends Component {
 
   //add game container and hidden views into DOM
   render() {
-    console.log(this.props);
+
     return (
       <div>
         <div id="tbos-canvas"/>
@@ -120,10 +120,13 @@ class TwoBirdsOneStone extends Component {
   //commented out for now - this is not important as long as there is no need for the
   //immediate dom parent of the phaser game to rerender - but may be important
   //if there is a need
-  // shouldComponentUpdate() {
-  //   console.log(this.state.display);
-  //   return true;
-  // }
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps !== this.props) {
+      let currentScene = this.game.scene.getScene("MainView");
+      currentScene.rerender();
+    }
+
+  }
 }
 
 function mapStateToProps(state){
