@@ -118,11 +118,6 @@ canvas {
   box-shadow: 1px 1px 1px #47a947;
 }
 
-.todo-add:hover {
-  box-shadow: none;
-  margin-left: calc(auto + 1px);
-}
-
 .button-new-task {
   position: fixed;
   bottom: 0;
@@ -245,4 +240,4 @@ canvas {
   font-family: sans-serif;
 }
 
-/*# sourceMappingURL=styles.c86c3119.css.map */
+/*# sourceMappingURL=/styles.c86c3119.css.map */
