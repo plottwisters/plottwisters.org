@@ -25,7 +25,7 @@ class App extends Component {
     //create list of links to games and routes to games
     for (let original of this.games) {
 
-      let simplified = "/" + original;
+      let simplified = "games/dist/" + original;
       let link = (
       <li key={original}>
         <Link
@@ -54,7 +54,7 @@ class App extends Component {
         {routes}
       </div>
     );
-    alert(process.env.PUBLIC_URL);
+
     //for "/" show variable above with links for all other urls include only routes
     return (
       <Provider store={store}>
