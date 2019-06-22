@@ -25,7 +25,7 @@ class App extends Component {
     //create list of links to games and routes to games
     for (let original of this.games) {
 
-      let simplified = original;
+      let simplified = "/" + original;
       let link = (
       <li key={original}>
         <Link
@@ -35,7 +35,7 @@ class App extends Component {
           {original}
         </Link>
       </li>);
-      let route = (<Route path={'/games/dist/' + simplified} key={simplified} exact component={globalGameRegistry[original]} />);
+      let route = (<Route path={simplified} key={simplified} exact component={globalGameRegistry[original]} />);
 
       renderedGamesLinks.push(link);
       routes.push(route);
@@ -58,7 +58,7 @@ class App extends Component {
     //for "/" show variable above with links for all other urls include only routes
     return (
       <Provider store={store}>
-        <Router basename={'games/dist/'}>
+        <Router basename={process.env.PUBLIC_URL}>
           <div>
             <Route component={gameLinksContainer}/>
 
