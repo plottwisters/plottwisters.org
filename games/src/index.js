@@ -58,7 +58,7 @@ class App extends Component {
     //for "/" show variable above with links for all other urls include only routes
     return (
       <Provider store={store}>
-        <Router>
+        <Router basename={process.env.PUBLIC_URL}>
           <div>
             <Route component={gameLinksContainer}/>
 
