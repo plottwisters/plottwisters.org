@@ -54,7 +54,7 @@ class App extends Component {
         {routes}
       </div>
     );
-
+    alert(process.env.PUBLIC_URL);
     //for "/" show variable above with links for all other urls include only routes
     return (
       <Provider store={store}>
