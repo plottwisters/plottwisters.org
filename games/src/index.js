@@ -35,7 +35,7 @@ class App extends Component {
           {original}
         </Link>
       </li>);
-      let route = (<Route path={simplified} key={simplified} exact component={globalGameRegistry[original]} />);
+      let route = (<Route path={'games/dist/' + simplified} key={simplified} exact component={globalGameRegistry[original]} />);
 
       renderedGamesLinks.push(link);
       routes.push(route);
