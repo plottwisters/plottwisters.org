@@ -5,7 +5,7 @@ import CookieTrail from './cookie-trail';
 import { BrowserRouter as Router, Route, Link,  Switch } from "react-router-dom";
 import { Provider } from 'react-redux';
 import {store} from './store';
-import registerServiceWorker from './registerServiceWorker';
+if (process.client) require("./registerServiceWorker");
 
 //registry of all games - or different urls
 let globalGameRegistry = {
