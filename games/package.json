@@ -36,5 +36,9 @@
     "parcel-plugin-sw-precache": "^1.1.1",
     "sass": "^1.21.0"
   },
-  "homepage": "https://www.plottwisters.org/games/dist"
+  "homepage": "https://www.plottwisters.org/games/dist",
+  "sw-precache": {
+    "maximumFileSizeToCacheInBytes": 10485760,
+    "additionalCodeFile": "registerServiceWorker.js"
+  }
 }
