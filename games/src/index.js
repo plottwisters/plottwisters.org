@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import TwoBirdsOneStone from './two-birds-one-stone';
 import CookieTrail from './cookie-trail';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link,  Switch } from "react-router-dom";
 import { Provider } from 'react-redux';
 import {store} from './store';
 import registerServiceWorker from './registerServiceWorker';
@@ -54,14 +54,19 @@ class App extends Component {
         {routes}
       </div>
     );
-    
+
     //for "/" show variable above with links for all other urls include only routes
     return (
       <Provider store={store}>
         <Router basename={process.env.PUBLIC_URL}>
+          <ul>
+            {renderedGamesLinks}
+          </ul>
           <div>
-            <Route component={gameLinksContainer}/>
 
+            <Switch>
+              {routes}
+            </Switch>
           </div>
         </Router>
       </Provider>
