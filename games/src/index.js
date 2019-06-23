@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import TwoBirdsOneStone from './two-birds-one-stone';
 import CookieTrail from './cookie-trail';
-import { HashRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { Provider } from 'react-redux';
 import {store} from './store';
 
@@ -54,11 +54,11 @@ class App extends Component {
         {routes}
       </div>
     );
-
+    alert(process.env.PUBLIC_URL);
     //for "/" show variable above with links for all other urls include only routes
     return (
       <Provider store={store}>
-        <Router basename={'/games/dist'}>
+        <Router basename={process.env.PUBLIC_URL}>
           <div>
             <Route component={gameLinksContainer}/>
 
