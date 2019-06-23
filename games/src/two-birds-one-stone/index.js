@@ -34,7 +34,6 @@ class TwoBirdsOneStone extends Component {
     this.toggleCreateTask = this.toggleCreateTask.bind(this);
     const { dispatch } = props;
     this.boundActionCreators = bindActionCreators(tbosActionCreators, dispatch);
-    console.log(this.boundActionCreators);
   }
 
 
