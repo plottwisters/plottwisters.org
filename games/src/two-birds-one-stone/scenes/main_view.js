@@ -237,7 +237,7 @@ class MainView extends Phaser.Scene {
       //assets
       this.load.image('back', 'https://cdn3.iconfinder.com/data/icons/glyph/227/Button-Back-1-512.png');
       this.backButton = null;
-      this.load.setBaseURL('http://localhost:1234/');
+      this.load.setBaseURL(window.location.href.split("#")[0]);
       this.trash = this.load.image('trash','trash-2-256.png');
       this.checkmark =  this.load.image('checkmark', 'check-mark-256.png');
       //collisions
