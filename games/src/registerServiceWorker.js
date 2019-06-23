@@ -106,5 +106,3 @@ export function unregister() {
     });
   }
 }
-
-register();
