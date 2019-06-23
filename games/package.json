@@ -33,6 +33,7 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "cssnano": "^4.1.10",
+    "parcel-plugin-sw-precache": "^1.1.1",
     "sass": "^1.21.0"
   },
   "homepage": "https://www.plottwisters.org/games/dist"
