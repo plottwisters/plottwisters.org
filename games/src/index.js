@@ -77,5 +77,5 @@ class App extends Component {
 }
 
 ReactDOM.render(<App />, document.getElementById('root'));
-console.log("registering service worker fifth attempt...")
+console.log("registering service worker sixth attempt...")
 registerServiceWorker();
