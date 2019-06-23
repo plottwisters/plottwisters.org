@@ -5,7 +5,7 @@ import CookieTrail from './cookie-trail';
 import { BrowserRouter as Router, Route, Link,  Switch } from "react-router-dom";
 import { Provider } from 'react-redux';
 import {store} from './store';
-if (process.client) require("./registerServiceWorker");
+import registerServiceWorker from './registerServiceWorker';
 
 //registry of all games - or different urls
 let globalGameRegistry = {
@@ -77,5 +77,5 @@ class App extends Component {
 }
 
 ReactDOM.render(<App />, document.getElementById('root'));
-console.log("registering service worker sixth attempt...")
+console.log("registering service worker eighth attempt...")
 registerServiceWorker();
