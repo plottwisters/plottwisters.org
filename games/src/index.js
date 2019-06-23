@@ -5,7 +5,7 @@ import CookieTrail from './cookie-trail';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { Provider } from 'react-redux';
 import {store} from './store';
-
+import registerServiceWorker from './registerServiceWorker';
 //registry of all games - or different urls
 let globalGameRegistry = {
   "two-birds-one-stone":TwoBirdsOneStone,
@@ -35,7 +35,7 @@ class App extends Component {
           {original}
         </Link>
       </li>);
-      let route = (<Route path={simplified} key={simplified} exact component={globalGameRegistry[original]} />);
+      let route = (<Route path={simplified} key={simplified}  component={globalGameRegistry[original]} />);
 
       renderedGamesLinks.push(link);
       routes.push(route);
@@ -54,7 +54,7 @@ class App extends Component {
         {routes}
       </div>
     );
-    alert(process.env.PUBLIC_URL);
+    
     //for "/" show variable above with links for all other urls include only routes
     return (
       <Provider store={store}>
@@ -71,3 +71,4 @@ class App extends Component {
 }
 
 ReactDOM.render(<App />, document.getElementById('root'));
+registerServiceWorker();
