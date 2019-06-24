@@ -25,7 +25,6 @@
 
       var l = window.location;
       var redirectVars = l.pathname.split('/');
-      alert(redirectVars);
       if(redirectVars[1] == 'games' &&  redirectVars[2] == 'dist') {
           l.replace(
             l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
