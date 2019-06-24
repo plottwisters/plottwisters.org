@@ -1,4 +1,4 @@
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 rm DIR/../dist/*.js
 rm DIR/../dist/*.map
-parcel DIR/../src/index.html DIR/.../src/404.html --out-dir DIR/../dist/
+parcel DIR/../src/index.html  --out-dir DIR/../dist/
