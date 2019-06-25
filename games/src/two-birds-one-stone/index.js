@@ -99,6 +99,7 @@ class TwoBirdsOneStone extends Component {
         type: Phaser.AUTO,
         width: "100",
         height: "100",
+        backgroundColor: '#ebe7de',
         parent: 'tbos-canvas',
         physics: {
             default: 'arcade'

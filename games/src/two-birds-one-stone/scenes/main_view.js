@@ -1,7 +1,8 @@
 import Phaser from 'phaser';
 import * as tbosConstants from './../tbos_constants';
 import {TaskState} from './../../global_constants';
-import {store} from './../../store'
+import {store} from './../../store';
+import * as gameStyles from './../../styles/tbos';
 class MainView extends Phaser.Scene {
   //constructor that takes in state from parent component as parameter
   constructor(outerContext) {
@@ -43,7 +44,7 @@ class MainView extends Phaser.Scene {
   createNewTaskGameObject(xPosition, yPosition, name, key) {
     //turnary conditional for responsiveness
     //TODO: replace hard coded values with reference to responsiveness configuration object in external const file
-    let task = this.add.text(xPosition, yPosition, name, {fontSize:(this.game.scale.width < 400)?20:40}).setInteractive();
+    let task = this.add.text(xPosition, yPosition, name, gameStyles.taskStyle).setInteractive();
     task.idTbos = key;
     //turns on dragging
     task.drag = this.plugins.get('rexDrag').add(task);
@@ -235,11 +236,15 @@ class MainView extends Phaser.Scene {
   preload ()
   {
       //assets
+      this.load.image('bg', 'img/bg.jpg');
       this.load.image('back', 'https://cdn3.iconfinder.com/data/icons/glyph/227/Button-Back-1-512.png');
-      this.backButton = null;
-      this.load.setBaseURL('http://localhost:1234/');
       this.trash = this.load.image('trash','trash-2-256.png');
       this.checkmark =  this.load.image('checkmark', 'check-mark-256.png');
+
+      this.backButton = null;
+      this.load.setBaseURL('http://localhost:1234/');
+
+
       //collisions
       this.collisions = {};
       this.collisions.textToText = null;
@@ -277,6 +282,8 @@ class MainView extends Phaser.Scene {
   {
 
       //instantiate UI widgets
+      var bg = this.add.tileSprite(0, 0, 100, 100, "bg");
+
       this.trash = this.physics.add.image(0.1 * this.game.scale.width,0.9 * this.game.scale.height,'trash').setInteractive();
       this.trash.setScale(0.2, 0.2);
       this.trash.name = "trash";

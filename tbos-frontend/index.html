@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Two Birds One Stone</title>
+    <meta charset="utf-8">
+    <meta name='viewport' content='width=device-width'>
+    <link rel="stylesheet" href="https://use.typekit.net/vbx0ney.css">
+
+    <style>
+      body {
+          margin: 0;
+          color: #000;
+          background: #eeeae3 url('img/bg.jpg') fixed;
+          background-size: 800px auto;
+      }
+
+      div { box-sizing: border-box; }
+
+      a, a:active, a:visited {
+          color: inherit;
+          text-decoration: none;
+      }
+
+      #wrap {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+      }
+
+      nav {
+        position: fixed;
+        top: 0;
+        margin: 0 0 10px 0;
+        width: 100vw;
+        height: 50px;
+        background: #d4ccbf;
+        z-index: 100;
+      }
+
+        nav a {
+          display: inline-block;
+          margin: 0 -4px 0 -2px;
+          width: 33.3%;
+          height: 50px;
+          font: 500 0.9em/50px benton-sans-compressed, sans-serif;
+          text-transform: uppercase;
+          text-align: center;
+          border-left: 1px solid #000;
+          border-bottom: 1px solid #000;
+        }
+
+          nav a.active, nav a:hover {
+            background: #eeeae3 url('img/bg.jpg') fixed;
+            background-size: 800px auto;
+            border-left: 1px solid #000;
+          }
+
+          nav a:hover {
+            border-bottom: 1px solid #000;
+          }
+
+          nav a.active {
+            border-bottom: none;
+          }
+
+          nav a:first-child { margin: 0 -3px 0 0; border-left: none; }
+          nav a:last-child { margin: 0 0 0 -1px; }
+
+      #gameWrap {
+        position: relative;
+        width: auto;
+        width: calc(100vw - 16px);
+        height: calc(100vh - 70px);
+        margin: 61px 8px 8px 8px;
+        font: 400 1em/1.25em benton-sans-condensed, sans-serif;
+        letter-spacing: -0.015em;
+        border: 1px solid #000;
+      }
+
+      #breadcrumb {
+        position: absolute;
+        top: 0;
+        left: 0;
+        margin: 0;
+        padding: 0 10px;
+        width: calc(100% - 50px);
+        height: 50px;
+        font: 400 1.25em/50px benton-sans-compressed, sans-serif;
+        border-bottom: 1px solid #000;
+      }
+
+        #breadcrumb a.rootCrumb {
+          display: inline;
+          margin: 0;
+          padding: 0;
+          background: none;
+        }
+
+        #breadcrumb a {
+          display: inline-block;
+          margin-left: 7px;
+          padding-left: 27px;
+          background: url('img/breadcrumb.png') no-repeat left center;
+          background-size: 20px auto;
+        }
+
+      #flip {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 50px;
+        height: 50px;
+        background: url('img/flip-list.png') no-repeat center center;
+        background-size: 60% auto;
+        border-left: 1px solid #000;
+        border-bottom: 1px solid #000;
+        cursor: pointer;
+      }
+
+      #list {
+        display: none;
+        margin: 50px 0 0 0;
+        padding: 15px 0;
+        height: calc(100% - 40px);
+        overflow: scroll;
+      }
+
+        #list .list-item {
+          display: block;
+          padding: 2px 5px 7px 12px;
+          cursor: grab;
+        }
+
+        #list .list-item .checkbox {
+          display: inline-block;
+          vertical-align: top;
+          -webkit-appearance: none;
+          margin: 0px 12px 5px 0;
+          width: 20px;
+          height: 20px;
+          background: #eeeae3;
+          border: 1px solid #000;
+          border-radius: 20px;
+        }
+
+        #list .list-item .checkbox:checked {
+          background: #68bd64;
+        }
+
+        #list .list-item .itemName {
+          vertical-align: top;
+          display: inline-block;
+          width: calc(100% - 40px);
+          padding: 0 0 3px;
+          border-bottom: 1px solid #cfc0b1;
+        }
+
+      #game {
+        display: block;
+        position: relative;
+        width: 100%;
+        height: calc(100vh - 60px);
+        margin-top: 50px;
+      }
+
+      .bird-stone {
+        display: block;
+        position: absolute;
+        width: 20vw;
+        min-width: 80px;
+        max-width: 120px;
+        /* border: 1px solid #000; */
+        text-align: center;
+        cursor: grab;
+        z-index: 1;
+      }
+
+      .bird-stone.highlight .stone { background: #f2da7c; }
+      .bird-stone.current .stone { background: #f5f2ed; }
+
+        .bird {
+          display: inline-block;
+          margin: 0 0 -15px 0;
+          width: 70px;
+          height: 55px;
+          background: url('img/single-bird-1.png') no-repeat center bottom;
+          background-size: 100% auto !important;
+          /* border: 1px solid #000; */
+        }
+
+        .stone {
+          display: inline-block;
+          position: relative;
+          margin: 0 0 -5px 0;
+          width: 20vw;
+          height: 20vw;
+          min-width: 80px;
+          min-height: 80px;
+          max-width: 120px;
+          max-height: 120px;
+          background: #ece8dd;
+          background-size: 400px auto;
+          border: 1px solid #000;
+          border-radius: 100px;
+        }
+
+          .taskName {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            width: 90%;
+            text-align: center;
+          }
+
+        #trash, #checkmark, #undo, #addBird, #redo {
+          position: absolute;
+          background-size: 100% auto !important;
+        }
+
+        #trash {
+          bottom: 75px;
+          left: 10px;
+          width: 55px;
+          height: 72px;
+          background: url('img/trash.png') no-repeat;
+        }
+
+        #checkmark {
+          bottom: 75px;
+          right: 10px;
+          width: 60px;
+          height: 68px;
+          background: url('img/checkmark.png') no-repeat;
+        }
+
+        #undo {
+          bottom: 75px;
+          left: 20%;
+          width: 65px;
+          height: 70px;
+          background: url('img/undo.png') no-repeat;
+        }
+
+          #undo:hover { background: url('img/undo-hover.png') no-repeat; }
+
+        #addBird {
+          bottom: 37px;
+          left: 50%;
+          transform: translate(-50%, -37px);
+          width: 70px;
+          height: 70px;
+          background: url('img/add.png') no-repeat;
+        }
+
+        #redo {
+          bottom: 75px;
+          right: 20%;
+          width: 65px;
+          height: 70px;
+          background: url('img/redo.png') no-repeat;
+        }
+
+          #redo:hover { background: url('img/redo-hover.png') no-repeat; }
+
+      @media screen and (min-device-width: 800px) and (min-width: 800px) {
+
+        #wrap {
+          position: relative;
+          margin: 20px auto;
+          width: 80vw;
+          height: calc(100vh - 40px);
+          max-width: 1100px;
+          border: 1px solid #000;
+        }
+
+        nav {
+          position: absolute;
+          top: 0;
+          margin: 0 0 10px 0;
+          width: 100%;
+        }
+
+        #gameWrap {
+          width: calc(100% - 24px);
+          height: calc(100vh - 120px);
+          margin: 65px 12px 10px 12px;
+        }
+
+        #breadcrumb {
+          margin: 0;
+          width: 100%;
+          height: 50px;
+          border-bottom: 1px solid #000;
+        }
+
+        #flip {
+          display: none;
+        }
+
+        #list {
+          position: absolute;
+          display: block !important;
+          top: 50px;
+          left: 0;
+          margin: 0;
+          width: 270px;
+          height: calc(100% - 50px);
+          padding: 10px 0 0 0;
+          border-right: 1px solid #000;
+          /* border-top: 1px solid red; */
+        }
+
+          #list .list-item {
+
+          }
+
+        #game {
+          position: absolute;
+          display: block !important;
+          top: 50px;
+          right: 0;
+          margin: 0;
+          width: calc(100% - 270px);
+          height: calc(100% - 50px);
+          /* border-top: 1px solid red; */
+        }
+
+          #trash, #checkmark, #undo, #redo {
+            bottom: 12px;
+          }
+
+          #addBird {
+            bottom: 7px;
+            left: 50%;
+            transform: translate(-50%, -7px);
+          }
+      }
+
+    </style>
+
+    <script src="http://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
+    <script src="js/jquery.ui.touch-punch.min.js"></script> <!-- for draggable to work on mobile -->
+
+    <script src="js/jenny.js"></script>
+
+</head>
+
+<body>
+
+<div id="wrap">
+
+  <nav>
+    <a href="#" class="active">Plot Twisters</a>
+    <a href="#">Project Cookie Trail</a>
+    <a href="#">Earth's To-Do</a>
+  </nav>
+
+  <div id="gameWrap">
+
+    <div id="breadcrumb">
+      <a href="#" class="rootCrumb">Your To-Do List</a>
+      <a href="#">School Stuff</a>
+    </div>
+
+    <div id="flip"></div>
+
+    <div id="list">
+      <div id="allTasks"></div>
+      <div id="addTask">
+        <input type="text">
+      </div>
+    </div>
+
+    <div id="game">
+      <div id="trash"></div>
+      <div id="checkmark"></div>
+      <div id="undo"></div>
+      <div id="addBird"></div>
+      <div id="redo"></div>
+    </div>
+
+  </div>
+
+</div>
+
+</body>
+
+</html>
