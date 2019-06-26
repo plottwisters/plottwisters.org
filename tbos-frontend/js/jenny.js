@@ -6,61 +6,61 @@ var birds = [
   "taskName": "Study for reading quiz",
   "xPosition": 2,
   "yPosition": 15,
-  "zPosition": 1
+  "priorityLevel": 1
   },
   {
   "taskName": "Track & field practice",
   "xPosition": 20,
   "yPosition": 5,
-  "zPosition": 2
+  "priorityLevel": 2
   },
   {
   "taskName": "Video proposal for Mr. Brower",
   "xPosition": 40,
   "yPosition": 10,
-  "zPosition": 3
+  "priorityLevel": 3
   },
   {
   "taskName": "Math HW",
   "xPosition": 60,
   "yPosition": 20,
-  "zPosition": 4
+  "priorityLevel": 4
   },
   {
   "taskName": "Study for math test",
   "xPosition": 75,
   "yPosition": 0,
-  "zPosition": 5
+  "priorityLevel": 5
   },
   {
   "taskName": "Reading goal (15 pages)",
   "xPosition": 2,
   "yPosition": 50,
-  "zPosition": 6
+  "priorityLevel": 6
   },
   {
   "taskName": "Art club poster",
   "xPosition": 20,
   "yPosition": 40,
-  "zPosition": 7
+  "priorityLevel": 7
   },
   {
   "taskName": "Clean room",
   "xPosition": 40,
   "yPosition": 45,
-  "zPosition": 8
+  "priorityLevel": 8
   },
   {
   "taskName": "Gift for Mother's Day",
   "xPosition": 60,
   "yPosition": 60,
-  "zPosition": 9
+  "priorityLevel": 9
   },
   {
   "taskName": "Buy new jacket",
   "xPosition": 75,
   "yPosition": 40,
-  "zPosition": 10
+  "priorityLevel": 10
   }
 ];
 
@@ -79,6 +79,16 @@ function addSingleBird(birdStone) {
 function addSingleTask(birdStone) {
   var task = "<label class='list-item'><input class='checkbox' type='checkbox'><span class='itemName'>"+birdStone.taskName+"</span></label>";
   $('#allTasks').append(task);
+}
+
+function listViewActions () {
+  if ($('#allTasks :checkbox:checked').length > 0) {
+    $('#listActions').show();
+    $('#addTask').hide();
+  } else {
+    $('#listActions').hide();
+    $('#addTask').show();
+  }
 }
 
 function collided(message) {
@@ -115,13 +125,16 @@ $(document).ready(function() {
   });
 
   // List View
-  $('#list').sortable({ revert: 'true' });
+  $('#allTasks').sortable({ revert: 'true' });
   $('.list-item').draggable({
-    connectToSortable: '#list'
+    connectToSortable: '#allTasks'
+  });
+
+  $('.list-item').on('change', function() {
+    listViewActions();
   });
 
   // Gameplay
-
   $('.bird-stone').draggable({ containment: "parent" });
 
    var startTime, endTime;
@@ -147,6 +160,12 @@ $(document).ready(function() {
     // trash a task
     $('#trash').droppable({
       tolerance: 'touch',
+      over: function(event, ui) {
+        $(this).addClass('teased');
+      },
+      out: function(event, ui) {
+        $(this).removeClass('teased');
+      },
       drop: function(event, ui) {
         $(ui.draggable).hide();
         alert('trashed');
@@ -156,6 +175,12 @@ $(document).ready(function() {
     // complete a task
     $('#checkmark').droppable({
       tolerance: 'touch',
+      over: function(event, ui) {
+        $(this).addClass('teased');
+      },
+      out: function(event, ui) {
+        $(this).removeClass('teased');
+      },
       drop: function(event, ui) {
         $(ui.draggable).hide();
         alert('completed');

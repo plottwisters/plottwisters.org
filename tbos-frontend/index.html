@@ -22,6 +22,10 @@
           text-decoration: none;
       }
 
+      button {
+        border: none;
+      }
+
       #wrap {
         position: fixed;
         top: 0;
@@ -88,11 +92,11 @@
         padding: 0 10px;
         width: calc(100% - 50px);
         height: 50px;
-        font: 400 1.25em/50px benton-sans-compressed, sans-serif;
+        font: 500 1.2em/50px benton-sans-compressed, sans-serif;
         border-bottom: 1px solid #000;
       }
 
-        #breadcrumb a.rootCrumb {
+        #breadcrumb a:first-child {
           display: inline;
           margin: 0;
           padding: 0;
@@ -103,8 +107,20 @@
           display: inline-block;
           margin-left: 7px;
           padding-left: 27px;
+          color: #9d948c;
+          background: url('img/breadcrumb-gray.png') no-repeat left center;
+          background-size: 20px auto;
+        }
+
+        #breadcrumb a.activeCrumb {
+          color: #000;
           background: url('img/breadcrumb.png') no-repeat left center;
           background-size: 20px auto;
+          text-decoration: underline;
+        }
+
+        #breadcrumb a:hover {
+          text-decoration: underline;
         }
 
       #flip {
@@ -123,9 +139,9 @@
       #list {
         display: none;
         margin: 50px 0 0 0;
-        padding: 15px 0;
+        padding: 15px 0 60px;
         height: calc(100% - 40px);
-        overflow: scroll;
+        overflow: auto;
       }
 
         #list .list-item {
@@ -158,6 +174,55 @@
           border-bottom: 1px solid #cfc0b1;
         }
 
+      #list .listCategory {
+        margin: 5px 0 8px 10px;
+        padding: 0 4px;
+        width: auto;
+        border: 1px solid #cfc0b1;
+      }
+
+      #listActions {
+        position: absolute;
+        display: none;
+        bottom: 0;
+        width: 100%;
+        border-top: 1px solid black;
+      }
+
+        #listActions #deleteTask, #listActions #completeTask {
+          display: inline-block;
+          width: 50%;
+          height: 50px;
+          font: 500 1.2em/50px benton-sans-compressed, sans-serif;
+          text-align: center;
+        }
+
+          #listActions #deleteTask { background: #ece8dd; border-right: 1px solid black; }
+          #listActions #completeTask { background: #68bd64; border-right: none; }
+
+        #listActions #addNew {
+          width: 100%;
+          height: 50px;
+          background: #ece8dd;
+          font: 500 1.2em/50px benton-sans-compressed, sans-serif;
+          text-align: center;
+        }
+
+      #addTask {
+      }
+
+        .addTaskName {
+          background: url('img/add-list.png') no-repeat left center;
+          background-size: 17px auto;
+          border: none;
+          width: calc(100% - 61px);
+          margin: -5px 0 0 15px;
+          padding: 10px 5px 7px 28px;
+          font: 400 1em/1.2em benton-sans-condensed, sans-serif;
+          border-bottom: 1px solid #cfc0b1;
+          outline: none;
+        }
+
       #game {
         display: block;
         position: relative;
@@ -169,7 +234,7 @@
       .bird-stone {
         display: block;
         position: absolute;
-        width: 20vw;
+        width: 20%;
         min-width: 80px;
         max-width: 120px;
         /* border: 1px solid #000; */
@@ -195,12 +260,8 @@
           display: inline-block;
           position: relative;
           margin: 0 0 -5px 0;
-          width: 20vw;
-          height: 20vw;
-          min-width: 80px;
-          min-height: 80px;
-          max-width: 120px;
-          max-height: 120px;
+          width: 100px;
+          height: 100px;
           background: #ece8dd;
           background-size: 400px auto;
           border: 1px solid #000;
@@ -216,14 +277,25 @@
             text-align: center;
           }
 
-        #trash, #checkmark, #undo, #addBird, #redo {
+        #back, #trash, #checkmark, #undo, #addBird, #redo {
           position: absolute;
           background-size: 100% auto !important;
+          cursor: pointer;
         }
+
+        #back {
+          top: 7px;
+          left: 7px;
+          width: 54px;
+          height: 54px;
+          background: url('img/back.png') no-repeat;
+        }
+
+          #back:hover, #back.teased { background: url('img/back-hover.png') no-repeat; }
 
         #trash {
           bottom: 75px;
-          left: 10px;
+          left: 13px;
           width: 55px;
           height: 72px;
           background: url('img/trash.png') no-repeat;
@@ -237,34 +309,39 @@
           background: url('img/checkmark.png') no-repeat;
         }
 
+          #trash:hover, #trash.teased, #checkmark:hover, #checkmark.teased {
+            transform: rotate(-10deg);
+          }
+
         #undo {
-          bottom: 75px;
-          left: 20%;
-          width: 65px;
-          height: 70px;
+          top: 74px;
+          right: 18px;
+          width: 30px;
+          height: 32px;
           background: url('img/undo.png') no-repeat;
         }
 
           #undo:hover { background: url('img/undo-hover.png') no-repeat; }
 
-        #addBird {
-          bottom: 37px;
-          left: 50%;
-          transform: translate(-50%, -37px);
-          width: 70px;
-          height: 70px;
-          background: url('img/add.png') no-repeat;
-        }
-
         #redo {
-          bottom: 75px;
-          right: 20%;
-          width: 65px;
-          height: 70px;
+          top: 126px;
+          right: 18px;
+          width: 30px;
+          height: 32px;
           background: url('img/redo.png') no-repeat;
         }
 
           #redo:hover { background: url('img/redo-hover.png') no-repeat; }
+
+        #addBird {
+          top: 7px;
+          right: 7px;
+          width: 54px;
+          height: 54px;
+          background: url('img/add.png') no-repeat;
+        }
+
+          #addBird:hover, #redo.teased { background: url('img/add-hover.png') no-repeat; }
 
       @media screen and (min-device-width: 800px) and (min-width: 800px) {
 
@@ -332,12 +409,6 @@
           #trash, #checkmark, #undo, #redo {
             bottom: 12px;
           }
-
-          #addBird {
-            bottom: 7px;
-            left: 50%;
-            transform: translate(-50%, -7px);
-          }
       }
 
     </style>
@@ -357,32 +428,43 @@
 
   <nav>
     <a href="#" class="active">Plot Twisters</a>
-    <a href="#">Project Cookie Trail</a>
+    <a href="#">Cookie Trail</a>
     <a href="#">Earth's To-Do</a>
   </nav>
 
   <div id="gameWrap">
 
     <div id="breadcrumb">
-      <a href="#" class="rootCrumb">Your To-Do List</a>
-      <a href="#">School Stuff</a>
+      <a href="#">Your Tasks</a>
+      <a href="#">Nested Category</a>
+      <a href="#" class="activeCrumb">School Stuff</a>
     </div>
 
     <div id="flip"></div>
 
     <div id="list">
-      <div id="allTasks"></div>
+      <div class="upTreeList"></div>
+      <div id="allTasks">
+        <div class="listCategory">Lone study</div>
+        <div class="listCategory">Group work</div>
+      </div>
       <div id="addTask">
-        <input type="text">
+        <input type="text" class="addTaskName">
+      </div>
+
+      <div id="listActions">
+        <button id="deleteTask">Delete tasks</button><button id="completeTask">Complete tasks</button>
+        <!-- <button id="addNew">Add new tasks</button> -->
       </div>
     </div>
 
     <div id="game">
-      <div id="trash"></div>
-      <div id="checkmark"></div>
-      <div id="undo"></div>
-      <div id="addBird"></div>
-      <div id="redo"></div>
+      <button id="back"></button>
+      <button id="trash"></button>
+      <button id="checkmark"></button>
+      <button id="addBird"></button>
+      <button id="undo"></button>
+      <!-- <button id="redo"></button> -->
     </div>
 
   </div>

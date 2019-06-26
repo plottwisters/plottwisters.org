@@ -1,7 +1,11 @@
 * {
   padding: 0px;
   margin: 0px;
+<<<<<<< HEAD
   font: normal 1em benton-sans-compressed;
+=======
+  font: normal 1em sans-serif;
+>>>>>>> b5e792d389799a2a344cbc412ebddb6b023cc8d4
 }
 
 .form-combine-task-style {
