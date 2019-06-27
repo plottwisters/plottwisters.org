@@ -26,7 +26,7 @@
 }
 #tbos-canvas {
   width: 100%;
-  height: 100vh;
+  height: 100%;
 
 }
 
@@ -259,4 +259,219 @@ canvas {
 .hiearchy-cookie-trail-checkbox {
   font-size: 20px;
   font-family: sans-serif;
+}
+
+
+
+
+/*two birds one stone - jenny's new styling*/
+
+body {
+    margin: 0;
+    color: #000;
+    background: #eeeae3 url('../img/bg.jpg') fixed;
+    background-size: 800px auto;
+}
+
+#back, #trash, #checkmark, #undo, #addBird, #redo {
+  position: absolute;
+  background-size: 100% auto !important;
+}
+
+#trash {
+  bottom: 75px;
+  left: 10px;
+  width: 55px;
+  height: 72px;
+  background: url('../img/trash.png') no-repeat;
+}
+
+#checkmark {
+  bottom: 75px;
+  right: 10px;
+  width: 60px;
+  height: 68px;
+  background: url('../img/checkmark.png') no-repeat;
+}
+#game {
+  position: absolute;
+  display: block !important;
+
+  right: 0;
+  margin: 0;
+  width: 80%;
+  height: calc(100% - 50px);
+  /* border-top: 1px solid red; */
+}
+#undo {
+  bottom: 75px;
+  left: 20%;
+  width: 65px;
+  height: 70px;
+  background: url('../img/undo.png') no-repeat;
+}
+
+  #undo:hover { background: url('../img/undo-hover.png') no-repeat; }
+
+#addBird {
+  bottom: 37px;
+  left: 50%;
+  transform: translate(-50%, -37px);
+  width: 70px;
+  height: 70px;
+  background: url('../img/add.png') no-repeat;
+}
+
+#redo {
+  bottom: 75px;
+  right: 20%;
+  width: 65px;
+  height: 70px;
+  background: url('../img/redo.png') no-repeat;
+}
+
+#redo:hover { background: url('../img/redo-hover.png') no-repeat; }
+
+
+.bird-stone {
+  display: block;
+  position: absolute;
+  width: 20vw;
+  min-width: 80px;
+  max-width: 120px;
+  /* border: 1px solid #000; */
+  text-align: center;
+  cursor: grab;
+  z-index: 1;
+}
+
+.bird-stone.highlight .stone { background: #f2da7c; }
+.bird-stone.current .stone { background: #f5f2ed; }
+
+  .bird {
+    display: inline-block;
+    margin: 0 0 -15px 0;
+    width: 70px;
+    height: 55px;
+    background: url('../img/single-bird-1.png') no-repeat center bottom;
+    background-size: 100% auto !important;
+    /* border: 1px solid #000; */
+  }
+
+  .stone {
+    display: inline-block;
+    position: relative;
+    margin: 0 0 -5px 0;
+    width: 20vw;
+    height: 20vw;
+    min-width: 80px;
+    min-height: 80px;
+    max-width: 120px;
+    max-height: 120px;
+    background: #ece8dd;
+    background-size: 400px auto;
+    border: 1px solid #000;
+    border-radius: 100px;
+  }
+
+    .taskName {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      width: 90%;
+      text-align: center;
+    }
+
+    #list {
+      position: absolute;
+      display: block !important;
+      left: 0;
+      margin: 0;
+      width: 20%;
+      height: calc(100% - 50px);
+      padding: 10px 0 0 0;
+      border-right: 1px solid #000;
+      /* border-top: 1px solid red; */
+    }
+
+
+    #addTask {
+    }
+
+      .addTaskName {
+        background: url('../img/add-list.png') no-repeat left center;
+        background-size: 17px auto;
+        border: none;
+        width: calc(100% - 61px);
+        margin: -5px 0 0 15px;
+        padding: 10px 5px 7px 28px;
+        font: 400 1em/1.2em benton-sans-condensed, sans-serif;
+        border-bottom: 1px solid #cfc0b1;
+        outline: none;
+      }
+
+      #list .list-item {
+        display: block;
+        padding: 2px 5px 7px 12px;
+        cursor: grab;
+      }
+
+      #list .list-item .checkbox {
+        display: inline-block;
+        vertical-align: top;
+        -webkit-appearance: none;
+        margin: 0px 12px 5px 0;
+        width: 20px;
+        height: 20px;
+        background: #eeeae3;
+        border: 1px solid #000;
+        border-radius: 20px;
+      }
+
+      #list .list-item .checkbox:checked {
+        background: #68bd64;
+      }
+
+      #list .list-item .itemName {
+        vertical-align: top;
+        display: inline-block;
+        width: calc(100% - 40px);
+        padding: 0 0 3px;
+        border-bottom: 1px solid #cfc0b1;
+      }
+
+
+    #listActions {
+      position: absolute;
+      display: none;
+      bottom: 0;
+      width: 100%;
+      border-top: 1px solid black;
+    }
+
+      #listActions #deleteTask, #listActions #completeTask {
+        display: inline-block;
+        width: 50%;
+        height: 50px;
+        font: 500 1.2em/50px benton-sans-compressed, sans-serif;
+        text-align: center;
+      }
+
+        #listActions #deleteTask { background: #ece8dd; border-right: 1px solid black; }
+        #listActions #completeTask { background: #68bd64; border-right: none; }
+
+
+
+#back {
+  top: 7px;
+  left: 7px;
+  width: 54px;
+  height: 54px;
+  background: url('../img/back.png') no-repeat;
+}
+
+#back.teased,
+#back:hover {
+  background: url('../img/back-hover.png') no-repeat;
 }

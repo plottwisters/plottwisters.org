@@ -18,6 +18,16 @@ export function completeTaskAction(taskId, currentRoot, timestamp = new Date().g
   }
 }
 
+export function categorizeTaskAction(parent, child, currentRoot, timestamp = new Date().getTime()) {
+
+  return {
+    type: ActionType.CATEGORIZE_TASK,
+    parent,
+    child,
+    currentRoot
+  }
+}
+
 
 export function createNewTaskAction(taskAKey, taskBKey, name, currentRoot) {
   let uuid=uuidv1();

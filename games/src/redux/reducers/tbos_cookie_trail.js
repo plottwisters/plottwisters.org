@@ -51,17 +51,26 @@ export default function tbosCookieTrail(state = {}, action) {
   let newMax = state["maxCookieVision"];
   let currentTask;
   let timestamp = action.timestamp;
-
+  let arrA;
+  let arrB;
+  let total;
   switch(action.type) {
     case ActionType.CREATE_TASK_COLLISION:
       newState = {...newState};
       //create data point for new category
-      let arrA = ((newState[action.taskA]==undefined)?[]:newState[action.taskA]);
-      let arrB = ((newState[action.taskB]==undefined)?[]:newState[action.taskB]);
-      let total = [...arrA, ...arrB];
+      arrA = ((newState[action.taskA]==undefined)?[]:newState[action.taskA]);
+      arrB = ((newState[action.taskB]==undefined)?[]:newState[action.taskB]);
+      total = [...arrA, ...arrB];
       total.sort((object)=>object.timestamp);
       newState[action.taskId] = total;
 
+      break;
+    case ActionType.CATEGORIZE_TASK:
+      arrA = ((newState[action.parent]==undefined)?[]:newState[action.parent]);
+      arrB = ((newState[action.child]==undefined)?[]:newState[action.child]);
+      let total = [...arrA, ...arrB];
+      total.sort((object)=>object.timestamp);
+      newState[action.parent] = total;
       break;
     case ActionType.COMPLETE_TASK:
       newState = {...newState};

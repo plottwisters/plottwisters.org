@@ -35,6 +35,32 @@ export default function taskAggregates(state= {}, action) {
       newState[action.taskB]["moved"] += 1;
 
       break;
+    case ActionType.CATEGORIZE_TASK:
+        newState = {...newState};
+        newState[action.child]["moved"] += 1;
+        let parent;
+        let child;
+
+        if(newState[action.child]["total"] == 1) {
+
+        }
+
+        let isCat = (Object.keys(state["hiearchy"][action.parent]).filter(x=>(state["active"][x] == TaskState.active))).length > 1;
+
+        for(let key in newState[action.parent]) {
+          if(key != "moved") {
+            parent = newState[action.parent][key];
+            child = newState[action.child][key];
+            if(key == "total") {
+              if(!isCat) {
+                parent -= 1;
+              }
+            }
+            let count =  parent + child;
+            newState[action.parent][key] = count;
+          }
+        }
+        break;
     case ActionType.COMPLETE_TASK:
         newState = {...newState};
 

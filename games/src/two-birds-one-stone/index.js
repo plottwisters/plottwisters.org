@@ -5,12 +5,19 @@ import MainView from './scenes/main_view.js';
 import CreateTask from './components/create_task.js';
 import ToDo from './components/todo.js';
 import CheckView from './components/check_view.js';
-import { connect } from 'react-redux'
+import {connect} from 'react-redux'
 import * as tbosConstants from './tbos_constants';
 import * as tbosActionCreators from './../redux/actions/tbos';
 import {bindActionCreators} from 'redux';
 import {TaskState} from './../global_constants';
+import { DndProvider } from 'react-dnd';
+import HTML5Backend from 'react-dnd-html5-backend';
+import TbosCanvas from './components/tbos_canvas';
+import CheckList from './components/check_list';
+import AddTask from './components/add_task';
 class TwoBirdsOneStone extends Component {
+
+
 
 
   //react parent component
@@ -25,21 +32,26 @@ class TwoBirdsOneStone extends Component {
       display
     };
 
-
-
-    this.createNewTask =  this.createNewTask.bind(this);
+    this.createNewTask = this.createNewTask.bind(this);
     this.toggleCreateView = this.toggleCreateView.bind(this);
     this.toggleChecklistView = this.toggleChecklistView.bind(this);
     this.changeDisplay = this.changeDisplay.bind(this);
     this.toggleCreateTask = this.toggleCreateTask.bind(this);
-    const { dispatch } = props;
+    const {dispatch} = props;
     this.boundActionCreators = bindActionCreators(tbosActionCreators, dispatch);
+    this.renderTasks = this.renderTasks.bind(this);
+
+
+
   }
 
-
   changeDisplay(view) {
-    let newDisplayState = {...this.state.display};
-    newDisplayState[view] = newDisplayState[view] == "block" ? "none": "block";
+    let newDisplayState = {
+      ...this.state.display
+    };
+    newDisplayState[view] = newDisplayState[view] == "block"
+      ? "none"
+      : "block";
     this.setState({"display": newDisplayState});
   }
 
@@ -71,64 +83,61 @@ class TwoBirdsOneStone extends Component {
   }
 
   getRootTasksAsArray() {
-
-
     let tasks = Object.keys(this.props.hiearchy[this.getRootId()])
     return tasks.filter(task => this.props.active[task] == TaskState.active);
   }
+
+
+
+  /*drag and drop functionality*/
+
+
+
+  renderTasks() {
+    let currentTasks = this.getRootTasksAsArray();
+    return currentTasks.map((task) => {
+
+      //bird position
+      let {x, y} = this.placeNewTask();
+      let birdImgType = Math.floor(Math.random() * Math.floor(6)) + 1;
+      return (
+        <Bird x={x} y={y} key={task} birdImgType={birdImgType} id={task} name={this.props.name[task]}/>
+        )
+    });
+  }
+
+
+
+
 
   //add game container and hidden views into DOM
   render() {
 
     return (
+
       <div>
-        <div id="tbos-canvas"/>
-        <CreateTask display={this.state.display[tbosConstants.displayTypes.createOne]} cancelNewTask={this.toggleCreateTask} createNewTask={this.createNewTask}/>
-        <ToDo {...this.boundActionCreators} outerProps = {this.props}  display={this.state.display[tbosConstants.displayTypes.createMany]} toggleCreateView={this.toggleCreateView} />
-        <CheckView {...this.boundActionCreators} outerProps = {this.props}  display={this.state.display[tbosConstants.displayTypes.checkList]} toggleChecklistView={this.toggleChecklistView} />
-        </div>
+
+          <div id="list">
+            <div className="upTreeList"></div>
+            <CheckList {...this.props}  actionCreators={this.boundActionCreators}  tasks={this.getRootTasksAsArray()}/>
+            <AddTask actionCreators={this.boundActionCreators} currentRoot={this.props.tbosRootPath[this.props.tbosRootPath.length - 1]}/>
+
+          </div>
+
+        <DndProvider backend={HTML5Backend}>
+          <TbosCanvas actionCreators={this.boundActionCreators} outerObject={this} {...this.props}></TbosCanvas>
+        </DndProvider>
+
+      </div>
     );
   }
 
-  //instantiate phaser game after render
-  componentDidMount() {
 
-    let newScene = new MainView(this);
-    let config = {
-        type: Phaser.AUTO,
-        width: "100",
-        height: "100",
-        parent: 'tbos-canvas',
-        physics: {
-            default: 'arcade'
-        },
-        scene: newScene,
-        plugins: {
-        global: [{
-            key: 'rexDrag',
-            plugin: DragPlugin,
-            start: true
-        }]
-        }
 
-    };
-
-    this.game = new Phaser.Game(config);
-  }
-
-  //commented out for now - this is not important as long as there is no need for the
-  //immediate dom parent of the phaser game to rerender - but may be important
-  //if there is a need
-  componentDidUpdate(prevProps, prevState) {
-    if (prevProps !== this.props) {
-      let currentScene = this.game.scene.getScene("MainView");
-      currentScene.rerender();
-    }
-
-  }
 }
 
-function mapStateToProps(state){
+function mapStateToProps(state) {
   return state.present;
 }
+
 export default connect(mapStateToProps)(TwoBirdsOneStone);

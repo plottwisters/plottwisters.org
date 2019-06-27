@@ -31,7 +31,7 @@ class CreateTask extends Component {
       <div style={{display:this.props.display}} className="tbos-overlay">
         <div className="center-container">
           <form className="form-combine-task-style" onSubmit={this.handleSubmit}>
-             <input type="search" placeholder="Name this category..." value={this.state.value} className="popup-input-text" onChange={this.handleChange}  onKeyPress={this.handleKeyPress}/>
+             <input type="search" placeholder="Name this category..." value={this.state.value} className="popup-input-text" onChange={handleChange}  onKeyPress={handleKeyPress}/>
              <div className="popup-footer">
               <input type="submit" value="Submit" className="popup-submit-button"/>
             <input type="button" value="Cancel" onClick={this.handleCancel} className="popup-submit-button"/>

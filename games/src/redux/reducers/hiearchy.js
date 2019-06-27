@@ -16,6 +16,13 @@ export default function hiearchy(state = {}, action) {
       delete newState[action.currentRoot][action.taskB];
 
       break;
+
+    case ActionType.CATEGORIZE_TASK:
+        newState = {...state};
+        newState[action.parent] = {...newState[action.parent]};
+        newState[action.parent][action.child] = action.child;
+        delete newState[action.currentRoot][action.child]
+        break;
     case ActionType.CREATE_TASKS:
       newState = {...state};
       //update tasks tree
