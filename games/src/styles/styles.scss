@@ -394,7 +394,12 @@ body {
       border-right: 1px solid #000;
       /* border-top: 1px solid red; */
     }
-
+    #list .listCategory {
+      margin: 5px 0 8px 10px;
+      padding: 0 4px;
+      width: auto;
+      border: 1px solid #cfc0b1;
+    }
 
     #addTask {
     }

@@ -39,7 +39,6 @@ class TwoBirdsOneStone extends Component {
     this.toggleCreateTask = this.toggleCreateTask.bind(this);
     const {dispatch} = props;
     this.boundActionCreators = bindActionCreators(tbosActionCreators, dispatch);
-    this.renderTasks = this.renderTasks.bind(this);
 
 
 
@@ -92,19 +91,6 @@ class TwoBirdsOneStone extends Component {
   /*drag and drop functionality*/
 
 
-
-  renderTasks() {
-    let currentTasks = this.getRootTasksAsArray();
-    return currentTasks.map((task) => {
-
-      //bird position
-      let {x, y} = this.placeNewTask();
-      let birdImgType = Math.floor(Math.random() * Math.floor(6)) + 1;
-      return (
-        <Bird x={x} y={y} key={task} birdImgType={birdImgType} id={task} name={this.props.name[task]}/>
-        )
-    });
-  }
 
 
 

@@ -379,6 +379,13 @@ body {
   /* border-top: 1px solid red; */
 }
 
+#list .listCategory {
+  margin: 5px 0 8px 10px;
+  padding: 0 4px;
+  width: auto;
+  border: 1px solid #cfc0b1;
+}
+
 .addTaskName {
   background: url("/add-list.2cb3d962.png") no-repeat left center;
   background-size: 17px auto;

@@ -14,6 +14,9 @@ function Bird(props)  {
         let droppedEvent = monitor.getDropResult();
         console.log(droppedEvent);
         switch(droppedEvent.type) {
+          case dndItemTypes.CANVAS:
+            props.actionCreators.dragTaskAction(dragProps.id, props.x + droppedEvent.deltaX, props.y + droppedEvent.deltaY);
+            break;
           case dndItemTypes.BIRD:
             props.actionCreators.categorizeTaskAction(droppedEvent.id, dragProps.id, props.currentRoot);
             break;
@@ -47,8 +50,8 @@ function Bird(props)  {
   let y = props.y;
   let name = props.name;
   const birdPosition = {
-    top: (Math.round(y * 100) + "%"),
-    left: (Math.round(x * 100) + "%")
+    top: ((y * 100) + "%"),
+    left: ((x * 100) + "%")
   }
   //bird type
 

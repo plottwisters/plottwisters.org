@@ -46,6 +46,12 @@ let dummyData = {
     "Task 3": ["id3"],
     "Task 4": ["id4"]
   },
+  "position": {
+    "id1": {"x": 0.1, "y": 0.4},
+    "id2": {"x": 0.5, "y": 0.3},
+    "id3": {"x": 0.8, "y": 0.2},
+    "id4": {"x": 0.3, "y": 0.5}
+  },
   "taskAggregates": {
     "id1": {
       "completed": 0,

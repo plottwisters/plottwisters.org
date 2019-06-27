@@ -42,7 +42,25 @@ export function createNewTaskAction(taskAKey, taskBKey, name, currentRoot) {
     currentRoot
   }
 }
+
+
+export function dragTaskAction(taskId, x, y) {
+  return {
+    type: ActionType.DRAG_TASK,
+    taskId,
+    x,
+    y
+  }
+}
+
 export function createNewTasksAction(tasks, currentRoot) {
+
+  for (let index = 0; index < tasks.length; ++index) {
+    if(tasks[index].x == undefined || tasks[index].y == undefined) { //randomly generate a position if none exists
+      tasks[index].x = 0.8 - (Math.random() * 0.6);
+      tasks[index].y = 0.5 - (Math.random() * 0.4);
+    }
+  }
   return {
     type: ActionType.CREATE_TASKS,
     tasks,

@@ -12,7 +12,9 @@ export default function position(state= {}, action) {
       break;
     case ActionType.DRAG_TASK:
       newState = {...state}
+      console.log(action);
       newState[action.taskId] = {x: action.x, y: action.y}
+      break;
     default:
       break;
   }
