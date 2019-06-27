@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import TwoBirdsOneStone from './two-birds-one-stone';
 import CookieTrail from './cookie-trail';
+import Login from './components/login';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { Provider } from 'react-redux';
 import {store} from './store';
@@ -9,7 +10,8 @@ import {store} from './store';
 //registry of all games - or different urls
 let globalGameRegistry = {
   "two-birds-one-stone":TwoBirdsOneStone,
-  "cookie-trail": CookieTrail
+  "cookie-trail": CookieTrail,
+  "login": Login,
 }
 
 class App extends Component {
@@ -19,7 +21,6 @@ class App extends Component {
 
     }
   render() {
-
     let renderedGamesLinks = []
     let routes = []
     //create list of links to games and routes to games
