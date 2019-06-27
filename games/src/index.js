@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import TwoBirdsOneStone from './two-birds-one-stone';
 import CookieTrail from './cookie-trail';
-import { BrowserRouter as Router, Route, Link,  Switch } from "react-router-dom";
+import Login from './components/login';
+import { BrowserRouter as Router, Route, NavLink, Link,  Switch } from "react-router-dom";
 import { Provider } from 'react-redux';
 import {store} from './store';
 import registerServiceWorker from './registerServiceWorker';
@@ -10,7 +11,8 @@ import registerServiceWorker from './registerServiceWorker';
 //registry of all games - or different urls
 let globalGameRegistry = {
   "two-birds-one-stone":TwoBirdsOneStone,
-  "cookie-trail": CookieTrail
+  "cookie-trail": CookieTrail,
+  "login": Login
 }
 
 class App extends Component {
@@ -28,14 +30,10 @@ class App extends Component {
 
       let simplified = "/" + original;
       let link = (
-      <li key={original}>
-        <Link
-          className="app-link"
-          to={simplified}
-        >
+        <NavLink key={original} className="" to={simplified}>
           {original}
-        </Link>
-      </li>);
+        </NavLink>
+      );
       let route = (<Route path={simplified} key={simplified}  component={globalGameRegistry[original]} />);
 
       renderedGamesLinks.push(link);
@@ -60,14 +58,16 @@ class App extends Component {
     return (
       <Provider store={store}>
         <Router basename={process.env.PUBLIC_URL}>
-          <ul>
-            {renderedGamesLinks}
-          </ul>
-          <div>
+          <div id="wrap">
+            <nav>
+              {renderedGamesLinks}
+            </nav>
+            <div>
 
-            <Switch>
-              {routes}
-            </Switch>
+              <Switch>
+                {routes}
+              </Switch>
+            </div>
           </div>
         </Router>
       </Provider>

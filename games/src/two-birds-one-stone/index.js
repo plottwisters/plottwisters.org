@@ -15,10 +15,8 @@ import HTML5Backend from 'react-dnd-html5-backend';
 import TbosCanvas from './components/tbos_canvas';
 import CheckList from './components/check_list';
 import AddTask from './components/add_task';
+
 class TwoBirdsOneStone extends Component {
-
-
-
 
   //react parent component
   constructor(props) {
@@ -101,7 +99,15 @@ class TwoBirdsOneStone extends Component {
 
     return (
 
-      <div>
+      <div id="gameWrap">
+
+        <div id="breadcrumb">
+          <a href="#">Your Tasks</a>
+          <a href="#">Nested Category</a>
+          <a href="#" class="activeCrumb">School Stuff</a>
+        </div>
+
+        <div id="flip"></div>
 
           <div id="list">
             <div className="upTreeList"></div>
