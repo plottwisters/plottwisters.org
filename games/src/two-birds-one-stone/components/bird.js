@@ -1,24 +1,38 @@
 import {dndItemTypes} from '../tbos_constants';
 import { useDrag, useDrop } from 'react-dnd';
-import React, {Component} from 'react';
+import React, {Component, useMemo, useEffect} from 'react';
+import { getEmptyImage } from 'react-dnd-html5-backend';
+import StaticBird from './static_bird';
+function makeNewBird() {
+  return Math.floor(Math.random() * Math.floor(6)) + 1;
+}
 function Bird(props)  {
 
 
-  const [{isDragging}, drag] = useDrag({
-    item: { id: props.id, type: dndItemTypes.BIRD },
+
+  //bird type
+  let birdImgType = useMemo(() => makeNewBird(), []);
+
+  const [{isDragging}, drag, preview] = useDrag({
+    item: { id: props.id, birdImgType, name: props.name, type: dndItemTypes.BIRD },
 		collect: monitor => ({
-			isDragging: !!monitor.isDragging(),
+			isDragging: monitor.isDragging(),
 		}),
     end: (dragProps, monitor, component) => {
+
+
       if(monitor.didDrop()) {
         let droppedEvent = monitor.getDropResult();
-        console.log(droppedEvent);
+
         switch(droppedEvent.type) {
           case dndItemTypes.CANVAS:
             props.actionCreators.dragTaskAction(dragProps.id, props.x + droppedEvent.deltaX, props.y + droppedEvent.deltaY);
             break;
           case dndItemTypes.BIRD:
-            props.actionCreators.categorizeTaskAction(droppedEvent.id, dragProps.id, props.currentRoot);
+            if(droppedEvent.id != dragProps.id)
+              props.actionCreators.categorizeTaskAction(droppedEvent.id, dragProps.id, props.currentRoot);
+            else
+              props.actionCreators.dragTaskAction(dragProps.id, props.x + droppedEvent.deltaX, props.y + droppedEvent.deltaY);
             break;
           case dndItemTypes.CHECKMARK:
             props.actionCreators.completeTaskAction(dragProps.id, props.currentRoot);
@@ -33,14 +47,30 @@ function Bird(props)  {
     }
   })
 
+
+
+
   const [collectedProps, drop] = useDrop({
     accept: dndItemTypes.BIRD,
-    drop: () => ({type: dndItemTypes.BIRD, "id": props.id})
-  })
+    drop(dragProps, monitor, component) {
+      let delta = monitor.getDifferenceFromInitialOffset();
+      let currentCanvas = document.getElementById("tbos-canvas");
+      return {type: dndItemTypes.BIRD, "id": props.id,  deltaX: delta.x/currentCanvas.clientWidth, deltaY: delta.y/currentCanvas.clientHeight}
+    }
+  });
+
+  useEffect(() => {
+    preview(getEmptyImage(), { captureDraggingState: true })
+  }, []);
   function refCallback(elementOrNode = null, options = null) {
+    if(elementOrNode == null)
+      return;
     drag(elementOrNode, options);
     drop(elementOrNode, options);
   }
+
+
+
 
 
 
@@ -53,23 +83,28 @@ function Bird(props)  {
     top: ((y * 100) + "%"),
     left: ((x * 100) + "%")
   }
-  //bird type
 
-
-  const birdType = {
-    background: "url(img/single-bird-" + props.birdImgType + ".png)"
-  }
+  birdPosition["opacity"] = isDragging ? 0 : 1;
+  birdPosition["height"] =  isDragging ? 0 : '';
+  birdPosition["cursor"] = isDragging? 'grabbing':  'grab';
   return (
-    <div onClick={props.clickListener} style={{opacity: isDragging ? 0 : 1}}>
-    <div  ref={refCallback} className='bird-stone' style={birdPosition}>
-      <div className='bird' style={birdType}></div>
-      <div className='stone'>
-        <div className='taskName'>{name}</div>
-      </div>
-    </div>
+    <div onClick={props.clickListener}  ref={refCallback} className='bird-stone' style={birdPosition}>
+
+      <StaticBird id={props.id} name={props.name} birdImgType={birdImgType}/>
     </div>
   )
 }
 
+function comparator(currProps, prevProps) {
+  if(!(currProps.x == prevProps.x && currProps.y == prevProps.y &&
+    currProps.name == prevProps.name &&  prevProps.hiearchy == currProps.hiearchy)) {
+      return false;
+  } else {
 
-export default Bird;
+    return true;
+  }
+
+
+}
+
+export default React.memo((props)=>{ return (<Bird {...props}/>)}, comparator);

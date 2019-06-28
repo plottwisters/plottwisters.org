@@ -12,9 +12,11 @@ import {bindActionCreators} from 'redux';
 import {TaskState} from './../global_constants';
 import { DndProvider } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
+
 import TbosCanvas from './components/tbos_canvas';
 import CheckList from './components/check_list';
 import AddTask from './components/add_task';
+import CustomDragLayer from './components/tbos_drag_canvas'
 class TwoBirdsOneStone extends Component {
 
 
@@ -111,7 +113,10 @@ class TwoBirdsOneStone extends Component {
           </div>
 
         <DndProvider backend={HTML5Backend}>
+          
           <TbosCanvas actionCreators={this.boundActionCreators} outerObject={this} {...this.props}></TbosCanvas>
+          <CustomDragLayer />
+
         </DndProvider>
 
       </div>
@@ -123,6 +128,7 @@ class TwoBirdsOneStone extends Component {
 }
 
 function mapStateToProps(state) {
+
   return state.present;
 }
 

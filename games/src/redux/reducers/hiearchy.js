@@ -21,6 +21,7 @@ export default function hiearchy(state = {}, action) {
         newState = {...state};
         newState[action.parent] = {...newState[action.parent]};
         newState[action.parent][action.child] = action.child;
+        newState[action.currentRoot] =  {...newState[action.currentRoot]}
         delete newState[action.currentRoot][action.child]
         break;
     case ActionType.CREATE_TASKS:

@@ -36,6 +36,10 @@ function TbosCanvas(props)  {
   function backListener() {
     props.actionCreators.popTaskTbosRoot();
   }
+  function dragEventHandler(event) {
+    event.dataTransfer.dropEffect = 'none'
+    event.dataTransfer.effectAllowed = 'none'
+  }
 
   function renderTasks() {
     let currentTasks = props.outerObject.getRootTasksAsArray();
@@ -43,9 +47,8 @@ function TbosCanvas(props)  {
 
       //bird position
       let {x, y} = props.position[task]
-      let birdImgType = Math.floor(Math.random() * Math.floor(6)) + 1;
       return (
-        <Bird actionCreators={props.actionCreators} clickListener={birdClickListener.bind(this, task)} currentRoot={props.outerObject.getRootId()}  x={x} y={y} key={task} birdImgType={birdImgType} id={task} name={props.name[task]}/>
+        <Bird actionCreators={props.actionCreators} clickListener={birdClickListener.bind(this, task)} currentRoot={props.outerObject.getRootId()}  hiearchy={props.hiearchy[task]} x={x} y={y} key={task}  id={task} name={props.name[task]}/>
         )
     });
   }
@@ -71,9 +74,9 @@ function TbosCanvas(props)  {
 
     <div ref={trashHook} id="trash"></div>
     <div ref={checkmarkHook} id="checkmark"></div>
-    <div id="undo"></div>
+    <div id="undo" onClick={props.actionCreators.undo} ></div>
     <div id="addBird"></div>
-    <div id="redo"></div>
+    <div id="redo" onClick={props.actionCreators.redo}></div>
     <div id="back" onClick={backListener} style={{display:backDisplay()}}></div>
     {renderTasks()}
     </div>
