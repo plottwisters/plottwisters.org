@@ -1,6 +1,10 @@
 import twisterLandReducers from './redux/reducers';
 import {TaskState} from './global_constants';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import thunkMiddleware from 'redux-thunk'
+import {db} from './firebase/config';
+import {getTasks} from './redux/actions/tbos/task';
+
 
 let dummyData = {
   "hiearchy": {
@@ -84,4 +88,55 @@ let dummyData = {
   "maxCookieVision": 1
 };
 
-export const store = createStore(twisterLandReducers, dummyData);
+//
+let doc = db.collection('todos')
+var testdata = {
+  "hiearchy": {
+    "idroot": {}
+  },
+  "name": {
+    
+    "idroot": "Your Main Trail"
+  },
+  "active": {
+    
+  },
+  "reverseHiearchy":{
+    
+  },
+  "tbosRootPath": ["idroot"],
+  "checkedCookieTrails": ["idroot"],
+  "nameToTasks": {
+  },
+  "taskAggregates": {
+    }
+}
+
+export function getTasksThunk() {
+  return dispatch => {
+  doc.get().then((coll) => {
+    coll.forEach((doc) => {
+      testdata['hiearchy']['idroot'][doc.id] = doc.id;
+      testdata['hiearchy'][doc.id] = {};
+      testdata['name'][doc.id] = doc.data()['text'];
+      testdata['active'][doc.id] = TaskState.active;
+      testdata['reverseHiearchy'][doc.id] = "idroot";
+      testdata['taskAggregates'][doc.id] = {
+        "completed": 0,
+        "deleted": 0,
+        "total": 1,
+        "moved": 0
+      };
+      testdata['nameToTasks'][doc.data()['text']] = doc.id;
+      
+   })
+   
+  })
+  .then(() => {
+    dispatch(getTasks(testdata));
+  })
+  }
+ }
+ 
+const store = createStore(twisterLandReducers, applyMiddleware(thunkMiddleware));
+export default store;

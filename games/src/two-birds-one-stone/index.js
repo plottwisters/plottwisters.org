@@ -10,6 +10,7 @@ import * as tbosConstants from './tbos_constants';
 import * as tbosActionCreators from './../redux/actions/tbos';
 import {bindActionCreators} from 'redux';
 import {TaskState} from './../global_constants';
+import { getTasksThunk } from '../store'
 class TwoBirdsOneStone extends Component {
 
 
@@ -24,9 +25,7 @@ class TwoBirdsOneStone extends Component {
     this.state = {
       display
     };
-
-
-
+    
     this.createNewTask =  this.createNewTask.bind(this);
     this.toggleCreateView = this.toggleCreateView.bind(this);
     this.toggleChecklistView = this.toggleChecklistView.bind(this);
@@ -71,15 +70,18 @@ class TwoBirdsOneStone extends Component {
   }
 
   getRootTasksAsArray() {
-
-
+    if(this.props.active == undefined) {
+      return [];
+    }
     let tasks = Object.keys(this.props.hiearchy[this.getRootId()])
     return tasks.filter(task => this.props.active[task] == TaskState.active);
   }
 
   //add game container and hidden views into DOM
   render() {
-
+    if(this.props.name == undefined) {
+      return(<div></div>);
+    }
     return (
       <div>
         <div id="tbos-canvas"/>
@@ -91,8 +93,7 @@ class TwoBirdsOneStone extends Component {
   }
 
   //instantiate phaser game after render
-  componentDidMount() {
-
+  componentDidMount() {    
     let newScene = new MainView(this);
     let config = {
         type: Phaser.AUTO,
@@ -120,6 +121,9 @@ class TwoBirdsOneStone extends Component {
   //immediate dom parent of the phaser game to rerender - but may be important
   //if there is a need
   componentDidUpdate(prevProps, prevState) {
+    if(this.props.name == undefined) {
+      return;
+    }
     if (prevProps !== this.props) {
       let currentScene = this.game.scene.getScene("MainView");
       currentScene.rerender();
@@ -128,7 +132,14 @@ class TwoBirdsOneStone extends Component {
   }
 }
 
-function mapStateToProps(state){
+function mapStateToProps(state){  
   return state.present;
 }
-export default connect(mapStateToProps)(TwoBirdsOneStone);
+
+const mapDispatch = dispatch => {
+  dispatch(getTasksThunk())
+  return {
+  }
+ }
+ 
+export default connect(mapStateToProps,mapDispatch)(TwoBirdsOneStone);

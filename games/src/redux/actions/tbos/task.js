@@ -1,5 +1,6 @@
 import {ActionType} from './action_type'
 const uuidv1 = require('uuid/v1');
+import {db} from '../../../firebase/config';
 
 export function deleteTaskAction(taskId, currentRoot) {
   return {
@@ -32,10 +33,35 @@ export function createNewTaskAction(taskAKey, taskBKey, name, currentRoot) {
     currentRoot
   }
 }
-export function createNewTasksAction(tasks, currentRoot) {
+export function createNewTasksAction(tasks, currentRoot) { 
+  var now = new Date();
+    if(document.cookie.length <= 0) {
+      let uid = now.getFullYear().toString() + (now.getMonth()+1).toString() + now.getDate().toString();
+      uid += now.getHours().toString() + now.getMinutes().toString() + now.getSeconds().toString() + now.getMilliseconds().toString();
+      uid += (Math.floor(Math.random() * (1000000 - 1 + 1) ) + 1).toString();
+      document.cookie = "uid="+uid+"; expires=Thu, 22 Dec 2022 12:00:00 UTC; path=/";
+    }
+    let t = tasks.map(
+      (task) => {    
+        let doc = db.collection('todos').doc(task['id']);
+        doc.set({
+          date: now,
+          user_id: document.cookie.replace('uid=', ''),
+          status: 1,
+          parent: 'root',
+          text: task['name']
+        });
+      }
+    );
+
   return {
     type: ActionType.CREATE_TASKS,
     tasks,
     currentRoot
   }
 }
+
+export const getTasks = (tasks) => ({
+  type: ActionType.GET_TASKS,
+  tasks
+})

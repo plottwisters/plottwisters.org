@@ -7,9 +7,15 @@ import nameToTasks from './name_to_tasks'
 import taskAggregates from './task_aggregates'
 import tbosCookieTrail from './tbos_cookie_trail'
 import checkedCookieTrails from './checked_cookie_trails'
+import base from './base'
 import undoable, { distinctState , excludeAction} from 'redux-undo'
 import {ActionType} from './../actions/tbos/action_type'
 function tbosReducers(state = {}, action) {
+  
+  if(action.type == ActionType.GET_TASKS) {
+    return base(state, action);
+  }
+
   let intermediateResults = {
     reverseHiearchy: reverseHiearchy(state.reverseHiearchy, action),
     hiearchy: hiearchy(state.hiearchy, action),
@@ -25,6 +31,7 @@ function tbosReducers(state = {}, action) {
   intermediateResults["tbosCookieTrail"] = state["tbosCookieTrail"];
 
   intermediateResults = Object.assign(intermediateResults, tbosCookieTrail(intermediateResults, action))
+  
   return intermediateResults;
 }
 

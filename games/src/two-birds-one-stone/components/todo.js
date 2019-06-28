@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ToDoItem from './todo_item';
-
+import {db} from '../../firebase/config';
 
 class ToDo extends Component {
   constructor(props) {
@@ -58,11 +58,8 @@ class ToDo extends Component {
   };
 
   addToRedux() {
-    // console.log("redux log");
-    // console.log(this.props.outerProps);
-    // console.log(this.props.createNewTaskAction({ 'id': uuid(), 'name': 'hello' }, { 'id': 'hrderfchbdr4gxd', 'name': 'hello' }, 'nnn', 'root'))
     let tasks = this.state.list.map(
-      (task) => {
+      (task) => { 
         return {
           "id": task['key'],
           "name": task['name']

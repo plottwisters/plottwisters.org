@@ -4,7 +4,7 @@ import TwoBirdsOneStone from './two-birds-one-stone';
 import CookieTrail from './cookie-trail';
 import { BrowserRouter as Router, Route, Link,  Switch } from "react-router-dom";
 import { Provider } from 'react-redux';
-import {store} from './store';
+import store from './store';
 import registerServiceWorker from './registerServiceWorker';
 
 //registry of all games - or different urls
@@ -20,7 +20,7 @@ class App extends Component {
 
     }
   render() {
-
+    
     let renderedGamesLinks = []
     let routes = []
     //create list of links to games and routes to games
