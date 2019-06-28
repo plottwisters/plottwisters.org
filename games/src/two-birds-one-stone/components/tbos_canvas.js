@@ -75,9 +75,9 @@ function TbosCanvas(props)  {
 
     <div ref={trashHook} id="trash"></div>
     <div ref={checkmarkHook} id="checkmark"></div>
-    <div id="undo"></div>
+    <div id="undo" onClick={props.actionCreators.undo}></div>
     <div id="addBird"></div>
-    <div id="redo"></div>
+    <div id="redo" onClick={props.actionCreators.redo}></div>
     <div id="back" onClick={backListener} style={{display:backDisplay()}}></div>
     {renderTasks()}
     </div>
