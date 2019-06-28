@@ -37,7 +37,7 @@ class CheckList extends Component {
       if(isCat) {
         let tasksUnderCategory = this.props.taskAggregates[task]["total"] - this.props.taskAggregates[task]["completed"] - this.props.taskAggregates[task]["deleted"];
 
-        return (<CheckListCategory  actionCreators={this.props.actionCreators} name={this.props.name[task]} id={task} key={task} name={this.props.name[task]}  amount={tasksUnderCategory}/>);
+        return (<CheckListCategory  actionCreators={this.props.actionCreators} name={this.props.name[task]} id={task} key={task} count={10} name={this.props.name[task]}  amount={tasksUnderCategory}/>);
       } else {
         return (<CheckListTask toggleCheck={this.toggleCheck} id={task} key={task} name={this.props.name[task]} />)
       }

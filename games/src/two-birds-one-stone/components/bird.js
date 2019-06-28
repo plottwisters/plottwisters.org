@@ -3,7 +3,7 @@ import { useDrag, useDrop } from 'react-dnd';
 import React, {Component} from 'react';
 function Bird(props)  {
 
-
+  let birdImgType = props.birdImgType;
   const [{isDragging}, drag] = useDrag({
     item: { id: props.id, type: dndItemTypes.BIRD },
 		collect: monitor => ({
@@ -42,10 +42,6 @@ function Bird(props)  {
     drop(elementOrNode, options);
   }
 
-
-
-
-
   let x = props.x;
   let y = props.y;
   let name = props.name;
@@ -53,18 +49,36 @@ function Bird(props)  {
     top: ((y * 100) + "%"),
     left: ((x * 100) + "%")
   }
+
   //bird type
 
+  let birdGroup = "single";
+  let classType = (props.isCat)?'gaggle':'';
 
-  const birdType = {
-    background: "url(img/single-bird-" + props.birdImgType + ".png)"
+  if(props.count == 1 ) {
+    birdGroup = 'single';
+  } else if(props.count == 2) {
+    birdGroup = 'couple';
+    classType+= 'gaggle couple';
+    birdImgType= (birdImgType%2)+1;
+  } else if(props.count > 2) {
+    birdGroup = 'gaggle';
+    classType+= 'gaggle group';
+    birdImgType= (birdImgType%2)+1;
   }
+  const birdType = {
+    backgroundImage: "url(img/" + birdGroup + "-bird-" + birdImgType + ".png)"
+  }
+
+
+
   return (
     <div onClick={props.clickListener} style={{opacity: isDragging ? 0 : 1}}>
-    <div  ref={refCallback} className='bird-stone' style={birdPosition}>
+    <div ref={refCallback} className={'bird-stone ' + classType} style={birdPosition}>
       <div className='bird' style={birdType}></div>
       <div className='stone'>
         <div className='taskName'>{name}</div>
+        <div className='taskCount'>{props.count}</div>
       </div>
     </div>
     </div>

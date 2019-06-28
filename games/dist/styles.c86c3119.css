@@ -1,7 +1,6 @@
 * {
   padding: 0px;
   margin: 0px;
-  font-family: benton-sans-compressed, sans-serif;
 }
 
 body {
@@ -170,7 +169,7 @@ nav a:last-child {
   background: #68bd64;
 }
 
-#list .list-item .itemName {
+#list .list-item .itemName, #list .list-item .categoryName {
   vertical-align: top;
   display: inline-block;
   width: calc(100% - 40px);
@@ -178,11 +177,18 @@ nav a:last-child {
   border-bottom: 1px solid #cfc0b1;
 }
 
-#list .listCategory {
-  margin: 5px 0 8px 10px;
-  padding: 0 4px;
-  width: auto;
-  border: 1px solid #cfc0b1;
+#list .list-item .categoryCount {
+  margin: 0 6px 0 0;
+  padding: 2px 6px 0;
+  background: #ece8dd;
+  font: 500 1em/1em benton-sans-compressed, sans-serif;
+  border: 1px solid black;
+  border-radius: 4px;
+}
+
+#list .list-item .categoryName {
+  padding: 0 0 8px;
+  font-weight: 500;
 }
 
 #listActions {
@@ -215,7 +221,7 @@ nav a:last-child {
   width: 100%;
   height: 50px;
   background: #ece8dd;
-  font: 500 1.2em/50px benton-sans-compressed, sans-serif;
+  font: 500 1em/50px benton-sans-compressed, sans-serif;
   text-align: center;
 }
 
@@ -242,13 +248,18 @@ nav a:last-child {
 .bird-stone {
   display: block;
   position: absolute;
-  width: 20%;
-  min-width: 80px;
-  max-width: 120px;
-  /* border: 1px solid #000; */
+  width: 100px;
   text-align: center;
   cursor: grab;
   z-index: 1;
+}
+
+.bird-stone.gaggle {
+  width: 120px;
+}
+
+.bird-stone.gaggle.group {
+  width: 130px;
 }
 
 .bird-stone.highlight .stone {
@@ -269,6 +280,20 @@ nav a:last-child {
   /* border: 1px solid #000; */
 }
 
+.bird-stone.gaggle.couple .bird {
+  margin: 0 0 -30px;
+  width: 90px;
+  height: 73px;
+  background-image: url("/couple-bird-1.1e73b784.png") no-repeat;
+}
+
+.bird-stone.gaggle.group .bird {
+  margin: 0 0 -20px;
+  width: 130px;
+  height: 106px;
+  background-image: url("/gaggle-bird-1.6d59a38e.png") no-repeat;
+}
+
 .stone {
   display: inline-block;
   position: relative;
@@ -281,6 +306,12 @@ nav a:last-child {
   border-radius: 100px;
 }
 
+.bird-stone.gaggle .stone {
+  width: 120px;
+  height: 120px;
+  box-shadow: 1px 1px 0 #000;
+}
+
 .taskName {
   position: absolute;
   top: 50%;
@@ -288,6 +319,24 @@ nav a:last-child {
   transform: translate(-50%, -50%);
   width: 90%;
   text-align: center;
+}
+
+.bird-stone .taskCount {
+  display: none;
+}
+
+.bird-stone.gaggle .taskCount {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 0 6px 0 0;
+  padding: 4px 6px 2px;
+  background: #ece8dd;
+  font: 500 1.1em/1em benton-sans-compressed, sans-serif;
+  border: 1px solid black;
+  box-shadow: 1px 1px 0 #000;
+  border-radius: 6px;
 }
 
 #back, #trash, #checkmark, #undo, #addBird, #redo {

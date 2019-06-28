@@ -104,10 +104,10 @@ class TwoBirdsOneStone extends Component {
         <div id="breadcrumb">
           <a href="#">Your Tasks</a>
           <a href="#">Nested Category</a>
-          <a href="#" class="activeCrumb">School Stuff</a>
+          <a href="#" className="activeCrumb">School Stuff</a>
         </div>
 
-        <div id="flip"></div>
+        <button id="flip"></button>
 
           <div id="list">
             <div className="upTreeList"></div>

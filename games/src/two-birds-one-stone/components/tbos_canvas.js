@@ -1,6 +1,7 @@
 import {dndItemTypes} from '../tbos_constants';
 import {useDrop} from 'react-dnd';
 import React, {Component} from 'react';
+import {TaskState} from './../../global_constants';
 import Bird from './bird.js';
 
 function TbosCanvas(props)  {
@@ -44,8 +45,11 @@ function TbosCanvas(props)  {
       //bird position
       let {x, y} = props.position[task]
       let birdImgType = Math.floor(Math.random() * Math.floor(6)) + 1;
+
+      let isCat = (Object.keys(props["hiearchy"][task]).filter(x=>(props["active"][x] == TaskState.active))).length > 0
+
       return (
-        <Bird actionCreators={props.actionCreators} clickListener={birdClickListener.bind(this, task)} currentRoot={props.outerObject.getRootId()}  x={x} y={y} key={task} birdImgType={birdImgType} id={task} name={props.name[task]}/>
+        <Bird actionCreators={props.actionCreators} isCat={isCat} count={1} clickListener={birdClickListener.bind(this, task)} currentRoot={props.outerObject.getRootId()}  x={x} y={y} key={task} birdImgType={birdImgType} id={task} name={props.name[task]}/>
         )
     });
   }
