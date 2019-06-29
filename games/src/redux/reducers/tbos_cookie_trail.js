@@ -34,7 +34,6 @@ function makeDataPoint(category, state, stopBoolean, timestamp){
 }
 
 function makeDataPointv2(category, state, stopBoolean, timestamp) {
-  console.log({"category": category, state, stopBoolean, timestamp })
   return {"productivity": calculateProductivityScore("idroot", state), "vision": calculateCategoryVisionScorev2(category, state), "timestamp":timestamp, "stop": stopBoolean}
 }
 

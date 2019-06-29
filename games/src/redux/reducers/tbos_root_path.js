@@ -9,6 +9,12 @@ export default function tbosRootPath(state= {}, action) {
       break;
     case ActionType.TBOS_ADD_ROOT:
       newState = [...state, action.taskId]
+      break;
+    case ActionType.TBOS_POP_ROOT_UNTIL:
+        newState = [...state]
+        while (newState[newState.length - 1] != action.taskId) {
+          newState.pop();
+        }
     default:
       break;
   }

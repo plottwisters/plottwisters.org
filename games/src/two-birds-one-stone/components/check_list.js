@@ -12,21 +12,22 @@ class CheckList extends Component {
     super(props);
 
     this.state = {
-      "completed": {}
+      "checked": {}
     };
     this.completeTasks = this.completeTasks.bind(this);
     this.deleteTasks = this.deleteTasks.bind(this);
+
   }
 
 
   toggleCheck = item => {
-      let completed = Object.assign({}, this.state["completed"]);
-      if(completed[item] != undefined) {
-        delete completed[item];
+      let checked = Object.assign({}, this.state["checked"]);
+      if(checked[item] != undefined) {
+        delete checked[item];
       } else {
-        completed[item] = item;
+        checked[item] = item;
       }
-      this.setState({completed});
+      this.setState({checked});
 
   };
   processTasksState(){
@@ -37,28 +38,52 @@ class CheckList extends Component {
       if(isCat) {
         let tasksUnderCategory = this.props.taskAggregates[task]["total"] - this.props.taskAggregates[task]["completed"] - this.props.taskAggregates[task]["deleted"];
 
-        return (<CheckListCategory  actionCreators={this.props.actionCreators} name={this.props.name[task]} id={task} key={task} name={this.props.name[task]}  amount={tasksUnderCategory}/>);
+        return (<CheckListCategory  isChecked={this.state.checked[task] != undefined} toggleCheck={this.toggleCheck} count={tasksUnderCategory} actionCreators={this.props.actionCreators} name={this.props.name[task]} id={task} key={task} name={this.props.name[task]}  amount={tasksUnderCategory}/>);
       } else {
-        return (<CheckListTask toggleCheck={this.toggleCheck} id={task} key={task} name={this.props.name[task]} />)
+        return (<CheckListTask isChecked={this.state.checked[task] != undefined} toggleCheck={this.toggleCheck} id={task} key={task} name={this.props.name[task]} />)
       }
     });
     return tasks;
   }
+  checkIfArraySame(prevTasks, currTasks) {
+    if(prevTasks.length != currTasks.length)
+      return false;
+    for(let i = 0; i < currTasks.length; ++i) {
+      if(prevTasks[i] != currTasks[i])
+        return false;
+    }
+    return true;
+  }
+  componentDidUpdate(prevProps) {
+    let newChecked = {}
+    for(let task of this.props.tasks) {
+      if(this.state.checked[task] != undefined)
+        newChecked[task] = task;
+    }
+    if(!this.checkIfArraySame(Object.keys(newChecked), Object.keys(this.state.checked))) {
+      this.setState({"checked":newChecked});
+    }
+  }
   completeTasks(){
     let currentTimestamp = new Date().getTime();
-    for(let checkItem in this.state["completed"]) {
+    for(let checkItem in this.state["checked"]) {
       this.props.actionCreators.completeTaskAction(checkItem, this.props.tbosRootPath[this.props.tbosRootPath.length - 1], currentTimestamp);
     }
+    this.setState({"checked":{}})
   }
 
   deleteTasks(){
-
+    let currentTimestamp = new Date().getTime();
+    for(let checkItem in this.state["checked"]) {
+      this.props.actionCreators.deleteTaskAction(checkItem, this.props.tbosRootPath[this.props.tbosRootPath.length - 1]);
+    }
+    this.setState({"checked":{}})
   }
   render() {
 
     let tasks = this.processTasksState();
 
-    let shouldNotDisplayButtons = (Object.keys(this.state["completed"]) == 0);
+    let shouldNotDisplayButtons = (Object.keys(this.state["checked"]) == 0);
     return (
       <div>
         <div id="allTasks">

@@ -14,7 +14,7 @@ function Bird(props)  {
   let birdImgType = useMemo(() => makeNewBird(), []);
 
   const [{isDragging}, drag, preview] = useDrag({
-    item: { id: props.id, birdImgType, name: props.name, type: dndItemTypes.BIRD },
+    item: { id: props.id, birdImgType, count:props.count, isCat: props.isCat, name: props.name, type: dndItemTypes.BIRD },
 		collect: monitor => ({
 			isDragging: monitor.isDragging(),
 		}),
@@ -23,9 +23,10 @@ function Bird(props)  {
 
       if(monitor.didDrop()) {
         let droppedEvent = monitor.getDropResult();
-
+        
         switch(droppedEvent.type) {
           case dndItemTypes.CANVAS:
+
             props.actionCreators.dragTaskAction(dragProps.id, props.x + droppedEvent.deltaX, props.y + droppedEvent.deltaY);
             break;
           case dndItemTypes.BIRD:
@@ -52,6 +53,9 @@ function Bird(props)  {
 
   const [collectedProps, drop] = useDrop({
     accept: dndItemTypes.BIRD,
+    collect: monitor=>({
+      isOver: monitor.isOver()
+    }),
     drop(dragProps, monitor, component) {
       let delta = monitor.getDifferenceFromInitialOffset();
       let currentCanvas = document.getElementById("tbos-canvas");
@@ -81,23 +85,29 @@ function Bird(props)  {
   let name = props.name;
   const birdPosition = {
     top: ((y * 100) + "%"),
-    left: ((x * 100) + "%")
+    left: ((x * 100) + "%"),
+    position: 'absolute'
   }
 
   birdPosition["opacity"] = isDragging ? 0 : 1;
   birdPosition["height"] =  isDragging ? 0 : '';
   birdPosition["cursor"] = isDragging? 'grabbing':  'grab';
-  return (
-    <div onClick={props.clickListener}  ref={refCallback} className='bird-stone' style={birdPosition}>
+  let hoveredClass = collectedProps.isOver?'highlight':'';
 
-      <StaticBird id={props.id} name={props.name} birdImgType={birdImgType}/>
+
+
+  return (
+    <div className={"bird-stone " + hoveredClass} onClick={props.clickListener}  ref={refCallback}  style={birdPosition}>
+
+      <StaticBird id={props.id} isTarget={collectedProps.isOver} name={props.name} isCat={props.isCat} count={props.count} birdImgType={birdImgType}/>
     </div>
   )
 }
 
 function comparator(currProps, prevProps) {
   if(!(currProps.x == prevProps.x && currProps.y == prevProps.y &&
-    currProps.name == prevProps.name &&  prevProps.hiearchy == currProps.hiearchy)) {
+    currProps.name == prevProps.name &&  prevProps.count == currProps.count
+  &&  prevProps.isCat == currProps.isCat)) {
       return false;
   } else {
 

@@ -1,10 +1,4 @@
 import React, {Component} from 'react';
-import Phaser from 'phaser';
-import DragPlugin from './plugins/rexdragplugin.min.js';
-import MainView from './scenes/main_view.js';
-import CreateTask from './components/create_task.js';
-import ToDo from './components/todo.js';
-import CheckView from './components/check_view.js';
 import {connect} from 'react-redux'
 import * as tbosConstants from './tbos_constants';
 import * as tbosActionCreators from './../redux/actions/tbos';
@@ -16,7 +10,9 @@ import HTML5Backend from 'react-dnd-html5-backend';
 import TbosCanvas from './components/tbos_canvas';
 import CheckList from './components/check_list';
 import AddTask from './components/add_task';
-import CustomDragLayer from './components/tbos_drag_canvas'
+import CustomDragLayer from './components/tbos_drag_canvas';
+import Breadcrumbs from './components/breadcrumbs';
+
 class TwoBirdsOneStone extends Component {
 
 
@@ -31,7 +27,8 @@ class TwoBirdsOneStone extends Component {
       display[type] = "none";
     }
     this.state = {
-      display
+      display,
+      isFocused: false
     };
 
     this.createNewTask = this.createNewTask.bind(this);
@@ -39,6 +36,8 @@ class TwoBirdsOneStone extends Component {
     this.toggleChecklistView = this.toggleChecklistView.bind(this);
     this.changeDisplay = this.changeDisplay.bind(this);
     this.toggleCreateTask = this.toggleCreateTask.bind(this);
+    this.focusAddTask = this.focusAddTask.bind(this);
+
     const {dispatch} = props;
     this.boundActionCreators = bindActionCreators(tbosActionCreators, dispatch);
 
@@ -88,14 +87,22 @@ class TwoBirdsOneStone extends Component {
     return tasks.filter(task => this.props.active[task] == TaskState.active);
   }
 
-
+  focusAddTask() {
+     this.setState({"isFocused": true});
+  }
 
   /*drag and drop functionality*/
 
 
 
-
-
+  //if component updates change focus based on component's focused state
+  //for focusing checklist view on clicking add button
+  componentDidUpdate(props) {
+    if (this.state.isFocused == true) {
+      document.getElementById("addTask").children[0].focus();
+      this.setState({"isFocused": false});
+    }
+  }
 
 
   //add game container and hidden views into DOM
@@ -103,8 +110,11 @@ class TwoBirdsOneStone extends Component {
 
     return (
 
-      <div>
+      <div id="gameWrap">
 
+         <Breadcrumbs {...this.props} actionCreators={this.boundActionCreators} />
+
+         <button id="flip"></button>
           <div id="list">
             <div className="upTreeList"></div>
             <CheckList {...this.props}  actionCreators={this.boundActionCreators}  tasks={this.getRootTasksAsArray()}/>
@@ -113,8 +123,8 @@ class TwoBirdsOneStone extends Component {
           </div>
 
         <DndProvider backend={HTML5Backend}>
-          
-          <TbosCanvas actionCreators={this.boundActionCreators} outerObject={this} {...this.props}></TbosCanvas>
+
+          <TbosCanvas focusAddTask={this.focusAddTask}  actionCreators={this.boundActionCreators} outerObject={this} {...this.props}></TbosCanvas>
           <CustomDragLayer />
 
         </DndProvider>

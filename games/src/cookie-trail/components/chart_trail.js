@@ -17,7 +17,7 @@ class ChartTrail extends Component {
   render() {
 
     return (
-      <canvas id="chart-navigator">
+      <canvas id="chart">
       </canvas>
     );
   }
@@ -26,7 +26,6 @@ class ChartTrail extends Component {
       let g = Math.random() * 255;
       let b = Math.random() * 255;
       let a = 1;
-      console.log("rgba(" +  r );
       return ("rgba(" +  r + "," + g + "," + b + "," + a + ")");
   }
   componentDidUpdate() {
@@ -70,7 +69,7 @@ class ChartTrail extends Component {
     this.myLineChart.update();
   }
   componentDidMount() {
-    let chartNavigationDiv = document.getElementById('chart-navigator');
+    let chart = document.getElementById('chart');
 
     Chart.defaults.global.elements.line = Object.assign(Chart.defaults.global.elements.line,
       {
@@ -118,8 +117,10 @@ class ChartTrail extends Component {
 
 
 
-    this.myLineChart = new Chart(chartNavigationDiv, {
+    this.myLineChart = new Chart(chart, {
       type: 'line',
+      responsive:true,
+      maintainAspectRatio: true,
       data: {
         datasets: this.checkedCookieTrails
       },
@@ -142,6 +143,7 @@ class ChartTrail extends Component {
 
       }
     });
+    
 
 
   }

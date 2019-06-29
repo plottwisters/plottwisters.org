@@ -1,8 +1,10 @@
 import twisterLandReducers from './redux/reducers';
 import {TaskState} from './global_constants';
-import { createStore } from 'redux';
-
-let dummyData = {
+import { createStore, applyMiddleware } from 'redux';
+import thunkMiddleware from 'redux-thunk'
+import {db} from './firebase/config';
+import {getTasks} from './redux/actions/tbos/task';
+let data = {
   "hiearchy": {
     "idroot": {
       "id1": "id1",
@@ -90,4 +92,23 @@ let dummyData = {
   "maxCookieVision": 1
 };
 
-export const store = createStore(twisterLandReducers, dummyData);
+
+let doc = db.collection('tasks')
+
+ export function getTasksThunk() {
+  return dispatch => {
+  doc.get().then((coll) => {
+    coll.forEach((doc) => {
+      let docData = doc.data();
+      for(key in docData) {
+        data[key][doc.id] = docData[key];
+      }
+    })
+
+   })
+  .then(() => {
+    dispatch(getTasks(data));
+  })
+  }
+ }
+export const store = createStore(twisterLandReducers, data);

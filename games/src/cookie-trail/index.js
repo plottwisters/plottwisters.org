@@ -22,7 +22,7 @@ class CookieTrail extends Component {
   render() {
 
     return (
-      <div id="cookie-trail-container">
+      <div id="trailWrap">
         <ChartTrail {...this.boundActionCreators} {...this.props} />
         <ChartNavigator {...this.boundActionCreators} {...this.props}/>
       </div>

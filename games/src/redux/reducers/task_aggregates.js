@@ -41,9 +41,6 @@ export default function taskAggregates(state= {}, action) {
         let parent;
         let child;
 
-        if(newState[action.child]["total"] == 1) {
-
-        }
 
         let isCat = (Object.keys(state["hiearchy"][action.parent]).filter(x=>(state["active"][x] == TaskState.active))).length > 1;
 
@@ -51,11 +48,6 @@ export default function taskAggregates(state= {}, action) {
           if(key != "moved") {
             parent = newState[action.parent][key];
             child = newState[action.child][key];
-            if(key == "total") {
-              if(!isCat) {
-                parent -= 1;
-              }
-            }
             let count =  parent + child;
             newState[action.parent][key] = count;
           }
@@ -81,9 +73,6 @@ export default function taskAggregates(state= {}, action) {
 
         while(tasksToComplete.length > 0) {
           currentTask = tasksToComplete.pop();
-
-          if(Object.keys(state["hiearchy"][currentTask]).length == 0)
-            continue;
           currentCompleted = newState[currentTask]["completed"];
           newState[currentTask] = {...newState[currentTask], "completed": currentCompleted + calculateActiveTasks(newState[currentTask])};
           for(let child in state["hiearchy"][currentTask]) {
@@ -113,8 +102,6 @@ export default function taskAggregates(state= {}, action) {
       //delete the task and all tasks that are a child of the task
       while(tasksToDelete.length > 0) {
         currentTask = tasksToDelete.pop();
-        if(Object.keys(state["hiearchy"][currentTask]).length == 0)
-          continue;
         currentDeleted = newState[currentTask]["deleted"];
         newState[currentTask] = {...newState[currentTask], "deleted": currentDeleted + calculateActiveTasks(newState[currentTask])};
         for(let child in state["hiearchy"][currentTask]) {

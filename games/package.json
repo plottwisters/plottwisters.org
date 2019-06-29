@@ -12,9 +12,9 @@
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "chart.js": "^2.8.0",
+    "firebase": "^6.2.4",
     "font-awesome": "^4.7.0",
     "memoize-one": "^5.0.4",
-    "phaser": "^3.17.0",
     "preact": "^8.4.2",
     "preact-compat": "^3.18.5",
     "react": "^16.8.6",
@@ -29,6 +29,7 @@
     "react-router-dom": "^5.0.0",
     "react-router-redux": "^4.0.8",
     "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0",
     "redux-undo": "^1.0.0-beta9-9-7",
     "uuid": "^3.3.2"
   },

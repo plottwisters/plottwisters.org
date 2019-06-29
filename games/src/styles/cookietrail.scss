@@ -1,0 +1,15 @@
+#trailWrap {
+    position: relative;
+    width: auto;
+    width: calc(100vw - 16px);
+    height: calc(100vh - 70px);
+    margin: 61px 8px 8px 8px;
+    font: 400 1em/1.25em benton-sans-condensed, sans-serif;
+    letter-spacing: -0.015em;
+    border: 1px solid #000;
+}
+
+   #chart {
+     width: 100%;
+     height: 100%;
+   }

@@ -1,4 +1,5 @@
 import {ActionType} from './action_type'
+import {db} from '../../../firebase/config';
 const uuidv1 = require('uuid/v1');
 
 export function deleteTaskAction(taskId, currentRoot) {
@@ -67,3 +68,8 @@ export function createNewTasksAction(tasks, currentRoot) {
     currentRoot
   }
 }
+
+export const getTasks = (tasks) => ({
+  type: ActionType.GET_TASKS,
+  tasks
+})

@@ -18,7 +18,6 @@ export default class AddTask extends Component {
   }
 
   createNewTask(taskName) {
-    console.log(taskName);
     if (taskName != "") {
       let uuid = require('uuid/v1');
       let tasks = [{

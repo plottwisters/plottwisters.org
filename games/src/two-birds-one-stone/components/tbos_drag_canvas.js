@@ -32,11 +32,11 @@ function getItemStyles(currentOffset) {
   }
 }
 
-const BirdStaticPreview = memo(({id , birdImgType, name}) => {
+const BirdStaticPreview = memo(({id , birdImgType, name, count ,isCat}) => {
 
   return (
     <div>
-    <StaticBird  id={id} birdImgType={birdImgType} name={name} />
+    <StaticBird  id={id} birdImgType={birdImgType} name={name} count={count} isCat={isCat} />
     </div>
   )
 })
@@ -55,7 +55,7 @@ const CustomDragLayer = props => {
     switch (itemType) {
       case dndItemTypes.BIRD:
 
-        return <BirdStaticPreview  id={item.id} birdImgType={item.birdImgType} name={item.name} />
+        return <BirdStaticPreview  id={item.id} birdImgType={item.birdImgType} count={item.count} isCat={item.isCat} name={item.name} />
       default:
         return null
     }
@@ -63,7 +63,7 @@ const CustomDragLayer = props => {
 
   return (
     <div style={layerStyles}>
-      <div className='bird-stone current'
+      <div className='bird-stone current grabbing'
         style={getItemStyles(currentOffset)}
       >
         {renderItem()}

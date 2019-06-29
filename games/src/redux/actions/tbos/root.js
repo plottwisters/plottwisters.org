@@ -13,3 +13,10 @@ export function addTaskTbosRoot(taskId){
     taskId: taskId
   }
 }
+
+export function popTaskTbosRootUntil(taskId) {
+  return {
+    type: ActionType.TBOS_POP_ROOT_UNTIL,
+    taskId: taskId
+  }
+}

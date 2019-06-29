@@ -10,8 +10,12 @@ import checkedCookieTrails from './checked_cookie_trails'
 import undoable, { distinctState , excludeAction} from 'redux-undo'
 import position from './position';
 import {ActionType} from './../actions/tbos/action_type'
+import base from './base'
 
 function tbosReducers(state = {}, action) {
+  if(action.type == ActionType.GET_TASKS) {
+    return base(state, action);
+  }
   let intermediateResults = {
     reverseHiearchy: reverseHiearchy(state.reverseHiearchy, action),
     hiearchy: hiearchy(state.hiearchy, action),
