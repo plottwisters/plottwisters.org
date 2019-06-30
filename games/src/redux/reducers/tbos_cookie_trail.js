@@ -88,6 +88,7 @@ export default function tbosCookieTrail(state = {}, action) {
         }
         if(!activeChildren) {
           newDataPoint = makeDataPointv2(currentTrailToUpdate,state, false, timestamp);
+          console.log(newDataPoint);
           newMax = Math.max(state["maxCookieVision"], newDataPoint["vision"]);
           currentTask = state["reverseHiearchy"][currentTrailToUpdate];
           while(currentTask != undefined) {

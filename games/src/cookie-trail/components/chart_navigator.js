@@ -17,9 +17,10 @@ class ChartNavigator extends Component {
     let active = this.props.active;
     let name = this.props.name;
     let cookieTrail = this.props.tbosCookieTrail;
-    
-    function processCurrentName(currentName) {
 
+    function processCurrentName(currentName) {
+      // recursion to generate tree from redux store
+      // map store into what charts.js wants: which is key: { }.
       let currentRoot = hiearchy[currentName];
       let childrenNames = [];
       for(let child in currentRoot) {
@@ -69,16 +70,95 @@ class ChartNavigator extends Component {
   render() {
     const { checked, expanded } = this.state;
     return (
-      <div id="checkbox-tree-cookie-trail">
-        <CheckboxTree
-                checked={this.props.checkedCookieTrails}
-                expanded={expanded}
-                noCascade
-                nodes={this.treeNodes}
-                onCheck={this.onCheck}
-                onExpand={this.onExpand}
-                showNodeIcon={false}
-            />
+      // <div id="checkbox-tree-cookie-trail">
+      //   <CheckboxTree
+      //           checked={this.props.checkedCookieTrails}
+      //           expanded={expanded}
+      //           noCascade
+      //           nodes={this.treeNodes}
+      //           onCheck={this.onCheck}
+      //           onExpand={this.onExpand}
+      //           showNodeIcon={false}
+      //       />
+      // </div>
+      <div id="plotsWrap">
+        <div id="plots">
+          <div class="bar"></div>
+
+          <label className="plot">
+            <input className="plotVisibility" type="checkbox"/>
+            <span className="plotName">Name of a category</span>
+            <div class="divider"></div>
+
+              <label className="plot">
+                <input className="plotVisibility" type="checkbox"/>
+                <span className="plotName">New category</span>
+                <div class="divider"></div>
+
+                  <label className="plot">
+                    <input className="plotVisibility" type="checkbox"/>
+                    <span className="plotName">Newer</span>
+                    <div class="divider"></div>
+                  </label>
+
+                  <label className="plot">
+                    <input className="plotVisibility" type="checkbox"/>
+                    <span className="plotName">New nested category</span>
+                    <div class="divider"></div>
+                  </label>
+              </label>
+
+              <label className="plot">
+                <input className="plotVisibility" type="checkbox"/>
+                <span className="plotName">New category</span>
+                <div class="divider"></div>
+
+                <label className="plot">
+                  <input className="plotVisibility" type="checkbox"/>
+                  <span className="plotName">New category</span>
+                  <div class="divider"></div>
+
+                  <label className="plot">
+                    <input className="plotVisibility" type="checkbox"/>
+                    <span className="plotName">New category</span>
+                    <div class="divider"></div>
+                    <label className="plot">
+                      <input className="plotVisibility" type="checkbox"/>
+                      <span className="plotName">New category</span>
+                      <div class="divider"></div>
+                      <label className="plot">
+                        <input className="plotVisibility" type="checkbox"/>
+                        <span className="plotName">New category</span>
+                        <div class="divider"></div>
+                      </label>
+                    </label>
+                  </label>
+
+                  <label className="plot">
+                    <input className="plotVisibility" type="checkbox"/>
+                    <span className="plotName">New category</span>
+                    <div class="divider"></div>
+                  </label>
+
+                </label>
+
+                <label className="plot">
+                  <input className="plotVisibility" type="checkbox"/>
+                  <span className="plotName">New category</span>
+                  <div class="divider"></div>
+                </label>
+
+              </label>
+
+          </label>
+
+        <label className="plot">
+          <input className="plotVisibility" type="checkbox"/>
+          <span className="plotName">Name of yet another category</span>
+          <div class="divider"></div>
+        </label>
+
+        </div>
       </div>
     );
   }

@@ -1,6 +1,9 @@
+#topBar {
+  display: none;
+}
+
 #trailWrap {
   position: relative;
-  width: auto;
   width: calc(100vw - 16px);
   height: calc(100vh - 70px);
   margin: 61px 8px 8px 8px;
@@ -9,9 +12,140 @@
   border: 1px solid #000;
 }
 
-#chart {
+#chartWrap {
+  height: 60%;
+  border-bottom: 1px solid #000;
+}
+
+#plotsWrap {
+  height: 40%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+#plots {
+  position: relative;
+  margin: 0 0 10px 0;
   width: 100%;
-  height: 100%;
+  overflow: hidden;
+}
+
+.bar {
+  position: absolute;
+  left: 42px;
+  height: 6000px;
+  margin-top: -3000px;
+  border-left: 1px solid #000;
+}
+
+.plot {
+  display: block;
+  margin-left: 54px;
+  user-select: none;
+}
+
+.plot .plot {
+  margin-left: 0;
+}
+
+.plot .plot .plot {
+  margin-left: 10px;
+}
+
+.plotVisibility {
+  position: absolute;
+  left: 0;
+  -webkit-appearance: none;
+  background: url("/book-closed.14f7a4f2.png") no-repeat center center;
+  background-size: 22px auto;
+  width: 42px;
+  height: 40px;
+  outline: none;
+}
+
+.plotName {
+  display: block;
+  padding: 10px 0;
+  color: #9d948c;
+}
+
+.plot .plot .plotName {
+  padding: 10px 0 10px 20px;
+  background: url("/breadcrumb-gray.adef6eb5.png") no-repeat left center;
+  background-size: 15px auto;
+}
+
+.plotVisibility:checked {
+  background: url("/book-open.0b774545.png") no-repeat center center;
+  background-size: 32px auto;
+  outline: none;
+}
+
+.plotVisibility:checked + .plotName {
+  color: #000;
+}
+
+.plot .plot .plotVisibility:checked + .plotName {
+  background: url("/breadcrumb.f3b87f38.png") no-repeat left center;
+  background-size: 15px auto;
+}
+
+.divider {
+  width: 6000px;
+  margin-left: -3000px;
+  border-top: 1px solid #000;
+}
+
+@media screen and (min-device-width: 800px) and (min-width: 800px) {
+  #topBar {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 0 10px;
+    width: 100%;
+    height: 50px;
+    font: 500 1.2em/50px benton-sans-compressed, sans-serif;
+    border-bottom: 1px solid #000;
+  }
+
+  #trailWrap {
+    width: calc(100% - 24px);
+    height: calc(100vh - 120px);
+    margin: 65px 12px 10px 12px;
+  }
+
+  #plotsWrap {
+    position: absolute;
+    display: block !important;
+    top: 50px;
+    left: 0;
+    margin: 0;
+    width: 270px;
+    height: calc(100% - 50px);
+  }
+
+  #plots {
+    position: absolute;
+    display: block !important;
+    top: 0;
+    left: 0;
+    width: 270px;
+    border-top: none;
+  }
+
+  #chartWrap {
+    position: absolute;
+    display: block !important;
+    top: 50px;
+    right: 0;
+    margin: 0;
+    width: calc(100% - 270px);
+    height: calc(100% - 50px);
+    border-left: 1px solid #000;
+    border-bottom: none;
+  }
 }
 
 /*# sourceMappingURL=/cookietrail.34b82bff.css.map */

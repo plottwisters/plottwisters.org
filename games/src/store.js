@@ -87,7 +87,7 @@ let data = {
     }
   },
   "tbosCookieTrail": {
-    "idroot": [{"productivity":0, "vision":0, "timestamp": new Date().getTime(), "stop":false}]
+    "idroot": [{productivity: 0.5, vision: 0, timestamp: 1561851143518, stop: false}, {productivity: 0.75, vision: 0, timestamp: 1561851147145, stop: false}, {productivity: 0.5, vision: 0, timestamp: 1561851285954, stop: false}, {productivity: 1, vision: 0, timestamp: 1561901300438, stop: false}, {"productivity":0, "vision":0, "timestamp": new Date().getTime(), "stop":false}]
   },
   "maxCookieVision": 1
 };

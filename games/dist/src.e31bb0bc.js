@@ -87403,9 +87403,11 @@ function (_Component) {
   _createClass(ChartTrail, [{
     key: "render",
     value: function render() {
-      return _react.default.createElement("canvas", {
+      return _react.default.createElement("div", {
+        id: "chartWrap"
+      }, _react.default.createElement("canvas", {
         id: "chart"
-      });
+      }));
     }
   }, {
     key: "randomColorGenerator",
@@ -87415,6 +87417,13 @@ function (_Component) {
       var b = Math.random() * 255;
       var a = 1;
       return "rgba(" + r + "," + g + "," + b + "," + a + ")";
+    }
+  }, {
+    key: "returnColorFromArray",
+    value: function returnColorFromArray(count) {
+      console.log('count' + count);
+      var colors = ['rgba(80,123,190,1)', 'rgba(204,100,98,1)', 'rgba(237,198,103,1)'];
+      return colors[count % 3];
     }
   }, {
     key: "componentDidUpdate",
@@ -87447,6 +87456,8 @@ function (_Component) {
       }
 
       var newActiveSet = new Set([]);
+      var countArr = -1;
+      console.log(this.props.checkedCookieTrails.length);
       var _iteratorNormalCompletion2 = true;
       var _didIteratorError2 = false;
       var _iteratorError2 = undefined;
@@ -87454,16 +87465,17 @@ function (_Component) {
       try {
         for (var _iterator2 = this.props.checkedCookieTrails[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
           var cookieTrailId = _step2.value;
+          countArr += 1;
           newActiveSet.add(cookieTrailId);
           if (this.activeSet.has(cookieTrailId)) continue;
           var totalSet = {};
           totalSet["label"] = this.props.name[cookieTrailId];
           totalSet["trailId"] = cookieTrailId;
-          var color = this.randomColorGenerator();
+          var color = this.returnColorFromArray(countArr);
           totalSet["borderColor"] = color;
           totalSet["backgroundColor"] = color;
           totalSet["pointBorderColor"] = 'rgba(0, 0, 0, 1)';
-          totalSet["pointBackgroundColor"] = 'rgba(255, 255, 255, 1)';
+          totalSet["pointBackgroundColor"] = '#eeeae3';
           totalSet["data"] = this.props.tbosCookieTrail[cookieTrailId].map(function (trail) {
             return {
               x: trail["timestamp"],
@@ -87471,6 +87483,7 @@ function (_Component) {
             };
           }, this);
           this.myLineChart.data.datasets.push(totalSet);
+          console.log("component did update " + countArr);
         }
       } catch (err) {
         _didIteratorError2 = true;
@@ -87503,6 +87516,7 @@ function (_Component) {
       var _this2 = this;
 
       var chart = document.getElementById('chart');
+      _chart.default.defaults.global.defaultFontFamily = 'benton-sans-condensed';
       _chart.default.defaults.global.elements.line = Object.assign(_chart.default.defaults.global.elements.line, {
         "fill": false,
         "cubicInterpolationMode": "monotone",
@@ -87510,12 +87524,14 @@ function (_Component) {
       });
       _chart.default.defaults.global.elements.point = Object.assign(_chart.default.defaults.global.elements.point, {
         "radius": 10,
-        "borderWidth": 2,
-        "backgroundColor": 'rgba(255, 255, 255, 1)',
-        "hoverRadius": 12,
-        "hoverBorderWidth": 2,
+        "borderWidth": 1,
+        "backgroundColor": '#eeeae3',
+        "hoverBackgroundColor": '#000',
+        "hoverRadius": 10,
+        "hoverBorderWidth": 1,
         "borderColor": 'rgba(0, 0, 0, 1)'
-      });
+      }); //get root cookie trail...making map of timestamp to cookie for all cookies
+
       this.rootDatabyTimeMap = {};
       var _iteratorNormalCompletion3 = true;
       var _didIteratorError3 = false;
@@ -87543,6 +87559,8 @@ function (_Component) {
 
       this.checkedCookieTrails = [];
       this.activeSet = new Set([]);
+      var arrCount = -1; // all checked cookie trails -> trail view in an array
+
       var _iteratorNormalCompletion4 = true;
       var _didIteratorError4 = false;
       var _iteratorError4 = undefined;
@@ -87550,24 +87568,28 @@ function (_Component) {
       try {
         for (var _iterator4 = this.props.checkedCookieTrails[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
           var cookieTrailId = _step4.value;
+          arrCount += 1;
           var totalSet = {};
           totalSet["label"] = this.props.name[cookieTrailId];
           totalSet["trailId"] = cookieTrailId;
-          var color = this.randomColorGenerator();
+          var color = this.returnColorFromArray(arrCount);
           totalSet["borderColor"] = color;
           totalSet["backgroundColor"] = color;
           totalSet["pointBorderColor"] = 'rgba(0, 0, 0, 1)';
-          totalSet["pointBackgroundColor"] = 'rgba(255, 255, 255, 1)';
+          totalSet["pointBackgroundColor"] = '#eeeae3';
           totalSet["data"] = this.props.tbosCookieTrail[cookieTrailId].map(function (trail) {
             return {
+              //for each data point, create X & Y coords.
               x: trail["timestamp"],
               y: 0.5 * trail["productivity"] + 0.5 * (trail["vision"] / _this2.props.maxCookieVision)
             };
-          }, this);
+          }, this); // pushed to trails u wanna see visible
+
           this.checkedCookieTrails.push(totalSet);
           this.activeSet.add(cookieTrailId);
           console.log(totalSet);
-        }
+        } // this variable has everything ready for the chart to display. reverse order bc: root is plotted under everything else – last thing first to first thing
+
       } catch (err) {
         _didIteratorError4 = true;
         _iteratorError4 = err;
@@ -87584,17 +87606,26 @@ function (_Component) {
       }
 
       this.checkedCookieTrails.reverse();
+      var firstCookie = this.props.tbosCookieTrail["idroot"][0]["timestamp"];
+      var lastCookie = this.props.tbosCookieTrail["idroot"][this.props.tbosCookieTrail["idroot"].length - 1]["timestamp"];
+      var unit = Math.round((lastCookie - firstCookie) / 3);
+      console.log(unit);
       this.myLineChart = new _chart.default(chart, {
         type: 'line',
         responsive: true,
-        maintainAspectRatio: true,
+        maintainAspectRatio: false,
         data: {
           datasets: this.checkedCookieTrails
         },
         options: {
           scales: {
             xAxes: [{
-              type: 'time'
+              type: 'time',
+              ticks: {
+                stepSize: unit,
+                min: firstCookie,
+                max: lastCookie
+              }
             }],
             yAxes: [{
               ticks: {
@@ -87768,6 +87799,8 @@ function (_Component) {
     var cookieTrail = _this.props.tbosCookieTrail;
 
     function processCurrentName(currentName) {
+      // recursion to generate tree from redux store
+      // map store into what charts.js wants: which is key: { }.
       var currentRoot = hiearchy[currentName];
       var childrenNames = [];
 
@@ -87833,17 +87866,133 @@ function (_Component) {
       var _this$state = this.state,
           checked = _this$state.checked,
           expanded = _this$state.expanded;
-      return _react.default.createElement("div", {
-        id: "checkbox-tree-cookie-trail"
-      }, _react.default.createElement(_reactCheckboxTree.default, {
-        checked: this.props.checkedCookieTrails,
-        expanded: expanded,
-        noCascade: true,
-        nodes: this.treeNodes,
-        onCheck: this.onCheck,
-        onExpand: this.onExpand,
-        showNodeIcon: false
-      }));
+      return (// <div id="checkbox-tree-cookie-trail">
+        //   <CheckboxTree
+        //           checked={this.props.checkedCookieTrails}
+        //           expanded={expanded}
+        //           noCascade
+        //           nodes={this.treeNodes}
+        //           onCheck={this.onCheck}
+        //           onExpand={this.onExpand}
+        //           showNodeIcon={false}
+        //       />
+        // </div>
+        _react.default.createElement("div", {
+          id: "plotsWrap"
+        }, _react.default.createElement("div", {
+          id: "plots"
+        }, _react.default.createElement("div", {
+          class: "bar"
+        }), _react.default.createElement("label", {
+          className: "plot"
+        }, _react.default.createElement("input", {
+          className: "plotVisibility",
+          type: "checkbox"
+        }), _react.default.createElement("span", {
+          className: "plotName"
+        }, "Name of a category"), _react.default.createElement("div", {
+          class: "divider"
+        }), _react.default.createElement("label", {
+          className: "plot"
+        }, _react.default.createElement("input", {
+          className: "plotVisibility",
+          type: "checkbox"
+        }), _react.default.createElement("span", {
+          className: "plotName"
+        }, "New category"), _react.default.createElement("div", {
+          class: "divider"
+        }), _react.default.createElement("label", {
+          className: "plot"
+        }, _react.default.createElement("input", {
+          className: "plotVisibility",
+          type: "checkbox"
+        }), _react.default.createElement("span", {
+          className: "plotName"
+        }, "Newer"), _react.default.createElement("div", {
+          class: "divider"
+        })), _react.default.createElement("label", {
+          className: "plot"
+        }, _react.default.createElement("input", {
+          className: "plotVisibility",
+          type: "checkbox"
+        }), _react.default.createElement("span", {
+          className: "plotName"
+        }, "New nested category"), _react.default.createElement("div", {
+          class: "divider"
+        }))), _react.default.createElement("label", {
+          className: "plot"
+        }, _react.default.createElement("input", {
+          className: "plotVisibility",
+          type: "checkbox"
+        }), _react.default.createElement("span", {
+          className: "plotName"
+        }, "New category"), _react.default.createElement("div", {
+          class: "divider"
+        }), _react.default.createElement("label", {
+          className: "plot"
+        }, _react.default.createElement("input", {
+          className: "plotVisibility",
+          type: "checkbox"
+        }), _react.default.createElement("span", {
+          className: "plotName"
+        }, "New category"), _react.default.createElement("div", {
+          class: "divider"
+        }), _react.default.createElement("label", {
+          className: "plot"
+        }, _react.default.createElement("input", {
+          className: "plotVisibility",
+          type: "checkbox"
+        }), _react.default.createElement("span", {
+          className: "plotName"
+        }, "New category"), _react.default.createElement("div", {
+          class: "divider"
+        }), _react.default.createElement("label", {
+          className: "plot"
+        }, _react.default.createElement("input", {
+          className: "plotVisibility",
+          type: "checkbox"
+        }), _react.default.createElement("span", {
+          className: "plotName"
+        }, "New category"), _react.default.createElement("div", {
+          class: "divider"
+        }), _react.default.createElement("label", {
+          className: "plot"
+        }, _react.default.createElement("input", {
+          className: "plotVisibility",
+          type: "checkbox"
+        }), _react.default.createElement("span", {
+          className: "plotName"
+        }, "New category"), _react.default.createElement("div", {
+          class: "divider"
+        })))), _react.default.createElement("label", {
+          className: "plot"
+        }, _react.default.createElement("input", {
+          className: "plotVisibility",
+          type: "checkbox"
+        }), _react.default.createElement("span", {
+          className: "plotName"
+        }, "New category"), _react.default.createElement("div", {
+          class: "divider"
+        }))), _react.default.createElement("label", {
+          className: "plot"
+        }, _react.default.createElement("input", {
+          className: "plotVisibility",
+          type: "checkbox"
+        }), _react.default.createElement("span", {
+          className: "plotName"
+        }, "New category"), _react.default.createElement("div", {
+          class: "divider"
+        })))), _react.default.createElement("label", {
+          className: "plot"
+        }, _react.default.createElement("input", {
+          className: "plotVisibility",
+          type: "checkbox"
+        }), _react.default.createElement("span", {
+          className: "plotName"
+        }, "Name of yet another category"), _react.default.createElement("div", {
+          class: "divider"
+        }))))
+      );
     } //instantiate phaser game after render
 
   }, {
@@ -87948,7 +88097,9 @@ function (_Component) {
     value: function render() {
       return _react.default.createElement("div", {
         id: "trailWrap"
-      }, _react.default.createElement(_chart_trail.default, _extends({}, this.boundActionCreators, this.props)), _react.default.createElement(_chart_navigator.default, _extends({}, this.boundActionCreators, this.props)));
+      }, _react.default.createElement("div", {
+        id: "topBar"
+      }), _react.default.createElement(_chart_trail.default, _extends({}, this.boundActionCreators, this.props)), _react.default.createElement(_chart_navigator.default, _extends({}, this.boundActionCreators, this.props)));
     } //instantiate phaser game after render
 
   }, {
@@ -91702,6 +91853,7 @@ function tbosCookieTrail() {
 
         if (!activeChildren) {
           newDataPoint = makeDataPointv2(currentTrailToUpdate, state, false, timestamp);
+          console.log(newDataPoint);
           newMax = Math.max(state["maxCookieVision"], newDataPoint["vision"]);
           currentTask = state["reverseHiearchy"][currentTrailToUpdate];
 
@@ -92057,6 +92209,26 @@ var data = {
   },
   "tbosCookieTrail": {
     "idroot": [{
+      productivity: 0.5,
+      vision: 0,
+      timestamp: 1561851143518,
+      stop: false
+    }, {
+      productivity: 0.75,
+      vision: 0,
+      timestamp: 1561851147145,
+      stop: false
+    }, {
+      productivity: 0.5,
+      vision: 0,
+      timestamp: 1561851285954,
+      stop: false
+    }, {
+      productivity: 1,
+      vision: 0,
+      timestamp: 1561901300438,
+      stop: false
+    }, {
       "productivity": 0,
       "vision": 0,
       "timestamp": new Date().getTime(),
@@ -92351,7 +92523,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54530" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56842" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
