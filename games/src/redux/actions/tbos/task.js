@@ -3,6 +3,7 @@ import {db} from '../../../firebase/config';
 const uuidv1 = require('uuid/v1');
 
 export function deleteTaskAction(taskId, currentRoot) {
+
   return {
     type: ActionType.DELETE_TASK,
     taskId,

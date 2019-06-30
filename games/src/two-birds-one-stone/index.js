@@ -98,6 +98,7 @@ class TwoBirdsOneStone extends Component {
   //if component updates change focus based on component's focused state
   //for focusing checklist view on clicking add button
   componentDidUpdate(props) {
+
     if (this.state.isFocused == true) {
       document.getElementById("addTask").children[0].focus();
       this.setState({"isFocused": false});
@@ -138,7 +139,7 @@ class TwoBirdsOneStone extends Component {
 }
 
 function mapStateToProps(state) {
-
+  
   return state.present;
 }
 

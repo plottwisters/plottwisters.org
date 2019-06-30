@@ -87418,7 +87418,7 @@ function (_Component) {
     }
   }, {
     key: "componentDidUpdate",
-    value: function componentDidUpdate() {
+    value: function componentDidUpdate(prevProps) {
       var _this = this;
 
       var _iteratorNormalCompletion = true;
@@ -87586,8 +87586,6 @@ function (_Component) {
       this.checkedCookieTrails.reverse();
       this.myLineChart = new _chart.default(chart, {
         type: 'line',
-        responsive: true,
-        maintainAspectRatio: true,
         data: {
           datasets: this.checkedCookieTrails
         },
@@ -91835,6 +91833,21 @@ function base() {
       return state;
   }
 }
+},{"./../actions/tbos/action_type":"redux/actions/tbos/action_type.js"}],"redux/reducers/last_action.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = lastAction;
+
+var _action_type = require("./../actions/tbos/action_type");
+
+function lastAction() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  return action;
+}
 },{"./../actions/tbos/action_type":"redux/actions/tbos/action_type.js"}],"redux/reducers/index.js":[function(require,module,exports) {
 "use strict";
 
@@ -91869,6 +91882,8 @@ var _action_type = require("./../actions/tbos/action_type");
 
 var _base = _interopRequireDefault(require("./base"));
 
+var _last_action = _interopRequireDefault(require("./last_action"));
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -91889,7 +91904,8 @@ function tbosReducers() {
     tbosRootPath: (0, _tbos_root_path.default)(state.tbosRootPath, action),
     nameToTasks: (0, _name_to_tasks.default)(state.nameToTasks, action),
     maxCookieVision: state["maxCookieVision"],
-    position: (0, _position.default)(state.position, action)
+    position: (0, _position.default)(state.position, action),
+    lastAction: (0, _last_action.default)(state.lastAction, action)
   };
   intermediateResults["taskAggregates"] = state["taskAggregates"];
   intermediateResults = Object.assign(intermediateResults, {
@@ -91914,7 +91930,7 @@ var undoableState = (0, _reduxUndo.default)(reducers, {
 });
 var _default = undoableState;
 exports.default = _default;
-},{"./reverse_hiearchy":"redux/reducers/reverse_hiearchy.js","./hiearchy":"redux/reducers/hiearchy.js","./active":"redux/reducers/active.js","./name":"redux/reducers/name.js","./tbos_root_path":"redux/reducers/tbos_root_path.js","./name_to_tasks":"redux/reducers/name_to_tasks.js","./task_aggregates":"redux/reducers/task_aggregates.js","./tbos_cookie_trail":"redux/reducers/tbos_cookie_trail.js","./checked_cookie_trails":"redux/reducers/checked_cookie_trails.js","redux-undo":"../node_modules/redux-undo/lib/index.js","./position":"redux/reducers/position.js","./../actions/tbos/action_type":"redux/actions/tbos/action_type.js","./base":"redux/reducers/base.js"}],"../node_modules/redux-thunk/es/index.js":[function(require,module,exports) {
+},{"./reverse_hiearchy":"redux/reducers/reverse_hiearchy.js","./hiearchy":"redux/reducers/hiearchy.js","./active":"redux/reducers/active.js","./name":"redux/reducers/name.js","./tbos_root_path":"redux/reducers/tbos_root_path.js","./name_to_tasks":"redux/reducers/name_to_tasks.js","./task_aggregates":"redux/reducers/task_aggregates.js","./tbos_cookie_trail":"redux/reducers/tbos_cookie_trail.js","./checked_cookie_trails":"redux/reducers/checked_cookie_trails.js","redux-undo":"../node_modules/redux-undo/lib/index.js","./position":"redux/reducers/position.js","./../actions/tbos/action_type":"redux/actions/tbos/action_type.js","./base":"redux/reducers/base.js","./last_action":"redux/reducers/last_action.js"}],"../node_modules/redux-thunk/es/index.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -92063,7 +92079,10 @@ var data = {
       "stop": false
     }]
   },
-  "maxCookieVision": 1
+  "maxCookieVision": 1,
+  "lastAction": {
+    'type': 'NONE'
+  }
 };
 
 var doc = _config.db.collection('tasks');
@@ -92247,7 +92266,6 @@ function (_Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(App).call(this, props));
     _this.games = Object.keys(globalGameRegistry);
-    console.log(_store.store);
     return _this;
   }
 
@@ -92351,7 +92369,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54530" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52610" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

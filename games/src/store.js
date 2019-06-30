@@ -89,7 +89,8 @@ let data = {
   "tbosCookieTrail": {
     "idroot": [{"productivity":0, "vision":0, "timestamp": new Date().getTime(), "stop":false}]
   },
-  "maxCookieVision": 1
+  "maxCookieVision": 1,
+  "lastAction": {'type': 'NONE'}
 };
 
 
@@ -111,4 +112,8 @@ let doc = db.collection('tasks')
   })
   }
  }
-export const store = createStore(twisterLandReducers, data);
+
+
+var store = createStore(twisterLandReducers, data);
+
+export {store};

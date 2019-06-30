@@ -23,7 +23,7 @@ function Bird(props)  {
 
       if(monitor.didDrop()) {
         let droppedEvent = monitor.getDropResult();
-        
+
         switch(droppedEvent.type) {
           case dndItemTypes.CANVAS:
 

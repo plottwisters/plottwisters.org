@@ -20,8 +20,6 @@ class App extends Component {
   constructor(props) {
       super(props);
       this.games = Object.keys(globalGameRegistry);
-
-      console.log(store);
     }
   render() {
 

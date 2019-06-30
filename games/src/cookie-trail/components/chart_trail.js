@@ -28,7 +28,7 @@ class ChartTrail extends Component {
       let a = 1;
       return ("rgba(" +  r + "," + g + "," + b + "," + a + ")");
   }
-  componentDidUpdate() {
+  componentDidUpdate(prevProps) {
     for (let cookie of this.props.tbosCookieTrail["idroot"]) {
       this.rootDatabyTimeMap[cookie["timestamp"]] = cookie;
       console.log(this.rootDatabyTimeMap[cookie["timestamp"]]);
@@ -85,6 +85,8 @@ class ChartTrail extends Component {
       "hoverBorderWidth": 2,
       "borderColor": 'rgba(0, 0, 0, 1)'
     });
+
+
     this.rootDatabyTimeMap = {};
     for (let cookie of this.props.tbosCookieTrail["idroot"]) {
       this.rootDatabyTimeMap[cookie["timestamp"]] = cookie;
@@ -119,8 +121,7 @@ class ChartTrail extends Component {
 
     this.myLineChart = new Chart(chart, {
       type: 'line',
-      responsive:true,
-      maintainAspectRatio: true,
+    
       data: {
         datasets: this.checkedCookieTrails
       },
@@ -143,7 +144,7 @@ class ChartTrail extends Component {
 
       }
     });
-    
+
 
 
   }

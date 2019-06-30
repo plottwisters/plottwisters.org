@@ -9,8 +9,9 @@ import tbosCookieTrail from './tbos_cookie_trail'
 import checkedCookieTrails from './checked_cookie_trails'
 import undoable, { distinctState , excludeAction} from 'redux-undo'
 import position from './position';
-import {ActionType} from './../actions/tbos/action_type'
-import base from './base'
+import {ActionType} from './../actions/tbos/action_type';
+import base from './base';
+import lastAction from './last_action';
 
 function tbosReducers(state = {}, action) {
   if(action.type == ActionType.GET_TASKS) {
@@ -24,7 +25,8 @@ function tbosReducers(state = {}, action) {
     tbosRootPath:tbosRootPath(state.tbosRootPath, action),
     nameToTasks: nameToTasks(state.nameToTasks, action),
     maxCookieVision: state["maxCookieVision"],
-    position: position(state.position, action)
+    position: position(state.position, action),
+    lastAction: lastAction(state.lastAction, action)
   }
 
   intermediateResults["taskAggregates"] = state["taskAggregates"];
