@@ -114,7 +114,7 @@ var testdata = {
 
 export function getTasksThunk() {
   return dispatch => {
-  doc.get().then((coll) => {
+  doc.where('user_id', '==', document.cookie.replace('uid=', '')).get().then((coll) => {
     coll.forEach((doc) => {
       testdata['hiearchy']['idroot'][doc.id] = doc.id;
       testdata['hiearchy'][doc.id] = {};

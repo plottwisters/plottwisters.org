@@ -23,7 +23,6 @@ export function completeTaskAction(taskId, currentRoot, timestamp = new Date().g
 export function createNewTaskAction(taskAKey, taskBKey, name, currentRoot) {
   let uuid=uuidv1();
   uuid=(uuid.split('-').join(""))
-
   return {
     type: ActionType.CREATE_TASK_COLLISION,
     taskA: taskAKey,
@@ -35,12 +34,6 @@ export function createNewTaskAction(taskAKey, taskBKey, name, currentRoot) {
 }
 export function createNewTasksAction(tasks, currentRoot) { 
   var now = new Date();
-    if(document.cookie.length <= 0) {
-      let uid = now.getFullYear().toString() + (now.getMonth()+1).toString() + now.getDate().toString();
-      uid += now.getHours().toString() + now.getMinutes().toString() + now.getSeconds().toString() + now.getMilliseconds().toString();
-      uid += (Math.floor(Math.random() * (1000000 - 1 + 1) ) + 1).toString();
-      document.cookie = "uid="+uid+"; expires=Thu, 22 Dec 2022 12:00:00 UTC; path=/";
-    }
     let t = tasks.map(
       (task) => {    
         let doc = db.collection('todos').doc(task['id']);

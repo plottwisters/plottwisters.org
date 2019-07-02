@@ -11,6 +11,7 @@ import * as tbosActionCreators from './../redux/actions/tbos';
 import {bindActionCreators} from 'redux';
 import {TaskState} from './../global_constants';
 import { getTasksThunk } from '../store'
+import * as firebaseApp from '../firebase/config'
 class TwoBirdsOneStone extends Component {
 
 
@@ -77,6 +78,8 @@ class TwoBirdsOneStone extends Component {
     return tasks.filter(task => this.props.active[task] == TaskState.active);
   }
 
+  
+
   //add game container and hidden views into DOM
   render() {
     if(this.props.name == undefined) {
@@ -93,7 +96,10 @@ class TwoBirdsOneStone extends Component {
   }
 
   //instantiate phaser game after render
-  componentDidMount() {    
+  componentDidMount() {   
+    if(document.cookie.length <= 0) { 
+      firebaseApp.logIn();
+    }
     let newScene = new MainView(this);
     let config = {
         type: Phaser.AUTO,
