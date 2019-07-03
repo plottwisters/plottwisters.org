@@ -28869,7 +28869,8 @@ var ActionType = {
   TOGGLE_TRAIL: 'TOGGLE_TRAIL',
   DRAG_TASK: 'DRAG_TASK',
   TBOS_POP_ROOT_UNTIL: 'TBOS_POP_ROOT_UNTIL',
-  GET_TASKS: 'GET_TASKS'
+  GET_TASKS: 'GET_TASKS',
+  UNDO: '@@redux-undo/UNDO'
 };
 exports.ActionType = ActionType;
 },{}],"redux/actions/tbos/root.js":[function(require,module,exports) {
@@ -60737,16 +60738,22 @@ require("firebase/firestore");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var firebaseConfig = {
-  apiKey: "AIzaSyAimh03rTXmCeYeS8FNDqD57-uin8b1pCQ",
-  authDomain: "tbos-baad5.firebaseapp.com",
-  databaseURL: "https://tbos-baad5.firebaseio.com",
-  projectId: "tbos-baad5",
-  storageBucket: "tbos-baad5.appspot.com",
-  messagingSenderId: "1078395152590",
-  appId: "1:1078395152590:web:8faa2fc48425850f"
+  apiKey: "AIzaSyBWj5sop-VPiIXKpF2ZTK6S4KSsyBRP2Bs",
+  authDomain: "plot-twisters.firebaseapp.com",
+  projectId: "plot-twisters"
 };
 
 _app.default.initializeApp(firebaseConfig);
+
+_app.default.firestore().enablePersistence().catch(function (err) {
+  if (err.code == 'failed-precondition') {// Multiple tabs open, persistence can only be enabled
+    // in one tab at a a time.
+    // ...
+  } else if (err.code == 'unimplemented') {// The current browser does not support all of the
+    // features required to enable persistence
+    // ...
+  }
+});
 
 var db = _app.default.firestore();
 
@@ -67843,7 +67850,1339 @@ function Breadcrumbs(props) {
     id: "breadcrumb"
   }, crumb);
 }
-},{"react":"../node_modules/react/index.js"}],"two-birds-one-stone/index.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js"}],"redux/reducers/reverse_hiearchy.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = reverseHiearchy;
+
+var _action_type = require("./../actions/tbos/action_type");
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function reverseHiearchy() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  var newState = state;
+
+  switch (action.type) {
+    case _action_type.ActionType.CATEGORIZE_TASK:
+      newState = _objectSpread({}, state);
+      newState[action.child] = action.parent;
+      break;
+
+    case _action_type.ActionType.CREATE_TASK_COLLISION:
+      newState = _objectSpread({}, state);
+      newState[action.taskA] = action.taskId;
+      newState[action.taskB] = action.taskId;
+      newState[action.taskId] = action.currentRoot;
+      break;
+
+    case _action_type.ActionType.CREATE_TASKS:
+      newState = _objectSpread({}, state);
+      var _iteratorNormalCompletion = true;
+      var _didIteratorError = false;
+      var _iteratorError = undefined;
+
+      try {
+        for (var _iterator = action.tasks[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+          var task = _step.value;
+          newState[task.id] = action.currentRoot;
+        }
+      } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion && _iterator.return != null) {
+            _iterator.return();
+          }
+        } finally {
+          if (_didIteratorError) {
+            throw _iteratorError;
+          }
+        }
+      }
+
+    default:
+      break;
+  }
+
+  return newState;
+}
+},{"./../actions/tbos/action_type":"redux/actions/tbos/action_type.js"}],"redux/reducers/hiearchy.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = hiearchy;
+
+var _action_type = require("./../actions/tbos/action_type");
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function hiearchy() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  var newState = state;
+
+  switch (action.type) {
+    //create new task action
+    case _action_type.ActionType.CREATE_TASK_COLLISION:
+      newState = _objectSpread({}, state);
+      newState[action.taskId] = {};
+      newState[action.taskId][action.taskA] = action.taskA;
+      newState[action.taskId][action.taskB] = action.taskB;
+      newState[action.currentRoot] = _objectSpread({}, newState[action.currentRoot]);
+      newState[action.currentRoot][action.taskId] = action.taskId;
+      delete newState[action.currentRoot][action.taskA];
+      delete newState[action.currentRoot][action.taskB];
+      break;
+
+    case _action_type.ActionType.CATEGORIZE_TASK:
+      newState = _objectSpread({}, state);
+      newState[action.parent] = _objectSpread({}, newState[action.parent]);
+      newState[action.parent][action.child] = action.child;
+      newState[action.currentRoot] = _objectSpread({}, newState[action.currentRoot]);
+      delete newState[action.currentRoot][action.child];
+      break;
+
+    case _action_type.ActionType.CREATE_TASKS:
+      newState = _objectSpread({}, state); //update tasks tree
+
+      var _iteratorNormalCompletion = true;
+      var _didIteratorError = false;
+      var _iteratorError = undefined;
+
+      try {
+        for (var _iterator = action.tasks[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+          var task = _step.value;
+          newState[task.id] = {};
+          newState[action.currentRoot][task.id] = task.id;
+        }
+      } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion && _iterator.return != null) {
+            _iterator.return();
+          }
+        } finally {
+          if (_didIteratorError) {
+            throw _iteratorError;
+          }
+        }
+      }
+
+    default:
+      break;
+  }
+
+  return newState;
+}
+},{"./../actions/tbos/action_type":"redux/actions/tbos/action_type.js"}],"redux/reducers/active.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = active;
+
+var _action_type = require("./../actions/tbos/action_type");
+
+var _global_constants = require("./../../global_constants");
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function active() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  var newState = state["active"];
+  var currentTask;
+
+  switch (action.type) {
+    case _action_type.ActionType.CREATE_TASK_COLLISION:
+      newState = _objectSpread({}, state["active"]);
+      newState[action.taskId] = _global_constants.TaskState.active;
+      break;
+
+    case _action_type.ActionType.COMPLETE_TASK:
+      newState = _objectSpread({}, state["active"]);
+      var tasksToComplete = [action.taskId]; //delete the task and all tasks that are a child of the task
+
+      while (tasksToComplete.length > 0) {
+        currentTask = tasksToComplete.pop();
+        newState[currentTask] = _global_constants.TaskState.completed;
+
+        for (var child in state["hiearchy"][currentTask]) {
+          if (newState["active"] == _global_constants.TaskState.active) tasksToComplete.push(child);
+        }
+      }
+
+      break;
+
+    case _action_type.ActionType.DELETE_TASK:
+      newState = _objectSpread({}, state["active"]);
+      var tasksToDelete = [action.taskId]; //delete the task and all tasks that are a child of the task
+
+      while (tasksToDelete.length > 0) {
+        currentTask = tasksToDelete.pop();
+        newState[currentTask] = _global_constants.TaskState.deleted;
+
+        for (var _child in state["hiearchy"][currentTask]) {
+          if (newState["active"] == _global_constants.TaskState.active) tasksToDelete.push(_child);
+        }
+      }
+
+      break;
+
+    case _action_type.ActionType.CREATE_TASKS:
+      newState = _objectSpread({}, state["active"]);
+      var _iteratorNormalCompletion = true;
+      var _didIteratorError = false;
+      var _iteratorError = undefined;
+
+      try {
+        for (var _iterator = action.tasks[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+          var task = _step.value;
+          newState[task.id] = _global_constants.TaskState.active;
+        }
+      } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion && _iterator.return != null) {
+            _iterator.return();
+          }
+        } finally {
+          if (_didIteratorError) {
+            throw _iteratorError;
+          }
+        }
+      }
+
+    default:
+      break;
+  }
+
+  return newState;
+}
+},{"./../actions/tbos/action_type":"redux/actions/tbos/action_type.js","./../../global_constants":"global_constants.js"}],"redux/reducers/name.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = name;
+
+var _action_type = require("./../actions/tbos/action_type");
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function name() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  var newState = state;
+
+  switch (action.type) {
+    case _action_type.ActionType.CREATE_TASK_COLLISION:
+      newState = _objectSpread({}, state);
+      newState[action.taskId] = action.taskName;
+      break;
+
+    case _action_type.ActionType.CREATE_TASKS:
+      newState = _objectSpread({}, state);
+      var _iteratorNormalCompletion = true;
+      var _didIteratorError = false;
+      var _iteratorError = undefined;
+
+      try {
+        for (var _iterator = action.tasks[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+          var task = _step.value;
+          newState[task.id] = task.name;
+        }
+      } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion && _iterator.return != null) {
+            _iterator.return();
+          }
+        } finally {
+          if (_didIteratorError) {
+            throw _iteratorError;
+          }
+        }
+      }
+
+    default:
+      break;
+  }
+
+  return newState;
+}
+},{"./../actions/tbos/action_type":"redux/actions/tbos/action_type.js"}],"redux/reducers/tbos_root_path.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = tbosRootPath;
+
+var _action_type = require("./../actions/tbos/action_type");
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
+function tbosRootPath() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  var newState = state;
+
+  switch (action.type) {
+    case _action_type.ActionType.TBOS_POP_ROOT:
+      newState = _toConsumableArray(state);
+      newState.pop();
+      break;
+
+    case _action_type.ActionType.TBOS_ADD_ROOT:
+      newState = [].concat(_toConsumableArray(state), [action.taskId]);
+      break;
+
+    case _action_type.ActionType.TBOS_POP_ROOT_UNTIL:
+      newState = _toConsumableArray(state);
+
+      while (newState[newState.length - 1] != action.taskId) {
+        newState.pop();
+      }
+
+    default:
+      break;
+  }
+
+  return newState;
+}
+},{"./../actions/tbos/action_type":"redux/actions/tbos/action_type.js"}],"redux/reducers/name_to_tasks.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = nameToTasks;
+
+var _action_type = require("./../actions/tbos/action_type");
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function nameToTasks() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  var newState = state;
+
+  switch (action.type) {
+    case _action_type.ActionType.CREATE_TASK_COLLISION:
+      newState = _objectSpread({}, state);
+
+      if (newState[action.taskName] == undefined) {
+        newState[action.taskName] = [];
+      }
+
+      newState[action.taskName] = [].concat(_toConsumableArray(newState[action.taskName]), [action.taskId]);
+      break;
+
+    case _action_type.ActionType.CREATE_TASKS:
+      newState = _objectSpread({}, state);
+      var _iteratorNormalCompletion = true;
+      var _didIteratorError = false;
+      var _iteratorError = undefined;
+
+      try {
+        for (var _iterator = action.tasks[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+          var task = _step.value;
+
+          if (newState[task.name] == undefined) {
+            newState[task.name] = [];
+          }
+
+          newState[task.name] = [].concat(_toConsumableArray(newState[task.name]), [task.id]);
+        }
+      } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion && _iterator.return != null) {
+            _iterator.return();
+          }
+        } finally {
+          if (_didIteratorError) {
+            throw _iteratorError;
+          }
+        }
+      }
+
+      break;
+
+    default:
+      break;
+  }
+
+  return newState;
+}
+},{"./../actions/tbos/action_type":"redux/actions/tbos/action_type.js"}],"redux/reducers/task_aggregates.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = taskAggregates;
+
+var _action_type = require("./../actions/tbos/action_type");
+
+var _global_constants = require("./../../global_constants");
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function calculateActiveTasks(agg) {
+  return agg["total"] - agg["completed"] - agg["deleted"];
+}
+
+function createAggregate() {
+  return {
+    "completed": 0,
+    "deleted": 0,
+    "total": 1,
+    "moved": 0
+  };
+}
+
+function taskAggregates() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  var newState = state["taskAggregates"];
+  var reverseHiearchy = state["reverseHiearchy"];
+  var currentTask = action.currentRoot;
+
+  switch (action.type) {
+    case _action_type.ActionType.CREATE_TASK_COLLISION:
+      newState = _objectSpread({}, newState);
+      newState[action.taskId] = createAggregate();
+      var taskAValue;
+      var taskBValue;
+
+      for (var key in newState[action.taskB]) {
+        if (key != "moved") {
+          taskAValue = newState[action.taskA][key];
+          taskBValue = newState[action.taskB][key];
+          var count = taskAValue + taskBValue;
+          newState[action.taskId][key] = count;
+        }
+      }
+
+      newState[action.taskA]["moved"] += 1;
+      newState[action.taskB]["moved"] += 1;
+      break;
+
+    case _action_type.ActionType.CATEGORIZE_TASK:
+      newState = _objectSpread({}, newState);
+      newState[action.child] = _objectSpread({}, newState[action.child]);
+      newState[action.child]["moved"] += 1;
+      var parent;
+      var child;
+      var isCat = Object.keys(state["hiearchy"][action.parent]).filter(function (x) {
+        return state["active"][x] == _global_constants.TaskState.active;
+      }).length > 1;
+      newState[action.parent] = _objectSpread({}, newState[action.parent]);
+
+      for (var _key in newState[action.parent]) {
+        if (_key != "moved") {
+          parent = newState[action.parent][_key];
+          child = newState[action.child][_key];
+
+          var _count = parent + child;
+
+          newState[action.parent][_key] = _count;
+        }
+      }
+
+      break;
+
+    case _action_type.ActionType.COMPLETE_TASK:
+      newState = _objectSpread({}, newState);
+      var toCompleteTaskCount = newState[action.taskId]["total"] - newState[action.taskId]["completed"] - newState[action.taskId]["deleted"];
+      var currentCompleted; //for total tasks added
+
+      while (currentTask != undefined) {
+        currentCompleted = newState[currentTask]["completed"];
+        currentTotal = newState[currentTask]["total"];
+        newState[currentTask] = _objectSpread({}, newState[currentTask], {
+          "completed": currentCompleted + toCompleteTaskCount
+        });
+        currentTask = reverseHiearchy[currentTask];
+      }
+
+      var tasksToComplete = [action.taskId];
+
+      while (tasksToComplete.length > 0) {
+        currentTask = tasksToComplete.pop();
+        currentCompleted = newState[currentTask]["completed"];
+        newState[currentTask] = _objectSpread({}, newState[currentTask], {
+          "completed": currentCompleted + calculateActiveTasks(newState[currentTask])
+        });
+
+        for (var _child in state["hiearchy"][currentTask]) {
+          tasksToComplete.push(_child);
+        }
+      }
+
+      break;
+
+    case _action_type.ActionType.DELETE_TASK:
+      newState = _objectSpread({}, newState);
+      var toDeleteTaskCount = calculateActiveTasks(newState[action.taskId]);
+      var currentDeleted; //for total tasks added
+
+      while (currentTask != undefined) {
+        currentDeleted = newState[currentTask]["deleted"];
+        currentTotal = newState[currentTask]["total"];
+        newState[currentTask] = _objectSpread({}, newState[currentTask], {
+          "deleted": currentDeleted + toDeleteTaskCount
+        });
+        currentTask = reverseHiearchy[currentTask];
+      }
+
+      var tasksToDelete = [action.taskId]; //delete the task and all tasks that are a child of the task
+
+      while (tasksToDelete.length > 0) {
+        currentTask = tasksToDelete.pop();
+        currentDeleted = newState[currentTask]["deleted"];
+        newState[currentTask] = _objectSpread({}, newState[currentTask], {
+          "deleted": currentDeleted + calculateActiveTasks(newState[currentTask])
+        });
+
+        for (var _child2 in state["hiearchy"][currentTask]) {
+          tasksToDelete.push(_child2);
+        }
+      }
+
+      break;
+
+    case _action_type.ActionType.CREATE_TASKS:
+      newState = _objectSpread({}, newState);
+      var _iteratorNormalCompletion = true;
+      var _didIteratorError = false;
+      var _iteratorError = undefined;
+
+      try {
+        for (var _iterator = action.tasks[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+          var task = _step.value;
+          newState[task.id] = createAggregate();
+        }
+      } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion && _iterator.return != null) {
+            _iterator.return();
+          }
+        } finally {
+          if (_didIteratorError) {
+            throw _iteratorError;
+          }
+        }
+      }
+
+      var totalTasksAdded = action.tasks.length;
+      var currentTotal;
+
+      while (currentTask != undefined) {
+        currentTotal = newState[currentTask]["total"];
+        newState[currentTask] = _objectSpread({}, newState[currentTask], {
+          "total": currentTotal + totalTasksAdded
+        });
+        currentTask = reverseHiearchy[currentTask];
+      }
+
+      break;
+
+    default:
+      break;
+  }
+
+  return newState;
+}
+},{"./../actions/tbos/action_type":"redux/actions/tbos/action_type.js","./../../global_constants":"global_constants.js"}],"redux/reducers/tbos_cookie_trail.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = tbosCookieTrail;
+
+var _action_type = require("./../actions/tbos/action_type");
+
+var _global_constants = require("./../../global_constants");
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function calculateLeafTasks(agg) {
+  return agg["total"];
+}
+
+function calculateCategoryVisionScore(category, state) {
+  var agg = state["taskAggregates"][category];
+  var rootLevelTasks = Object.keys(state["hiearchy"][category]);
+  var numRootTasks = rootLevelTasks.length;
+  var numTasks = calculateLeafTasks(agg);
+  var visionScore = (numTasks - numRootTasks) / numTasks;
+  return visionScore;
+}
+
+function calculateCategoryVisionScorev2(category, state) {
+  return state["taskAggregates"][category]["moved"];
+}
+
+function calculateProductivityScore(category, state) {
+  var agg = state["taskAggregates"][category];
+  if (agg["total"] == agg["deleted"]) return 0;
+  return agg["completed"] / (agg["total"] - agg["deleted"]);
+}
+
+function makeDataPoint(category, state, stopBoolean, timestamp) {
+  return {
+    "productivity": calculateProductivityScore(category, state),
+    "vision": calculateCategoryVisionScore(category, state),
+    "timestamp": timestamp,
+    "stop": stopBoolean
+  };
+}
+
+function makeDataPointv2(category, state, stopBoolean, timestamp) {
+  return {
+    "productivity": calculateProductivityScore("idroot", state),
+    "vision": calculateCategoryVisionScorev2(category, state),
+    "timestamp": timestamp,
+    "stop": stopBoolean
+  };
+}
+
+function anyActiveTasks(state, currentTask) {
+  var totalRemaining = Object.keys(state["hiearchy"][currentTask]);
+  totalRemaining = totalRemaining.filter(function (task) {
+    return state["active"][task] == _global_constants.TaskState.active;
+  });
+  totalRemaining = totalRemaining.length;
+  return totalRemaining > 0;
+}
+
+function tbosCookieTrail() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  var newState = state["tbosCookieTrail"];
+  var newMax = state["maxCookieVision"];
+  var currentTask;
+  var timestamp = action.timestamp;
+  var arrA;
+  var arrB;
+  var total;
+
+  switch (action.type) {
+    case _action_type.ActionType.CREATE_TASK_COLLISION:
+      newState = _objectSpread({}, newState); //create data point for new category
+
+      arrA = newState[action.taskA] == undefined ? [] : newState[action.taskA];
+      arrB = newState[action.taskB] == undefined ? [] : newState[action.taskB];
+      _total = [].concat(_toConsumableArray(arrA), _toConsumableArray(arrB));
+
+      _total.sort(function (object) {
+        return object.timestamp;
+      });
+
+      newState[action.taskId] = _total;
+      break;
+
+    case _action_type.ActionType.CATEGORIZE_TASK:
+      arrA = newState[action.parent] == undefined ? [] : newState[action.parent];
+      arrB = newState[action.child] == undefined ? [] : newState[action.child];
+
+      var _total = [].concat(_toConsumableArray(arrA), _toConsumableArray(arrB));
+
+      _total.sort(function (object) {
+        return object.timestamp;
+      });
+
+      newState[action.parent] = _total;
+      break;
+
+    case _action_type.ActionType.COMPLETE_TASK:
+      newState = _objectSpread({}, newState);
+      var trailsToUpdate = [action.taskId];
+      var currentTrailToUpdate;
+      var activeChildren;
+      var newDataPoint;
+
+      while (trailsToUpdate.length > 0) {
+        currentTrailToUpdate = trailsToUpdate.pop();
+        activeChildren = false;
+
+        for (var child in state["hiearchy"][currentTask]) {
+          if (state["active"][child] == _global_constants.TaskState.active) {
+            trailsToUpdate.push(child);
+            activeChildren = true;
+          }
+        }
+
+        if (!activeChildren) {
+          newDataPoint = makeDataPointv2(currentTrailToUpdate, state, false, timestamp);
+          newMax = Math.max(state["maxCookieVision"], newDataPoint["vision"]);
+          currentTask = state["reverseHiearchy"][currentTrailToUpdate];
+
+          while (currentTask != undefined) {
+            newState[currentTask] = [].concat(_toConsumableArray(newState[currentTask]), [newDataPoint]);
+            currentTask = state["reverseHiearchy"][currentTask];
+          }
+        }
+      }
+
+      break;
+
+    default:
+      break;
+  }
+
+  return {
+    "tbosCookieTrail": newState,
+    "maxCookieVision": newMax
+  };
+}
+},{"./../actions/tbos/action_type":"redux/actions/tbos/action_type.js","./../../global_constants":"global_constants.js"}],"redux/reducers/checked_cookie_trails.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = checkedCookieTrails;
+
+var _action_type = require("./../actions/tbos/action_type");
+
+function checkedCookieTrails() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  var newState = state;
+
+  switch (action.type) {
+    case _action_type.ActionType.TOGGLE_TRAIL:
+      newState = action.trail;
+
+    default:
+      break;
+  }
+
+  return newState;
+}
+},{"./../actions/tbos/action_type":"redux/actions/tbos/action_type.js"}],"redux/reducers/position.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = position;
+
+var _action_type = require("./../actions/tbos/action_type");
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function position() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  var newState = state;
+
+  switch (action.type) {
+    case _action_type.ActionType.CREATE_TASKS:
+      newState = _objectSpread({}, state);
+      var _iteratorNormalCompletion = true;
+      var _didIteratorError = false;
+      var _iteratorError = undefined;
+
+      try {
+        for (var _iterator = action.tasks[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+          var task = _step.value;
+          newState[task.id] = {
+            x: task.x,
+            y: task.y
+          };
+        }
+      } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion && _iterator.return != null) {
+            _iterator.return();
+          }
+        } finally {
+          if (_didIteratorError) {
+            throw _iteratorError;
+          }
+        }
+      }
+
+      break;
+
+    case _action_type.ActionType.DRAG_TASK:
+      newState = _objectSpread({}, state);
+      newState[action.taskId] = {
+        x: action.x,
+        y: action.y
+      };
+      break;
+
+    default:
+      break;
+  }
+
+  return newState;
+}
+},{"./../actions/tbos/action_type":"redux/actions/tbos/action_type.js"}],"redux/reducers/base.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = base;
+
+var _action_type = require("./../actions/tbos/action_type");
+
+function base() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+
+  switch (action.type) {
+    case _action_type.ActionType.GET_TASKS:
+      return action.tasks;
+
+    default:
+      return state;
+  }
+}
+},{"./../actions/tbos/action_type":"redux/actions/tbos/action_type.js"}],"redux/reducers/last_action.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = lastAction;
+
+var _action_type = require("./../actions/tbos/action_type");
+
+function lastAction() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  return action;
+}
+},{"./../actions/tbos/action_type":"redux/actions/tbos/action_type.js"}],"redux/reducers/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = undoableState;
+
+var _reverse_hiearchy = _interopRequireDefault(require("./reverse_hiearchy"));
+
+var _hiearchy = _interopRequireDefault(require("./hiearchy"));
+
+var _active = _interopRequireDefault(require("./active"));
+
+var _name = _interopRequireDefault(require("./name"));
+
+var _tbos_root_path = _interopRequireDefault(require("./tbos_root_path"));
+
+var _name_to_tasks = _interopRequireDefault(require("./name_to_tasks"));
+
+var _task_aggregates = _interopRequireDefault(require("./task_aggregates"));
+
+var _tbos_cookie_trail = _interopRequireDefault(require("./tbos_cookie_trail"));
+
+var _checked_cookie_trails = _interopRequireDefault(require("./checked_cookie_trails"));
+
+var _reduxUndo = _interopRequireWildcard(require("redux-undo"));
+
+var _position = _interopRequireDefault(require("./position"));
+
+var _action_type = require("./../actions/tbos/action_type");
+
+var _base = _interopRequireDefault(require("./base"));
+
+var _last_action = _interopRequireDefault(require("./last_action"));
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function tbosReducers() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+
+  if (action.type == _action_type.ActionType.GET_TASKS) {
+    return (0, _base.default)(state, action);
+  }
+
+  var intermediateResults = {
+    reverseHiearchy: (0, _reverse_hiearchy.default)(state.reverseHiearchy, action),
+    hiearchy: (0, _hiearchy.default)(state.hiearchy, action),
+    active: (0, _active.default)(state, action),
+    name: (0, _name.default)(state.name, action),
+    tbosRootPath: (0, _tbos_root_path.default)(state.tbosRootPath, action),
+    nameToTasks: (0, _name_to_tasks.default)(state.nameToTasks, action),
+    maxCookieVision: state["maxCookieVision"],
+    position: (0, _position.default)(state.position, action),
+    lastAction: (0, _last_action.default)(state.lastAction, action)
+  };
+  intermediateResults["taskAggregates"] = state["taskAggregates"];
+  intermediateResults = Object.assign(intermediateResults, {
+    taskAggregates: (0, _task_aggregates.default)(intermediateResults, action)
+  });
+  intermediateResults["tbosCookieTrail"] = state["tbosCookieTrail"];
+  intermediateResults = Object.assign(intermediateResults, (0, _tbos_cookie_trail.default)(intermediateResults, action));
+  return intermediateResults;
+}
+
+function reducers() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  var firstResult = tbosReducers(state, action);
+  return Object.assign(firstResult, {
+    checkedCookieTrails: (0, _checked_cookie_trails.default)(state.checkedCookieTrails, action)
+  });
+}
+
+function undoableState() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  return Object.assign((0, _reduxUndo.default)(reducers, {
+    filter: (0, _reduxUndo.excludeAction)([_action_type.ActionType.TOGGLE_TRAIL]),
+    undoType: _action_type.ActionType.UNDO,
+    ignoreInitialState: true
+  })(state, action), {
+    lastAction: action
+  });
+}
+
+;
+},{"./reverse_hiearchy":"redux/reducers/reverse_hiearchy.js","./hiearchy":"redux/reducers/hiearchy.js","./active":"redux/reducers/active.js","./name":"redux/reducers/name.js","./tbos_root_path":"redux/reducers/tbos_root_path.js","./name_to_tasks":"redux/reducers/name_to_tasks.js","./task_aggregates":"redux/reducers/task_aggregates.js","./tbos_cookie_trail":"redux/reducers/tbos_cookie_trail.js","./checked_cookie_trails":"redux/reducers/checked_cookie_trails.js","redux-undo":"../node_modules/redux-undo/lib/index.js","./position":"redux/reducers/position.js","./../actions/tbos/action_type":"redux/actions/tbos/action_type.js","./base":"redux/reducers/base.js","./last_action":"redux/reducers/last_action.js"}],"../node_modules/redux-thunk/es/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+function createThunkMiddleware(extraArgument) {
+  return function (_ref) {
+    var dispatch = _ref.dispatch,
+        getState = _ref.getState;
+    return function (next) {
+      return function (action) {
+        if (typeof action === 'function') {
+          return action(dispatch, getState, extraArgument);
+        }
+
+        return next(action);
+      };
+    };
+  };
+}
+
+var thunk = createThunkMiddleware();
+thunk.withExtraArgument = createThunkMiddleware;
+var _default = thunk;
+exports.default = _default;
+},{}],"firebase/firestore_sync.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.syncer = syncer;
+
+var _store = require("./../store");
+
+var _action_type = require("./../redux/actions/tbos/action_type");
+
+var _config = require("./config");
+
+function createDocFromStore(task, presentData) {
+  var newDocument = {};
+  task = task.split("_")[0];
+
+  for (var key in presentData) {
+    if (presentData[key][task] != undefined) {
+      newDocument[key] = presentData[key][task];
+    }
+  }
+
+  newDocument["u"] = "userid"; //TODO filler for actual userid
+
+  return newDocument;
+}
+
+function returnUnderscoreUserId() {
+  return "_userid";
+}
+
+function syncer(store) {
+  store.subscribe(function () {
+    var data = store.getState().present;
+    var action = store.getState().lastAction;
+    var isUndo = false;
+    console.log(_action_type.ActionType.UNDO);
+
+    if (action.type == _action_type.ActionType.UNDO) {
+      isUndo = true;
+      action = store.getState().future[0].lastAction;
+      console.log(action);
+    }
+
+    var currentRoot = action.currentRoot;
+
+    if (currentRoot == "idroot") {
+      currentRoot += returnUnderscoreUserId();
+    }
+
+    var batcher = _config.db.batch();
+
+    var tasksCollection = _config.db.collection('tasks');
+
+    var usersCollection = _config.db.collection('users');
+
+    var updateCurrentTaskStateActions = new Set([_action_type.ActionType.COMPLETE_TASK, _action_type.ActionType.DELETE_TASK, _action_type.ActionType.CREATE_TASKS]);
+    var categorizeTaskActions = new Set([_action_type.ActionType.CATEGORIZE_TASK]);
+    var dragTaskActions = new Set([_action_type.ActionType.DRAG_TASK]);
+    var toggleTrailActions = new Set([_action_type.ActionType.TOGGLE_TRAIL]);
+    var createCookie = new Set([_action_type.ActionType.COMPLETE_TASK]);
+
+    if (createCookie.has(action.type)) {
+      batcher.update(usersCollection.doc("userid"), {
+        "mCV": data["maxCookieVision"]
+      });
+    }
+
+    if (updateCurrentTaskStateActions.has(action.type)) {
+      var tasks = [{
+        "id": action.taskId
+      }];
+
+      if (tasks[0]["id"] == undefined) {
+        tasks = action.tasks;
+      }
+
+      var _iteratorNormalCompletion = true;
+      var _didIteratorError = false;
+      var _iteratorError = undefined;
+
+      try {
+        for (var _iterator = tasks[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+          var task = _step.value;
+
+          if (isUndo && action.type == _action_type.ActionType.CREATE_TASKS) {
+            batcher.delete(tasksCollection.doc(task.id));
+          } else {
+            var newId = tasksCollection.doc();
+            batcher.set(tasksCollection.doc(task.id), createDocFromStore(task.id, data));
+          }
+        }
+      } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion && _iterator.return != null) {
+            _iterator.return();
+          }
+        } finally {
+          if (_didIteratorError) {
+            throw _iteratorError;
+          }
+        }
+      }
+
+      batcher.set(tasksCollection.doc(currentRoot), createDocFromStore(currentRoot, data));
+      var tempRoot = currentRoot;
+
+      while (data["reverseHiearchy"][tempRoot] != null) {
+        tempRoot = data["reverseHiearchy"][tempRoot];
+
+        if (tempRoot == "idroot") {
+          var suffixed = tempRoot + returnUnderscoreUserId();
+          batcher.update(tasksCollection.doc(suffixed), {
+            "taskAggregates": data["taskAggregates"][tempRoot],
+            "tbosCookieTrail": data["tbosCookieTrail"][tempRoot]
+          });
+        } else {
+          batcher.update(tasksCollection.doc(tempRoot), {
+            "taskAggregates": data["taskAggregates"][tempRoot],
+            "tbosCookieTrail": data["tbosCookieTrail"][tempRoot]
+          });
+        }
+      }
+    }
+
+    if (categorizeTaskActions.has(action.type)) {
+      batcher.update(tasksCollection.doc(action.child), {
+        "reverseHiearchy": data["reverseHiearchy"][action.child]
+      });
+      batcher.set(tasksCollection.doc(action.parent), createDocFromStore(action.parent, data));
+      batcher.set(tasksCollection.doc(currentRoot), createDocFromStore(currentRoot, data));
+    }
+
+    if (dragTaskActions.has(action.type)) {
+      batcher.update(tasksCollection.doc(action.taskId), {
+        "position": data["position"][action.taskId]
+      });
+    }
+
+    if (toggleTrailActions.has(action.type)) {
+      batcher.update(usersCollection.doc("userid"), {
+        "cT": data["checkedCookieTrails"]
+      }); //TODO: userid used as placeholder for actual user id
+    }
+
+    batcher.commit().then(function () {
+      console.log("update succeeded");
+    });
+  });
+}
+},{"./../store":"store.js","./../redux/actions/tbos/action_type":"redux/actions/tbos/action_type.js","./config":"firebase/config.js"}],"store.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.getTasksThunk = getTasksThunk;
+exports.store = void 0;
+
+var _reducers = _interopRequireDefault(require("./redux/reducers"));
+
+var _global_constants = require("./global_constants");
+
+var _redux = require("redux");
+
+var _reduxThunk = _interopRequireDefault(require("redux-thunk"));
+
+var _config = require("./firebase/config");
+
+var _firestore_sync = require("./firebase/firestore_sync");
+
+var _task = require("./redux/actions/tbos/task");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// let data = {
+//   "hiearchy": {
+//     "idroot": {
+//       "id1": "id1",
+//       "id2": "id2",
+//       "id3": "id3",
+//       "id4": "id4",
+//     },
+//     "id1": {
+//     },
+//     "id2": {
+//     },
+//     "id3": {
+//     },
+//     "id4": {
+//     }
+//   },
+//   "name": {
+//     "id1": "Task 1",
+//     "id2": "Task 2",
+//     "id3": "Task 3",
+//     "id4": "Task 4",
+//     "idroot": "Your Main Trail"
+//   },
+//   "active": {
+//     "id1": TaskState.active,
+//     "id2": TaskState.active,
+//     "id3": TaskState.active,
+//     "id4": TaskState.active
+//   },
+//   "reverseHiearchy":{
+//     "id3": "idroot",
+//     "id1": "idroot",
+//     "id2": "idroot",
+//     "id4": "idroot"
+//   },
+//   "tbosRootPath": ["idroot"],
+//   "checkedCookieTrails": ["idroot"],
+//   "nameToTasks": {
+//     "Task 1": ["id1"],
+//     "Task 2": ["id2"],
+//     "Task 3": ["id3"],
+//     "Task 4": ["id4"]
+//   },
+//   "position": {
+//     "id1": {"x": 0.1, "y": 0.4},
+//     "id2": {"x": 0.5, "y": 0.3},
+//     "id3": {"x": 0.8, "y": 0.2},
+//     "id4": {"x": 0.3, "y": 0.5}
+//   },
+//   "taskAggregates": {
+//     "id1": {
+//       "completed": 0,
+//       "deleted": 0,
+//       "total": 1,
+//       "moved": 0
+//     },
+//     "id2": {
+//       "completed": 0,
+//       "deleted": 0,
+//       "total": 1,
+//       "moved": 0
+//     },
+//     "id3": {
+//       "completed": 0,
+//       "deleted": 0,
+//       "total": 1,
+//       "moved": 0
+//     },
+//     "id4": {
+//       "completed": 0,
+//       "deleted": 0,
+//       "total": 1,
+//       "moved": 0
+//     },
+//     "idroot": {
+//       "completed": 0,
+//       "deleted": 0,
+//       "total": 4,
+//       "moved": 0
+//     }
+//   },
+//   "tbosCookieTrail": {
+//     "idroot": [{"productivity":0, "vision":0, "timestamp": new Date().getTime(), "stop":false}]
+//   },
+//   "maxCookieVision": 1,
+//   "lastAction": {'type': 'NONE'}
+// };
+var data = {
+  //TODO: each time a user is created this should be the starting schema
+  "hiearchy": {
+    "idroot": {}
+  },
+  "name": {
+    "idroot": "Your Main Trail"
+  },
+  "active": {
+    "idroot": _global_constants.TaskState.active
+  },
+  "reverseHiearchy": {},
+  "tbosRootPath": ["idroot"],
+  "checkedCookieTrails": ["idroot"],
+  "nameToTasks": {},
+  "position": {},
+  "taskAggregates": {
+    "idroot": {
+      "completed": 0,
+      "deleted": 0,
+      "total": 1,
+      "moved": 0
+    }
+  },
+  "tbosCookieTrail": {
+    "idroot": []
+  },
+  "maxCookieVision": 1,
+  "lastAction": {
+    'type': 'NONE'
+  }
+};
+
+var tasks = _config.db.collection('tasks');
+
+var users = _config.db.collection("users");
+
+function getTasksThunk() {
+  return function (dispatch) {
+    tasks.where("u", "==", "userid").get().then(function (coll) {
+      //TODO: userid used as filler for userid
+      coll.forEach(function (doc) {
+        var docId = doc.id;
+        docId = docId.split('_')[0];
+        var docData = doc.data();
+        console.log(docData);
+
+        if (data["nameToTasks"][docData["name"]] == undefined) {
+          data["nameToTasks"][docData["name"]] = [docId];
+        } else {
+          data["nameToTasks"][docData["name"]].push(docId);
+        }
+
+        for (var key in docData) {
+          if (key != 'u') data[key][docId] = docData[key];
+        }
+      });
+      users.doc("userid").get().then(function (userDoc) {
+        //todo userid is filler
+        var userData = userDoc.data();
+        data['checkedCookieTrails'] = userData['cT'];
+        data['maxCookieVision'] = userData['mCV'];
+      }).then(function () {
+        dispatch((0, _task.getTasks)(data));
+      });
+    });
+  };
+}
+
+var store = (0, _redux.createStore)(_reducers.default, data, (0, _redux.applyMiddleware)(_reduxThunk.default));
+exports.store = store;
+(0, _firestore_sync.syncer)(store);
+},{"./redux/reducers":"redux/reducers/index.js","./global_constants":"global_constants.js","redux":"../node_modules/redux/es/redux.js","redux-thunk":"../node_modules/redux-thunk/es/index.js","./firebase/config":"firebase/config.js","./firebase/firestore_sync":"firebase/firestore_sync.js","./redux/actions/tbos/task":"redux/actions/tbos/task.js"}],"two-birds-one-stone/index.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -67876,6 +69215,8 @@ var _add_task = _interopRequireDefault(require("./components/add_task"));
 var _tbos_drag_canvas = _interopRequireDefault(require("./components/tbos_drag_canvas"));
 
 var _breadcrumbs = _interopRequireDefault(require("./components/breadcrumbs"));
+
+var _store = require("../store");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -68049,10 +69390,17 @@ function mapStateToProps(state) {
   return state.present;
 }
 
-var _default = (0, _reactRedux.connect)(mapStateToProps)(TwoBirdsOneStone);
+var mapDispatch = function mapDispatch(dispatch) {
+  dispatch((0, _store.getTasksThunk)());
+  return {
+    dispatch: dispatch
+  };
+};
+
+var _default = (0, _reactRedux.connect)(mapStateToProps, mapDispatch)(TwoBirdsOneStone);
 
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","react-redux":"../node_modules/react-redux/es/index.js","./tbos_constants":"two-birds-one-stone/tbos_constants.js","./../redux/actions/tbos":"redux/actions/tbos/index.js","redux":"../node_modules/redux/es/redux.js","./../global_constants":"global_constants.js","react-dnd":"../node_modules/react-dnd/lib/index.js","react-dnd-html5-backend":"../node_modules/react-dnd-html5-backend/lib/index.js","./components/tbos_canvas":"two-birds-one-stone/components/tbos_canvas.js","./components/check_list":"two-birds-one-stone/components/check_list.js","./components/add_task":"two-birds-one-stone/components/add_task.js","./components/tbos_drag_canvas":"two-birds-one-stone/components/tbos_drag_canvas.js","./components/breadcrumbs":"two-birds-one-stone/components/breadcrumbs.js"}],"../node_modules/moment/moment.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-redux":"../node_modules/react-redux/es/index.js","./tbos_constants":"two-birds-one-stone/tbos_constants.js","./../redux/actions/tbos":"redux/actions/tbos/index.js","redux":"../node_modules/redux/es/redux.js","./../global_constants":"global_constants.js","react-dnd":"../node_modules/react-dnd/lib/index.js","react-dnd-html5-backend":"../node_modules/react-dnd-html5-backend/lib/index.js","./components/tbos_canvas":"two-birds-one-stone/components/tbos_canvas.js","./components/check_list":"two-birds-one-stone/components/check_list.js","./components/add_task":"two-birds-one-stone/components/add_task.js","./components/tbos_drag_canvas":"two-birds-one-stone/components/tbos_drag_canvas.js","./components/breadcrumbs":"two-birds-one-stone/components/breadcrumbs.js","../store":"store.js"}],"../node_modules/moment/moment.js":[function(require,module,exports) {
 var define;
 var global = arguments[3];
 //! moment.js
@@ -90976,1136 +92324,7 @@ if ("development" !== "production") {
     style: _propTypes.default.object
   });
 }
-},{"@babel/runtime/helpers/esm/inheritsLoose":"../node_modules/@babel/runtime/helpers/esm/inheritsLoose.js","react":"../node_modules/react/index.js","react-router":"../node_modules/react-router/esm/react-router.js","history":"../node_modules/history/esm/history.js","prop-types":"../node_modules/prop-types/index.js","tiny-warning":"../node_modules/tiny-warning/dist/tiny-warning.esm.js","@babel/runtime/helpers/esm/extends":"../node_modules/@babel/runtime/helpers/esm/extends.js","@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"../node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js","tiny-invariant":"../node_modules/tiny-invariant/dist/tiny-invariant.esm.js"}],"redux/reducers/reverse_hiearchy.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = reverseHiearchy;
-
-var _action_type = require("./../actions/tbos/action_type");
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function reverseHiearchy() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  var action = arguments.length > 1 ? arguments[1] : undefined;
-  var newState = state;
-
-  switch (action.type) {
-    case _action_type.ActionType.CATEGORIZE_TASK:
-      newState = _objectSpread({}, state);
-      newState[action.child] = action.parent;
-      break;
-
-    case _action_type.ActionType.CREATE_TASK_COLLISION:
-      newState = _objectSpread({}, state);
-      newState[action.taskA] = action.taskId;
-      newState[action.taskB] = action.taskId;
-      newState[action.taskId] = action.currentRoot;
-      break;
-
-    case _action_type.ActionType.CREATE_TASKS:
-      newState = _objectSpread({}, state);
-      var _iteratorNormalCompletion = true;
-      var _didIteratorError = false;
-      var _iteratorError = undefined;
-
-      try {
-        for (var _iterator = action.tasks[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-          var task = _step.value;
-          newState[task.id] = action.currentRoot;
-        }
-      } catch (err) {
-        _didIteratorError = true;
-        _iteratorError = err;
-      } finally {
-        try {
-          if (!_iteratorNormalCompletion && _iterator.return != null) {
-            _iterator.return();
-          }
-        } finally {
-          if (_didIteratorError) {
-            throw _iteratorError;
-          }
-        }
-      }
-
-    default:
-      break;
-  }
-
-  return newState;
-}
-},{"./../actions/tbos/action_type":"redux/actions/tbos/action_type.js"}],"redux/reducers/hiearchy.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = hiearchy;
-
-var _action_type = require("./../actions/tbos/action_type");
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function hiearchy() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  var action = arguments.length > 1 ? arguments[1] : undefined;
-  var newState = state;
-
-  switch (action.type) {
-    //create new task action
-    case _action_type.ActionType.CREATE_TASK_COLLISION:
-      newState = _objectSpread({}, state);
-      newState[action.taskId] = {};
-      newState[action.taskId][action.taskA] = action.taskA;
-      newState[action.taskId][action.taskB] = action.taskB;
-      newState[action.currentRoot] = _objectSpread({}, newState[action.currentRoot]);
-      newState[action.currentRoot][action.taskId] = action.taskId;
-      delete newState[action.currentRoot][action.taskA];
-      delete newState[action.currentRoot][action.taskB];
-      break;
-
-    case _action_type.ActionType.CATEGORIZE_TASK:
-      newState = _objectSpread({}, state);
-      newState[action.parent] = _objectSpread({}, newState[action.parent]);
-      newState[action.parent][action.child] = action.child;
-      newState[action.currentRoot] = _objectSpread({}, newState[action.currentRoot]);
-      delete newState[action.currentRoot][action.child];
-      break;
-
-    case _action_type.ActionType.CREATE_TASKS:
-      newState = _objectSpread({}, state); //update tasks tree
-
-      var _iteratorNormalCompletion = true;
-      var _didIteratorError = false;
-      var _iteratorError = undefined;
-
-      try {
-        for (var _iterator = action.tasks[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-          var task = _step.value;
-          newState[task.id] = {};
-          newState[action.currentRoot][task.id] = task.id;
-        }
-      } catch (err) {
-        _didIteratorError = true;
-        _iteratorError = err;
-      } finally {
-        try {
-          if (!_iteratorNormalCompletion && _iterator.return != null) {
-            _iterator.return();
-          }
-        } finally {
-          if (_didIteratorError) {
-            throw _iteratorError;
-          }
-        }
-      }
-
-    default:
-      break;
-  }
-
-  return newState;
-}
-},{"./../actions/tbos/action_type":"redux/actions/tbos/action_type.js"}],"redux/reducers/active.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = active;
-
-var _action_type = require("./../actions/tbos/action_type");
-
-var _global_constants = require("./../../global_constants");
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function active() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  var action = arguments.length > 1 ? arguments[1] : undefined;
-  var newState = state["active"];
-  var currentTask;
-
-  switch (action.type) {
-    case _action_type.ActionType.CREATE_TASK_COLLISION:
-      newState = _objectSpread({}, state["active"]);
-      newState[action.taskId] = _global_constants.TaskState.active;
-      break;
-
-    case _action_type.ActionType.COMPLETE_TASK:
-      newState = _objectSpread({}, state["active"]);
-      var tasksToComplete = [action.taskId]; //delete the task and all tasks that are a child of the task
-
-      while (tasksToComplete.length > 0) {
-        currentTask = tasksToComplete.pop();
-        newState[currentTask] = _global_constants.TaskState.completed;
-
-        for (var child in state["hiearchy"][currentTask]) {
-          if (newState["active"] == _global_constants.TaskState.active) tasksToComplete.push(child);
-        }
-      }
-
-      break;
-
-    case _action_type.ActionType.DELETE_TASK:
-      newState = _objectSpread({}, state["active"]);
-      var tasksToDelete = [action.taskId]; //delete the task and all tasks that are a child of the task
-
-      while (tasksToDelete.length > 0) {
-        currentTask = tasksToDelete.pop();
-        newState[currentTask] = _global_constants.TaskState.deleted;
-
-        for (var _child in state["hiearchy"][currentTask]) {
-          if (newState["active"] == _global_constants.TaskState.active) tasksToDelete.push(_child);
-        }
-      }
-
-      break;
-
-    case _action_type.ActionType.CREATE_TASKS:
-      newState = _objectSpread({}, state["active"]);
-      var _iteratorNormalCompletion = true;
-      var _didIteratorError = false;
-      var _iteratorError = undefined;
-
-      try {
-        for (var _iterator = action.tasks[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-          var task = _step.value;
-          newState[task.id] = _global_constants.TaskState.active;
-        }
-      } catch (err) {
-        _didIteratorError = true;
-        _iteratorError = err;
-      } finally {
-        try {
-          if (!_iteratorNormalCompletion && _iterator.return != null) {
-            _iterator.return();
-          }
-        } finally {
-          if (_didIteratorError) {
-            throw _iteratorError;
-          }
-        }
-      }
-
-    default:
-      break;
-  }
-
-  return newState;
-}
-},{"./../actions/tbos/action_type":"redux/actions/tbos/action_type.js","./../../global_constants":"global_constants.js"}],"redux/reducers/name.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = name;
-
-var _action_type = require("./../actions/tbos/action_type");
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function name() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  var action = arguments.length > 1 ? arguments[1] : undefined;
-  var newState = state;
-
-  switch (action.type) {
-    case _action_type.ActionType.CREATE_TASK_COLLISION:
-      newState = _objectSpread({}, state);
-      newState[action.taskId] = action.taskName;
-      break;
-
-    case _action_type.ActionType.CREATE_TASKS:
-      newState = _objectSpread({}, state);
-      var _iteratorNormalCompletion = true;
-      var _didIteratorError = false;
-      var _iteratorError = undefined;
-
-      try {
-        for (var _iterator = action.tasks[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-          var task = _step.value;
-          newState[task.id] = task.name;
-        }
-      } catch (err) {
-        _didIteratorError = true;
-        _iteratorError = err;
-      } finally {
-        try {
-          if (!_iteratorNormalCompletion && _iterator.return != null) {
-            _iterator.return();
-          }
-        } finally {
-          if (_didIteratorError) {
-            throw _iteratorError;
-          }
-        }
-      }
-
-    default:
-      break;
-  }
-
-  return newState;
-}
-},{"./../actions/tbos/action_type":"redux/actions/tbos/action_type.js"}],"redux/reducers/tbos_root_path.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = tbosRootPath;
-
-var _action_type = require("./../actions/tbos/action_type");
-
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
-
-function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
-
-function tbosRootPath() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  var action = arguments.length > 1 ? arguments[1] : undefined;
-  var newState = state;
-
-  switch (action.type) {
-    case _action_type.ActionType.TBOS_POP_ROOT:
-      newState = _toConsumableArray(state);
-      newState.pop();
-      break;
-
-    case _action_type.ActionType.TBOS_ADD_ROOT:
-      newState = [].concat(_toConsumableArray(state), [action.taskId]);
-      break;
-
-    case _action_type.ActionType.TBOS_POP_ROOT_UNTIL:
-      newState = _toConsumableArray(state);
-
-      while (newState[newState.length - 1] != action.taskId) {
-        newState.pop();
-      }
-
-    default:
-      break;
-  }
-
-  return newState;
-}
-},{"./../actions/tbos/action_type":"redux/actions/tbos/action_type.js"}],"redux/reducers/name_to_tasks.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = nameToTasks;
-
-var _action_type = require("./../actions/tbos/action_type");
-
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
-
-function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function nameToTasks() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  var action = arguments.length > 1 ? arguments[1] : undefined;
-  var newState = state;
-
-  switch (action.type) {
-    case _action_type.ActionType.CREATE_TASK_COLLISION:
-      newState = _objectSpread({}, state);
-
-      if (newState[action.taskName] == undefined) {
-        newState[action.taskName] = [];
-      }
-
-      newState[action.taskName] = [].concat(_toConsumableArray(newState[action.taskName]), [action.taskId]);
-      break;
-
-    case _action_type.ActionType.CREATE_TASKS:
-      newState = _objectSpread({}, state);
-      var _iteratorNormalCompletion = true;
-      var _didIteratorError = false;
-      var _iteratorError = undefined;
-
-      try {
-        for (var _iterator = action.tasks[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-          var task = _step.value;
-
-          if (newState[task.name] == undefined) {
-            newState[task.name] = [];
-          }
-
-          newState[task.name] = [].concat(_toConsumableArray(newState[task.name]), [task.id]);
-        }
-      } catch (err) {
-        _didIteratorError = true;
-        _iteratorError = err;
-      } finally {
-        try {
-          if (!_iteratorNormalCompletion && _iterator.return != null) {
-            _iterator.return();
-          }
-        } finally {
-          if (_didIteratorError) {
-            throw _iteratorError;
-          }
-        }
-      }
-
-      break;
-
-    default:
-      break;
-  }
-
-  return newState;
-}
-},{"./../actions/tbos/action_type":"redux/actions/tbos/action_type.js"}],"redux/reducers/task_aggregates.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = taskAggregates;
-
-var _action_type = require("./../actions/tbos/action_type");
-
-var _global_constants = require("./../../global_constants");
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function calculateActiveTasks(agg) {
-  return agg["total"] - agg["completed"] - agg["deleted"];
-}
-
-function createAggregate() {
-  return {
-    "completed": 0,
-    "deleted": 0,
-    "total": 1,
-    "moved": 0
-  };
-}
-
-function taskAggregates() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  var action = arguments.length > 1 ? arguments[1] : undefined;
-  var newState = state["taskAggregates"];
-  var reverseHiearchy = state["reverseHiearchy"];
-  var currentTask = action.currentRoot;
-
-  switch (action.type) {
-    case _action_type.ActionType.CREATE_TASK_COLLISION:
-      newState = _objectSpread({}, newState);
-      newState[action.taskId] = createAggregate();
-      var taskAValue;
-      var taskBValue;
-
-      for (var key in newState[action.taskB]) {
-        if (key != "moved") {
-          taskAValue = newState[action.taskA][key];
-          taskBValue = newState[action.taskB][key];
-          var count = taskAValue + taskBValue;
-          newState[action.taskId][key] = count;
-        }
-      }
-
-      newState[action.taskA]["moved"] += 1;
-      newState[action.taskB]["moved"] += 1;
-      break;
-
-    case _action_type.ActionType.CATEGORIZE_TASK:
-      newState = _objectSpread({}, newState);
-      newState[action.child]["moved"] += 1;
-      var parent;
-      var child;
-      var isCat = Object.keys(state["hiearchy"][action.parent]).filter(function (x) {
-        return state["active"][x] == _global_constants.TaskState.active;
-      }).length > 1;
-
-      for (var _key in newState[action.parent]) {
-        if (_key != "moved") {
-          parent = newState[action.parent][_key];
-          child = newState[action.child][_key];
-
-          var _count = parent + child;
-
-          newState[action.parent][_key] = _count;
-        }
-      }
-
-      break;
-
-    case _action_type.ActionType.COMPLETE_TASK:
-      newState = _objectSpread({}, newState);
-      var toCompleteTaskCount = newState[action.taskId]["total"] - newState[action.taskId]["completed"] - newState[action.taskId]["deleted"];
-      var currentCompleted; //for total tasks added
-
-      while (currentTask != undefined) {
-        currentCompleted = newState[currentTask]["completed"];
-        currentTotal = newState[currentTask]["total"];
-        newState[currentTask] = _objectSpread({}, newState[currentTask], {
-          "completed": currentCompleted + toCompleteTaskCount
-        });
-        currentTask = reverseHiearchy[currentTask];
-      }
-
-      var tasksToComplete = [action.taskId];
-
-      while (tasksToComplete.length > 0) {
-        currentTask = tasksToComplete.pop();
-        currentCompleted = newState[currentTask]["completed"];
-        newState[currentTask] = _objectSpread({}, newState[currentTask], {
-          "completed": currentCompleted + calculateActiveTasks(newState[currentTask])
-        });
-
-        for (var _child in state["hiearchy"][currentTask]) {
-          tasksToComplete.push(_child);
-        }
-      }
-
-      break;
-
-    case _action_type.ActionType.DELETE_TASK:
-      newState = _objectSpread({}, newState);
-      var toDeleteTaskCount = calculateActiveTasks(newState[action.taskId]);
-      var currentDeleted; //for total tasks added
-
-      while (currentTask != undefined) {
-        currentDeleted = newState[currentTask]["deleted"];
-        currentTotal = newState[currentTask]["total"];
-        newState[currentTask] = _objectSpread({}, newState[currentTask], {
-          "deleted": currentDeleted + toDeleteTaskCount
-        });
-        currentTask = reverseHiearchy[currentTask];
-      }
-
-      var tasksToDelete = [action.taskId]; //delete the task and all tasks that are a child of the task
-
-      while (tasksToDelete.length > 0) {
-        currentTask = tasksToDelete.pop();
-        currentDeleted = newState[currentTask]["deleted"];
-        newState[currentTask] = _objectSpread({}, newState[currentTask], {
-          "deleted": currentDeleted + calculateActiveTasks(newState[currentTask])
-        });
-
-        for (var _child2 in state["hiearchy"][currentTask]) {
-          tasksToDelete.push(_child2);
-        }
-      }
-
-      break;
-
-    case _action_type.ActionType.CREATE_TASKS:
-      newState = _objectSpread({}, newState);
-      var _iteratorNormalCompletion = true;
-      var _didIteratorError = false;
-      var _iteratorError = undefined;
-
-      try {
-        for (var _iterator = action.tasks[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-          var task = _step.value;
-          newState[task.id] = createAggregate();
-        }
-      } catch (err) {
-        _didIteratorError = true;
-        _iteratorError = err;
-      } finally {
-        try {
-          if (!_iteratorNormalCompletion && _iterator.return != null) {
-            _iterator.return();
-          }
-        } finally {
-          if (_didIteratorError) {
-            throw _iteratorError;
-          }
-        }
-      }
-
-      var totalTasksAdded = action.tasks.length;
-      var currentTotal;
-
-      while (currentTask != undefined) {
-        currentTotal = newState[currentTask]["total"];
-        newState[currentTask] = _objectSpread({}, newState[currentTask], {
-          "total": currentTotal + totalTasksAdded
-        });
-        currentTask = reverseHiearchy[currentTask];
-      }
-
-      break;
-
-    default:
-      break;
-  }
-
-  return newState;
-}
-},{"./../actions/tbos/action_type":"redux/actions/tbos/action_type.js","./../../global_constants":"global_constants.js"}],"redux/reducers/tbos_cookie_trail.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = tbosCookieTrail;
-
-var _action_type = require("./../actions/tbos/action_type");
-
-var _global_constants = require("./../../global_constants");
-
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
-
-function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function calculateLeafTasks(agg) {
-  return agg["total"];
-}
-
-function calculateCategoryVisionScore(category, state) {
-  var agg = state["taskAggregates"][category];
-  var rootLevelTasks = Object.keys(state["hiearchy"][category]);
-  var numRootTasks = rootLevelTasks.length;
-  var numTasks = calculateLeafTasks(agg);
-  var visionScore = (numTasks - numRootTasks) / numTasks;
-  return visionScore;
-}
-
-function calculateCategoryVisionScorev2(category, state) {
-  return state["taskAggregates"][category]["moved"];
-}
-
-function calculateProductivityScore(category, state) {
-  var agg = state["taskAggregates"][category];
-  if (agg["total"] == agg["deleted"]) return 0;
-  return agg["completed"] / (agg["total"] - agg["deleted"]);
-}
-
-function makeDataPoint(category, state, stopBoolean, timestamp) {
-  return {
-    "productivity": calculateProductivityScore(category, state),
-    "vision": calculateCategoryVisionScore(category, state),
-    "timestamp": timestamp,
-    "stop": stopBoolean
-  };
-}
-
-function makeDataPointv2(category, state, stopBoolean, timestamp) {
-  return {
-    "productivity": calculateProductivityScore("idroot", state),
-    "vision": calculateCategoryVisionScorev2(category, state),
-    "timestamp": timestamp,
-    "stop": stopBoolean
-  };
-}
-
-function anyActiveTasks(state, currentTask) {
-  var totalRemaining = Object.keys(state["hiearchy"][currentTask]);
-  totalRemaining = totalRemaining.filter(function (task) {
-    return state["active"][task] == _global_constants.TaskState.active;
-  });
-  totalRemaining = totalRemaining.length;
-  return totalRemaining > 0;
-}
-
-function tbosCookieTrail() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  var action = arguments.length > 1 ? arguments[1] : undefined;
-  var newState = state["tbosCookieTrail"];
-  var newMax = state["maxCookieVision"];
-  var currentTask;
-  var timestamp = action.timestamp;
-  var arrA;
-  var arrB;
-  var total;
-
-  switch (action.type) {
-    case _action_type.ActionType.CREATE_TASK_COLLISION:
-      newState = _objectSpread({}, newState); //create data point for new category
-
-      arrA = newState[action.taskA] == undefined ? [] : newState[action.taskA];
-      arrB = newState[action.taskB] == undefined ? [] : newState[action.taskB];
-      _total = [].concat(_toConsumableArray(arrA), _toConsumableArray(arrB));
-
-      _total.sort(function (object) {
-        return object.timestamp;
-      });
-
-      newState[action.taskId] = _total;
-      break;
-
-    case _action_type.ActionType.CATEGORIZE_TASK:
-      arrA = newState[action.parent] == undefined ? [] : newState[action.parent];
-      arrB = newState[action.child] == undefined ? [] : newState[action.child];
-
-      var _total = [].concat(_toConsumableArray(arrA), _toConsumableArray(arrB));
-
-      _total.sort(function (object) {
-        return object.timestamp;
-      });
-
-      newState[action.parent] = _total;
-      break;
-
-    case _action_type.ActionType.COMPLETE_TASK:
-      newState = _objectSpread({}, newState);
-      var trailsToUpdate = [action.taskId];
-      var currentTrailToUpdate;
-      var activeChildren;
-      var newDataPoint;
-
-      while (trailsToUpdate.length > 0) {
-        currentTrailToUpdate = trailsToUpdate.pop();
-        activeChildren = false;
-
-        for (var child in state["hiearchy"][currentTask]) {
-          if (state["active"][child] == _global_constants.TaskState.active) {
-            trailsToUpdate.push(child);
-            activeChildren = true;
-          }
-        }
-
-        if (!activeChildren) {
-          newDataPoint = makeDataPointv2(currentTrailToUpdate, state, false, timestamp);
-          newMax = Math.max(state["maxCookieVision"], newDataPoint["vision"]);
-          currentTask = state["reverseHiearchy"][currentTrailToUpdate];
-
-          while (currentTask != undefined) {
-            newState[currentTask] = [].concat(_toConsumableArray(newState[currentTask]), [newDataPoint]);
-            currentTask = state["reverseHiearchy"][currentTask];
-          }
-        }
-      }
-
-      break;
-
-    default:
-      break;
-  }
-
-  return {
-    "tbosCookieTrail": newState,
-    "maxCookieVision": newMax
-  };
-}
-},{"./../actions/tbos/action_type":"redux/actions/tbos/action_type.js","./../../global_constants":"global_constants.js"}],"redux/reducers/checked_cookie_trails.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = checkedCookieTrails;
-
-var _action_type = require("./../actions/tbos/action_type");
-
-function checkedCookieTrails() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  var action = arguments.length > 1 ? arguments[1] : undefined;
-  var newState = state;
-
-  switch (action.type) {
-    case _action_type.ActionType.TOGGLE_TRAIL:
-      newState = action.trail;
-
-    default:
-      break;
-  }
-
-  return newState;
-}
-},{"./../actions/tbos/action_type":"redux/actions/tbos/action_type.js"}],"redux/reducers/position.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = position;
-
-var _action_type = require("./../actions/tbos/action_type");
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function position() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  var action = arguments.length > 1 ? arguments[1] : undefined;
-  var newState = state;
-
-  switch (action.type) {
-    case _action_type.ActionType.CREATE_TASKS:
-      newState = _objectSpread({}, state);
-      var _iteratorNormalCompletion = true;
-      var _didIteratorError = false;
-      var _iteratorError = undefined;
-
-      try {
-        for (var _iterator = action.tasks[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-          var task = _step.value;
-          newState[task.id] = {
-            x: task.x,
-            y: task.y
-          };
-        }
-      } catch (err) {
-        _didIteratorError = true;
-        _iteratorError = err;
-      } finally {
-        try {
-          if (!_iteratorNormalCompletion && _iterator.return != null) {
-            _iterator.return();
-          }
-        } finally {
-          if (_didIteratorError) {
-            throw _iteratorError;
-          }
-        }
-      }
-
-      break;
-
-    case _action_type.ActionType.DRAG_TASK:
-      newState = _objectSpread({}, state);
-      newState[action.taskId] = {
-        x: action.x,
-        y: action.y
-      };
-      break;
-
-    default:
-      break;
-  }
-
-  return newState;
-}
-},{"./../actions/tbos/action_type":"redux/actions/tbos/action_type.js"}],"redux/reducers/base.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = base;
-
-var _action_type = require("./../actions/tbos/action_type");
-
-function base() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-  var action = arguments.length > 1 ? arguments[1] : undefined;
-
-  switch (action.type) {
-    case _action_type.ActionType.GET_TASKS:
-      return action.tasks;
-
-    default:
-      return state;
-  }
-}
-},{"./../actions/tbos/action_type":"redux/actions/tbos/action_type.js"}],"redux/reducers/last_action.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = lastAction;
-
-var _action_type = require("./../actions/tbos/action_type");
-
-function lastAction() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  var action = arguments.length > 1 ? arguments[1] : undefined;
-  return action;
-}
-},{"./../actions/tbos/action_type":"redux/actions/tbos/action_type.js"}],"redux/reducers/index.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _reverse_hiearchy = _interopRequireDefault(require("./reverse_hiearchy"));
-
-var _hiearchy = _interopRequireDefault(require("./hiearchy"));
-
-var _active = _interopRequireDefault(require("./active"));
-
-var _name = _interopRequireDefault(require("./name"));
-
-var _tbos_root_path = _interopRequireDefault(require("./tbos_root_path"));
-
-var _name_to_tasks = _interopRequireDefault(require("./name_to_tasks"));
-
-var _task_aggregates = _interopRequireDefault(require("./task_aggregates"));
-
-var _tbos_cookie_trail = _interopRequireDefault(require("./tbos_cookie_trail"));
-
-var _checked_cookie_trails = _interopRequireDefault(require("./checked_cookie_trails"));
-
-var _reduxUndo = _interopRequireWildcard(require("redux-undo"));
-
-var _position = _interopRequireDefault(require("./position"));
-
-var _action_type = require("./../actions/tbos/action_type");
-
-var _base = _interopRequireDefault(require("./base"));
-
-var _last_action = _interopRequireDefault(require("./last_action"));
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function tbosReducers() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  var action = arguments.length > 1 ? arguments[1] : undefined;
-
-  if (action.type == _action_type.ActionType.GET_TASKS) {
-    return (0, _base.default)(state, action);
-  }
-
-  var intermediateResults = {
-    reverseHiearchy: (0, _reverse_hiearchy.default)(state.reverseHiearchy, action),
-    hiearchy: (0, _hiearchy.default)(state.hiearchy, action),
-    active: (0, _active.default)(state, action),
-    name: (0, _name.default)(state.name, action),
-    tbosRootPath: (0, _tbos_root_path.default)(state.tbosRootPath, action),
-    nameToTasks: (0, _name_to_tasks.default)(state.nameToTasks, action),
-    maxCookieVision: state["maxCookieVision"],
-    position: (0, _position.default)(state.position, action),
-    lastAction: (0, _last_action.default)(state.lastAction, action)
-  };
-  intermediateResults["taskAggregates"] = state["taskAggregates"];
-  intermediateResults = Object.assign(intermediateResults, {
-    taskAggregates: (0, _task_aggregates.default)(intermediateResults, action)
-  });
-  intermediateResults["tbosCookieTrail"] = state["tbosCookieTrail"];
-  intermediateResults = Object.assign(intermediateResults, (0, _tbos_cookie_trail.default)(intermediateResults, action));
-  return intermediateResults;
-}
-
-function reducers() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  var action = arguments.length > 1 ? arguments[1] : undefined;
-  var firstResult = tbosReducers(state, action);
-  return Object.assign(firstResult, {
-    checkedCookieTrails: (0, _checked_cookie_trails.default)(state.checkedCookieTrails, action)
-  });
-}
-
-var undoableState = (0, _reduxUndo.default)(reducers, {
-  filter: (0, _reduxUndo.excludeAction)([_action_type.ActionType.TOGGLE_TRAIL])
-});
-var _default = undoableState;
-exports.default = _default;
-},{"./reverse_hiearchy":"redux/reducers/reverse_hiearchy.js","./hiearchy":"redux/reducers/hiearchy.js","./active":"redux/reducers/active.js","./name":"redux/reducers/name.js","./tbos_root_path":"redux/reducers/tbos_root_path.js","./name_to_tasks":"redux/reducers/name_to_tasks.js","./task_aggregates":"redux/reducers/task_aggregates.js","./tbos_cookie_trail":"redux/reducers/tbos_cookie_trail.js","./checked_cookie_trails":"redux/reducers/checked_cookie_trails.js","redux-undo":"../node_modules/redux-undo/lib/index.js","./position":"redux/reducers/position.js","./../actions/tbos/action_type":"redux/actions/tbos/action_type.js","./base":"redux/reducers/base.js","./last_action":"redux/reducers/last_action.js"}],"../node_modules/redux-thunk/es/index.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-function createThunkMiddleware(extraArgument) {
-  return function (_ref) {
-    var dispatch = _ref.dispatch,
-        getState = _ref.getState;
-    return function (next) {
-      return function (action) {
-        if (typeof action === 'function') {
-          return action(dispatch, getState, extraArgument);
-        }
-
-        return next(action);
-      };
-    };
-  };
-}
-
-var thunk = createThunkMiddleware();
-thunk.withExtraArgument = createThunkMiddleware;
-var _default = thunk;
-exports.default = _default;
-},{}],"store.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.getTasksThunk = getTasksThunk;
-exports.store = void 0;
-
-var _reducers = _interopRequireDefault(require("./redux/reducers"));
-
-var _global_constants = require("./global_constants");
-
-var _redux = require("redux");
-
-var _reduxThunk = _interopRequireDefault(require("redux-thunk"));
-
-var _config = require("./firebase/config");
-
-var _task = require("./redux/actions/tbos/task");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var data = {
-  "hiearchy": {
-    "idroot": {
-      "id1": "id1",
-      "id2": "id2",
-      "id3": "id3",
-      "id4": "id4"
-    },
-    "id1": {},
-    "id2": {},
-    "id3": {},
-    "id4": {}
-  },
-  "name": {
-    "id1": "Task 1",
-    "id2": "Task 2",
-    "id3": "Task 3",
-    "id4": "Task 4",
-    "idroot": "Your Main Trail"
-  },
-  "active": {
-    "id1": _global_constants.TaskState.active,
-    "id2": _global_constants.TaskState.active,
-    "id3": _global_constants.TaskState.active,
-    "id4": _global_constants.TaskState.active
-  },
-  "reverseHiearchy": {
-    "id3": "idroot",
-    "id1": "idroot",
-    "id2": "idroot",
-    "id4": "idroot"
-  },
-  "tbosRootPath": ["idroot"],
-  "checkedCookieTrails": ["idroot"],
-  "nameToTasks": {
-    "Task 1": ["id1"],
-    "Task 2": ["id2"],
-    "Task 3": ["id3"],
-    "Task 4": ["id4"]
-  },
-  "position": {
-    "id1": {
-      "x": 0.1,
-      "y": 0.4
-    },
-    "id2": {
-      "x": 0.5,
-      "y": 0.3
-    },
-    "id3": {
-      "x": 0.8,
-      "y": 0.2
-    },
-    "id4": {
-      "x": 0.3,
-      "y": 0.5
-    }
-  },
-  "taskAggregates": {
-    "id1": {
-      "completed": 0,
-      "deleted": 0,
-      "total": 1,
-      "moved": 0
-    },
-    "id2": {
-      "completed": 0,
-      "deleted": 0,
-      "total": 1,
-      "moved": 0
-    },
-    "id3": {
-      "completed": 0,
-      "deleted": 0,
-      "total": 1,
-      "moved": 0
-    },
-    "id4": {
-      "completed": 0,
-      "deleted": 0,
-      "total": 1,
-      "moved": 0
-    },
-    "idroot": {
-      "completed": 0,
-      "deleted": 0,
-      "total": 4,
-      "moved": 0
-    }
-  },
-  "tbosCookieTrail": {
-    "idroot": [{
-      "productivity": 0,
-      "vision": 0,
-      "timestamp": new Date().getTime(),
-      "stop": false
-    }]
-  },
-  "maxCookieVision": 1,
-  "lastAction": {
-    'type': 'NONE'
-  }
-};
-
-var doc = _config.db.collection('tasks');
-
-function getTasksThunk() {
-  return function (dispatch) {
-    doc.get().then(function (coll) {
-      coll.forEach(function (doc) {
-        var docData = doc.data();
-
-        for (key in docData) {
-          data[key][doc.id] = docData[key];
-        }
-      });
-    }).then(function () {
-      dispatch((0, _task.getTasks)(data));
-    });
-  };
-}
-
-var store = (0, _redux.createStore)(_reducers.default, data);
-exports.store = store;
-},{"./redux/reducers":"redux/reducers/index.js","./global_constants":"global_constants.js","redux":"../node_modules/redux/es/redux.js","redux-thunk":"../node_modules/redux-thunk/es/index.js","./firebase/config":"firebase/config.js","./redux/actions/tbos/task":"redux/actions/tbos/task.js"}],"registerServiceWorker.js":[function(require,module,exports) {
+},{"@babel/runtime/helpers/esm/inheritsLoose":"../node_modules/@babel/runtime/helpers/esm/inheritsLoose.js","react":"../node_modules/react/index.js","react-router":"../node_modules/react-router/esm/react-router.js","history":"../node_modules/history/esm/history.js","prop-types":"../node_modules/prop-types/index.js","tiny-warning":"../node_modules/tiny-warning/dist/tiny-warning.esm.js","@babel/runtime/helpers/esm/extends":"../node_modules/@babel/runtime/helpers/esm/extends.js","@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"../node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js","tiny-invariant":"../node_modules/tiny-invariant/dist/tiny-invariant.esm.js"}],"registerServiceWorker.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -92369,7 +92588,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52610" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64847" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

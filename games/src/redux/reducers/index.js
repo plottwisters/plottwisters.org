@@ -43,8 +43,14 @@ function reducers(state = {}, action) {
   return Object.assign(firstResult, {checkedCookieTrails: checkedCookieTrails(state.checkedCookieTrails, action)});
 }
 
-const undoableState = undoable(reducers, {
-  filter: excludeAction([ActionType.TOGGLE_TRAIL])
-});
+export default function undoableState(state = {}, action) {
 
-export default undoableState;
+  return Object.assign(undoable(reducers, {
+        filter: excludeAction([ActionType.TOGGLE_TRAIL]),
+        undoType: ActionType.UNDO,
+        ignoreInitialState: true
+      })(state, action), {
+        lastAction: action
+      })
+
+};

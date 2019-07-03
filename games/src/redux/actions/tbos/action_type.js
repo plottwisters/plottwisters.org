@@ -11,5 +11,6 @@ export const ActionType = {
   TOGGLE_TRAIL: 'TOGGLE_TRAIL',
   DRAG_TASK: 'DRAG_TASK',
   TBOS_POP_ROOT_UNTIL: 'TBOS_POP_ROOT_UNTIL',
-  GET_TASKS: 'GET_TASKS'
+  GET_TASKS: 'GET_TASKS',
+  UNDO: '@@redux-undo/UNDO'
 }

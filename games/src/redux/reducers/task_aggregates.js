@@ -37,13 +37,14 @@ export default function taskAggregates(state= {}, action) {
       break;
     case ActionType.CATEGORIZE_TASK:
         newState = {...newState};
+        newState[action.child] = {...newState[action.child]}
         newState[action.child]["moved"] += 1;
         let parent;
         let child;
 
 
         let isCat = (Object.keys(state["hiearchy"][action.parent]).filter(x=>(state["active"][x] == TaskState.active))).length > 1;
-
+        newState[action.parent] = {...newState[action.parent]}
         for(let key in newState[action.parent]) {
           if(key != "moved") {
             parent = newState[action.parent][key];

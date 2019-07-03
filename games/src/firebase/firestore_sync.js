@@ -1,86 +1,123 @@
 import {store} from './../store';
-
+import {ActionType} from './../redux/actions/tbos/action_type'
+import {db} from './config';
 
 function createDocFromStore(task, presentData) {
-  newDocument={}
+  let newDocument={}
+  task = task.split("_")[0];
   for(let key in presentData) {
-    if(presentData[key][task] != undefined && key != "tbosCookieTrail") {
+    if(presentData[key][task] != undefined) {
         newDocument[key] = presentData[key][task];
     }
   }
+  newDocument["u"] = "userid"; //TODO filler for actual userid
+
   return newDocument;
 }
+function returnUnderscoreUserId() {
+  return "_userid";
+}
+export function syncer(store) {
 
-store.subscribe(()=>{
-  let data = store.getState().present;
+  store.subscribe(() => {
 
-  let action = data.lastAction;
-  let isUndo = false;
-  if(action.type == ActionType.UNDO) {
-    isUndo = true;
-    action = store.getState().future[0].lastAction;
-  }
-  let batcher = db.batch();
-  let tasksCollection = db.collection('tasks');
-  let cookiesCollection = db.collection('cookies');
-  let usersCollection = db.collection('users');
+    let data = store.getState().present;
 
-  let updateCurrentTaskStateActions = new Set([ActionType.COMPLETE_TASK, ActionType.DELETE_TASK, ActionType.CREATE_TASKS]);
-  let categorizeTaskActions = new Set([ActionType.CATEGORIZE_TASK]);
-  let dragTaskActions = new Set([ActionType.DRAG_TASK]);
-  let toggleTrailActions = new Set([ActionType.TOGGLE_TRAIL]);
-  let createCookie = new Set([ActionType.COMPLETE_TASK]);
+    let action = store.getState().lastAction;
+    let isUndo = false;
+    console.log(ActionType.UNDO)
+    if (action.type == ActionType.UNDO) {
+      isUndo = true;
 
-
-
-
-
-  if(createCookie.has(action.type)) {
-    if(isUndo) {
-      batcher.delete(cookiesCollection.doc(action.taskId));
-    } else {
-      let currentTrail = data["tbosCookieTrail"][action.taskId];
-
-      batcher.set(cookiesCollection.doc(action.taskId), currentTrail[currentTrail.length - 1]); //creates a new cookie
+      action = store.getState().future[0].lastAction;
+      console.log(action);
     }
-  }
+    let currentRoot = action.currentRoot;
+    if(currentRoot == "idroot") {
+      currentRoot += returnUnderscoreUserId();
+    }
+    let batcher = db.batch();
+    let tasksCollection = db.collection('tasks');
+    let usersCollection = db.collection('users');
+
+    let updateCurrentTaskStateActions = new Set([ActionType.COMPLETE_TASK, ActionType.DELETE_TASK, ActionType.CREATE_TASKS]);
+    let categorizeTaskActions = new Set([ActionType.CATEGORIZE_TASK]);
+    let dragTaskActions = new Set([ActionType.DRAG_TASK]);
+    let toggleTrailActions = new Set([ActionType.TOGGLE_TRAIL]);
+    let createCookie = new Set([ActionType.COMPLETE_TASK]);
 
 
-  if (updateCurrentTaskStateActions.has(action.type)) {
-    let tasks = [action.taskId]
-    if(tasks[0] == undefined && action.parent == undefined) {
-      tasks = action.tasks;
-    } else {
-      tasks = [action.parent];
+
+    if (createCookie.has(action.type)) {
+      batcher.update(usersCollection.doc("userid"), {
+        "mCV": data["maxCookieVision"]
+      });
     }
 
-    for(let task of tasks) {
-        if(isUndo) {
-          batcher.delete(tasksCollection.doc(task));
+
+
+    if (updateCurrentTaskStateActions.has(action.type)) {
+      let tasks = [{"id":action.taskId}]
+      if (tasks[0]["id"] == undefined) {
+        tasks = action.tasks;
+      }
+
+      for (let task of tasks) {
+        if (isUndo && action.type == ActionType.CREATE_TASKS) {
+          batcher.delete(tasksCollection.doc(task.id));
         } else {
-          batcher.set(tasksCollection.doc(task), createDocFromStore(task,data));
+          let newId = tasksCollection.doc()
+          batcher.set(tasksCollection.doc(task.id), createDocFromStore(task.id, data));
         }
+      }
+
+
+      batcher.set(tasksCollection.doc(currentRoot), createDocFromStore(currentRoot, data));
+      let tempRoot = currentRoot;
+      while (data["reverseHiearchy"][tempRoot] != null) {
+        tempRoot = data["reverseHiearchy"][tempRoot];
+        if(tempRoot == "idroot") {
+          let suffixed = tempRoot +  returnUnderscoreUserId();
+          batcher.update(tasksCollection.doc(suffixed), {
+            "taskAggregates": data["taskAggregates"][tempRoot],
+            "tbosCookieTrail": data["tbosCookieTrail"][tempRoot]
+          })
+        } else {
+          batcher.update(tasksCollection.doc(tempRoot), {
+            "taskAggregates": data["taskAggregates"][tempRoot],
+            "tbosCookieTrail": data["tbosCookieTrail"][tempRoot]
+          })
+        }
+
+
+      }
     }
-    batcher.set(tasksCollection.doc(action.currentRoot), createDocFromStore(action.currentRoot, data));
-  }
 
 
-  if(categorizeTaskActions.has(action.type)) {
-    batcher.update(tasksCollection.doc(action.child), {"reverseHiearchy": data["reverseHiearchy"][action.child]});
-    batcher.update(tasksCollection.doc(action.parent), createDocFromStore(action.currentRoot, data));
-    batcher.update(tasksCollection.doc(action.currentRoot), createDocFromStore(action.currentRoot, data));
-  }
+    if (categorizeTaskActions.has(action.type)) {
+      batcher.update(tasksCollection.doc(action.child), {
+        "reverseHiearchy": data["reverseHiearchy"][action.child]
+      });
+      batcher.set(tasksCollection.doc(action.parent), createDocFromStore(action.parent, data));
+      batcher.set(tasksCollection.doc(currentRoot), createDocFromStore(currentRoot, data));
+    }
 
-  if(dragTaskActions.has(action.type)) {
-    batcher.update(tasksCollection.doc(action.taskId), {"position": data.present["position"][action.taskId]});
-  }
+    if (dragTaskActions.has(action.type)) {
 
-  if(toggleTrailActions.has(action.type)) {
-    batcher.update(usersCollection.doc(action.taskId), {"cT": data["checkedCookieTrails"]});
-  }
+      batcher.update(tasksCollection.doc(action.taskId), {
+        "position": data["position"][action.taskId]
+      });
+    }
 
-  batch.commit().then(function () {
-    console.log("update succeeded");
+    if (toggleTrailActions.has(action.type)) {
+      batcher.update(usersCollection.doc("userid"), {
+        "cT": data["checkedCookieTrails"]
+      }); //TODO: userid used as placeholder for actual user id
+    }
+
+    batcher.commit().then(function() {
+      console.log("update succeeded");
+    });
+
   });
-
-});
+}

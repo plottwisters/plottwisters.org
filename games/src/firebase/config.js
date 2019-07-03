@@ -2,13 +2,20 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 
 let firebaseConfig = {
-    apiKey: "AIzaSyAimh03rTXmCeYeS8FNDqD57-uin8b1pCQ",
-    authDomain: "tbos-baad5.firebaseapp.com",
-    databaseURL: "https://tbos-baad5.firebaseio.com",
-    projectId: "tbos-baad5",
-    storageBucket: "tbos-baad5.appspot.com",
-    messagingSenderId: "1078395152590",
-    appId: "1:1078395152590:web:8faa2fc48425850f"
+    apiKey: "AIzaSyBWj5sop-VPiIXKpF2ZTK6S4KSsyBRP2Bs",
+    authDomain: "plot-twisters.firebaseapp.com",
+    projectId: "plot-twisters"
   };
 firebase.initializeApp(firebaseConfig);
-export const db = firebase.firestore(); 
+firebase.firestore().enablePersistence().catch(function(err) {
+      if (err.code == 'failed-precondition') {
+          // Multiple tabs open, persistence can only be enabled
+          // in one tab at a a time.
+          // ...
+      } else if (err.code == 'unimplemented') {
+          // The current browser does not support all of the
+          // features required to enable persistence
+          // ...
+      }
+  });
+export const db = firebase.firestore();
