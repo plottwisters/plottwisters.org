@@ -5,7 +5,7 @@ import CookieTrail from './cookie-trail';
 import Login from './login';
 import { BrowserRouter as Router, Route, Link,  Switch, NavLink } from "react-router-dom";
 import { Provider } from 'react-redux';
-import {store} from './store';
+import {store, getTasksThunk} from './store';
 import registerServiceWorker from './registerServiceWorker';
 
 //registry of all games - or different urls
@@ -73,6 +73,10 @@ class App extends Component {
       </Provider>
 
     );
+  }
+
+  componentDidMount() {
+      store.dispatch(getTasksThunk())
   }
 }
 

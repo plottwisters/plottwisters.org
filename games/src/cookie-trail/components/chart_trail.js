@@ -17,8 +17,10 @@ class ChartTrail extends Component {
   render() {
 
     return (
+      <div id="chartWrap">
       <canvas id="chart">
       </canvas>
+      </div>
     );
   }
   randomColorGenerator() {
@@ -121,7 +123,7 @@ class ChartTrail extends Component {
 
     this.myLineChart = new Chart(chart, {
       type: 'line',
-    
+
       data: {
         datasets: this.checkedCookieTrails
       },

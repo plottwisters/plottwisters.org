@@ -23,6 +23,7 @@ class CookieTrail extends Component {
 
     return (
       <div id="trailWrap">
+        <div id="topBar"></div>
         <ChartTrail {...this.boundActionCreators} {...this.props} />
         <ChartNavigator {...this.boundActionCreators} {...this.props}/>
       </div>

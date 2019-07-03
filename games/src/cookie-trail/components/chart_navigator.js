@@ -2,7 +2,9 @@ import React, {Component} from 'react';
 import Chart from 'chart.js';
 import { connect } from 'react-redux';
 import {TaskState} from './../../global_constants';
-import CheckboxTree from 'react-checkbox-tree';
+// import CheckboxTree from 'react-checkbox-tree';
+import Leaf from './jenny-attempt/Leaf';
+import CheckboxTree from './checkboxes/CheckboxTree';
 import 'react-checkbox-tree/src/scss/react-checkbox-tree.scss';
 import 'font-awesome/scss/font-awesome.scss';
 class ChartNavigator extends Component {
@@ -19,7 +21,8 @@ class ChartNavigator extends Component {
     let cookieTrail = this.props.tbosCookieTrail;
 
     function processCurrentName(currentName) {
-
+      // recursion to generate tree from redux store
+      // map store into what charts.js wants: which is key: { }.
       let currentRoot = hiearchy[currentName];
       let childrenNames = [];
       for(let child in currentRoot) {
@@ -47,38 +50,62 @@ class ChartNavigator extends Component {
     }
 
     this.treeNodes = [processCurrentName("idroot")];
-
+    let checked = {};
+    for(let trail of this.props.checkedCookieTrails) {
+      checked[trail] = trail;
+    }
     this.state = {
-        checked: [],
-        expanded: [],
+        checked,
+        expanded: {}
     };
-    this.onCheck = this.onCheck.bind(this);
-    this.onExpand = this.onExpand.bind(this);
-  }
-
-  onCheck(checked) {
-    this.props.toggleCookieTrail(checked);
-  }
-
-  onExpand(expanded) {
-    this.setState({ expanded });
 
   }
+  toggleVisibility = item => {
+      let checked = Object.assign({}, this.state["checked"]);
+      if(checked[item] != undefined) {
+        delete checked[item];
+      } else {
+        checked[item] = item;
+      }
+      this.setState({checked});
+      this.props.toggleCookieTrail(Object.keys(checked));
+  };
+  toggleExpansion = item => {
+
+      let expanded = Object.assign({}, this.state["expanded"]);
+      if(expanded[item] != undefined) {
+        delete expanded[item];
+      } else {
+        expanded[item] = item;
+      }
+      console.log("toggle expansion called");
+      this.setState({expanded});
+  };
+
+
 
   //add game container and hidden views into DOM
   render() {
     const { checked, expanded } = this.state;
+    console.log("state," , this.state);
     return (
-      <div id="checkbox-tree-cookie-trail">
-        <CheckboxTree
-                checked={this.props.checkedCookieTrails}
-                expanded={expanded}
-                noCascade
-                nodes={this.treeNodes}
-                onCheck={this.onCheck}
-                onExpand={this.onExpand}
-                showNodeIcon={false}
-            />
+      // <div id="plotsWrap">
+      //   <CheckboxTree
+      //     checked={this.props.checkedCookieTrails}
+      //     expanded={expanded}
+      //     noCascade
+      //     nodes={this.treeNodes}
+      //     onCheck={this.onCheck}
+      //     onExpand={this.onExpand}
+      //     showNodeIcon={false}
+      //   />
+      // </div>
+
+      <div id="plotsWrap">
+        <div id="plots">
+          <div className="bar"></div>
+          <Leaf checkedTrails={checked} toggleVisibility={this.toggleVisibility} toggleExpansion={this.toggleExpansion}  expandedTrails={expanded} key={this.treeNodes[0].value} node={this.treeNodes[0]}/>
+        </div>
       </div>
     );
   }

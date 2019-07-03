@@ -12,7 +12,6 @@ import CheckList from './components/check_list';
 import AddTask from './components/add_task';
 import CustomDragLayer from './components/tbos_drag_canvas';
 import Breadcrumbs from './components/breadcrumbs';
-import { getTasksThunk } from '../store'
 
 class TwoBirdsOneStone extends Component {
 
@@ -142,9 +141,5 @@ class TwoBirdsOneStone extends Component {
 function mapStateToProps(state) {
   return state.present;
 }
-const mapDispatch = dispatch => {
 
-  dispatch(getTasksThunk())
-  return { dispatch }
- }
-export default connect(mapStateToProps, mapDispatch)(TwoBirdsOneStone);
+export default connect(mapStateToProps)(TwoBirdsOneStone);

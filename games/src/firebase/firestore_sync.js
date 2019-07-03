@@ -5,6 +5,7 @@ import {db} from './config';
 function createDocFromStore(task, presentData) {
   let newDocument={}
   task = task.split("_")[0];
+
   for(let key in presentData) {
     if(presentData[key][task] != undefined) {
         newDocument[key] = presentData[key][task];
@@ -25,12 +26,12 @@ export function syncer(store) {
 
     let action = store.getState().lastAction;
     let isUndo = false;
-    console.log(ActionType.UNDO)
+
     if (action.type == ActionType.UNDO) {
       isUndo = true;
 
       action = store.getState().future[0].lastAction;
-      console.log(action);
+
     }
     let currentRoot = action.currentRoot;
     if(currentRoot == "idroot") {
@@ -71,11 +72,15 @@ export function syncer(store) {
         }
       }
 
+      console.log("current root updated, ", createDocFromStore(currentRoot, data));
 
       batcher.set(tasksCollection.doc(currentRoot), createDocFromStore(currentRoot, data));
+
       let tempRoot = currentRoot;
+
       while (data["reverseHiearchy"][tempRoot] != null) {
         tempRoot = data["reverseHiearchy"][tempRoot];
+
         if(tempRoot == "idroot") {
           let suffixed = tempRoot +  returnUnderscoreUserId();
           batcher.update(tasksCollection.doc(suffixed), {
