@@ -87644,22 +87644,3815 @@ function (_Component) {
 
 var _default = ChartTrail;
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","chart.js":"../node_modules/chart.js/dist/Chart.js","react-redux":"../node_modules/react-redux/es/index.js","./../../global_constants":"global_constants.js"}],"../node_modules/react-checkbox-tree/lib/index.browser.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","chart.js":"../node_modules/chart.js/dist/Chart.js","react-redux":"../node_modules/react-redux/es/index.js","./../../global_constants":"global_constants.js"}],"../node_modules/classnames/index.js":[function(require,module,exports) {
 var define;
-/*! react-checkbox-tree - v1.5.1 | 2019 */
-!function(e,t){"object"==typeof exports&&"object"==typeof module?module.exports=t(require("react")):"function"==typeof define&&define.amd?define(["react"],t):"object"==typeof exports?exports.ReactCheckboxTree=t(require("react")):e.ReactCheckboxTree=t(e.React)}(window,function(e){return function(e){var t={};function n(r){if(t[r])return t[r].exports;var o=t[r]={i:r,l:!1,exports:{}};return e[r].call(o.exports,o,o.exports,n),o.l=!0,o.exports}return n.m=e,n.c=t,n.d=function(e,t,r){n.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:r})},n.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},n.t=function(e,t){if(1&t&&(e=n(e)),8&t)return e;if(4&t&&"object"==typeof e&&e&&e.__esModule)return e;var r=Object.create(null);if(n.r(r),Object.defineProperty(r,"default",{enumerable:!0,value:e}),2&t&&"string"!=typeof e)for(var o in e)n.d(r,o,function(t){return e[t]}.bind(null,o));return r},n.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return n.d(t,"a",t),t},n.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},n.p="",n(n.s=27)}([function(e,t,n){e.exports=n(96)()},function(t,n){t.exports=e},function(e,t,n){var r=n(16),o="object"==typeof self&&self&&self.Object===Object&&self,a=r||o||Function("return this")();e.exports=a},function(e,t,n){var r=n(41),o=n(47);e.exports=function(e,t){var n=o(e,t);return r(n)?n:void 0}},function(e,t,n){var r=n(31),o=n(32),a=n(33),i=n(34),c=n(35);function l(e){var t=-1,n=null==e?0:e.length;for(this.clear();++t<n;){var r=e[t];this.set(r[0],r[1])}}l.prototype.clear=r,l.prototype.delete=o,l.prototype.get=a,l.prototype.has=i,l.prototype.set=c,e.exports=l},function(e,t,n){var r=n(14);e.exports=function(e,t){for(var n=e.length;n--;)if(r(e[n][0],t))return n;return-1}},function(e,t,n){var r=n(12),o=n(43),a=n(44),i="[object Null]",c="[object Undefined]",l=r?r.toStringTag:void 0;e.exports=function(e){return null==e?void 0===e?c:i:l&&l in Object(e)?o(e):a(e)}},function(e,t,n){var r=n(3)(Object,"create");e.exports=r},function(e,t,n){var r=n(56);e.exports=function(e,t){var n=e.__data__;return r(t)?n["string"==typeof t?"string":"hash"]:n.map}},function(e,t){e.exports=function(e){return null!=e&&"object"==typeof e}},function(e,t,n){var r;
 /*!
   Copyright (c) 2017 Jed Watson.
   Licensed under the MIT License (MIT), see
   http://jedwatson.github.io/classnames
 */
-/*!
-  Copyright (c) 2017 Jed Watson.
-  Licensed under the MIT License (MIT), see
-  http://jedwatson.github.io/classnames
-*/
-!function(){"use strict";var n={}.hasOwnProperty;function o(){for(var e=[],t=0;t<arguments.length;t++){var r=arguments[t];if(r){var a=typeof r;if("string"===a||"number"===a)e.push(r);else if(Array.isArray(r)&&r.length){var i=o.apply(null,r);i&&e.push(i)}else if("object"===a)for(var c in r)n.call(r,c)&&r[c]&&e.push(c)}}return e.join(" ")}e.exports?(o.default=o,e.exports=o):void 0===(r=function(){return o}.apply(t,[]))||(e.exports=r)}()},function(e,t,n){var r=n(3)(n(2),"Map");e.exports=r},function(e,t,n){var r=n(2).Symbol;e.exports=r},function(e,t){var n=Array.isArray;e.exports=n},function(e,t){e.exports=function(e,t){return e===t||e!=e&&t!=t}},function(e,t,n){var r=n(6),o=n(17),a="[object AsyncFunction]",i="[object Function]",c="[object GeneratorFunction]",l="[object Proxy]";e.exports=function(e){if(!o(e))return!1;var t=r(e);return t==i||t==c||t==a||t==l}},function(e,t,n){(function(t){var n="object"==typeof t&&t&&t.Object===Object&&t;e.exports=n}).call(this,n(42))},function(e,t){e.exports=function(e){var t=typeof e;return null!=e&&("object"==t||"function"==t)}},function(e,t){var n=Function.prototype.toString;e.exports=function(e){if(null!=e){try{return n.call(e)}catch(e){}try{return e+""}catch(e){}}return""}},function(e,t,n){var r=n(48),o=n(55),a=n(57),i=n(58),c=n(59);function l(e){var t=-1,n=null==e?0:e.length;for(this.clear();++t<n;){var r=e[t];this.set(r[0],r[1])}}l.prototype.clear=r,l.prototype.delete=o,l.prototype.get=a,l.prototype.has=i,l.prototype.set=c,e.exports=l},function(e,t,n){var r=n(60),o=n(63),a=n(64),i=1,c=2;e.exports=function(e,t,n,l,u,s){var p=n&i,f=e.length,d=t.length;if(f!=d&&!(p&&d>f))return!1;var h=s.get(e);if(h&&s.get(t))return h==t;var b=-1,y=!0,v=n&c?new r:void 0;for(s.set(e,t),s.set(t,e);++b<f;){var x=e[b],m=t[b];if(l)var g=p?l(m,x,b,t,e,s):l(x,m,b,e,t,s);if(void 0!==g){if(g)continue;y=!1;break}if(v){if(!o(t,function(e,t){if(!a(v,t)&&(x===e||u(x,e,n,l,s)))return v.push(t)})){y=!1;break}}else if(x!==m&&!u(x,m,n,l,s)){y=!1;break}}return s.delete(e),s.delete(t),y}},function(e,t,n){(function(e){var r=n(2),o=n(81),a=t&&!t.nodeType&&t,i=a&&"object"==typeof e&&e&&!e.nodeType&&e,c=i&&i.exports===a?r.Buffer:void 0,l=(c?c.isBuffer:void 0)||o;e.exports=l}).call(this,n(22)(e))},function(e,t){e.exports=function(e){return e.webpackPolyfill||(e.deprecate=function(){},e.paths=[],e.children||(e.children=[]),Object.defineProperty(e,"loaded",{enumerable:!0,get:function(){return e.l}}),Object.defineProperty(e,"id",{enumerable:!0,get:function(){return e.i}}),e.webpackPolyfill=1),e}},function(e,t,n){var r=n(83),o=n(84),a=n(85),i=a&&a.isTypedArray,c=i?o(i):r;e.exports=c},function(e,t){var n=9007199254740991;e.exports=function(e){return"number"==typeof e&&e>-1&&e%1==0&&e<=n}},function(e,t,n){var r=n(28);e.exports=function(e,t){return r(e,t)}},function(e,t,n){var r=self.crypto||self.msCrypto;e.exports=function(e){e=e||21;for(var t="",n=r.getRandomValues(new Uint8Array(e));0<e--;)t+="Uint8ArdomValuesObj012345679BCDEFGHIJKLMNPQRSTWXYZ_cfghkpqvwxyz-"[63&n[e]];return t}},function(e,t,n){e.exports=n(98).default},function(e,t,n){var r=n(29),o=n(9);e.exports=function e(t,n,a,i,c){return t===n||(null==t||null==n||!o(t)&&!o(n)?t!=t&&n!=n:r(t,n,a,i,e,c))}},function(e,t,n){var r=n(30),o=n(20),a=n(65),i=n(69),c=n(91),l=n(13),u=n(21),s=n(23),p=1,f="[object Arguments]",d="[object Array]",h="[object Object]",b=Object.prototype.hasOwnProperty;e.exports=function(e,t,n,y,v,x){var m=l(e),g=l(t),k=m?d:c(e),_=g?d:c(t),O=(k=k==f?h:k)==h,j=(_=_==f?h:_)==h,w=k==_;if(w&&u(e)){if(!u(t))return!1;m=!0,O=!1}if(w&&!O)return x||(x=new r),m||s(e)?o(e,t,n,y,v,x):a(e,t,k,n,y,v,x);if(!(n&p)){var C=O&&b.call(e,"__wrapped__"),E=j&&b.call(t,"__wrapped__");if(C||E){var P=C?e.value():e,N=E?t.value():t;return x||(x=new r),v(P,N,n,y,x)}}return!!w&&(x||(x=new r),i(e,t,n,y,v,x))}},function(e,t,n){var r=n(4),o=n(36),a=n(37),i=n(38),c=n(39),l=n(40);function u(e){var t=this.__data__=new r(e);this.size=t.size}u.prototype.clear=o,u.prototype.delete=a,u.prototype.get=i,u.prototype.has=c,u.prototype.set=l,e.exports=u},function(e,t){e.exports=function(){this.__data__=[],this.size=0}},function(e,t,n){var r=n(5),o=Array.prototype.splice;e.exports=function(e){var t=this.__data__,n=r(t,e);return!(n<0||(n==t.length-1?t.pop():o.call(t,n,1),--this.size,0))}},function(e,t,n){var r=n(5);e.exports=function(e){var t=this.__data__,n=r(t,e);return n<0?void 0:t[n][1]}},function(e,t,n){var r=n(5);e.exports=function(e){return r(this.__data__,e)>-1}},function(e,t,n){var r=n(5);e.exports=function(e,t){var n=this.__data__,o=r(n,e);return o<0?(++this.size,n.push([e,t])):n[o][1]=t,this}},function(e,t,n){var r=n(4);e.exports=function(){this.__data__=new r,this.size=0}},function(e,t){e.exports=function(e){var t=this.__data__,n=t.delete(e);return this.size=t.size,n}},function(e,t){e.exports=function(e){return this.__data__.get(e)}},function(e,t){e.exports=function(e){return this.__data__.has(e)}},function(e,t,n){var r=n(4),o=n(11),a=n(19),i=200;e.exports=function(e,t){var n=this.__data__;if(n instanceof r){var c=n.__data__;if(!o||c.length<i-1)return c.push([e,t]),this.size=++n.size,this;n=this.__data__=new a(c)}return n.set(e,t),this.size=n.size,this}},function(e,t,n){var r=n(15),o=n(45),a=n(17),i=n(18),c=/^\[object .+?Constructor\]$/,l=Function.prototype,u=Object.prototype,s=l.toString,p=u.hasOwnProperty,f=RegExp("^"+s.call(p).replace(/[\\^$.*+?()[\]{}|]/g,"\\$&").replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g,"$1.*?")+"$");e.exports=function(e){return!(!a(e)||o(e))&&(r(e)?f:c).test(i(e))}},function(e,t){var n;n=function(){return this}();try{n=n||new Function("return this")()}catch(e){"object"==typeof window&&(n=window)}e.exports=n},function(e,t,n){var r=n(12),o=Object.prototype,a=o.hasOwnProperty,i=o.toString,c=r?r.toStringTag:void 0;e.exports=function(e){var t=a.call(e,c),n=e[c];try{e[c]=void 0;var r=!0}catch(e){}var o=i.call(e);return r&&(t?e[c]=n:delete e[c]),o}},function(e,t){var n=Object.prototype.toString;e.exports=function(e){return n.call(e)}},function(e,t,n){var r,o=n(46),a=(r=/[^.]+$/.exec(o&&o.keys&&o.keys.IE_PROTO||""))?"Symbol(src)_1."+r:"";e.exports=function(e){return!!a&&a in e}},function(e,t,n){var r=n(2)["__core-js_shared__"];e.exports=r},function(e,t){e.exports=function(e,t){return null==e?void 0:e[t]}},function(e,t,n){var r=n(49),o=n(4),a=n(11);e.exports=function(){this.size=0,this.__data__={hash:new r,map:new(a||o),string:new r}}},function(e,t,n){var r=n(50),o=n(51),a=n(52),i=n(53),c=n(54);function l(e){var t=-1,n=null==e?0:e.length;for(this.clear();++t<n;){var r=e[t];this.set(r[0],r[1])}}l.prototype.clear=r,l.prototype.delete=o,l.prototype.get=a,l.prototype.has=i,l.prototype.set=c,e.exports=l},function(e,t,n){var r=n(7);e.exports=function(){this.__data__=r?r(null):{},this.size=0}},function(e,t){e.exports=function(e){var t=this.has(e)&&delete this.__data__[e];return this.size-=t?1:0,t}},function(e,t,n){var r=n(7),o="__lodash_hash_undefined__",a=Object.prototype.hasOwnProperty;e.exports=function(e){var t=this.__data__;if(r){var n=t[e];return n===o?void 0:n}return a.call(t,e)?t[e]:void 0}},function(e,t,n){var r=n(7),o=Object.prototype.hasOwnProperty;e.exports=function(e){var t=this.__data__;return r?void 0!==t[e]:o.call(t,e)}},function(e,t,n){var r=n(7),o="__lodash_hash_undefined__";e.exports=function(e,t){var n=this.__data__;return this.size+=this.has(e)?0:1,n[e]=r&&void 0===t?o:t,this}},function(e,t,n){var r=n(8);e.exports=function(e){var t=r(this,e).delete(e);return this.size-=t?1:0,t}},function(e,t){e.exports=function(e){var t=typeof e;return"string"==t||"number"==t||"symbol"==t||"boolean"==t?"__proto__"!==e:null===e}},function(e,t,n){var r=n(8);e.exports=function(e){return r(this,e).get(e)}},function(e,t,n){var r=n(8);e.exports=function(e){return r(this,e).has(e)}},function(e,t,n){var r=n(8);e.exports=function(e,t){var n=r(this,e),o=n.size;return n.set(e,t),this.size+=n.size==o?0:1,this}},function(e,t,n){var r=n(19),o=n(61),a=n(62);function i(e){var t=-1,n=null==e?0:e.length;for(this.__data__=new r;++t<n;)this.add(e[t])}i.prototype.add=i.prototype.push=o,i.prototype.has=a,e.exports=i},function(e,t){var n="__lodash_hash_undefined__";e.exports=function(e){return this.__data__.set(e,n),this}},function(e,t){e.exports=function(e){return this.__data__.has(e)}},function(e,t){e.exports=function(e,t){for(var n=-1,r=null==e?0:e.length;++n<r;)if(t(e[n],n,e))return!0;return!1}},function(e,t){e.exports=function(e,t){return e.has(t)}},function(e,t,n){var r=n(12),o=n(66),a=n(14),i=n(20),c=n(67),l=n(68),u=1,s=2,p="[object Boolean]",f="[object Date]",d="[object Error]",h="[object Map]",b="[object Number]",y="[object RegExp]",v="[object Set]",x="[object String]",m="[object Symbol]",g="[object ArrayBuffer]",k="[object DataView]",_=r?r.prototype:void 0,O=_?_.valueOf:void 0;e.exports=function(e,t,n,r,_,j,w){switch(n){case k:if(e.byteLength!=t.byteLength||e.byteOffset!=t.byteOffset)return!1;e=e.buffer,t=t.buffer;case g:return!(e.byteLength!=t.byteLength||!j(new o(e),new o(t)));case p:case f:case b:return a(+e,+t);case d:return e.name==t.name&&e.message==t.message;case y:case x:return e==t+"";case h:var C=c;case v:var E=r&u;if(C||(C=l),e.size!=t.size&&!E)return!1;var P=w.get(e);if(P)return P==t;r|=s,w.set(e,t);var N=i(C(e),C(t),r,_,j,w);return w.delete(e),N;case m:if(O)return O.call(e)==O.call(t)}return!1}},function(e,t,n){var r=n(2).Uint8Array;e.exports=r},function(e,t){e.exports=function(e){var t=-1,n=Array(e.size);return e.forEach(function(e,r){n[++t]=[r,e]}),n}},function(e,t){e.exports=function(e){var t=-1,n=Array(e.size);return e.forEach(function(e){n[++t]=e}),n}},function(e,t,n){var r=n(70),o=1,a=Object.prototype.hasOwnProperty;e.exports=function(e,t,n,i,c,l){var u=n&o,s=r(e),p=s.length;if(p!=r(t).length&&!u)return!1;for(var f=p;f--;){var d=s[f];if(!(u?d in t:a.call(t,d)))return!1}var h=l.get(e);if(h&&l.get(t))return h==t;var b=!0;l.set(e,t),l.set(t,e);for(var y=u;++f<p;){var v=e[d=s[f]],x=t[d];if(i)var m=u?i(x,v,d,t,e,l):i(v,x,d,e,t,l);if(!(void 0===m?v===x||c(v,x,n,i,l):m)){b=!1;break}y||(y="constructor"==d)}if(b&&!y){var g=e.constructor,k=t.constructor;g!=k&&"constructor"in e&&"constructor"in t&&!("function"==typeof g&&g instanceof g&&"function"==typeof k&&k instanceof k)&&(b=!1)}return l.delete(e),l.delete(t),b}},function(e,t,n){var r=n(71),o=n(73),a=n(76);e.exports=function(e){return r(e,a,o)}},function(e,t,n){var r=n(72),o=n(13);e.exports=function(e,t,n){var a=t(e);return o(e)?a:r(a,n(e))}},function(e,t){e.exports=function(e,t){for(var n=-1,r=t.length,o=e.length;++n<r;)e[o+n]=t[n];return e}},function(e,t,n){var r=n(74),o=n(75),a=Object.prototype.propertyIsEnumerable,i=Object.getOwnPropertySymbols,c=i?function(e){return null==e?[]:(e=Object(e),r(i(e),function(t){return a.call(e,t)}))}:o;e.exports=c},function(e,t){e.exports=function(e,t){for(var n=-1,r=null==e?0:e.length,o=0,a=[];++n<r;){var i=e[n];t(i,n,e)&&(a[o++]=i)}return a}},function(e,t){e.exports=function(){return[]}},function(e,t,n){var r=n(77),o=n(86),a=n(90);e.exports=function(e){return a(e)?r(e):o(e)}},function(e,t,n){var r=n(78),o=n(79),a=n(13),i=n(21),c=n(82),l=n(23),u=Object.prototype.hasOwnProperty;e.exports=function(e,t){var n=a(e),s=!n&&o(e),p=!n&&!s&&i(e),f=!n&&!s&&!p&&l(e),d=n||s||p||f,h=d?r(e.length,String):[],b=h.length;for(var y in e)!t&&!u.call(e,y)||d&&("length"==y||p&&("offset"==y||"parent"==y)||f&&("buffer"==y||"byteLength"==y||"byteOffset"==y)||c(y,b))||h.push(y);return h}},function(e,t){e.exports=function(e,t){for(var n=-1,r=Array(e);++n<e;)r[n]=t(n);return r}},function(e,t,n){var r=n(80),o=n(9),a=Object.prototype,i=a.hasOwnProperty,c=a.propertyIsEnumerable,l=r(function(){return arguments}())?r:function(e){return o(e)&&i.call(e,"callee")&&!c.call(e,"callee")};e.exports=l},function(e,t,n){var r=n(6),o=n(9),a="[object Arguments]";e.exports=function(e){return o(e)&&r(e)==a}},function(e,t){e.exports=function(){return!1}},function(e,t){var n=9007199254740991,r=/^(?:0|[1-9]\d*)$/;e.exports=function(e,t){var o=typeof e;return!!(t=null==t?n:t)&&("number"==o||"symbol"!=o&&r.test(e))&&e>-1&&e%1==0&&e<t}},function(e,t,n){var r=n(6),o=n(24),a=n(9),i={};i["[object Float32Array]"]=i["[object Float64Array]"]=i["[object Int8Array]"]=i["[object Int16Array]"]=i["[object Int32Array]"]=i["[object Uint8Array]"]=i["[object Uint8ClampedArray]"]=i["[object Uint16Array]"]=i["[object Uint32Array]"]=!0,i["[object Arguments]"]=i["[object Array]"]=i["[object ArrayBuffer]"]=i["[object Boolean]"]=i["[object DataView]"]=i["[object Date]"]=i["[object Error]"]=i["[object Function]"]=i["[object Map]"]=i["[object Number]"]=i["[object Object]"]=i["[object RegExp]"]=i["[object Set]"]=i["[object String]"]=i["[object WeakMap]"]=!1,e.exports=function(e){return a(e)&&o(e.length)&&!!i[r(e)]}},function(e,t){e.exports=function(e){return function(t){return e(t)}}},function(e,t,n){(function(e){var r=n(16),o=t&&!t.nodeType&&t,a=o&&"object"==typeof e&&e&&!e.nodeType&&e,i=a&&a.exports===o&&r.process,c=function(){try{var e=a&&a.require&&a.require("util").types;return e||i&&i.binding&&i.binding("util")}catch(e){}}();e.exports=c}).call(this,n(22)(e))},function(e,t,n){var r=n(87),o=n(88),a=Object.prototype.hasOwnProperty;e.exports=function(e){if(!r(e))return o(e);var t=[];for(var n in Object(e))a.call(e,n)&&"constructor"!=n&&t.push(n);return t}},function(e,t){var n=Object.prototype;e.exports=function(e){var t=e&&e.constructor;return e===("function"==typeof t&&t.prototype||n)}},function(e,t,n){var r=n(89)(Object.keys,Object);e.exports=r},function(e,t){e.exports=function(e,t){return function(n){return e(t(n))}}},function(e,t,n){var r=n(15),o=n(24);e.exports=function(e){return null!=e&&o(e.length)&&!r(e)}},function(e,t,n){var r=n(92),o=n(11),a=n(93),i=n(94),c=n(95),l=n(6),u=n(18),s=u(r),p=u(o),f=u(a),d=u(i),h=u(c),b=l;(r&&"[object DataView]"!=b(new r(new ArrayBuffer(1)))||o&&"[object Map]"!=b(new o)||a&&"[object Promise]"!=b(a.resolve())||i&&"[object Set]"!=b(new i)||c&&"[object WeakMap]"!=b(new c))&&(b=function(e){var t=l(e),n="[object Object]"==t?e.constructor:void 0,r=n?u(n):"";if(r)switch(r){case s:return"[object DataView]";case p:return"[object Map]";case f:return"[object Promise]";case d:return"[object Set]";case h:return"[object WeakMap]"}return t}),e.exports=b},function(e,t,n){var r=n(3)(n(2),"DataView");e.exports=r},function(e,t,n){var r=n(3)(n(2),"Promise");e.exports=r},function(e,t,n){var r=n(3)(n(2),"Set");e.exports=r},function(e,t,n){var r=n(3)(n(2),"WeakMap");e.exports=r},function(e,t,n){"use strict";var r=n(97);function o(){}e.exports=function(){function e(e,t,n,o,a,i){if(i!==r){var c=new Error("Calling PropTypes validators directly is not supported by the `prop-types` package. Use PropTypes.checkPropTypes() to call them. Read more at http://fb.me/use-check-prop-types");throw c.name="Invariant Violation",c}}function t(){return e}e.isRequired=e;var n={array:e,bool:e,func:e,number:e,object:e,string:e,symbol:e,any:e,arrayOf:t,element:e,instanceOf:t,node:e,objectOf:t,oneOf:t,oneOfType:t,shape:t,exact:t};return n.checkPropTypes=o,n.PropTypes=n,n}},function(e,t,n){"use strict";e.exports="SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED"},function(e,t,n){"use strict";n.r(t);var r=n(10),o=n.n(r),a=n(25),i=n.n(a),c=n(26),l=n.n(c),u=n(0),s=n.n(u),p=n(1),f=n.n(p);function d(e){return(d="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e})(e)}function h(){return(h=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var r in n)Object.prototype.hasOwnProperty.call(n,r)&&(e[r]=n[r])}return e}).apply(this,arguments)}function b(e,t){if(null==e)return{};var n,r,o=function(e,t){if(null==e)return{};var n,r,o={},a=Object.keys(e);for(r=0;r<a.length;r++)n=a[r],t.indexOf(n)>=0||(o[n]=e[n]);return o}(e,t);if(Object.getOwnPropertySymbols){var a=Object.getOwnPropertySymbols(e);for(r=0;r<a.length;r++)n=a[r],t.indexOf(n)>=0||Object.prototype.propertyIsEnumerable.call(e,n)&&(o[n]=e[n])}return o}function y(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}function v(e,t){return!t||"object"!==d(t)&&"function"!=typeof t?function(e){if(void 0===e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return e}(e):t}function x(e){return(x=Object.setPrototypeOf?Object.getPrototypeOf:function(e){return e.__proto__||Object.getPrototypeOf(e)})(e)}function m(e,t){return(m=Object.setPrototypeOf||function(e,t){return e.__proto__=t,e})(e,t)}function g(e,t,n){return t in e?Object.defineProperty(e,t,{value:n,enumerable:!0,configurable:!0,writable:!0}):e[t]=n,e}var k=function(e){function t(){return function(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}(this,t),v(this,x(t).apply(this,arguments))}var n,r,o;return function(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function");e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,writable:!0,configurable:!0}}),t&&m(e,t)}(t,f.a.PureComponent),n=t,(r=[{key:"render",value:function(){var e=this.props,t=e.children,n=e.title,r=b(e,["children","title"]);return f.a.createElement("button",h({"aria-label":n,title:n,type:"button"},r),t)}}])&&y(n.prototype,r),o&&y(n,o),t}();g(k,"propTypes",{children:s.a.node.isRequired,title:s.a.string}),g(k,"defaultProps",{title:null});var _=k;function O(e,t,n){return t in e?Object.defineProperty(e,t,{value:n,enumerable:!0,configurable:!0,writable:!0}):e[t]=n,e}function j(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}var w=function(){function e(t){var n=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{};!function(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}(this,e),this.props=t,this.flatNodes=n}var t,n,r;return t=e,(n=[{key:"setProps",value:function(e){this.props=e}},{key:"clone",value:function(){var t=this,n={};return Object.keys(this.flatNodes).forEach(function(e){var r=t.flatNodes[e];n[e]=function(e){for(var t=1;t<arguments.length;t++){var n=null!=arguments[t]?arguments[t]:{},r=Object.keys(n);"function"==typeof Object.getOwnPropertySymbols&&(r=r.concat(Object.getOwnPropertySymbols(n).filter(function(e){return Object.getOwnPropertyDescriptor(n,e).enumerable}))),r.forEach(function(t){O(e,t,n[t])})}return e}({},r)}),new e(this.props,n)}},{key:"getNode",value:function(e){return this.flatNodes[e]}},{key:"flattenNodes",value:function(e){var t=this,n=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},r=arguments.length>2&&void 0!==arguments[2]?arguments[2]:0;if(Array.isArray(e)&&0!==e.length){var o=this.props,a=o.disabled,i=o.noCascade;e.forEach(function(e,o){var c=t.nodeHasChildren(e);t.flatNodes[e.value]={label:e.label,value:e.value,children:e.children,parent:n,isParent:c,isLeaf:!c,showCheckbox:void 0===e.showCheckbox||e.showCheckbox,disabled:t.getDisabledState(e,n,a,i),treeDepth:r,index:o},t.flattenNodes(e.children,e,r+1)})}}},{key:"nodeHasChildren",value:function(e){return Array.isArray(e.children)&&e.children.length>0}},{key:"getDisabledState",value:function(e,t,n,r){return!!n||(!(r||!t.disabled)||Boolean(e.disabled))}},{key:"deserializeLists",value:function(e){var t=this,n=["checked","expanded"];Object.keys(this.flatNodes).forEach(function(e){n.forEach(function(n){t.flatNodes[e][n]=!1})}),n.forEach(function(n){e[n].forEach(function(e){void 0!==t.flatNodes[e]&&(t.flatNodes[e][n]=!0)})})}},{key:"serializeList",value:function(e){var t=this,n=[];return Object.keys(this.flatNodes).forEach(function(r){t.flatNodes[r][e]&&n.push(r)}),n}},{key:"expandAllNodes",value:function(e){var t=this;return Object.keys(this.flatNodes).forEach(function(n){t.flatNodes[n].isParent&&(t.flatNodes[n].expanded=e)}),this}},{key:"toggleChecked",value:function(e,t,n){var r=this,o=this.flatNodes[e.value];if(o.isLeaf||n){if(e.disabled)return this;this.toggleNode(e.value,"checked",t)}else o.children.forEach(function(e){r.toggleChecked(e,t,n)});return this}},{key:"toggleNode",value:function(e,t,n){return this.flatNodes[e][t]=n,this}}])&&j(t.prototype,n),r&&j(t,r),e}();function C(e){return(C="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e})(e)}function E(){return(E=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var r in n)Object.prototype.hasOwnProperty.call(n,r)&&(e[r]=n[r])}return e}).apply(this,arguments)}function P(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}function N(e,t){return!t||"object"!==C(t)&&"function"!=typeof t?function(e){if(void 0===e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return e}(e):t}function S(e){return(S=Object.setPrototypeOf?Object.getPrototypeOf:function(e){return e.__proto__||Object.getPrototypeOf(e)})(e)}function A(e,t){return(A=Object.setPrototypeOf||function(e,t){return e.__proto__=t,e})(e,t)}function T(e,t,n){return t in e?Object.defineProperty(e,t,{value:n,enumerable:!0,configurable:!0,writable:!0}):e[t]=n,e}var R=function(e){function t(){return function(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}(this,t),N(this,S(t).apply(this,arguments))}var n,r,o;return function(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function");e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,writable:!0,configurable:!0}}),t&&A(e,t)}(t,f.a.PureComponent),n=t,(r=[{key:"componentDidMount",value:function(){this.updateDeterminateProperty()}},{key:"componentDidUpdate",value:function(){this.updateDeterminateProperty()}},{key:"updateDeterminateProperty",value:function(){var e=this.props.indeterminate;this.checkbox.indeterminate=e}},{key:"render",value:function(){var e=this,t=function(e){for(var t=1;t<arguments.length;t++){var n=null!=arguments[t]?arguments[t]:{},r=Object.keys(n);"function"==typeof Object.getOwnPropertySymbols&&(r=r.concat(Object.getOwnPropertySymbols(n).filter(function(e){return Object.getOwnPropertyDescriptor(n,e).enumerable}))),r.forEach(function(t){T(e,t,n[t])})}return e}({},this.props);return delete t.indeterminate,f.a.createElement("input",E({},t,{ref:function(t){e.checkbox=t},type:"checkbox"}))}}])&&P(n.prototype,r),o&&P(n,o),t}();T(R,"propTypes",{indeterminate:s.a.bool}),T(R,"defaultProps",{indeterminate:!1});var I=R,L=s.a.shape({check:s.a.node,uncheck:s.a.node,halfCheck:s.a.node,expandClose:s.a.node,expandOpen:s.a.node,expandAll:s.a.node,collapseAll:s.a.node,parentClose:s.a.node,parentOpen:s.a.node,leaf:s.a.node}),z=s.a.shape({collapseAll:s.a.string.isRequired,expandAll:s.a.string.isRequired,toggle:s.a.string.isRequired});function q(e){return(q="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e})(e)}function D(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}function M(e){return(M=Object.setPrototypeOf?Object.getPrototypeOf:function(e){return e.__proto__||Object.getPrototypeOf(e)})(e)}function B(e,t){return(B=Object.setPrototypeOf||function(e,t){return e.__proto__=t,e})(e,t)}function F(e){if(void 0===e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return e}function U(e,t,n){return t in e?Object.defineProperty(e,t,{value:n,enumerable:!0,configurable:!0,writable:!0}):e[t]=n,e}var H=function(e){function t(e){var n,r,o;return function(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}(this,t),r=this,(n=!(o=M(t).call(this,e))||"object"!==q(o)&&"function"!=typeof o?F(r):o).onCheck=n.onCheck.bind(F(F(n))),n.onClick=n.onClick.bind(F(F(n))),n.onExpand=n.onExpand.bind(F(F(n))),n}var n,r,a;return function(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function");e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,writable:!0,configurable:!0}}),t&&B(e,t)}(t,f.a.Component),n=t,(r=[{key:"onCheck",value:function(){var e=this.props,t=e.value,n=e.onCheck;n({value:t,checked:this.getCheckState({toggle:!0})})}},{key:"onClick",value:function(){var e=this.props,t=e.expandOnClick,n=e.isParent,r=e.value,o=e.onClick;n&&t&&this.onExpand(),o({value:r,checked:this.getCheckState({toggle:!1})})}},{key:"onExpand",value:function(){var e=this.props,t=e.expanded,n=e.value,r=e.onExpand;r({value:n,expanded:!t})}},{key:"getCheckState",value:function(e){var t=e.toggle,n=this.props,r=n.checked,o=n.optimisticToggle;return!(0!==r||!t)||(1===r&&!t||2===r&&o)}},{key:"renderCollapseButton",value:function(){var e=this.props,t=e.expandDisabled,n=e.isLeaf,r=e.lang;return n?f.a.createElement("span",{className:"rct-collapse"},f.a.createElement("span",{className:"rct-icon"})):f.a.createElement(_,{className:"rct-collapse rct-collapse-btn",disabled:t,title:r.toggle,onClick:this.onExpand},this.renderCollapseIcon())}},{key:"renderCollapseIcon",value:function(){var e=this.props,t=e.expanded,n=e.icons,r=n.expandClose,o=n.expandOpen;return t?o:r}},{key:"renderCheckboxIcon",value:function(){var e=this.props,t=e.checked,n=e.icons,r=n.uncheck,o=n.check,a=n.halfCheck;return 0===t?r:1===t?o:a}},{key:"renderNodeIcon",value:function(){var e=this.props,t=e.expanded,n=e.icon,r=e.icons,o=r.leaf,a=r.parentClose,i=r.parentOpen,c=e.isLeaf;return null!==n?n:c?o:t?i:a}},{key:"renderBareLabel",value:function(e){var t=this.props,n=t.onClick,r=t.title,o=null!==n;return f.a.createElement("span",{className:"rct-bare-label",title:r},o?f.a.createElement("span",{className:"rct-node-clickable",onClick:this.onClick,onKeyPress:this.onClick,role:"button",tabIndex:0},e):e)}},{key:"renderCheckboxLabel",value:function(e){var t=this.props,n=t.checked,r=t.disabled,o=t.title,a=t.treeId,i=t.value,c=null!==t.onClick,l="".concat(a,"-").concat(String(i).split(" ").join("_")),u=[f.a.createElement("label",{key:0,htmlFor:l,title:o},f.a.createElement(I,{checked:1===n,disabled:r,id:l,indeterminate:2===n,onClick:this.onCheck,onChange:function(){}}),f.a.createElement("span",{className:"rct-checkbox"},this.renderCheckboxIcon()),c?null:e)];return c&&u.push(f.a.createElement("span",{key:1,className:"rct-node-clickable",onClick:this.onClick,onKeyPress:this.onClick,role:"link",tabIndex:0},e)),u}},{key:"renderLabel",value:function(){var e=this.props,t=e.label,n=e.showCheckbox,r=[e.showNodeIcon?f.a.createElement("span",{key:0,className:"rct-node-icon"},this.renderNodeIcon()):null,f.a.createElement("span",{key:1,className:"rct-title"},t)];return n?this.renderCheckboxLabel(r):this.renderBareLabel(r)}},{key:"renderChildren",value:function(){return this.props.expanded?this.props.children:null}},{key:"render",value:function(){var e=this.props,t=e.className,n=e.disabled,r=e.expanded,a=e.isLeaf,i=o()({"rct-node":!0,"rct-node-leaf":a,"rct-node-parent":!a,"rct-node-expanded":!a&&r,"rct-node-collapsed":!a&&!r,"rct-disabled":n},t);return f.a.createElement("li",{className:i},f.a.createElement("span",{className:"rct-text"},this.renderCollapseButton(),this.renderLabel()),this.renderChildren())}}])&&D(n.prototype,r),a&&D(n,a),t}();U(H,"propTypes",{checked:s.a.number.isRequired,disabled:s.a.bool.isRequired,expandDisabled:s.a.bool.isRequired,expanded:s.a.bool.isRequired,icons:L.isRequired,isLeaf:s.a.bool.isRequired,isParent:s.a.bool.isRequired,label:s.a.node.isRequired,lang:z.isRequired,optimisticToggle:s.a.bool.isRequired,showNodeIcon:s.a.bool.isRequired,treeId:s.a.string.isRequired,value:s.a.oneOfType([s.a.string,s.a.number]).isRequired,onCheck:s.a.func.isRequired,onExpand:s.a.func.isRequired,children:s.a.node,className:s.a.string,expandOnClick:s.a.bool,icon:s.a.node,showCheckbox:s.a.bool,title:s.a.string,onClick:s.a.func}),U(H,"defaultProps",{children:null,className:null,expandOnClick:!1,icon:null,showCheckbox:!0,title:null,onClick:function(){}});var V=H,$=s.a.oneOfType([s.a.arrayOf(s.a.string),s.a.arrayOf(s.a.number)]);function W(e,t,n){return t in e?Object.defineProperty(e,t,{value:n,enumerable:!0,configurable:!0,writable:!0}):e[t]=n,e}var J={label:s.a.node.isRequired,value:s.a.oneOfType([s.a.string,s.a.number]).isRequired,disabled:s.a.bool,icon:s.a.node,showCheckbox:s.a.bool,title:s.a.string},K=s.a.oneOfType([s.a.shape(J),s.a.shape(function(e){for(var t=1;t<arguments.length;t++){var n=null!=arguments[t]?arguments[t]:{},r=Object.keys(n);"function"==typeof Object.getOwnPropertySymbols&&(r=r.concat(Object.getOwnPropertySymbols(n).filter(function(e){return Object.getOwnPropertyDescriptor(n,e).enumerable}))),r.forEach(function(t){W(e,t,n[t])})}return e}({},J,{children:s.a.arrayOf(J).isRequired}))]);function G(e){return(G="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e})(e)}function Y(e){for(var t=1;t<arguments.length;t++){var n=null!=arguments[t]?arguments[t]:{},r=Object.keys(n);"function"==typeof Object.getOwnPropertySymbols&&(r=r.concat(Object.getOwnPropertySymbols(n).filter(function(e){return Object.getOwnPropertyDescriptor(n,e).enumerable}))),r.forEach(function(t){te(e,t,n[t])})}return e}function Q(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}function X(e){return(X=Object.setPrototypeOf?Object.getPrototypeOf:function(e){return e.__proto__||Object.getPrototypeOf(e)})(e)}function Z(e,t){return(Z=Object.setPrototypeOf||function(e,t){return e.__proto__=t,e})(e,t)}function ee(e){if(void 0===e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return e}function te(e,t,n){return t in e?Object.defineProperty(e,t,{value:n,enumerable:!0,configurable:!0,writable:!0}):e[t]=n,e}var ne=function(e){function t(e){var n,r,o;!function(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}(this,t),r=this,n=!(o=X(t).call(this,e))||"object"!==G(o)&&"function"!=typeof o?ee(r):o;var a=new w(e);return a.flattenNodes(e.nodes),a.deserializeLists({checked:e.checked,expanded:e.expanded}),n.state={id:e.id||"rct-".concat(l()(7)),model:a,prevProps:e},n.onCheck=n.onCheck.bind(ee(ee(n))),n.onExpand=n.onExpand.bind(ee(ee(n))),n.onNodeClick=n.onNodeClick.bind(ee(ee(n))),n.onExpandAll=n.onExpandAll.bind(ee(ee(n))),n.onCollapseAll=n.onCollapseAll.bind(ee(ee(n))),n}var n,r,a;return function(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function");e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,writable:!0,configurable:!0}}),t&&Z(e,t)}(t,f.a.Component),n=t,a=[{key:"getDerivedStateFromProps",value:function(e,t){var n=t.model,r=t.prevProps,o=e.disabled,a=e.id,c=e.nodes,l=Y({},t,{prevProps:e});return n.setProps(e),i()(r.nodes,c)&&r.disabled===o||n.flattenNodes(c),null!==a&&(l=Y({},l,{id:a})),n.deserializeLists({checked:e.checked,expanded:e.expanded}),l}}],(r=[{key:"onCheck",value:function(e){var t=this.props,n=t.noCascade,r=t.onCheck,o=this.state.model.clone(),a=o.getNode(e.value);o.toggleChecked(e,e.checked,n),r(o.serializeList("checked"),Y({},a,e))}},{key:"onExpand",value:function(e){var t=this.props.onExpand,n=this.state.model.clone(),r=n.getNode(e.value);n.toggleNode(e.value,"expanded",e.expanded),t(n.serializeList("expanded"),Y({},r,e))}},{key:"onNodeClick",value:function(e){(0,this.props.onClick)(Y({},this.state.model.getNode(e.value),e))}},{key:"onExpandAll",value:function(){this.expandAllNodes()}},{key:"onCollapseAll",value:function(){this.expandAllNodes(!1)}},{key:"expandAllNodes",value:function(){var e=!(arguments.length>0&&void 0!==arguments[0])||arguments[0];(0,this.props.onExpand)(this.state.model.clone().expandAllNodes(e).serializeList("expanded"))}},{key:"determineShallowCheckState",value:function(e,t){var n=this.state.model.getNode(e.value);return n.isLeaf||t?n.checked?1:0:this.isEveryChildChecked(e)?1:this.isSomeChildChecked(e)?2:0}},{key:"isEveryChildChecked",value:function(e){var t=this;return e.children.every(function(e){return 1===t.state.model.getNode(e.value).checkState})}},{key:"isSomeChildChecked",value:function(e){var t=this;return e.children.some(function(e){return t.state.model.getNode(e.value).checkState>0})}},{key:"renderTreeNodes",value:function(e){var n=this,r=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},o=this.props,a=o.expandDisabled,i=o.expandOnClick,c=o.icons,l=o.lang,u=o.noCascade,s=o.onClick,p=o.onlyLeafCheckboxes,d=o.optimisticToggle,h=o.showNodeTitle,b=o.showNodeIcon,y=this.state,v=y.id,x=y.model,m=t.defaultProps.icons,g=e.map(function(e){var t=e.value,o=x.getNode(e.value),y=o.isParent?n.renderTreeNodes(e.children,e):null;o.checkState=n.determineShallowCheckState(e,u);var g=p?o.isLeaf:o.showCheckbox;return!r.value||x.getNode(r.value).expanded?f.a.createElement(V,{key:t,checked:o.checkState,className:e.className,disabled:o.disabled,expandDisabled:a,expandOnClick:i,expanded:o.expanded,icon:e.icon,icons:Y({},m,c),label:e.label,lang:l,optimisticToggle:d,isLeaf:o.isLeaf,isParent:o.isParent,showCheckbox:g,showNodeIcon:b,title:h?e.title||e.label:e.title,treeId:v,value:e.value,onCheck:n.onCheck,onClick:s&&n.onNodeClick,onExpand:n.onExpand},y):null});return f.a.createElement("ol",null,g)}},{key:"renderExpandAll",value:function(){var e=this.props,t=e.icons,n=t.expandAll,r=t.collapseAll,o=e.lang;return e.showExpandAll?f.a.createElement("div",{className:"rct-options"},f.a.createElement(_,{className:"rct-option rct-option-expand-all",title:o.expandAll,onClick:this.onExpandAll},n),f.a.createElement(_,{className:"rct-option rct-option-collapse-all",title:o.collapseAll,onClick:this.onCollapseAll},r)):null}},{key:"renderHiddenInput",value:function(){var e=this.props,t=e.name,n=e.nameAsArray;return void 0===t?null:n?this.renderArrayHiddenInput():this.renderJoinedHiddenInput()}},{key:"renderArrayHiddenInput",value:function(){var e=this.props,t=e.checked,n=e.name;return t.map(function(e){var t="".concat(n,"[]");return f.a.createElement("input",{key:e,name:t,type:"hidden",value:e})})}},{key:"renderJoinedHiddenInput",value:function(){var e=this.props,t=e.checked,n=e.name,r=t.join(",");return f.a.createElement("input",{name:n,type:"hidden",value:r})}},{key:"render",value:function(){var e=this.props,t=e.disabled,n=e.nodes,r=e.nativeCheckboxes,a=this.renderTreeNodes(n),i=o()({"react-checkbox-tree":!0,"rct-disabled":t,"rct-native-display":r});return f.a.createElement("div",{className:i},this.renderExpandAll(),this.renderHiddenInput(),a)}}])&&Q(n.prototype,r),a&&Q(n,a),t}();te(ne,"propTypes",{nodes:s.a.arrayOf(K).isRequired,checked:$,disabled:s.a.bool,expandDisabled:s.a.bool,expandOnClick:s.a.bool,expanded:$,icons:L,id:s.a.string,lang:z,name:s.a.string,nameAsArray:s.a.bool,nativeCheckboxes:s.a.bool,noCascade:s.a.bool,onlyLeafCheckboxes:s.a.bool,optimisticToggle:s.a.bool,showExpandAll:s.a.bool,showNodeIcon:s.a.bool,showNodeTitle:s.a.bool,onCheck:s.a.func,onClick:s.a.func,onExpand:s.a.func}),te(ne,"defaultProps",{checked:[],disabled:!1,expandDisabled:!1,expandOnClick:!1,expanded:[],icons:{check:f.a.createElement("span",{className:"rct-icon rct-icon-check"}),uncheck:f.a.createElement("span",{className:"rct-icon rct-icon-uncheck"}),halfCheck:f.a.createElement("span",{className:"rct-icon rct-icon-half-check"}),expandClose:f.a.createElement("span",{className:"rct-icon rct-icon-expand-close"}),expandOpen:f.a.createElement("span",{className:"rct-icon rct-icon-expand-open"}),expandAll:f.a.createElement("span",{className:"rct-icon rct-icon-expand-all"}),collapseAll:f.a.createElement("span",{className:"rct-icon rct-icon-collapse-all"}),parentClose:f.a.createElement("span",{className:"rct-icon rct-icon-parent-close"}),parentOpen:f.a.createElement("span",{className:"rct-icon rct-icon-parent-open"}),leaf:f.a.createElement("span",{className:"rct-icon rct-icon-leaf"})},id:null,lang:{collapseAll:"Collapse all",expandAll:"Expand all",toggle:"Toggle"},name:void 0,nameAsArray:!1,nativeCheckboxes:!1,noCascade:!1,onlyLeafCheckboxes:!1,optimisticToggle:!0,showExpandAll:!1,showNodeIcon:!0,showNodeTitle:!1,onCheck:function(){},onClick:null,onExpand:function(){}});t.default=ne}])});
-},{"react":"../node_modules/react/index.js"}],"../../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+/* global define */
+
+(function () {
+	'use strict';
+
+	var hasOwn = {}.hasOwnProperty;
+
+	function classNames () {
+		var classes = [];
+
+		for (var i = 0; i < arguments.length; i++) {
+			var arg = arguments[i];
+			if (!arg) continue;
+
+			var argType = typeof arg;
+
+			if (argType === 'string' || argType === 'number') {
+				classes.push(arg);
+			} else if (Array.isArray(arg) && arg.length) {
+				var inner = classNames.apply(null, arg);
+				if (inner) {
+					classes.push(inner);
+				}
+			} else if (argType === 'object') {
+				for (var key in arg) {
+					if (hasOwn.call(arg, key) && arg[key]) {
+						classes.push(key);
+					}
+				}
+			}
+		}
+
+		return classes.join(' ');
+	}
+
+	if (typeof module !== 'undefined' && module.exports) {
+		classNames.default = classNames;
+		module.exports = classNames;
+	} else if (typeof define === 'function' && typeof define.amd === 'object' && define.amd) {
+		// register as 'classnames', consistent with npm package name
+		define('classnames', [], function () {
+			return classNames;
+		});
+	} else {
+		window.classNames = classNames;
+	}
+}());
+
+},{}],"../node_modules/lodash/_listCacheClear.js":[function(require,module,exports) {
+/**
+ * Removes all key-value entries from the list cache.
+ *
+ * @private
+ * @name clear
+ * @memberOf ListCache
+ */
+function listCacheClear() {
+  this.__data__ = [];
+  this.size = 0;
+}
+
+module.exports = listCacheClear;
+
+},{}],"../node_modules/lodash/eq.js":[function(require,module,exports) {
+/**
+ * Performs a
+ * [`SameValueZero`](http://ecma-international.org/ecma-262/7.0/#sec-samevaluezero)
+ * comparison between two values to determine if they are equivalent.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to compare.
+ * @param {*} other The other value to compare.
+ * @returns {boolean} Returns `true` if the values are equivalent, else `false`.
+ * @example
+ *
+ * var object = { 'a': 1 };
+ * var other = { 'a': 1 };
+ *
+ * _.eq(object, object);
+ * // => true
+ *
+ * _.eq(object, other);
+ * // => false
+ *
+ * _.eq('a', 'a');
+ * // => true
+ *
+ * _.eq('a', Object('a'));
+ * // => false
+ *
+ * _.eq(NaN, NaN);
+ * // => true
+ */
+function eq(value, other) {
+  return value === other || (value !== value && other !== other);
+}
+
+module.exports = eq;
+
+},{}],"../node_modules/lodash/_assocIndexOf.js":[function(require,module,exports) {
+var eq = require('./eq');
+
+/**
+ * Gets the index at which the `key` is found in `array` of key-value pairs.
+ *
+ * @private
+ * @param {Array} array The array to inspect.
+ * @param {*} key The key to search for.
+ * @returns {number} Returns the index of the matched value, else `-1`.
+ */
+function assocIndexOf(array, key) {
+  var length = array.length;
+  while (length--) {
+    if (eq(array[length][0], key)) {
+      return length;
+    }
+  }
+  return -1;
+}
+
+module.exports = assocIndexOf;
+
+},{"./eq":"../node_modules/lodash/eq.js"}],"../node_modules/lodash/_listCacheDelete.js":[function(require,module,exports) {
+var assocIndexOf = require('./_assocIndexOf');
+
+/** Used for built-in method references. */
+var arrayProto = Array.prototype;
+
+/** Built-in value references. */
+var splice = arrayProto.splice;
+
+/**
+ * Removes `key` and its value from the list cache.
+ *
+ * @private
+ * @name delete
+ * @memberOf ListCache
+ * @param {string} key The key of the value to remove.
+ * @returns {boolean} Returns `true` if the entry was removed, else `false`.
+ */
+function listCacheDelete(key) {
+  var data = this.__data__,
+      index = assocIndexOf(data, key);
+
+  if (index < 0) {
+    return false;
+  }
+  var lastIndex = data.length - 1;
+  if (index == lastIndex) {
+    data.pop();
+  } else {
+    splice.call(data, index, 1);
+  }
+  --this.size;
+  return true;
+}
+
+module.exports = listCacheDelete;
+
+},{"./_assocIndexOf":"../node_modules/lodash/_assocIndexOf.js"}],"../node_modules/lodash/_listCacheGet.js":[function(require,module,exports) {
+var assocIndexOf = require('./_assocIndexOf');
+
+/**
+ * Gets the list cache value for `key`.
+ *
+ * @private
+ * @name get
+ * @memberOf ListCache
+ * @param {string} key The key of the value to get.
+ * @returns {*} Returns the entry value.
+ */
+function listCacheGet(key) {
+  var data = this.__data__,
+      index = assocIndexOf(data, key);
+
+  return index < 0 ? undefined : data[index][1];
+}
+
+module.exports = listCacheGet;
+
+},{"./_assocIndexOf":"../node_modules/lodash/_assocIndexOf.js"}],"../node_modules/lodash/_listCacheHas.js":[function(require,module,exports) {
+var assocIndexOf = require('./_assocIndexOf');
+
+/**
+ * Checks if a list cache value for `key` exists.
+ *
+ * @private
+ * @name has
+ * @memberOf ListCache
+ * @param {string} key The key of the entry to check.
+ * @returns {boolean} Returns `true` if an entry for `key` exists, else `false`.
+ */
+function listCacheHas(key) {
+  return assocIndexOf(this.__data__, key) > -1;
+}
+
+module.exports = listCacheHas;
+
+},{"./_assocIndexOf":"../node_modules/lodash/_assocIndexOf.js"}],"../node_modules/lodash/_listCacheSet.js":[function(require,module,exports) {
+var assocIndexOf = require('./_assocIndexOf');
+
+/**
+ * Sets the list cache `key` to `value`.
+ *
+ * @private
+ * @name set
+ * @memberOf ListCache
+ * @param {string} key The key of the value to set.
+ * @param {*} value The value to set.
+ * @returns {Object} Returns the list cache instance.
+ */
+function listCacheSet(key, value) {
+  var data = this.__data__,
+      index = assocIndexOf(data, key);
+
+  if (index < 0) {
+    ++this.size;
+    data.push([key, value]);
+  } else {
+    data[index][1] = value;
+  }
+  return this;
+}
+
+module.exports = listCacheSet;
+
+},{"./_assocIndexOf":"../node_modules/lodash/_assocIndexOf.js"}],"../node_modules/lodash/_ListCache.js":[function(require,module,exports) {
+var listCacheClear = require('./_listCacheClear'),
+    listCacheDelete = require('./_listCacheDelete'),
+    listCacheGet = require('./_listCacheGet'),
+    listCacheHas = require('./_listCacheHas'),
+    listCacheSet = require('./_listCacheSet');
+
+/**
+ * Creates an list cache object.
+ *
+ * @private
+ * @constructor
+ * @param {Array} [entries] The key-value pairs to cache.
+ */
+function ListCache(entries) {
+  var index = -1,
+      length = entries == null ? 0 : entries.length;
+
+  this.clear();
+  while (++index < length) {
+    var entry = entries[index];
+    this.set(entry[0], entry[1]);
+  }
+}
+
+// Add methods to `ListCache`.
+ListCache.prototype.clear = listCacheClear;
+ListCache.prototype['delete'] = listCacheDelete;
+ListCache.prototype.get = listCacheGet;
+ListCache.prototype.has = listCacheHas;
+ListCache.prototype.set = listCacheSet;
+
+module.exports = ListCache;
+
+},{"./_listCacheClear":"../node_modules/lodash/_listCacheClear.js","./_listCacheDelete":"../node_modules/lodash/_listCacheDelete.js","./_listCacheGet":"../node_modules/lodash/_listCacheGet.js","./_listCacheHas":"../node_modules/lodash/_listCacheHas.js","./_listCacheSet":"../node_modules/lodash/_listCacheSet.js"}],"../node_modules/lodash/_stackClear.js":[function(require,module,exports) {
+var ListCache = require('./_ListCache');
+
+/**
+ * Removes all key-value entries from the stack.
+ *
+ * @private
+ * @name clear
+ * @memberOf Stack
+ */
+function stackClear() {
+  this.__data__ = new ListCache;
+  this.size = 0;
+}
+
+module.exports = stackClear;
+
+},{"./_ListCache":"../node_modules/lodash/_ListCache.js"}],"../node_modules/lodash/_stackDelete.js":[function(require,module,exports) {
+/**
+ * Removes `key` and its value from the stack.
+ *
+ * @private
+ * @name delete
+ * @memberOf Stack
+ * @param {string} key The key of the value to remove.
+ * @returns {boolean} Returns `true` if the entry was removed, else `false`.
+ */
+function stackDelete(key) {
+  var data = this.__data__,
+      result = data['delete'](key);
+
+  this.size = data.size;
+  return result;
+}
+
+module.exports = stackDelete;
+
+},{}],"../node_modules/lodash/_stackGet.js":[function(require,module,exports) {
+/**
+ * Gets the stack value for `key`.
+ *
+ * @private
+ * @name get
+ * @memberOf Stack
+ * @param {string} key The key of the value to get.
+ * @returns {*} Returns the entry value.
+ */
+function stackGet(key) {
+  return this.__data__.get(key);
+}
+
+module.exports = stackGet;
+
+},{}],"../node_modules/lodash/_stackHas.js":[function(require,module,exports) {
+/**
+ * Checks if a stack value for `key` exists.
+ *
+ * @private
+ * @name has
+ * @memberOf Stack
+ * @param {string} key The key of the entry to check.
+ * @returns {boolean} Returns `true` if an entry for `key` exists, else `false`.
+ */
+function stackHas(key) {
+  return this.__data__.has(key);
+}
+
+module.exports = stackHas;
+
+},{}],"../node_modules/lodash/_freeGlobal.js":[function(require,module,exports) {
+var global = arguments[3];
+/** Detect free variable `global` from Node.js. */
+var freeGlobal = typeof global == 'object' && global && global.Object === Object && global;
+
+module.exports = freeGlobal;
+
+},{}],"../node_modules/lodash/_root.js":[function(require,module,exports) {
+var freeGlobal = require('./_freeGlobal');
+
+/** Detect free variable `self`. */
+var freeSelf = typeof self == 'object' && self && self.Object === Object && self;
+
+/** Used as a reference to the global object. */
+var root = freeGlobal || freeSelf || Function('return this')();
+
+module.exports = root;
+
+},{"./_freeGlobal":"../node_modules/lodash/_freeGlobal.js"}],"../node_modules/lodash/_Symbol.js":[function(require,module,exports) {
+var root = require('./_root');
+
+/** Built-in value references. */
+var Symbol = root.Symbol;
+
+module.exports = Symbol;
+
+},{"./_root":"../node_modules/lodash/_root.js"}],"../node_modules/lodash/_getRawTag.js":[function(require,module,exports) {
+var Symbol = require('./_Symbol');
+
+/** Used for built-in method references. */
+var objectProto = Object.prototype;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty = objectProto.hasOwnProperty;
+
+/**
+ * Used to resolve the
+ * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)
+ * of values.
+ */
+var nativeObjectToString = objectProto.toString;
+
+/** Built-in value references. */
+var symToStringTag = Symbol ? Symbol.toStringTag : undefined;
+
+/**
+ * A specialized version of `baseGetTag` which ignores `Symbol.toStringTag` values.
+ *
+ * @private
+ * @param {*} value The value to query.
+ * @returns {string} Returns the raw `toStringTag`.
+ */
+function getRawTag(value) {
+  var isOwn = hasOwnProperty.call(value, symToStringTag),
+      tag = value[symToStringTag];
+
+  try {
+    value[symToStringTag] = undefined;
+    var unmasked = true;
+  } catch (e) {}
+
+  var result = nativeObjectToString.call(value);
+  if (unmasked) {
+    if (isOwn) {
+      value[symToStringTag] = tag;
+    } else {
+      delete value[symToStringTag];
+    }
+  }
+  return result;
+}
+
+module.exports = getRawTag;
+
+},{"./_Symbol":"../node_modules/lodash/_Symbol.js"}],"../node_modules/lodash/_objectToString.js":[function(require,module,exports) {
+/** Used for built-in method references. */
+var objectProto = Object.prototype;
+
+/**
+ * Used to resolve the
+ * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)
+ * of values.
+ */
+var nativeObjectToString = objectProto.toString;
+
+/**
+ * Converts `value` to a string using `Object.prototype.toString`.
+ *
+ * @private
+ * @param {*} value The value to convert.
+ * @returns {string} Returns the converted string.
+ */
+function objectToString(value) {
+  return nativeObjectToString.call(value);
+}
+
+module.exports = objectToString;
+
+},{}],"../node_modules/lodash/_baseGetTag.js":[function(require,module,exports) {
+var Symbol = require('./_Symbol'),
+    getRawTag = require('./_getRawTag'),
+    objectToString = require('./_objectToString');
+
+/** `Object#toString` result references. */
+var nullTag = '[object Null]',
+    undefinedTag = '[object Undefined]';
+
+/** Built-in value references. */
+var symToStringTag = Symbol ? Symbol.toStringTag : undefined;
+
+/**
+ * The base implementation of `getTag` without fallbacks for buggy environments.
+ *
+ * @private
+ * @param {*} value The value to query.
+ * @returns {string} Returns the `toStringTag`.
+ */
+function baseGetTag(value) {
+  if (value == null) {
+    return value === undefined ? undefinedTag : nullTag;
+  }
+  return (symToStringTag && symToStringTag in Object(value))
+    ? getRawTag(value)
+    : objectToString(value);
+}
+
+module.exports = baseGetTag;
+
+},{"./_Symbol":"../node_modules/lodash/_Symbol.js","./_getRawTag":"../node_modules/lodash/_getRawTag.js","./_objectToString":"../node_modules/lodash/_objectToString.js"}],"../node_modules/lodash/isObject.js":[function(require,module,exports) {
+/**
+ * Checks if `value` is the
+ * [language type](http://www.ecma-international.org/ecma-262/7.0/#sec-ecmascript-language-types)
+ * of `Object`. (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is an object, else `false`.
+ * @example
+ *
+ * _.isObject({});
+ * // => true
+ *
+ * _.isObject([1, 2, 3]);
+ * // => true
+ *
+ * _.isObject(_.noop);
+ * // => true
+ *
+ * _.isObject(null);
+ * // => false
+ */
+function isObject(value) {
+  var type = typeof value;
+  return value != null && (type == 'object' || type == 'function');
+}
+
+module.exports = isObject;
+
+},{}],"../node_modules/lodash/isFunction.js":[function(require,module,exports) {
+var baseGetTag = require('./_baseGetTag'),
+    isObject = require('./isObject');
+
+/** `Object#toString` result references. */
+var asyncTag = '[object AsyncFunction]',
+    funcTag = '[object Function]',
+    genTag = '[object GeneratorFunction]',
+    proxyTag = '[object Proxy]';
+
+/**
+ * Checks if `value` is classified as a `Function` object.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a function, else `false`.
+ * @example
+ *
+ * _.isFunction(_);
+ * // => true
+ *
+ * _.isFunction(/abc/);
+ * // => false
+ */
+function isFunction(value) {
+  if (!isObject(value)) {
+    return false;
+  }
+  // The use of `Object#toString` avoids issues with the `typeof` operator
+  // in Safari 9 which returns 'object' for typed arrays and other constructors.
+  var tag = baseGetTag(value);
+  return tag == funcTag || tag == genTag || tag == asyncTag || tag == proxyTag;
+}
+
+module.exports = isFunction;
+
+},{"./_baseGetTag":"../node_modules/lodash/_baseGetTag.js","./isObject":"../node_modules/lodash/isObject.js"}],"../node_modules/lodash/_coreJsData.js":[function(require,module,exports) {
+var root = require('./_root');
+
+/** Used to detect overreaching core-js shims. */
+var coreJsData = root['__core-js_shared__'];
+
+module.exports = coreJsData;
+
+},{"./_root":"../node_modules/lodash/_root.js"}],"../node_modules/lodash/_isMasked.js":[function(require,module,exports) {
+var coreJsData = require('./_coreJsData');
+
+/** Used to detect methods masquerading as native. */
+var maskSrcKey = (function() {
+  var uid = /[^.]+$/.exec(coreJsData && coreJsData.keys && coreJsData.keys.IE_PROTO || '');
+  return uid ? ('Symbol(src)_1.' + uid) : '';
+}());
+
+/**
+ * Checks if `func` has its source masked.
+ *
+ * @private
+ * @param {Function} func The function to check.
+ * @returns {boolean} Returns `true` if `func` is masked, else `false`.
+ */
+function isMasked(func) {
+  return !!maskSrcKey && (maskSrcKey in func);
+}
+
+module.exports = isMasked;
+
+},{"./_coreJsData":"../node_modules/lodash/_coreJsData.js"}],"../node_modules/lodash/_toSource.js":[function(require,module,exports) {
+/** Used for built-in method references. */
+var funcProto = Function.prototype;
+
+/** Used to resolve the decompiled source of functions. */
+var funcToString = funcProto.toString;
+
+/**
+ * Converts `func` to its source code.
+ *
+ * @private
+ * @param {Function} func The function to convert.
+ * @returns {string} Returns the source code.
+ */
+function toSource(func) {
+  if (func != null) {
+    try {
+      return funcToString.call(func);
+    } catch (e) {}
+    try {
+      return (func + '');
+    } catch (e) {}
+  }
+  return '';
+}
+
+module.exports = toSource;
+
+},{}],"../node_modules/lodash/_baseIsNative.js":[function(require,module,exports) {
+var isFunction = require('./isFunction'),
+    isMasked = require('./_isMasked'),
+    isObject = require('./isObject'),
+    toSource = require('./_toSource');
+
+/**
+ * Used to match `RegExp`
+ * [syntax characters](http://ecma-international.org/ecma-262/7.0/#sec-patterns).
+ */
+var reRegExpChar = /[\\^$.*+?()[\]{}|]/g;
+
+/** Used to detect host constructors (Safari). */
+var reIsHostCtor = /^\[object .+?Constructor\]$/;
+
+/** Used for built-in method references. */
+var funcProto = Function.prototype,
+    objectProto = Object.prototype;
+
+/** Used to resolve the decompiled source of functions. */
+var funcToString = funcProto.toString;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty = objectProto.hasOwnProperty;
+
+/** Used to detect if a method is native. */
+var reIsNative = RegExp('^' +
+  funcToString.call(hasOwnProperty).replace(reRegExpChar, '\\$&')
+  .replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g, '$1.*?') + '$'
+);
+
+/**
+ * The base implementation of `_.isNative` without bad shim checks.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a native function,
+ *  else `false`.
+ */
+function baseIsNative(value) {
+  if (!isObject(value) || isMasked(value)) {
+    return false;
+  }
+  var pattern = isFunction(value) ? reIsNative : reIsHostCtor;
+  return pattern.test(toSource(value));
+}
+
+module.exports = baseIsNative;
+
+},{"./isFunction":"../node_modules/lodash/isFunction.js","./_isMasked":"../node_modules/lodash/_isMasked.js","./isObject":"../node_modules/lodash/isObject.js","./_toSource":"../node_modules/lodash/_toSource.js"}],"../node_modules/lodash/_getValue.js":[function(require,module,exports) {
+/**
+ * Gets the value at `key` of `object`.
+ *
+ * @private
+ * @param {Object} [object] The object to query.
+ * @param {string} key The key of the property to get.
+ * @returns {*} Returns the property value.
+ */
+function getValue(object, key) {
+  return object == null ? undefined : object[key];
+}
+
+module.exports = getValue;
+
+},{}],"../node_modules/lodash/_getNative.js":[function(require,module,exports) {
+var baseIsNative = require('./_baseIsNative'),
+    getValue = require('./_getValue');
+
+/**
+ * Gets the native function at `key` of `object`.
+ *
+ * @private
+ * @param {Object} object The object to query.
+ * @param {string} key The key of the method to get.
+ * @returns {*} Returns the function if it's native, else `undefined`.
+ */
+function getNative(object, key) {
+  var value = getValue(object, key);
+  return baseIsNative(value) ? value : undefined;
+}
+
+module.exports = getNative;
+
+},{"./_baseIsNative":"../node_modules/lodash/_baseIsNative.js","./_getValue":"../node_modules/lodash/_getValue.js"}],"../node_modules/lodash/_Map.js":[function(require,module,exports) {
+var getNative = require('./_getNative'),
+    root = require('./_root');
+
+/* Built-in method references that are verified to be native. */
+var Map = getNative(root, 'Map');
+
+module.exports = Map;
+
+},{"./_getNative":"../node_modules/lodash/_getNative.js","./_root":"../node_modules/lodash/_root.js"}],"../node_modules/lodash/_nativeCreate.js":[function(require,module,exports) {
+var getNative = require('./_getNative');
+
+/* Built-in method references that are verified to be native. */
+var nativeCreate = getNative(Object, 'create');
+
+module.exports = nativeCreate;
+
+},{"./_getNative":"../node_modules/lodash/_getNative.js"}],"../node_modules/lodash/_hashClear.js":[function(require,module,exports) {
+var nativeCreate = require('./_nativeCreate');
+
+/**
+ * Removes all key-value entries from the hash.
+ *
+ * @private
+ * @name clear
+ * @memberOf Hash
+ */
+function hashClear() {
+  this.__data__ = nativeCreate ? nativeCreate(null) : {};
+  this.size = 0;
+}
+
+module.exports = hashClear;
+
+},{"./_nativeCreate":"../node_modules/lodash/_nativeCreate.js"}],"../node_modules/lodash/_hashDelete.js":[function(require,module,exports) {
+/**
+ * Removes `key` and its value from the hash.
+ *
+ * @private
+ * @name delete
+ * @memberOf Hash
+ * @param {Object} hash The hash to modify.
+ * @param {string} key The key of the value to remove.
+ * @returns {boolean} Returns `true` if the entry was removed, else `false`.
+ */
+function hashDelete(key) {
+  var result = this.has(key) && delete this.__data__[key];
+  this.size -= result ? 1 : 0;
+  return result;
+}
+
+module.exports = hashDelete;
+
+},{}],"../node_modules/lodash/_hashGet.js":[function(require,module,exports) {
+var nativeCreate = require('./_nativeCreate');
+
+/** Used to stand-in for `undefined` hash values. */
+var HASH_UNDEFINED = '__lodash_hash_undefined__';
+
+/** Used for built-in method references. */
+var objectProto = Object.prototype;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty = objectProto.hasOwnProperty;
+
+/**
+ * Gets the hash value for `key`.
+ *
+ * @private
+ * @name get
+ * @memberOf Hash
+ * @param {string} key The key of the value to get.
+ * @returns {*} Returns the entry value.
+ */
+function hashGet(key) {
+  var data = this.__data__;
+  if (nativeCreate) {
+    var result = data[key];
+    return result === HASH_UNDEFINED ? undefined : result;
+  }
+  return hasOwnProperty.call(data, key) ? data[key] : undefined;
+}
+
+module.exports = hashGet;
+
+},{"./_nativeCreate":"../node_modules/lodash/_nativeCreate.js"}],"../node_modules/lodash/_hashHas.js":[function(require,module,exports) {
+var nativeCreate = require('./_nativeCreate');
+
+/** Used for built-in method references. */
+var objectProto = Object.prototype;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty = objectProto.hasOwnProperty;
+
+/**
+ * Checks if a hash value for `key` exists.
+ *
+ * @private
+ * @name has
+ * @memberOf Hash
+ * @param {string} key The key of the entry to check.
+ * @returns {boolean} Returns `true` if an entry for `key` exists, else `false`.
+ */
+function hashHas(key) {
+  var data = this.__data__;
+  return nativeCreate ? (data[key] !== undefined) : hasOwnProperty.call(data, key);
+}
+
+module.exports = hashHas;
+
+},{"./_nativeCreate":"../node_modules/lodash/_nativeCreate.js"}],"../node_modules/lodash/_hashSet.js":[function(require,module,exports) {
+var nativeCreate = require('./_nativeCreate');
+
+/** Used to stand-in for `undefined` hash values. */
+var HASH_UNDEFINED = '__lodash_hash_undefined__';
+
+/**
+ * Sets the hash `key` to `value`.
+ *
+ * @private
+ * @name set
+ * @memberOf Hash
+ * @param {string} key The key of the value to set.
+ * @param {*} value The value to set.
+ * @returns {Object} Returns the hash instance.
+ */
+function hashSet(key, value) {
+  var data = this.__data__;
+  this.size += this.has(key) ? 0 : 1;
+  data[key] = (nativeCreate && value === undefined) ? HASH_UNDEFINED : value;
+  return this;
+}
+
+module.exports = hashSet;
+
+},{"./_nativeCreate":"../node_modules/lodash/_nativeCreate.js"}],"../node_modules/lodash/_Hash.js":[function(require,module,exports) {
+var hashClear = require('./_hashClear'),
+    hashDelete = require('./_hashDelete'),
+    hashGet = require('./_hashGet'),
+    hashHas = require('./_hashHas'),
+    hashSet = require('./_hashSet');
+
+/**
+ * Creates a hash object.
+ *
+ * @private
+ * @constructor
+ * @param {Array} [entries] The key-value pairs to cache.
+ */
+function Hash(entries) {
+  var index = -1,
+      length = entries == null ? 0 : entries.length;
+
+  this.clear();
+  while (++index < length) {
+    var entry = entries[index];
+    this.set(entry[0], entry[1]);
+  }
+}
+
+// Add methods to `Hash`.
+Hash.prototype.clear = hashClear;
+Hash.prototype['delete'] = hashDelete;
+Hash.prototype.get = hashGet;
+Hash.prototype.has = hashHas;
+Hash.prototype.set = hashSet;
+
+module.exports = Hash;
+
+},{"./_hashClear":"../node_modules/lodash/_hashClear.js","./_hashDelete":"../node_modules/lodash/_hashDelete.js","./_hashGet":"../node_modules/lodash/_hashGet.js","./_hashHas":"../node_modules/lodash/_hashHas.js","./_hashSet":"../node_modules/lodash/_hashSet.js"}],"../node_modules/lodash/_mapCacheClear.js":[function(require,module,exports) {
+var Hash = require('./_Hash'),
+    ListCache = require('./_ListCache'),
+    Map = require('./_Map');
+
+/**
+ * Removes all key-value entries from the map.
+ *
+ * @private
+ * @name clear
+ * @memberOf MapCache
+ */
+function mapCacheClear() {
+  this.size = 0;
+  this.__data__ = {
+    'hash': new Hash,
+    'map': new (Map || ListCache),
+    'string': new Hash
+  };
+}
+
+module.exports = mapCacheClear;
+
+},{"./_Hash":"../node_modules/lodash/_Hash.js","./_ListCache":"../node_modules/lodash/_ListCache.js","./_Map":"../node_modules/lodash/_Map.js"}],"../node_modules/lodash/_isKeyable.js":[function(require,module,exports) {
+/**
+ * Checks if `value` is suitable for use as unique object key.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is suitable, else `false`.
+ */
+function isKeyable(value) {
+  var type = typeof value;
+  return (type == 'string' || type == 'number' || type == 'symbol' || type == 'boolean')
+    ? (value !== '__proto__')
+    : (value === null);
+}
+
+module.exports = isKeyable;
+
+},{}],"../node_modules/lodash/_getMapData.js":[function(require,module,exports) {
+var isKeyable = require('./_isKeyable');
+
+/**
+ * Gets the data for `map`.
+ *
+ * @private
+ * @param {Object} map The map to query.
+ * @param {string} key The reference key.
+ * @returns {*} Returns the map data.
+ */
+function getMapData(map, key) {
+  var data = map.__data__;
+  return isKeyable(key)
+    ? data[typeof key == 'string' ? 'string' : 'hash']
+    : data.map;
+}
+
+module.exports = getMapData;
+
+},{"./_isKeyable":"../node_modules/lodash/_isKeyable.js"}],"../node_modules/lodash/_mapCacheDelete.js":[function(require,module,exports) {
+var getMapData = require('./_getMapData');
+
+/**
+ * Removes `key` and its value from the map.
+ *
+ * @private
+ * @name delete
+ * @memberOf MapCache
+ * @param {string} key The key of the value to remove.
+ * @returns {boolean} Returns `true` if the entry was removed, else `false`.
+ */
+function mapCacheDelete(key) {
+  var result = getMapData(this, key)['delete'](key);
+  this.size -= result ? 1 : 0;
+  return result;
+}
+
+module.exports = mapCacheDelete;
+
+},{"./_getMapData":"../node_modules/lodash/_getMapData.js"}],"../node_modules/lodash/_mapCacheGet.js":[function(require,module,exports) {
+var getMapData = require('./_getMapData');
+
+/**
+ * Gets the map value for `key`.
+ *
+ * @private
+ * @name get
+ * @memberOf MapCache
+ * @param {string} key The key of the value to get.
+ * @returns {*} Returns the entry value.
+ */
+function mapCacheGet(key) {
+  return getMapData(this, key).get(key);
+}
+
+module.exports = mapCacheGet;
+
+},{"./_getMapData":"../node_modules/lodash/_getMapData.js"}],"../node_modules/lodash/_mapCacheHas.js":[function(require,module,exports) {
+var getMapData = require('./_getMapData');
+
+/**
+ * Checks if a map value for `key` exists.
+ *
+ * @private
+ * @name has
+ * @memberOf MapCache
+ * @param {string} key The key of the entry to check.
+ * @returns {boolean} Returns `true` if an entry for `key` exists, else `false`.
+ */
+function mapCacheHas(key) {
+  return getMapData(this, key).has(key);
+}
+
+module.exports = mapCacheHas;
+
+},{"./_getMapData":"../node_modules/lodash/_getMapData.js"}],"../node_modules/lodash/_mapCacheSet.js":[function(require,module,exports) {
+var getMapData = require('./_getMapData');
+
+/**
+ * Sets the map `key` to `value`.
+ *
+ * @private
+ * @name set
+ * @memberOf MapCache
+ * @param {string} key The key of the value to set.
+ * @param {*} value The value to set.
+ * @returns {Object} Returns the map cache instance.
+ */
+function mapCacheSet(key, value) {
+  var data = getMapData(this, key),
+      size = data.size;
+
+  data.set(key, value);
+  this.size += data.size == size ? 0 : 1;
+  return this;
+}
+
+module.exports = mapCacheSet;
+
+},{"./_getMapData":"../node_modules/lodash/_getMapData.js"}],"../node_modules/lodash/_MapCache.js":[function(require,module,exports) {
+var mapCacheClear = require('./_mapCacheClear'),
+    mapCacheDelete = require('./_mapCacheDelete'),
+    mapCacheGet = require('./_mapCacheGet'),
+    mapCacheHas = require('./_mapCacheHas'),
+    mapCacheSet = require('./_mapCacheSet');
+
+/**
+ * Creates a map cache object to store key-value pairs.
+ *
+ * @private
+ * @constructor
+ * @param {Array} [entries] The key-value pairs to cache.
+ */
+function MapCache(entries) {
+  var index = -1,
+      length = entries == null ? 0 : entries.length;
+
+  this.clear();
+  while (++index < length) {
+    var entry = entries[index];
+    this.set(entry[0], entry[1]);
+  }
+}
+
+// Add methods to `MapCache`.
+MapCache.prototype.clear = mapCacheClear;
+MapCache.prototype['delete'] = mapCacheDelete;
+MapCache.prototype.get = mapCacheGet;
+MapCache.prototype.has = mapCacheHas;
+MapCache.prototype.set = mapCacheSet;
+
+module.exports = MapCache;
+
+},{"./_mapCacheClear":"../node_modules/lodash/_mapCacheClear.js","./_mapCacheDelete":"../node_modules/lodash/_mapCacheDelete.js","./_mapCacheGet":"../node_modules/lodash/_mapCacheGet.js","./_mapCacheHas":"../node_modules/lodash/_mapCacheHas.js","./_mapCacheSet":"../node_modules/lodash/_mapCacheSet.js"}],"../node_modules/lodash/_stackSet.js":[function(require,module,exports) {
+var ListCache = require('./_ListCache'),
+    Map = require('./_Map'),
+    MapCache = require('./_MapCache');
+
+/** Used as the size to enable large array optimizations. */
+var LARGE_ARRAY_SIZE = 200;
+
+/**
+ * Sets the stack `key` to `value`.
+ *
+ * @private
+ * @name set
+ * @memberOf Stack
+ * @param {string} key The key of the value to set.
+ * @param {*} value The value to set.
+ * @returns {Object} Returns the stack cache instance.
+ */
+function stackSet(key, value) {
+  var data = this.__data__;
+  if (data instanceof ListCache) {
+    var pairs = data.__data__;
+    if (!Map || (pairs.length < LARGE_ARRAY_SIZE - 1)) {
+      pairs.push([key, value]);
+      this.size = ++data.size;
+      return this;
+    }
+    data = this.__data__ = new MapCache(pairs);
+  }
+  data.set(key, value);
+  this.size = data.size;
+  return this;
+}
+
+module.exports = stackSet;
+
+},{"./_ListCache":"../node_modules/lodash/_ListCache.js","./_Map":"../node_modules/lodash/_Map.js","./_MapCache":"../node_modules/lodash/_MapCache.js"}],"../node_modules/lodash/_Stack.js":[function(require,module,exports) {
+var ListCache = require('./_ListCache'),
+    stackClear = require('./_stackClear'),
+    stackDelete = require('./_stackDelete'),
+    stackGet = require('./_stackGet'),
+    stackHas = require('./_stackHas'),
+    stackSet = require('./_stackSet');
+
+/**
+ * Creates a stack cache object to store key-value pairs.
+ *
+ * @private
+ * @constructor
+ * @param {Array} [entries] The key-value pairs to cache.
+ */
+function Stack(entries) {
+  var data = this.__data__ = new ListCache(entries);
+  this.size = data.size;
+}
+
+// Add methods to `Stack`.
+Stack.prototype.clear = stackClear;
+Stack.prototype['delete'] = stackDelete;
+Stack.prototype.get = stackGet;
+Stack.prototype.has = stackHas;
+Stack.prototype.set = stackSet;
+
+module.exports = Stack;
+
+},{"./_ListCache":"../node_modules/lodash/_ListCache.js","./_stackClear":"../node_modules/lodash/_stackClear.js","./_stackDelete":"../node_modules/lodash/_stackDelete.js","./_stackGet":"../node_modules/lodash/_stackGet.js","./_stackHas":"../node_modules/lodash/_stackHas.js","./_stackSet":"../node_modules/lodash/_stackSet.js"}],"../node_modules/lodash/_setCacheAdd.js":[function(require,module,exports) {
+/** Used to stand-in for `undefined` hash values. */
+var HASH_UNDEFINED = '__lodash_hash_undefined__';
+
+/**
+ * Adds `value` to the array cache.
+ *
+ * @private
+ * @name add
+ * @memberOf SetCache
+ * @alias push
+ * @param {*} value The value to cache.
+ * @returns {Object} Returns the cache instance.
+ */
+function setCacheAdd(value) {
+  this.__data__.set(value, HASH_UNDEFINED);
+  return this;
+}
+
+module.exports = setCacheAdd;
+
+},{}],"../node_modules/lodash/_setCacheHas.js":[function(require,module,exports) {
+/**
+ * Checks if `value` is in the array cache.
+ *
+ * @private
+ * @name has
+ * @memberOf SetCache
+ * @param {*} value The value to search for.
+ * @returns {number} Returns `true` if `value` is found, else `false`.
+ */
+function setCacheHas(value) {
+  return this.__data__.has(value);
+}
+
+module.exports = setCacheHas;
+
+},{}],"../node_modules/lodash/_SetCache.js":[function(require,module,exports) {
+var MapCache = require('./_MapCache'),
+    setCacheAdd = require('./_setCacheAdd'),
+    setCacheHas = require('./_setCacheHas');
+
+/**
+ *
+ * Creates an array cache object to store unique values.
+ *
+ * @private
+ * @constructor
+ * @param {Array} [values] The values to cache.
+ */
+function SetCache(values) {
+  var index = -1,
+      length = values == null ? 0 : values.length;
+
+  this.__data__ = new MapCache;
+  while (++index < length) {
+    this.add(values[index]);
+  }
+}
+
+// Add methods to `SetCache`.
+SetCache.prototype.add = SetCache.prototype.push = setCacheAdd;
+SetCache.prototype.has = setCacheHas;
+
+module.exports = SetCache;
+
+},{"./_MapCache":"../node_modules/lodash/_MapCache.js","./_setCacheAdd":"../node_modules/lodash/_setCacheAdd.js","./_setCacheHas":"../node_modules/lodash/_setCacheHas.js"}],"../node_modules/lodash/_arraySome.js":[function(require,module,exports) {
+/**
+ * A specialized version of `_.some` for arrays without support for iteratee
+ * shorthands.
+ *
+ * @private
+ * @param {Array} [array] The array to iterate over.
+ * @param {Function} predicate The function invoked per iteration.
+ * @returns {boolean} Returns `true` if any element passes the predicate check,
+ *  else `false`.
+ */
+function arraySome(array, predicate) {
+  var index = -1,
+      length = array == null ? 0 : array.length;
+
+  while (++index < length) {
+    if (predicate(array[index], index, array)) {
+      return true;
+    }
+  }
+  return false;
+}
+
+module.exports = arraySome;
+
+},{}],"../node_modules/lodash/_cacheHas.js":[function(require,module,exports) {
+/**
+ * Checks if a `cache` value for `key` exists.
+ *
+ * @private
+ * @param {Object} cache The cache to query.
+ * @param {string} key The key of the entry to check.
+ * @returns {boolean} Returns `true` if an entry for `key` exists, else `false`.
+ */
+function cacheHas(cache, key) {
+  return cache.has(key);
+}
+
+module.exports = cacheHas;
+
+},{}],"../node_modules/lodash/_equalArrays.js":[function(require,module,exports) {
+var SetCache = require('./_SetCache'),
+    arraySome = require('./_arraySome'),
+    cacheHas = require('./_cacheHas');
+
+/** Used to compose bitmasks for value comparisons. */
+var COMPARE_PARTIAL_FLAG = 1,
+    COMPARE_UNORDERED_FLAG = 2;
+
+/**
+ * A specialized version of `baseIsEqualDeep` for arrays with support for
+ * partial deep comparisons.
+ *
+ * @private
+ * @param {Array} array The array to compare.
+ * @param {Array} other The other array to compare.
+ * @param {number} bitmask The bitmask flags. See `baseIsEqual` for more details.
+ * @param {Function} customizer The function to customize comparisons.
+ * @param {Function} equalFunc The function to determine equivalents of values.
+ * @param {Object} stack Tracks traversed `array` and `other` objects.
+ * @returns {boolean} Returns `true` if the arrays are equivalent, else `false`.
+ */
+function equalArrays(array, other, bitmask, customizer, equalFunc, stack) {
+  var isPartial = bitmask & COMPARE_PARTIAL_FLAG,
+      arrLength = array.length,
+      othLength = other.length;
+
+  if (arrLength != othLength && !(isPartial && othLength > arrLength)) {
+    return false;
+  }
+  // Assume cyclic values are equal.
+  var stacked = stack.get(array);
+  if (stacked && stack.get(other)) {
+    return stacked == other;
+  }
+  var index = -1,
+      result = true,
+      seen = (bitmask & COMPARE_UNORDERED_FLAG) ? new SetCache : undefined;
+
+  stack.set(array, other);
+  stack.set(other, array);
+
+  // Ignore non-index properties.
+  while (++index < arrLength) {
+    var arrValue = array[index],
+        othValue = other[index];
+
+    if (customizer) {
+      var compared = isPartial
+        ? customizer(othValue, arrValue, index, other, array, stack)
+        : customizer(arrValue, othValue, index, array, other, stack);
+    }
+    if (compared !== undefined) {
+      if (compared) {
+        continue;
+      }
+      result = false;
+      break;
+    }
+    // Recursively compare arrays (susceptible to call stack limits).
+    if (seen) {
+      if (!arraySome(other, function(othValue, othIndex) {
+            if (!cacheHas(seen, othIndex) &&
+                (arrValue === othValue || equalFunc(arrValue, othValue, bitmask, customizer, stack))) {
+              return seen.push(othIndex);
+            }
+          })) {
+        result = false;
+        break;
+      }
+    } else if (!(
+          arrValue === othValue ||
+            equalFunc(arrValue, othValue, bitmask, customizer, stack)
+        )) {
+      result = false;
+      break;
+    }
+  }
+  stack['delete'](array);
+  stack['delete'](other);
+  return result;
+}
+
+module.exports = equalArrays;
+
+},{"./_SetCache":"../node_modules/lodash/_SetCache.js","./_arraySome":"../node_modules/lodash/_arraySome.js","./_cacheHas":"../node_modules/lodash/_cacheHas.js"}],"../node_modules/lodash/_Uint8Array.js":[function(require,module,exports) {
+var root = require('./_root');
+
+/** Built-in value references. */
+var Uint8Array = root.Uint8Array;
+
+module.exports = Uint8Array;
+
+},{"./_root":"../node_modules/lodash/_root.js"}],"../node_modules/lodash/_mapToArray.js":[function(require,module,exports) {
+/**
+ * Converts `map` to its key-value pairs.
+ *
+ * @private
+ * @param {Object} map The map to convert.
+ * @returns {Array} Returns the key-value pairs.
+ */
+function mapToArray(map) {
+  var index = -1,
+      result = Array(map.size);
+
+  map.forEach(function(value, key) {
+    result[++index] = [key, value];
+  });
+  return result;
+}
+
+module.exports = mapToArray;
+
+},{}],"../node_modules/lodash/_setToArray.js":[function(require,module,exports) {
+/**
+ * Converts `set` to an array of its values.
+ *
+ * @private
+ * @param {Object} set The set to convert.
+ * @returns {Array} Returns the values.
+ */
+function setToArray(set) {
+  var index = -1,
+      result = Array(set.size);
+
+  set.forEach(function(value) {
+    result[++index] = value;
+  });
+  return result;
+}
+
+module.exports = setToArray;
+
+},{}],"../node_modules/lodash/_equalByTag.js":[function(require,module,exports) {
+var Symbol = require('./_Symbol'),
+    Uint8Array = require('./_Uint8Array'),
+    eq = require('./eq'),
+    equalArrays = require('./_equalArrays'),
+    mapToArray = require('./_mapToArray'),
+    setToArray = require('./_setToArray');
+
+/** Used to compose bitmasks for value comparisons. */
+var COMPARE_PARTIAL_FLAG = 1,
+    COMPARE_UNORDERED_FLAG = 2;
+
+/** `Object#toString` result references. */
+var boolTag = '[object Boolean]',
+    dateTag = '[object Date]',
+    errorTag = '[object Error]',
+    mapTag = '[object Map]',
+    numberTag = '[object Number]',
+    regexpTag = '[object RegExp]',
+    setTag = '[object Set]',
+    stringTag = '[object String]',
+    symbolTag = '[object Symbol]';
+
+var arrayBufferTag = '[object ArrayBuffer]',
+    dataViewTag = '[object DataView]';
+
+/** Used to convert symbols to primitives and strings. */
+var symbolProto = Symbol ? Symbol.prototype : undefined,
+    symbolValueOf = symbolProto ? symbolProto.valueOf : undefined;
+
+/**
+ * A specialized version of `baseIsEqualDeep` for comparing objects of
+ * the same `toStringTag`.
+ *
+ * **Note:** This function only supports comparing values with tags of
+ * `Boolean`, `Date`, `Error`, `Number`, `RegExp`, or `String`.
+ *
+ * @private
+ * @param {Object} object The object to compare.
+ * @param {Object} other The other object to compare.
+ * @param {string} tag The `toStringTag` of the objects to compare.
+ * @param {number} bitmask The bitmask flags. See `baseIsEqual` for more details.
+ * @param {Function} customizer The function to customize comparisons.
+ * @param {Function} equalFunc The function to determine equivalents of values.
+ * @param {Object} stack Tracks traversed `object` and `other` objects.
+ * @returns {boolean} Returns `true` if the objects are equivalent, else `false`.
+ */
+function equalByTag(object, other, tag, bitmask, customizer, equalFunc, stack) {
+  switch (tag) {
+    case dataViewTag:
+      if ((object.byteLength != other.byteLength) ||
+          (object.byteOffset != other.byteOffset)) {
+        return false;
+      }
+      object = object.buffer;
+      other = other.buffer;
+
+    case arrayBufferTag:
+      if ((object.byteLength != other.byteLength) ||
+          !equalFunc(new Uint8Array(object), new Uint8Array(other))) {
+        return false;
+      }
+      return true;
+
+    case boolTag:
+    case dateTag:
+    case numberTag:
+      // Coerce booleans to `1` or `0` and dates to milliseconds.
+      // Invalid dates are coerced to `NaN`.
+      return eq(+object, +other);
+
+    case errorTag:
+      return object.name == other.name && object.message == other.message;
+
+    case regexpTag:
+    case stringTag:
+      // Coerce regexes to strings and treat strings, primitives and objects,
+      // as equal. See http://www.ecma-international.org/ecma-262/7.0/#sec-regexp.prototype.tostring
+      // for more details.
+      return object == (other + '');
+
+    case mapTag:
+      var convert = mapToArray;
+
+    case setTag:
+      var isPartial = bitmask & COMPARE_PARTIAL_FLAG;
+      convert || (convert = setToArray);
+
+      if (object.size != other.size && !isPartial) {
+        return false;
+      }
+      // Assume cyclic values are equal.
+      var stacked = stack.get(object);
+      if (stacked) {
+        return stacked == other;
+      }
+      bitmask |= COMPARE_UNORDERED_FLAG;
+
+      // Recursively compare objects (susceptible to call stack limits).
+      stack.set(object, other);
+      var result = equalArrays(convert(object), convert(other), bitmask, customizer, equalFunc, stack);
+      stack['delete'](object);
+      return result;
+
+    case symbolTag:
+      if (symbolValueOf) {
+        return symbolValueOf.call(object) == symbolValueOf.call(other);
+      }
+  }
+  return false;
+}
+
+module.exports = equalByTag;
+
+},{"./_Symbol":"../node_modules/lodash/_Symbol.js","./_Uint8Array":"../node_modules/lodash/_Uint8Array.js","./eq":"../node_modules/lodash/eq.js","./_equalArrays":"../node_modules/lodash/_equalArrays.js","./_mapToArray":"../node_modules/lodash/_mapToArray.js","./_setToArray":"../node_modules/lodash/_setToArray.js"}],"../node_modules/lodash/_arrayPush.js":[function(require,module,exports) {
+/**
+ * Appends the elements of `values` to `array`.
+ *
+ * @private
+ * @param {Array} array The array to modify.
+ * @param {Array} values The values to append.
+ * @returns {Array} Returns `array`.
+ */
+function arrayPush(array, values) {
+  var index = -1,
+      length = values.length,
+      offset = array.length;
+
+  while (++index < length) {
+    array[offset + index] = values[index];
+  }
+  return array;
+}
+
+module.exports = arrayPush;
+
+},{}],"../node_modules/lodash/isArray.js":[function(require,module,exports) {
+/**
+ * Checks if `value` is classified as an `Array` object.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is an array, else `false`.
+ * @example
+ *
+ * _.isArray([1, 2, 3]);
+ * // => true
+ *
+ * _.isArray(document.body.children);
+ * // => false
+ *
+ * _.isArray('abc');
+ * // => false
+ *
+ * _.isArray(_.noop);
+ * // => false
+ */
+var isArray = Array.isArray;
+
+module.exports = isArray;
+
+},{}],"../node_modules/lodash/_baseGetAllKeys.js":[function(require,module,exports) {
+var arrayPush = require('./_arrayPush'),
+    isArray = require('./isArray');
+
+/**
+ * The base implementation of `getAllKeys` and `getAllKeysIn` which uses
+ * `keysFunc` and `symbolsFunc` to get the enumerable property names and
+ * symbols of `object`.
+ *
+ * @private
+ * @param {Object} object The object to query.
+ * @param {Function} keysFunc The function to get the keys of `object`.
+ * @param {Function} symbolsFunc The function to get the symbols of `object`.
+ * @returns {Array} Returns the array of property names and symbols.
+ */
+function baseGetAllKeys(object, keysFunc, symbolsFunc) {
+  var result = keysFunc(object);
+  return isArray(object) ? result : arrayPush(result, symbolsFunc(object));
+}
+
+module.exports = baseGetAllKeys;
+
+},{"./_arrayPush":"../node_modules/lodash/_arrayPush.js","./isArray":"../node_modules/lodash/isArray.js"}],"../node_modules/lodash/_arrayFilter.js":[function(require,module,exports) {
+/**
+ * A specialized version of `_.filter` for arrays without support for
+ * iteratee shorthands.
+ *
+ * @private
+ * @param {Array} [array] The array to iterate over.
+ * @param {Function} predicate The function invoked per iteration.
+ * @returns {Array} Returns the new filtered array.
+ */
+function arrayFilter(array, predicate) {
+  var index = -1,
+      length = array == null ? 0 : array.length,
+      resIndex = 0,
+      result = [];
+
+  while (++index < length) {
+    var value = array[index];
+    if (predicate(value, index, array)) {
+      result[resIndex++] = value;
+    }
+  }
+  return result;
+}
+
+module.exports = arrayFilter;
+
+},{}],"../node_modules/lodash/stubArray.js":[function(require,module,exports) {
+/**
+ * This method returns a new empty array.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.13.0
+ * @category Util
+ * @returns {Array} Returns the new empty array.
+ * @example
+ *
+ * var arrays = _.times(2, _.stubArray);
+ *
+ * console.log(arrays);
+ * // => [[], []]
+ *
+ * console.log(arrays[0] === arrays[1]);
+ * // => false
+ */
+function stubArray() {
+  return [];
+}
+
+module.exports = stubArray;
+
+},{}],"../node_modules/lodash/_getSymbols.js":[function(require,module,exports) {
+var arrayFilter = require('./_arrayFilter'),
+    stubArray = require('./stubArray');
+
+/** Used for built-in method references. */
+var objectProto = Object.prototype;
+
+/** Built-in value references. */
+var propertyIsEnumerable = objectProto.propertyIsEnumerable;
+
+/* Built-in method references for those with the same name as other `lodash` methods. */
+var nativeGetSymbols = Object.getOwnPropertySymbols;
+
+/**
+ * Creates an array of the own enumerable symbols of `object`.
+ *
+ * @private
+ * @param {Object} object The object to query.
+ * @returns {Array} Returns the array of symbols.
+ */
+var getSymbols = !nativeGetSymbols ? stubArray : function(object) {
+  if (object == null) {
+    return [];
+  }
+  object = Object(object);
+  return arrayFilter(nativeGetSymbols(object), function(symbol) {
+    return propertyIsEnumerable.call(object, symbol);
+  });
+};
+
+module.exports = getSymbols;
+
+},{"./_arrayFilter":"../node_modules/lodash/_arrayFilter.js","./stubArray":"../node_modules/lodash/stubArray.js"}],"../node_modules/lodash/_baseTimes.js":[function(require,module,exports) {
+/**
+ * The base implementation of `_.times` without support for iteratee shorthands
+ * or max array length checks.
+ *
+ * @private
+ * @param {number} n The number of times to invoke `iteratee`.
+ * @param {Function} iteratee The function invoked per iteration.
+ * @returns {Array} Returns the array of results.
+ */
+function baseTimes(n, iteratee) {
+  var index = -1,
+      result = Array(n);
+
+  while (++index < n) {
+    result[index] = iteratee(index);
+  }
+  return result;
+}
+
+module.exports = baseTimes;
+
+},{}],"../node_modules/lodash/isObjectLike.js":[function(require,module,exports) {
+/**
+ * Checks if `value` is object-like. A value is object-like if it's not `null`
+ * and has a `typeof` result of "object".
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is object-like, else `false`.
+ * @example
+ *
+ * _.isObjectLike({});
+ * // => true
+ *
+ * _.isObjectLike([1, 2, 3]);
+ * // => true
+ *
+ * _.isObjectLike(_.noop);
+ * // => false
+ *
+ * _.isObjectLike(null);
+ * // => false
+ */
+function isObjectLike(value) {
+  return value != null && typeof value == 'object';
+}
+
+module.exports = isObjectLike;
+
+},{}],"../node_modules/lodash/_baseIsArguments.js":[function(require,module,exports) {
+var baseGetTag = require('./_baseGetTag'),
+    isObjectLike = require('./isObjectLike');
+
+/** `Object#toString` result references. */
+var argsTag = '[object Arguments]';
+
+/**
+ * The base implementation of `_.isArguments`.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is an `arguments` object,
+ */
+function baseIsArguments(value) {
+  return isObjectLike(value) && baseGetTag(value) == argsTag;
+}
+
+module.exports = baseIsArguments;
+
+},{"./_baseGetTag":"../node_modules/lodash/_baseGetTag.js","./isObjectLike":"../node_modules/lodash/isObjectLike.js"}],"../node_modules/lodash/isArguments.js":[function(require,module,exports) {
+var baseIsArguments = require('./_baseIsArguments'),
+    isObjectLike = require('./isObjectLike');
+
+/** Used for built-in method references. */
+var objectProto = Object.prototype;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty = objectProto.hasOwnProperty;
+
+/** Built-in value references. */
+var propertyIsEnumerable = objectProto.propertyIsEnumerable;
+
+/**
+ * Checks if `value` is likely an `arguments` object.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is an `arguments` object,
+ *  else `false`.
+ * @example
+ *
+ * _.isArguments(function() { return arguments; }());
+ * // => true
+ *
+ * _.isArguments([1, 2, 3]);
+ * // => false
+ */
+var isArguments = baseIsArguments(function() { return arguments; }()) ? baseIsArguments : function(value) {
+  return isObjectLike(value) && hasOwnProperty.call(value, 'callee') &&
+    !propertyIsEnumerable.call(value, 'callee');
+};
+
+module.exports = isArguments;
+
+},{"./_baseIsArguments":"../node_modules/lodash/_baseIsArguments.js","./isObjectLike":"../node_modules/lodash/isObjectLike.js"}],"../node_modules/lodash/stubFalse.js":[function(require,module,exports) {
+/**
+ * This method returns `false`.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.13.0
+ * @category Util
+ * @returns {boolean} Returns `false`.
+ * @example
+ *
+ * _.times(2, _.stubFalse);
+ * // => [false, false]
+ */
+function stubFalse() {
+  return false;
+}
+
+module.exports = stubFalse;
+
+},{}],"../node_modules/lodash/isBuffer.js":[function(require,module,exports) {
+
+var root = require('./_root'),
+    stubFalse = require('./stubFalse');
+
+/** Detect free variable `exports`. */
+var freeExports = typeof exports == 'object' && exports && !exports.nodeType && exports;
+
+/** Detect free variable `module`. */
+var freeModule = freeExports && typeof module == 'object' && module && !module.nodeType && module;
+
+/** Detect the popular CommonJS extension `module.exports`. */
+var moduleExports = freeModule && freeModule.exports === freeExports;
+
+/** Built-in value references. */
+var Buffer = moduleExports ? root.Buffer : undefined;
+
+/* Built-in method references for those with the same name as other `lodash` methods. */
+var nativeIsBuffer = Buffer ? Buffer.isBuffer : undefined;
+
+/**
+ * Checks if `value` is a buffer.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.3.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a buffer, else `false`.
+ * @example
+ *
+ * _.isBuffer(new Buffer(2));
+ * // => true
+ *
+ * _.isBuffer(new Uint8Array(2));
+ * // => false
+ */
+var isBuffer = nativeIsBuffer || stubFalse;
+
+module.exports = isBuffer;
+
+},{"./_root":"../node_modules/lodash/_root.js","./stubFalse":"../node_modules/lodash/stubFalse.js"}],"../node_modules/lodash/_isIndex.js":[function(require,module,exports) {
+/** Used as references for various `Number` constants. */
+var MAX_SAFE_INTEGER = 9007199254740991;
+
+/** Used to detect unsigned integer values. */
+var reIsUint = /^(?:0|[1-9]\d*)$/;
+
+/**
+ * Checks if `value` is a valid array-like index.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @param {number} [length=MAX_SAFE_INTEGER] The upper bounds of a valid index.
+ * @returns {boolean} Returns `true` if `value` is a valid index, else `false`.
+ */
+function isIndex(value, length) {
+  var type = typeof value;
+  length = length == null ? MAX_SAFE_INTEGER : length;
+
+  return !!length &&
+    (type == 'number' ||
+      (type != 'symbol' && reIsUint.test(value))) &&
+        (value > -1 && value % 1 == 0 && value < length);
+}
+
+module.exports = isIndex;
+
+},{}],"../node_modules/lodash/isLength.js":[function(require,module,exports) {
+/** Used as references for various `Number` constants. */
+var MAX_SAFE_INTEGER = 9007199254740991;
+
+/**
+ * Checks if `value` is a valid array-like length.
+ *
+ * **Note:** This method is loosely based on
+ * [`ToLength`](http://ecma-international.org/ecma-262/7.0/#sec-tolength).
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a valid length, else `false`.
+ * @example
+ *
+ * _.isLength(3);
+ * // => true
+ *
+ * _.isLength(Number.MIN_VALUE);
+ * // => false
+ *
+ * _.isLength(Infinity);
+ * // => false
+ *
+ * _.isLength('3');
+ * // => false
+ */
+function isLength(value) {
+  return typeof value == 'number' &&
+    value > -1 && value % 1 == 0 && value <= MAX_SAFE_INTEGER;
+}
+
+module.exports = isLength;
+
+},{}],"../node_modules/lodash/_baseIsTypedArray.js":[function(require,module,exports) {
+var baseGetTag = require('./_baseGetTag'),
+    isLength = require('./isLength'),
+    isObjectLike = require('./isObjectLike');
+
+/** `Object#toString` result references. */
+var argsTag = '[object Arguments]',
+    arrayTag = '[object Array]',
+    boolTag = '[object Boolean]',
+    dateTag = '[object Date]',
+    errorTag = '[object Error]',
+    funcTag = '[object Function]',
+    mapTag = '[object Map]',
+    numberTag = '[object Number]',
+    objectTag = '[object Object]',
+    regexpTag = '[object RegExp]',
+    setTag = '[object Set]',
+    stringTag = '[object String]',
+    weakMapTag = '[object WeakMap]';
+
+var arrayBufferTag = '[object ArrayBuffer]',
+    dataViewTag = '[object DataView]',
+    float32Tag = '[object Float32Array]',
+    float64Tag = '[object Float64Array]',
+    int8Tag = '[object Int8Array]',
+    int16Tag = '[object Int16Array]',
+    int32Tag = '[object Int32Array]',
+    uint8Tag = '[object Uint8Array]',
+    uint8ClampedTag = '[object Uint8ClampedArray]',
+    uint16Tag = '[object Uint16Array]',
+    uint32Tag = '[object Uint32Array]';
+
+/** Used to identify `toStringTag` values of typed arrays. */
+var typedArrayTags = {};
+typedArrayTags[float32Tag] = typedArrayTags[float64Tag] =
+typedArrayTags[int8Tag] = typedArrayTags[int16Tag] =
+typedArrayTags[int32Tag] = typedArrayTags[uint8Tag] =
+typedArrayTags[uint8ClampedTag] = typedArrayTags[uint16Tag] =
+typedArrayTags[uint32Tag] = true;
+typedArrayTags[argsTag] = typedArrayTags[arrayTag] =
+typedArrayTags[arrayBufferTag] = typedArrayTags[boolTag] =
+typedArrayTags[dataViewTag] = typedArrayTags[dateTag] =
+typedArrayTags[errorTag] = typedArrayTags[funcTag] =
+typedArrayTags[mapTag] = typedArrayTags[numberTag] =
+typedArrayTags[objectTag] = typedArrayTags[regexpTag] =
+typedArrayTags[setTag] = typedArrayTags[stringTag] =
+typedArrayTags[weakMapTag] = false;
+
+/**
+ * The base implementation of `_.isTypedArray` without Node.js optimizations.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a typed array, else `false`.
+ */
+function baseIsTypedArray(value) {
+  return isObjectLike(value) &&
+    isLength(value.length) && !!typedArrayTags[baseGetTag(value)];
+}
+
+module.exports = baseIsTypedArray;
+
+},{"./_baseGetTag":"../node_modules/lodash/_baseGetTag.js","./isLength":"../node_modules/lodash/isLength.js","./isObjectLike":"../node_modules/lodash/isObjectLike.js"}],"../node_modules/lodash/_baseUnary.js":[function(require,module,exports) {
+/**
+ * The base implementation of `_.unary` without support for storing metadata.
+ *
+ * @private
+ * @param {Function} func The function to cap arguments for.
+ * @returns {Function} Returns the new capped function.
+ */
+function baseUnary(func) {
+  return function(value) {
+    return func(value);
+  };
+}
+
+module.exports = baseUnary;
+
+},{}],"../node_modules/lodash/_nodeUtil.js":[function(require,module,exports) {
+var freeGlobal = require('./_freeGlobal');
+
+/** Detect free variable `exports`. */
+var freeExports = typeof exports == 'object' && exports && !exports.nodeType && exports;
+
+/** Detect free variable `module`. */
+var freeModule = freeExports && typeof module == 'object' && module && !module.nodeType && module;
+
+/** Detect the popular CommonJS extension `module.exports`. */
+var moduleExports = freeModule && freeModule.exports === freeExports;
+
+/** Detect free variable `process` from Node.js. */
+var freeProcess = moduleExports && freeGlobal.process;
+
+/** Used to access faster Node.js helpers. */
+var nodeUtil = (function() {
+  try {
+    // Use `util.types` for Node.js 10+.
+    var types = freeModule && freeModule.require && freeModule.require('util').types;
+
+    if (types) {
+      return types;
+    }
+
+    // Legacy `process.binding('util')` for Node.js < 10.
+    return freeProcess && freeProcess.binding && freeProcess.binding('util');
+  } catch (e) {}
+}());
+
+module.exports = nodeUtil;
+
+},{"./_freeGlobal":"../node_modules/lodash/_freeGlobal.js"}],"../node_modules/lodash/isTypedArray.js":[function(require,module,exports) {
+var baseIsTypedArray = require('./_baseIsTypedArray'),
+    baseUnary = require('./_baseUnary'),
+    nodeUtil = require('./_nodeUtil');
+
+/* Node.js helper references. */
+var nodeIsTypedArray = nodeUtil && nodeUtil.isTypedArray;
+
+/**
+ * Checks if `value` is classified as a typed array.
+ *
+ * @static
+ * @memberOf _
+ * @since 3.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a typed array, else `false`.
+ * @example
+ *
+ * _.isTypedArray(new Uint8Array);
+ * // => true
+ *
+ * _.isTypedArray([]);
+ * // => false
+ */
+var isTypedArray = nodeIsTypedArray ? baseUnary(nodeIsTypedArray) : baseIsTypedArray;
+
+module.exports = isTypedArray;
+
+},{"./_baseIsTypedArray":"../node_modules/lodash/_baseIsTypedArray.js","./_baseUnary":"../node_modules/lodash/_baseUnary.js","./_nodeUtil":"../node_modules/lodash/_nodeUtil.js"}],"../node_modules/lodash/_arrayLikeKeys.js":[function(require,module,exports) {
+var baseTimes = require('./_baseTimes'),
+    isArguments = require('./isArguments'),
+    isArray = require('./isArray'),
+    isBuffer = require('./isBuffer'),
+    isIndex = require('./_isIndex'),
+    isTypedArray = require('./isTypedArray');
+
+/** Used for built-in method references. */
+var objectProto = Object.prototype;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty = objectProto.hasOwnProperty;
+
+/**
+ * Creates an array of the enumerable property names of the array-like `value`.
+ *
+ * @private
+ * @param {*} value The value to query.
+ * @param {boolean} inherited Specify returning inherited property names.
+ * @returns {Array} Returns the array of property names.
+ */
+function arrayLikeKeys(value, inherited) {
+  var isArr = isArray(value),
+      isArg = !isArr && isArguments(value),
+      isBuff = !isArr && !isArg && isBuffer(value),
+      isType = !isArr && !isArg && !isBuff && isTypedArray(value),
+      skipIndexes = isArr || isArg || isBuff || isType,
+      result = skipIndexes ? baseTimes(value.length, String) : [],
+      length = result.length;
+
+  for (var key in value) {
+    if ((inherited || hasOwnProperty.call(value, key)) &&
+        !(skipIndexes && (
+           // Safari 9 has enumerable `arguments.length` in strict mode.
+           key == 'length' ||
+           // Node.js 0.10 has enumerable non-index properties on buffers.
+           (isBuff && (key == 'offset' || key == 'parent')) ||
+           // PhantomJS 2 has enumerable non-index properties on typed arrays.
+           (isType && (key == 'buffer' || key == 'byteLength' || key == 'byteOffset')) ||
+           // Skip index properties.
+           isIndex(key, length)
+        ))) {
+      result.push(key);
+    }
+  }
+  return result;
+}
+
+module.exports = arrayLikeKeys;
+
+},{"./_baseTimes":"../node_modules/lodash/_baseTimes.js","./isArguments":"../node_modules/lodash/isArguments.js","./isArray":"../node_modules/lodash/isArray.js","./isBuffer":"../node_modules/lodash/isBuffer.js","./_isIndex":"../node_modules/lodash/_isIndex.js","./isTypedArray":"../node_modules/lodash/isTypedArray.js"}],"../node_modules/lodash/_isPrototype.js":[function(require,module,exports) {
+/** Used for built-in method references. */
+var objectProto = Object.prototype;
+
+/**
+ * Checks if `value` is likely a prototype object.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a prototype, else `false`.
+ */
+function isPrototype(value) {
+  var Ctor = value && value.constructor,
+      proto = (typeof Ctor == 'function' && Ctor.prototype) || objectProto;
+
+  return value === proto;
+}
+
+module.exports = isPrototype;
+
+},{}],"../node_modules/lodash/_overArg.js":[function(require,module,exports) {
+/**
+ * Creates a unary function that invokes `func` with its argument transformed.
+ *
+ * @private
+ * @param {Function} func The function to wrap.
+ * @param {Function} transform The argument transform.
+ * @returns {Function} Returns the new function.
+ */
+function overArg(func, transform) {
+  return function(arg) {
+    return func(transform(arg));
+  };
+}
+
+module.exports = overArg;
+
+},{}],"../node_modules/lodash/_nativeKeys.js":[function(require,module,exports) {
+var overArg = require('./_overArg');
+
+/* Built-in method references for those with the same name as other `lodash` methods. */
+var nativeKeys = overArg(Object.keys, Object);
+
+module.exports = nativeKeys;
+
+},{"./_overArg":"../node_modules/lodash/_overArg.js"}],"../node_modules/lodash/_baseKeys.js":[function(require,module,exports) {
+var isPrototype = require('./_isPrototype'),
+    nativeKeys = require('./_nativeKeys');
+
+/** Used for built-in method references. */
+var objectProto = Object.prototype;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty = objectProto.hasOwnProperty;
+
+/**
+ * The base implementation of `_.keys` which doesn't treat sparse arrays as dense.
+ *
+ * @private
+ * @param {Object} object The object to query.
+ * @returns {Array} Returns the array of property names.
+ */
+function baseKeys(object) {
+  if (!isPrototype(object)) {
+    return nativeKeys(object);
+  }
+  var result = [];
+  for (var key in Object(object)) {
+    if (hasOwnProperty.call(object, key) && key != 'constructor') {
+      result.push(key);
+    }
+  }
+  return result;
+}
+
+module.exports = baseKeys;
+
+},{"./_isPrototype":"../node_modules/lodash/_isPrototype.js","./_nativeKeys":"../node_modules/lodash/_nativeKeys.js"}],"../node_modules/lodash/isArrayLike.js":[function(require,module,exports) {
+var isFunction = require('./isFunction'),
+    isLength = require('./isLength');
+
+/**
+ * Checks if `value` is array-like. A value is considered array-like if it's
+ * not a function and has a `value.length` that's an integer greater than or
+ * equal to `0` and less than or equal to `Number.MAX_SAFE_INTEGER`.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is array-like, else `false`.
+ * @example
+ *
+ * _.isArrayLike([1, 2, 3]);
+ * // => true
+ *
+ * _.isArrayLike(document.body.children);
+ * // => true
+ *
+ * _.isArrayLike('abc');
+ * // => true
+ *
+ * _.isArrayLike(_.noop);
+ * // => false
+ */
+function isArrayLike(value) {
+  return value != null && isLength(value.length) && !isFunction(value);
+}
+
+module.exports = isArrayLike;
+
+},{"./isFunction":"../node_modules/lodash/isFunction.js","./isLength":"../node_modules/lodash/isLength.js"}],"../node_modules/lodash/keys.js":[function(require,module,exports) {
+var arrayLikeKeys = require('./_arrayLikeKeys'),
+    baseKeys = require('./_baseKeys'),
+    isArrayLike = require('./isArrayLike');
+
+/**
+ * Creates an array of the own enumerable property names of `object`.
+ *
+ * **Note:** Non-object values are coerced to objects. See the
+ * [ES spec](http://ecma-international.org/ecma-262/7.0/#sec-object.keys)
+ * for more details.
+ *
+ * @static
+ * @since 0.1.0
+ * @memberOf _
+ * @category Object
+ * @param {Object} object The object to query.
+ * @returns {Array} Returns the array of property names.
+ * @example
+ *
+ * function Foo() {
+ *   this.a = 1;
+ *   this.b = 2;
+ * }
+ *
+ * Foo.prototype.c = 3;
+ *
+ * _.keys(new Foo);
+ * // => ['a', 'b'] (iteration order is not guaranteed)
+ *
+ * _.keys('hi');
+ * // => ['0', '1']
+ */
+function keys(object) {
+  return isArrayLike(object) ? arrayLikeKeys(object) : baseKeys(object);
+}
+
+module.exports = keys;
+
+},{"./_arrayLikeKeys":"../node_modules/lodash/_arrayLikeKeys.js","./_baseKeys":"../node_modules/lodash/_baseKeys.js","./isArrayLike":"../node_modules/lodash/isArrayLike.js"}],"../node_modules/lodash/_getAllKeys.js":[function(require,module,exports) {
+var baseGetAllKeys = require('./_baseGetAllKeys'),
+    getSymbols = require('./_getSymbols'),
+    keys = require('./keys');
+
+/**
+ * Creates an array of own enumerable property names and symbols of `object`.
+ *
+ * @private
+ * @param {Object} object The object to query.
+ * @returns {Array} Returns the array of property names and symbols.
+ */
+function getAllKeys(object) {
+  return baseGetAllKeys(object, keys, getSymbols);
+}
+
+module.exports = getAllKeys;
+
+},{"./_baseGetAllKeys":"../node_modules/lodash/_baseGetAllKeys.js","./_getSymbols":"../node_modules/lodash/_getSymbols.js","./keys":"../node_modules/lodash/keys.js"}],"../node_modules/lodash/_equalObjects.js":[function(require,module,exports) {
+var getAllKeys = require('./_getAllKeys');
+
+/** Used to compose bitmasks for value comparisons. */
+var COMPARE_PARTIAL_FLAG = 1;
+
+/** Used for built-in method references. */
+var objectProto = Object.prototype;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty = objectProto.hasOwnProperty;
+
+/**
+ * A specialized version of `baseIsEqualDeep` for objects with support for
+ * partial deep comparisons.
+ *
+ * @private
+ * @param {Object} object The object to compare.
+ * @param {Object} other The other object to compare.
+ * @param {number} bitmask The bitmask flags. See `baseIsEqual` for more details.
+ * @param {Function} customizer The function to customize comparisons.
+ * @param {Function} equalFunc The function to determine equivalents of values.
+ * @param {Object} stack Tracks traversed `object` and `other` objects.
+ * @returns {boolean} Returns `true` if the objects are equivalent, else `false`.
+ */
+function equalObjects(object, other, bitmask, customizer, equalFunc, stack) {
+  var isPartial = bitmask & COMPARE_PARTIAL_FLAG,
+      objProps = getAllKeys(object),
+      objLength = objProps.length,
+      othProps = getAllKeys(other),
+      othLength = othProps.length;
+
+  if (objLength != othLength && !isPartial) {
+    return false;
+  }
+  var index = objLength;
+  while (index--) {
+    var key = objProps[index];
+    if (!(isPartial ? key in other : hasOwnProperty.call(other, key))) {
+      return false;
+    }
+  }
+  // Assume cyclic values are equal.
+  var stacked = stack.get(object);
+  if (stacked && stack.get(other)) {
+    return stacked == other;
+  }
+  var result = true;
+  stack.set(object, other);
+  stack.set(other, object);
+
+  var skipCtor = isPartial;
+  while (++index < objLength) {
+    key = objProps[index];
+    var objValue = object[key],
+        othValue = other[key];
+
+    if (customizer) {
+      var compared = isPartial
+        ? customizer(othValue, objValue, key, other, object, stack)
+        : customizer(objValue, othValue, key, object, other, stack);
+    }
+    // Recursively compare objects (susceptible to call stack limits).
+    if (!(compared === undefined
+          ? (objValue === othValue || equalFunc(objValue, othValue, bitmask, customizer, stack))
+          : compared
+        )) {
+      result = false;
+      break;
+    }
+    skipCtor || (skipCtor = key == 'constructor');
+  }
+  if (result && !skipCtor) {
+    var objCtor = object.constructor,
+        othCtor = other.constructor;
+
+    // Non `Object` object instances with different constructors are not equal.
+    if (objCtor != othCtor &&
+        ('constructor' in object && 'constructor' in other) &&
+        !(typeof objCtor == 'function' && objCtor instanceof objCtor &&
+          typeof othCtor == 'function' && othCtor instanceof othCtor)) {
+      result = false;
+    }
+  }
+  stack['delete'](object);
+  stack['delete'](other);
+  return result;
+}
+
+module.exports = equalObjects;
+
+},{"./_getAllKeys":"../node_modules/lodash/_getAllKeys.js"}],"../node_modules/lodash/_DataView.js":[function(require,module,exports) {
+var getNative = require('./_getNative'),
+    root = require('./_root');
+
+/* Built-in method references that are verified to be native. */
+var DataView = getNative(root, 'DataView');
+
+module.exports = DataView;
+
+},{"./_getNative":"../node_modules/lodash/_getNative.js","./_root":"../node_modules/lodash/_root.js"}],"../node_modules/lodash/_Promise.js":[function(require,module,exports) {
+var getNative = require('./_getNative'),
+    root = require('./_root');
+
+/* Built-in method references that are verified to be native. */
+var Promise = getNative(root, 'Promise');
+
+module.exports = Promise;
+
+},{"./_getNative":"../node_modules/lodash/_getNative.js","./_root":"../node_modules/lodash/_root.js"}],"../node_modules/lodash/_Set.js":[function(require,module,exports) {
+var getNative = require('./_getNative'),
+    root = require('./_root');
+
+/* Built-in method references that are verified to be native. */
+var Set = getNative(root, 'Set');
+
+module.exports = Set;
+
+},{"./_getNative":"../node_modules/lodash/_getNative.js","./_root":"../node_modules/lodash/_root.js"}],"../node_modules/lodash/_WeakMap.js":[function(require,module,exports) {
+var getNative = require('./_getNative'),
+    root = require('./_root');
+
+/* Built-in method references that are verified to be native. */
+var WeakMap = getNative(root, 'WeakMap');
+
+module.exports = WeakMap;
+
+},{"./_getNative":"../node_modules/lodash/_getNative.js","./_root":"../node_modules/lodash/_root.js"}],"../node_modules/lodash/_getTag.js":[function(require,module,exports) {
+var DataView = require('./_DataView'),
+    Map = require('./_Map'),
+    Promise = require('./_Promise'),
+    Set = require('./_Set'),
+    WeakMap = require('./_WeakMap'),
+    baseGetTag = require('./_baseGetTag'),
+    toSource = require('./_toSource');
+
+/** `Object#toString` result references. */
+var mapTag = '[object Map]',
+    objectTag = '[object Object]',
+    promiseTag = '[object Promise]',
+    setTag = '[object Set]',
+    weakMapTag = '[object WeakMap]';
+
+var dataViewTag = '[object DataView]';
+
+/** Used to detect maps, sets, and weakmaps. */
+var dataViewCtorString = toSource(DataView),
+    mapCtorString = toSource(Map),
+    promiseCtorString = toSource(Promise),
+    setCtorString = toSource(Set),
+    weakMapCtorString = toSource(WeakMap);
+
+/**
+ * Gets the `toStringTag` of `value`.
+ *
+ * @private
+ * @param {*} value The value to query.
+ * @returns {string} Returns the `toStringTag`.
+ */
+var getTag = baseGetTag;
+
+// Fallback for data views, maps, sets, and weak maps in IE 11 and promises in Node.js < 6.
+if ((DataView && getTag(new DataView(new ArrayBuffer(1))) != dataViewTag) ||
+    (Map && getTag(new Map) != mapTag) ||
+    (Promise && getTag(Promise.resolve()) != promiseTag) ||
+    (Set && getTag(new Set) != setTag) ||
+    (WeakMap && getTag(new WeakMap) != weakMapTag)) {
+  getTag = function(value) {
+    var result = baseGetTag(value),
+        Ctor = result == objectTag ? value.constructor : undefined,
+        ctorString = Ctor ? toSource(Ctor) : '';
+
+    if (ctorString) {
+      switch (ctorString) {
+        case dataViewCtorString: return dataViewTag;
+        case mapCtorString: return mapTag;
+        case promiseCtorString: return promiseTag;
+        case setCtorString: return setTag;
+        case weakMapCtorString: return weakMapTag;
+      }
+    }
+    return result;
+  };
+}
+
+module.exports = getTag;
+
+},{"./_DataView":"../node_modules/lodash/_DataView.js","./_Map":"../node_modules/lodash/_Map.js","./_Promise":"../node_modules/lodash/_Promise.js","./_Set":"../node_modules/lodash/_Set.js","./_WeakMap":"../node_modules/lodash/_WeakMap.js","./_baseGetTag":"../node_modules/lodash/_baseGetTag.js","./_toSource":"../node_modules/lodash/_toSource.js"}],"../node_modules/lodash/_baseIsEqualDeep.js":[function(require,module,exports) {
+var Stack = require('./_Stack'),
+    equalArrays = require('./_equalArrays'),
+    equalByTag = require('./_equalByTag'),
+    equalObjects = require('./_equalObjects'),
+    getTag = require('./_getTag'),
+    isArray = require('./isArray'),
+    isBuffer = require('./isBuffer'),
+    isTypedArray = require('./isTypedArray');
+
+/** Used to compose bitmasks for value comparisons. */
+var COMPARE_PARTIAL_FLAG = 1;
+
+/** `Object#toString` result references. */
+var argsTag = '[object Arguments]',
+    arrayTag = '[object Array]',
+    objectTag = '[object Object]';
+
+/** Used for built-in method references. */
+var objectProto = Object.prototype;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty = objectProto.hasOwnProperty;
+
+/**
+ * A specialized version of `baseIsEqual` for arrays and objects which performs
+ * deep comparisons and tracks traversed objects enabling objects with circular
+ * references to be compared.
+ *
+ * @private
+ * @param {Object} object The object to compare.
+ * @param {Object} other The other object to compare.
+ * @param {number} bitmask The bitmask flags. See `baseIsEqual` for more details.
+ * @param {Function} customizer The function to customize comparisons.
+ * @param {Function} equalFunc The function to determine equivalents of values.
+ * @param {Object} [stack] Tracks traversed `object` and `other` objects.
+ * @returns {boolean} Returns `true` if the objects are equivalent, else `false`.
+ */
+function baseIsEqualDeep(object, other, bitmask, customizer, equalFunc, stack) {
+  var objIsArr = isArray(object),
+      othIsArr = isArray(other),
+      objTag = objIsArr ? arrayTag : getTag(object),
+      othTag = othIsArr ? arrayTag : getTag(other);
+
+  objTag = objTag == argsTag ? objectTag : objTag;
+  othTag = othTag == argsTag ? objectTag : othTag;
+
+  var objIsObj = objTag == objectTag,
+      othIsObj = othTag == objectTag,
+      isSameTag = objTag == othTag;
+
+  if (isSameTag && isBuffer(object)) {
+    if (!isBuffer(other)) {
+      return false;
+    }
+    objIsArr = true;
+    objIsObj = false;
+  }
+  if (isSameTag && !objIsObj) {
+    stack || (stack = new Stack);
+    return (objIsArr || isTypedArray(object))
+      ? equalArrays(object, other, bitmask, customizer, equalFunc, stack)
+      : equalByTag(object, other, objTag, bitmask, customizer, equalFunc, stack);
+  }
+  if (!(bitmask & COMPARE_PARTIAL_FLAG)) {
+    var objIsWrapped = objIsObj && hasOwnProperty.call(object, '__wrapped__'),
+        othIsWrapped = othIsObj && hasOwnProperty.call(other, '__wrapped__');
+
+    if (objIsWrapped || othIsWrapped) {
+      var objUnwrapped = objIsWrapped ? object.value() : object,
+          othUnwrapped = othIsWrapped ? other.value() : other;
+
+      stack || (stack = new Stack);
+      return equalFunc(objUnwrapped, othUnwrapped, bitmask, customizer, stack);
+    }
+  }
+  if (!isSameTag) {
+    return false;
+  }
+  stack || (stack = new Stack);
+  return equalObjects(object, other, bitmask, customizer, equalFunc, stack);
+}
+
+module.exports = baseIsEqualDeep;
+
+},{"./_Stack":"../node_modules/lodash/_Stack.js","./_equalArrays":"../node_modules/lodash/_equalArrays.js","./_equalByTag":"../node_modules/lodash/_equalByTag.js","./_equalObjects":"../node_modules/lodash/_equalObjects.js","./_getTag":"../node_modules/lodash/_getTag.js","./isArray":"../node_modules/lodash/isArray.js","./isBuffer":"../node_modules/lodash/isBuffer.js","./isTypedArray":"../node_modules/lodash/isTypedArray.js"}],"../node_modules/lodash/_baseIsEqual.js":[function(require,module,exports) {
+var baseIsEqualDeep = require('./_baseIsEqualDeep'),
+    isObjectLike = require('./isObjectLike');
+
+/**
+ * The base implementation of `_.isEqual` which supports partial comparisons
+ * and tracks traversed objects.
+ *
+ * @private
+ * @param {*} value The value to compare.
+ * @param {*} other The other value to compare.
+ * @param {boolean} bitmask The bitmask flags.
+ *  1 - Unordered comparison
+ *  2 - Partial comparison
+ * @param {Function} [customizer] The function to customize comparisons.
+ * @param {Object} [stack] Tracks traversed `value` and `other` objects.
+ * @returns {boolean} Returns `true` if the values are equivalent, else `false`.
+ */
+function baseIsEqual(value, other, bitmask, customizer, stack) {
+  if (value === other) {
+    return true;
+  }
+  if (value == null || other == null || (!isObjectLike(value) && !isObjectLike(other))) {
+    return value !== value && other !== other;
+  }
+  return baseIsEqualDeep(value, other, bitmask, customizer, baseIsEqual, stack);
+}
+
+module.exports = baseIsEqual;
+
+},{"./_baseIsEqualDeep":"../node_modules/lodash/_baseIsEqualDeep.js","./isObjectLike":"../node_modules/lodash/isObjectLike.js"}],"../node_modules/lodash/isEqual.js":[function(require,module,exports) {
+var baseIsEqual = require('./_baseIsEqual');
+
+/**
+ * Performs a deep comparison between two values to determine if they are
+ * equivalent.
+ *
+ * **Note:** This method supports comparing arrays, array buffers, booleans,
+ * date objects, error objects, maps, numbers, `Object` objects, regexes,
+ * sets, strings, symbols, and typed arrays. `Object` objects are compared
+ * by their own, not inherited, enumerable properties. Functions and DOM
+ * nodes are compared by strict equality, i.e. `===`.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Lang
+ * @param {*} value The value to compare.
+ * @param {*} other The other value to compare.
+ * @returns {boolean} Returns `true` if the values are equivalent, else `false`.
+ * @example
+ *
+ * var object = { 'a': 1 };
+ * var other = { 'a': 1 };
+ *
+ * _.isEqual(object, other);
+ * // => true
+ *
+ * object === other;
+ * // => false
+ */
+function isEqual(value, other) {
+  return baseIsEqual(value, other);
+}
+
+module.exports = isEqual;
+
+},{"./_baseIsEqual":"../node_modules/lodash/_baseIsEqual.js"}],"../node_modules/nanoid/index.browser.js":[function(require,module,exports) {
+if ("development" !== 'production') {
+  if (typeof self === 'undefined' || !self.crypto && !self.msCrypto) {
+    throw new Error('Your browser does not have secure random generator. ' + 'If you don’t need unpredictable IDs, you can use nanoid/non-secure.');
+  }
+}
+
+var crypto = self.crypto || self.msCrypto;
+/*
+ * This alphabet uses a-z A-Z 0-9 _- symbols.
+ * Symbols order was changed for better gzip compression.
+ */
+
+var url = 'Uint8ArdomValuesObj012345679BCDEFGHIJKLMNPQRSTWXYZ_cfghkpqvwxyz-';
+
+module.exports = function (size) {
+  size = size || 21;
+  var id = '';
+  var bytes = crypto.getRandomValues(new Uint8Array(size));
+
+  while (0 < size--) {
+    id += url[bytes[size] & 63];
+  }
+
+  return id;
+};
+},{}],"cookie-trail/components/checkboxes/Button.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _propTypes = _interopRequireDefault(require("prop-types"));
+
+var _react = _interopRequireDefault(require("react"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var Button =
+/*#__PURE__*/
+function (_React$PureComponent) {
+  _inherits(Button, _React$PureComponent);
+
+  function Button() {
+    _classCallCheck(this, Button);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(Button).apply(this, arguments));
+  }
+
+  _createClass(Button, [{
+    key: "render",
+    value: function render() {
+      var _this$props = this.props,
+          children = _this$props.children,
+          title = _this$props.title,
+          props = _objectWithoutProperties(_this$props, ["children", "title"]);
+
+      return _react.default.createElement("button", _extends({
+        "aria-label": title,
+        title: title,
+        type: "button"
+      }, props), children);
+    }
+  }]);
+
+  return Button;
+}(_react.default.PureComponent);
+
+_defineProperty(Button, "propTypes", {
+  children: _propTypes.default.node.isRequired,
+  title: _propTypes.default.string
+});
+
+_defineProperty(Button, "defaultProps", {
+  title: null
+});
+
+var _default = Button;
+exports.default = _default;
+},{"prop-types":"../node_modules/prop-types/index.js","react":"../node_modules/react/index.js"}],"cookie-trail/components/checkboxes/NodeModel.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var NodeModel =
+/*#__PURE__*/
+function () {
+  function NodeModel(props) {
+    var nodes = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+
+    _classCallCheck(this, NodeModel);
+
+    this.props = props;
+    this.flatNodes = nodes;
+  }
+
+  _createClass(NodeModel, [{
+    key: "setProps",
+    value: function setProps(props) {
+      this.props = props;
+    }
+  }, {
+    key: "clone",
+    value: function clone() {
+      var _this = this;
+
+      var clonedNodes = {}; // Re-construct nodes one level deep to avoid shallow copy of mutable characteristics
+
+      Object.keys(this.flatNodes).forEach(function (value) {
+        var node = _this.flatNodes[value];
+        clonedNodes[value] = _objectSpread({}, node);
+      });
+      return new NodeModel(this.props, clonedNodes);
+    }
+  }, {
+    key: "getNode",
+    value: function getNode(value) {
+      return this.flatNodes[value];
+    }
+  }, {
+    key: "flattenNodes",
+    value: function flattenNodes(nodes) {
+      var _this2 = this;
+
+      var parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+      var depth = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
+
+      if (!Array.isArray(nodes) || nodes.length === 0) {
+        return;
+      }
+
+      var _this$props = this.props,
+          disabled = _this$props.disabled,
+          noCascade = _this$props.noCascade; // Flatten the `node` property for internal lookups
+
+      nodes.forEach(function (node, index) {
+        var isParent = _this2.nodeHasChildren(node);
+
+        _this2.flatNodes[node.value] = {
+          label: node.label,
+          value: node.value,
+          children: node.children,
+          parent: parent,
+          isParent: isParent,
+          isLeaf: !isParent,
+          showCheckbox: node.showCheckbox !== undefined ? node.showCheckbox : true,
+          disabled: _this2.getDisabledState(node, parent, disabled, noCascade),
+          treeDepth: depth,
+          index: index
+        };
+
+        _this2.flattenNodes(node.children, node, depth + 1);
+      });
+    }
+  }, {
+    key: "nodeHasChildren",
+    value: function nodeHasChildren(node) {
+      return Array.isArray(node.children) && node.children.length > 0;
+    }
+  }, {
+    key: "getDisabledState",
+    value: function getDisabledState(node, parent, disabledProp, noCascade) {
+      if (disabledProp) {
+        return true;
+      }
+
+      if (!noCascade && parent.disabled) {
+        return true;
+      }
+
+      return Boolean(node.disabled);
+    }
+  }, {
+    key: "deserializeLists",
+    value: function deserializeLists(lists) {
+      var _this3 = this;
+
+      var listKeys = ['checked', 'expanded']; // Reset values to false
+
+      Object.keys(this.flatNodes).forEach(function (value) {
+        listKeys.forEach(function (listKey) {
+          _this3.flatNodes[value][listKey] = false;
+        });
+      }); // Deserialize values and set their nodes to true
+
+      listKeys.forEach(function (listKey) {
+        lists[listKey].forEach(function (value) {
+          if (_this3.flatNodes[value] !== undefined) {
+            _this3.flatNodes[value][listKey] = true;
+          }
+        });
+      });
+    }
+  }, {
+    key: "serializeList",
+    value: function serializeList(key) {
+      var _this4 = this;
+
+      var list = [];
+      Object.keys(this.flatNodes).forEach(function (value) {
+        if (_this4.flatNodes[value][key]) {
+          list.push(value);
+        }
+      });
+      return list;
+    }
+  }, {
+    key: "expandAllNodes",
+    value: function expandAllNodes(expand) {
+      var _this5 = this;
+
+      Object.keys(this.flatNodes).forEach(function (value) {
+        if (_this5.flatNodes[value].isParent) {
+          _this5.flatNodes[value].expanded = expand;
+        }
+      });
+      return this;
+    }
+  }, {
+    key: "toggleChecked",
+    value: function toggleChecked(node, isChecked, noCascade) {
+      var _this6 = this;
+
+      var flatNode = this.flatNodes[node.value];
+
+      if (flatNode.isLeaf || noCascade) {
+        if (node.disabled) {
+          return this;
+        } // Set the check status of a leaf node or an uncoupled parent
+
+
+        this.toggleNode(node.value, 'checked', isChecked);
+      } else {
+        // Percolate check status down to all children
+        flatNode.children.forEach(function (child) {
+          _this6.toggleChecked(child, isChecked, noCascade);
+        });
+      }
+
+      return this;
+    }
+  }, {
+    key: "toggleNode",
+    value: function toggleNode(nodeValue, key, toggleValue) {
+      this.flatNodes[nodeValue][key] = toggleValue;
+      return this;
+    }
+  }]);
+
+  return NodeModel;
+}();
+
+var _default = NodeModel;
+exports.default = _default;
+},{}],"cookie-trail/components/checkboxes/NativeCheckbox.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _propTypes = _interopRequireDefault(require("prop-types"));
+
+var _react = _interopRequireDefault(require("react"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var NativeCheckbox =
+/*#__PURE__*/
+function (_React$PureComponent) {
+  _inherits(NativeCheckbox, _React$PureComponent);
+
+  function NativeCheckbox() {
+    _classCallCheck(this, NativeCheckbox);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(NativeCheckbox).apply(this, arguments));
+  }
+
+  _createClass(NativeCheckbox, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.updateDeterminateProperty();
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate() {
+      this.updateDeterminateProperty();
+    }
+  }, {
+    key: "updateDeterminateProperty",
+    value: function updateDeterminateProperty() {
+      var indeterminate = this.props.indeterminate;
+      this.checkbox.indeterminate = indeterminate;
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this = this;
+
+      var props = _objectSpread({}, this.props); // Remove property that does not exist in HTML
+
+
+      delete props.indeterminate;
+      return _react.default.createElement("input", _extends({}, props, {
+        ref: function ref(c) {
+          _this.checkbox = c;
+        },
+        type: "checkbox"
+      }));
+    }
+  }]);
+
+  return NativeCheckbox;
+}(_react.default.PureComponent);
+
+_defineProperty(NativeCheckbox, "propTypes", {
+  indeterminate: _propTypes.default.bool
+});
+
+_defineProperty(NativeCheckbox, "defaultProps", {
+  indeterminate: false
+});
+
+var _default = NativeCheckbox;
+exports.default = _default;
+},{"prop-types":"../node_modules/prop-types/index.js","react":"../node_modules/react/index.js"}],"cookie-trail/components/checkboxes/shapes/iconsShape.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _propTypes = _interopRequireDefault(require("prop-types"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var icons = _propTypes.default.shape({
+  check: _propTypes.default.node,
+  uncheck: _propTypes.default.node,
+  halfCheck: _propTypes.default.node,
+  expandClose: _propTypes.default.node,
+  expandOpen: _propTypes.default.node,
+  expandAll: _propTypes.default.node,
+  collapseAll: _propTypes.default.node,
+  parentClose: _propTypes.default.node,
+  parentOpen: _propTypes.default.node,
+  leaf: _propTypes.default.node
+});
+
+var _default = icons;
+exports.default = _default;
+},{"prop-types":"../node_modules/prop-types/index.js"}],"cookie-trail/components/checkboxes/shapes/languageShape.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _propTypes = _interopRequireDefault(require("prop-types"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var _default = _propTypes.default.shape({
+  collapseAll: _propTypes.default.string.isRequired,
+  expandAll: _propTypes.default.string.isRequired,
+  toggle: _propTypes.default.string.isRequired
+});
+
+exports.default = _default;
+},{"prop-types":"../node_modules/prop-types/index.js"}],"cookie-trail/components/checkboxes/TreeNode.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _classnames = _interopRequireDefault(require("classnames"));
+
+var _propTypes = _interopRequireDefault(require("prop-types"));
+
+var _react = _interopRequireDefault(require("react"));
+
+var _Button = _interopRequireDefault(require("./Button"));
+
+var _NativeCheckbox = _interopRequireDefault(require("./NativeCheckbox"));
+
+var _iconsShape = _interopRequireDefault(require("./shapes/iconsShape"));
+
+var _languageShape = _interopRequireDefault(require("./shapes/languageShape"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var TreeNode =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(TreeNode, _React$Component);
+
+  function TreeNode(props) {
+    var _this;
+
+    _classCallCheck(this, TreeNode);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(TreeNode).call(this, props));
+    _this.onCheck = _this.onCheck.bind(_assertThisInitialized(_this));
+    _this.onClick = _this.onClick.bind(_assertThisInitialized(_this));
+    _this.onExpand = _this.onExpand.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(TreeNode, [{
+    key: "onCheck",
+    value: function onCheck() {
+      var _this$props = this.props,
+          value = _this$props.value,
+          onCheck = _this$props.onCheck;
+      onCheck({
+        value: value,
+        checked: this.getCheckState({
+          toggle: true
+        })
+      });
+    }
+  }, {
+    key: "onClick",
+    value: function onClick() {
+      var _this$props2 = this.props,
+          expandOnClick = _this$props2.expandOnClick,
+          isParent = _this$props2.isParent,
+          value = _this$props2.value,
+          onClick = _this$props2.onClick; // Auto expand if enabled
+
+      if (isParent && expandOnClick) {
+        this.onExpand();
+      }
+
+      onClick({
+        value: value,
+        checked: this.getCheckState({
+          toggle: false
+        })
+      });
+    }
+  }, {
+    key: "onExpand",
+    value: function onExpand() {
+      var _this$props3 = this.props,
+          expanded = _this$props3.expanded,
+          value = _this$props3.value,
+          onExpand = _this$props3.onExpand;
+      onExpand({
+        value: value,
+        expanded: !expanded
+      });
+    }
+  }, {
+    key: "getCheckState",
+    value: function getCheckState(_ref) {
+      var toggle = _ref.toggle;
+      var _this$props4 = this.props,
+          checked = _this$props4.checked,
+          optimisticToggle = _this$props4.optimisticToggle; // Toggle off state to checked
+
+      if (checked === 0 && toggle) {
+        return true;
+      } // Node is already checked and we are not toggling
+
+
+      if (checked === 1 && !toggle) {
+        return true;
+      } // Get/toggle partial state based on cascade model
+
+
+      if (checked === 2) {
+        return optimisticToggle;
+      }
+
+      return false;
+    }
+  }, {
+    key: "renderCollapseButton",
+    value: function renderCollapseButton() {
+      var _this$props5 = this.props,
+          expandDisabled = _this$props5.expandDisabled,
+          isLeaf = _this$props5.isLeaf,
+          lang = _this$props5.lang;
+
+      if (isLeaf) {
+        return _react.default.createElement("div", null);
+      }
+
+      return _react.default.createElement(_Button.default, {
+        className: "rct-collapse rct-collapse-btn",
+        disabled: expandDisabled,
+        title: lang.toggle,
+        onClick: this.onExpand
+      }, this.renderCollapseIcon());
+    }
+  }, {
+    key: "renderCollapseIcon",
+    value: function renderCollapseIcon() {
+      var _this$props6 = this.props,
+          expanded = _this$props6.expanded,
+          _this$props6$icons = _this$props6.icons,
+          expandClose = _this$props6$icons.expandClose,
+          expandOpen = _this$props6$icons.expandOpen;
+
+      if (!expanded) {
+        return expandClose;
+      }
+
+      return expandOpen;
+    }
+  }, {
+    key: "renderCheckboxIcon",
+    value: function renderCheckboxIcon() {
+      var _this$props7 = this.props,
+          checked = _this$props7.checked,
+          _this$props7$icons = _this$props7.icons,
+          uncheck = _this$props7$icons.uncheck,
+          check = _this$props7$icons.check,
+          halfCheck = _this$props7$icons.halfCheck;
+
+      if (checked === 0) {
+        return uncheck;
+      }
+
+      if (checked === 1) {
+        return check;
+      }
+
+      return halfCheck;
+    }
+  }, {
+    key: "renderNodeIcon",
+    value: function renderNodeIcon() {
+      var _this$props8 = this.props,
+          expanded = _this$props8.expanded,
+          icon = _this$props8.icon,
+          _this$props8$icons = _this$props8.icons,
+          leaf = _this$props8$icons.leaf,
+          parentClose = _this$props8$icons.parentClose,
+          parentOpen = _this$props8$icons.parentOpen,
+          isLeaf = _this$props8.isLeaf;
+
+      if (icon !== null) {
+        return icon;
+      }
+
+      if (isLeaf) {
+        return leaf;
+      }
+
+      if (!expanded) {
+        return parentClose;
+      }
+
+      return parentOpen;
+    }
+  }, {
+    key: "renderBareLabel",
+    value: function renderBareLabel(children) {
+      var _this$props9 = this.props,
+          onClick = _this$props9.onClick,
+          title = _this$props9.title;
+      var clickable = onClick !== null;
+      return _react.default.createElement("span", {
+        className: "rct-bare-label",
+        title: title
+      }, clickable ? _react.default.createElement("span", {
+        className: "rct-node-clickable",
+        onClick: this.onClick,
+        onKeyPress: this.onClick,
+        role: "button",
+        tabIndex: 0
+      }, children) : children);
+    }
+  }, {
+    key: "renderCheckboxLabel",
+    value: function renderCheckboxLabel(children) {
+      var _this$props10 = this.props,
+          checked = _this$props10.checked,
+          disabled = _this$props10.disabled,
+          title = _this$props10.title,
+          treeId = _this$props10.treeId,
+          value = _this$props10.value,
+          onClick = _this$props10.onClick;
+      var clickable = onClick !== null;
+      var inputId = "".concat(treeId, "-").concat(String(value).split(' ').join('_'));
+      var render = [_react.default.createElement("label", {
+        key: 0,
+        htmlFor: inputId,
+        title: title
+      }, this.renderCheckboxIcon(), !clickable ? children : null)];
+
+      if (clickable) {
+        render.push(_react.default.createElement("span", {
+          key: 1,
+          className: "rct-node-clickable",
+          onClick: this.onClick,
+          onKeyPress: this.onClick,
+          role: "link",
+          tabIndex: 0
+        }, children));
+      }
+
+      return render;
+    }
+  }, {
+    key: "renderLabel",
+    value: function renderLabel() {
+      var _this$props11 = this.props,
+          label = _this$props11.label,
+          showCheckbox = _this$props11.showCheckbox,
+          showNodeIcon = _this$props11.showNodeIcon;
+      var labelChildren = [_react.default.createElement("label", {
+        className: "plot",
+        key: 1
+      }, _react.default.createElement("span", {
+        className: "plotName"
+      }, label), _react.default.createElement("div", {
+        className: "divider"
+      }))];
+
+      if (!showCheckbox) {
+        return this.renderBareLabel(labelChildren);
+      }
+
+      return this.renderCheckboxLabel(labelChildren);
+    }
+  }, {
+    key: "renderChildren",
+    value: function renderChildren() {
+      if (!this.props.expanded) {
+        return null;
+      }
+
+      return this.props.children;
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this$props12 = this.props,
+          className = _this$props12.className,
+          disabled = _this$props12.disabled,
+          expanded = _this$props12.expanded,
+          isLeaf = _this$props12.isLeaf;
+      var nodeClass = (0, _classnames.default)({
+        'rct-node': true,
+        'rct-node-leaf': isLeaf,
+        'rct-node-parent': !isLeaf,
+        'rct-node-expanded': !isLeaf && expanded,
+        'rct-node-collapsed': !isLeaf && !expanded,
+        'rct-disabled': disabled
+      }, className);
+      return _react.default.createElement("label", {
+        className: 'plot ' + nodeClass
+      }, this.renderCollapseButton(), this.renderLabel(), this.renderChildren());
+    }
+  }]);
+
+  return TreeNode;
+}(_react.default.Component);
+
+_defineProperty(TreeNode, "propTypes", {
+  checked: _propTypes.default.number.isRequired,
+  disabled: _propTypes.default.bool.isRequired,
+  expandDisabled: _propTypes.default.bool.isRequired,
+  expanded: _propTypes.default.bool.isRequired,
+  icons: _iconsShape.default.isRequired,
+  isLeaf: _propTypes.default.bool.isRequired,
+  isParent: _propTypes.default.bool.isRequired,
+  label: _propTypes.default.node.isRequired,
+  lang: _languageShape.default.isRequired,
+  optimisticToggle: _propTypes.default.bool.isRequired,
+  showNodeIcon: _propTypes.default.bool.isRequired,
+  treeId: _propTypes.default.string.isRequired,
+  value: _propTypes.default.oneOfType([_propTypes.default.string, _propTypes.default.number]).isRequired,
+  onCheck: _propTypes.default.func.isRequired,
+  onExpand: _propTypes.default.func.isRequired,
+  children: _propTypes.default.node,
+  className: _propTypes.default.string,
+  expandOnClick: _propTypes.default.bool,
+  icon: _propTypes.default.node,
+  showCheckbox: _propTypes.default.bool,
+  title: _propTypes.default.string,
+  onClick: _propTypes.default.func
+});
+
+_defineProperty(TreeNode, "defaultProps", {
+  children: null,
+  className: null,
+  expandOnClick: false,
+  icon: null,
+  showCheckbox: true,
+  title: null,
+  onClick: function onClick() {}
+});
+
+var _default = TreeNode;
+exports.default = _default;
+},{"classnames":"../node_modules/classnames/index.js","prop-types":"../node_modules/prop-types/index.js","react":"../node_modules/react/index.js","./Button":"cookie-trail/components/checkboxes/Button.js","./NativeCheckbox":"cookie-trail/components/checkboxes/NativeCheckbox.js","./shapes/iconsShape":"cookie-trail/components/checkboxes/shapes/iconsShape.js","./shapes/languageShape":"cookie-trail/components/checkboxes/shapes/languageShape.js"}],"cookie-trail/components/checkboxes/shapes/listShape.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _propTypes = _interopRequireDefault(require("prop-types"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var listShape = _propTypes.default.oneOfType([_propTypes.default.arrayOf(_propTypes.default.string), _propTypes.default.arrayOf(_propTypes.default.number)]);
+
+var _default = listShape;
+exports.default = _default;
+},{"prop-types":"../node_modules/prop-types/index.js"}],"cookie-trail/components/checkboxes/shapes/nodeShape.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _propTypes = _interopRequireDefault(require("prop-types"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var nodeShape = {
+  label: _propTypes.default.node.isRequired,
+  value: _propTypes.default.oneOfType([_propTypes.default.string, _propTypes.default.number]).isRequired,
+  disabled: _propTypes.default.bool,
+  icon: _propTypes.default.node,
+  showCheckbox: _propTypes.default.bool,
+  title: _propTypes.default.string
+};
+
+var nodeShapeWithChildren = _propTypes.default.oneOfType([_propTypes.default.shape(nodeShape), _propTypes.default.shape(_objectSpread({}, nodeShape, {
+  children: _propTypes.default.arrayOf(nodeShape).isRequired
+}))]);
+
+var _default = nodeShapeWithChildren;
+exports.default = _default;
+},{"prop-types":"../node_modules/prop-types/index.js"}],"cookie-trail/components/checkboxes/CheckboxTree.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _classnames = _interopRequireDefault(require("classnames"));
+
+var _isEqual = _interopRequireDefault(require("lodash/isEqual"));
+
+var _nanoid = _interopRequireDefault(require("nanoid"));
+
+var _propTypes = _interopRequireDefault(require("prop-types"));
+
+var _react = _interopRequireDefault(require("react"));
+
+var _Button = _interopRequireDefault(require("./Button"));
+
+var _NodeModel = _interopRequireDefault(require("./NodeModel"));
+
+var _TreeNode = _interopRequireDefault(require("./TreeNode"));
+
+var _iconsShape = _interopRequireDefault(require("./shapes/iconsShape"));
+
+var _languageShape = _interopRequireDefault(require("./shapes/languageShape"));
+
+var _listShape = _interopRequireDefault(require("./shapes/listShape"));
+
+var _nodeShape = _interopRequireDefault(require("./shapes/nodeShape"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var CheckboxTree =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(CheckboxTree, _React$Component);
+
+  function CheckboxTree(props) {
+    var _this;
+
+    _classCallCheck(this, CheckboxTree);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(CheckboxTree).call(this, props));
+    var model = new _NodeModel.default(props);
+    model.flattenNodes(props.nodes);
+    model.deserializeLists({
+      checked: props.checked,
+      expanded: props.expanded
+    });
+    _this.state = {
+      id: props.id || "rct-".concat((0, _nanoid.default)(7)),
+      model: model,
+      prevProps: props
+    };
+    _this.onCheck = _this.onCheck.bind(_assertThisInitialized(_this));
+    _this.onExpand = _this.onExpand.bind(_assertThisInitialized(_this));
+    _this.onNodeClick = _this.onNodeClick.bind(_assertThisInitialized(_this));
+    _this.onExpandAll = _this.onExpandAll.bind(_assertThisInitialized(_this));
+    _this.onCollapseAll = _this.onCollapseAll.bind(_assertThisInitialized(_this));
+    return _this;
+  } // eslint-disable-next-line react/sort-comp
+
+
+  _createClass(CheckboxTree, [{
+    key: "onCheck",
+    value: function onCheck(nodeInfo) {
+      var _this$props = this.props,
+          noCascade = _this$props.noCascade,
+          onCheck = _this$props.onCheck;
+      var model = this.state.model.clone();
+      var node = model.getNode(nodeInfo.value);
+      model.toggleChecked(nodeInfo, nodeInfo.checked, noCascade);
+      onCheck(model.serializeList('checked'), _objectSpread({}, node, nodeInfo));
+    }
+  }, {
+    key: "onExpand",
+    value: function onExpand(nodeInfo) {
+      var onExpand = this.props.onExpand;
+      var model = this.state.model.clone();
+      var node = model.getNode(nodeInfo.value);
+      model.toggleNode(nodeInfo.value, 'expanded', nodeInfo.expanded);
+      onExpand(model.serializeList('expanded'), _objectSpread({}, node, nodeInfo));
+    }
+  }, {
+    key: "onNodeClick",
+    value: function onNodeClick(nodeInfo) {
+      var onClick = this.props.onClick;
+      var model = this.state.model;
+      var node = model.getNode(nodeInfo.value);
+      onClick(_objectSpread({}, node, nodeInfo));
+    }
+  }, {
+    key: "onExpandAll",
+    value: function onExpandAll() {
+      this.expandAllNodes();
+    }
+  }, {
+    key: "onCollapseAll",
+    value: function onCollapseAll() {
+      this.expandAllNodes(false);
+    }
+  }, {
+    key: "expandAllNodes",
+    value: function expandAllNodes() {
+      var expand = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
+      var onExpand = this.props.onExpand;
+      onExpand(this.state.model.clone().expandAllNodes(expand).serializeList('expanded'));
+    }
+  }, {
+    key: "determineShallowCheckState",
+    value: function determineShallowCheckState(node, noCascade) {
+      var flatNode = this.state.model.getNode(node.value);
+
+      if (flatNode.isLeaf || noCascade) {
+        return flatNode.checked ? 1 : 0;
+      }
+
+      if (this.isEveryChildChecked(node)) {
+        return 1;
+      }
+
+      if (this.isSomeChildChecked(node)) {
+        return 2;
+      }
+
+      return 0;
+    }
+  }, {
+    key: "isEveryChildChecked",
+    value: function isEveryChildChecked(node) {
+      var _this2 = this;
+
+      return node.children.every(function (child) {
+        return _this2.state.model.getNode(child.value).checkState === 1;
+      });
+    }
+  }, {
+    key: "isSomeChildChecked",
+    value: function isSomeChildChecked(node) {
+      var _this3 = this;
+
+      return node.children.some(function (child) {
+        return _this3.state.model.getNode(child.value).checkState > 0;
+      });
+    }
+  }, {
+    key: "renderTreeNodes",
+    value: function renderTreeNodes(nodes) {
+      var _this4 = this;
+
+      var parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+      var _this$props2 = this.props,
+          expandDisabled = _this$props2.expandDisabled,
+          expandOnClick = _this$props2.expandOnClick,
+          icons = _this$props2.icons,
+          lang = _this$props2.lang,
+          noCascade = _this$props2.noCascade,
+          onClick = _this$props2.onClick,
+          onlyLeafCheckboxes = _this$props2.onlyLeafCheckboxes,
+          optimisticToggle = _this$props2.optimisticToggle,
+          showNodeTitle = _this$props2.showNodeTitle,
+          showNodeIcon = _this$props2.showNodeIcon;
+      var _this$state = this.state,
+          id = _this$state.id,
+          model = _this$state.model;
+      var defaultIcons = CheckboxTree.defaultProps.icons;
+      var treeNodes = nodes.map(function (node) {
+        var key = node.value;
+        var flatNode = model.getNode(node.value);
+        var children = flatNode.isParent ? _this4.renderTreeNodes(node.children, node) : null; // Determine the check state after all children check states have been determined
+        // This is done during rendering as to avoid an additional loop during the
+        // deserialization of the `checked` property
+
+        flatNode.checkState = _this4.determineShallowCheckState(node, noCascade); // Show checkbox only if this is a leaf node or showCheckbox is true
+
+        var showCheckbox = onlyLeafCheckboxes ? flatNode.isLeaf : flatNode.showCheckbox; // Render only if parent is expanded or if there is no root parent
+
+        var parentExpanded = parent.value ? model.getNode(parent.value).expanded : true;
+
+        if (!parentExpanded) {
+          return null;
+        }
+
+        return _react.default.createElement(_TreeNode.default, {
+          key: key,
+          checked: flatNode.checkState,
+          className: node.className,
+          disabled: flatNode.disabled,
+          expandDisabled: expandDisabled,
+          expandOnClick: expandOnClick,
+          expanded: flatNode.expanded,
+          icon: node.icon,
+          icons: _objectSpread({}, defaultIcons, icons),
+          label: node.label,
+          lang: lang,
+          optimisticToggle: optimisticToggle,
+          isLeaf: flatNode.isLeaf,
+          isParent: flatNode.isParent,
+          showCheckbox: showCheckbox,
+          showNodeIcon: showNodeIcon,
+          title: showNodeTitle ? node.title || node.label : node.title,
+          treeId: id,
+          value: node.value,
+          onCheck: _this4.onCheck,
+          onClick: onClick && _this4.onNodeClick,
+          onExpand: _this4.onExpand
+        }, children);
+      });
+      return _react.default.createElement("div", {
+        id: "plots"
+      }, _react.default.createElement("div", {
+        className: "bar"
+      }), treeNodes);
+    }
+  }, {
+    key: "renderExpandAll",
+    value: function renderExpandAll() {
+      var _this$props3 = this.props,
+          _this$props3$icons = _this$props3.icons,
+          expandAll = _this$props3$icons.expandAll,
+          collapseAll = _this$props3$icons.collapseAll,
+          lang = _this$props3.lang,
+          showExpandAll = _this$props3.showExpandAll;
+
+      if (!showExpandAll) {
+        return null;
+      }
+
+      return _react.default.createElement("div", {
+        className: "rct-options"
+      }, _react.default.createElement(_Button.default, {
+        className: "rct-option rct-option-expand-all",
+        title: lang.expandAll,
+        onClick: this.onExpandAll
+      }, expandAll), _react.default.createElement(_Button.default, {
+        className: "rct-option rct-option-collapse-all",
+        title: lang.collapseAll,
+        onClick: this.onCollapseAll
+      }, collapseAll));
+    }
+  }, {
+    key: "renderHiddenInput",
+    value: function renderHiddenInput() {
+      var _this$props4 = this.props,
+          name = _this$props4.name,
+          nameAsArray = _this$props4.nameAsArray;
+
+      if (name === undefined) {
+        return null;
+      }
+
+      if (nameAsArray) {
+        return this.renderArrayHiddenInput();
+      }
+
+      return this.renderJoinedHiddenInput();
+    }
+  }, {
+    key: "renderArrayHiddenInput",
+    value: function renderArrayHiddenInput() {
+      var _this$props5 = this.props,
+          checked = _this$props5.checked,
+          inputName = _this$props5.name;
+      return checked.map(function (value) {
+        var name = "".concat(inputName, "[]");
+        return null;
+      });
+    }
+  }, {
+    key: "renderJoinedHiddenInput",
+    value: function renderJoinedHiddenInput() {
+      var _this$props6 = this.props,
+          checked = _this$props6.checked,
+          name = _this$props6.name;
+      var inputValue = checked.join(',');
+      return null;
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this$props7 = this.props,
+          disabled = _this$props7.disabled,
+          nodes = _this$props7.nodes,
+          nativeCheckboxes = _this$props7.nativeCheckboxes;
+      var treeNodes = this.renderTreeNodes(nodes);
+      var className = (0, _classnames.default)({
+        'react-checkbox-tree': true,
+        'rct-disabled': disabled,
+        'rct-native-display': nativeCheckboxes
+      });
+      return _react.default.createElement("div", {
+        className: className
+      }, this.renderExpandAll(), this.renderHiddenInput(), treeNodes);
+    }
+  }], [{
+    key: "getDerivedStateFromProps",
+    value: function getDerivedStateFromProps(newProps, prevState) {
+      var model = prevState.model,
+          prevProps = prevState.prevProps;
+      var disabled = newProps.disabled,
+          id = newProps.id,
+          nodes = newProps.nodes;
+
+      var newState = _objectSpread({}, prevState, {
+        prevProps: newProps
+      }); // Apply new properties to model
+
+
+      model.setProps(newProps); // Since flattening nodes is an expensive task, only update when there is a node change
+
+      if (!(0, _isEqual.default)(prevProps.nodes, nodes) || prevProps.disabled !== disabled) {
+        model.flattenNodes(nodes);
+      }
+
+      if (id !== null) {
+        newState = _objectSpread({}, newState, {
+          id: id
+        });
+      }
+
+      model.deserializeLists({
+        checked: newProps.checked,
+        expanded: newProps.expanded
+      });
+      return newState;
+    }
+  }]);
+
+  return CheckboxTree;
+}(_react.default.Component);
+
+_defineProperty(CheckboxTree, "propTypes", {
+  nodes: _propTypes.default.arrayOf(_nodeShape.default).isRequired,
+  checked: _listShape.default,
+  disabled: _propTypes.default.bool,
+  expandDisabled: _propTypes.default.bool,
+  expandOnClick: _propTypes.default.bool,
+  expanded: _listShape.default,
+  icons: _iconsShape.default,
+  id: _propTypes.default.string,
+  lang: _languageShape.default,
+  name: _propTypes.default.string,
+  nameAsArray: _propTypes.default.bool,
+  nativeCheckboxes: _propTypes.default.bool,
+  noCascade: _propTypes.default.bool,
+  onlyLeafCheckboxes: _propTypes.default.bool,
+  optimisticToggle: _propTypes.default.bool,
+  showExpandAll: _propTypes.default.bool,
+  showNodeIcon: _propTypes.default.bool,
+  showNodeTitle: _propTypes.default.bool,
+  onCheck: _propTypes.default.func,
+  onClick: _propTypes.default.func,
+  onExpand: _propTypes.default.func
+});
+
+_defineProperty(CheckboxTree, "defaultProps", {
+  checked: [],
+  disabled: false,
+  expandDisabled: false,
+  expandOnClick: false,
+  expanded: [],
+  icons: {
+    check: _react.default.createElement("input", {
+      className: "plotVisibility",
+      type: "checkbox"
+    }),
+    uncheck: _react.default.createElement("input", {
+      className: "plotVisibility",
+      type: "checkbox"
+    }),
+    halfCheck: _react.default.createElement("span", {
+      className: "rct-icon rct-icon-half-check"
+    }),
+    expandClose: _react.default.createElement("span", {
+      className: "rct-icon rct-icon-expand-close"
+    }),
+    expandOpen: _react.default.createElement("span", {
+      className: "rct-icon rct-icon-expand-open"
+    }),
+    expandAll: _react.default.createElement("span", {
+      className: "rct-icon rct-icon-expand-all"
+    }),
+    collapseAll: _react.default.createElement("span", {
+      className: "rct-icon rct-icon-collapse-all"
+    }),
+    parentClose: _react.default.createElement("span", {
+      className: "rct-icon rct-icon-parent-close"
+    }),
+    parentOpen: _react.default.createElement("span", {
+      className: "rct-icon rct-icon-parent-open"
+    }),
+    leaf: _react.default.createElement("span", {
+      className: "rct-icon rct-icon-leaf"
+    })
+  },
+  id: null,
+  lang: {
+    collapseAll: 'Collapse all',
+    expandAll: 'Expand all',
+    toggle: 'Toggle'
+  },
+  name: undefined,
+  nameAsArray: false,
+  nativeCheckboxes: false,
+  noCascade: false,
+  onlyLeafCheckboxes: false,
+  optimisticToggle: true,
+  showExpandAll: false,
+  showNodeIcon: true,
+  showNodeTitle: false,
+  onCheck: function onCheck() {},
+  onClick: null,
+  onExpand: function onExpand() {}
+});
+
+var _default = CheckboxTree;
+exports.default = _default;
+},{"classnames":"../node_modules/classnames/index.js","lodash/isEqual":"../node_modules/lodash/isEqual.js","nanoid":"../node_modules/nanoid/index.browser.js","prop-types":"../node_modules/prop-types/index.js","react":"../node_modules/react/index.js","./Button":"cookie-trail/components/checkboxes/Button.js","./NodeModel":"cookie-trail/components/checkboxes/NodeModel.js","./TreeNode":"cookie-trail/components/checkboxes/TreeNode.js","./shapes/iconsShape":"cookie-trail/components/checkboxes/shapes/iconsShape.js","./shapes/languageShape":"cookie-trail/components/checkboxes/shapes/languageShape.js","./shapes/listShape":"cookie-trail/components/checkboxes/shapes/listShape.js","./shapes/nodeShape":"cookie-trail/components/checkboxes/shapes/nodeShape.js"}],"../../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
 
 function getBundleURLCached() {
@@ -87753,7 +91546,7 @@ var _reactRedux = require("react-redux");
 
 var _global_constants = require("./../../global_constants");
 
-var _reactCheckboxTree = _interopRequireDefault(require("react-checkbox-tree"));
+var _CheckboxTree = _interopRequireDefault(require("./checkboxes/CheckboxTree"));
 
 require("react-checkbox-tree/src/scss/react-checkbox-tree.scss");
 
@@ -87866,133 +91659,96 @@ function (_Component) {
       var _this$state = this.state,
           checked = _this$state.checked,
           expanded = _this$state.expanded;
-      return (// <div id="checkbox-tree-cookie-trail">
-        //   <CheckboxTree
-        //           checked={this.props.checkedCookieTrails}
-        //           expanded={expanded}
-        //           noCascade
-        //           nodes={this.treeNodes}
-        //           onCheck={this.onCheck}
-        //           onExpand={this.onExpand}
-        //           showNodeIcon={false}
-        //       />
-        // </div>
-        _react.default.createElement("div", {
-          id: "plotsWrap"
-        }, _react.default.createElement("div", {
-          id: "plots"
-        }, _react.default.createElement("div", {
-          class: "bar"
-        }), _react.default.createElement("label", {
-          className: "plot"
-        }, _react.default.createElement("input", {
-          className: "plotVisibility",
-          type: "checkbox"
-        }), _react.default.createElement("span", {
-          className: "plotName"
-        }, "Name of a category"), _react.default.createElement("div", {
-          class: "divider"
-        }), _react.default.createElement("label", {
-          className: "plot"
-        }, _react.default.createElement("input", {
-          className: "plotVisibility",
-          type: "checkbox"
-        }), _react.default.createElement("span", {
-          className: "plotName"
-        }, "New category"), _react.default.createElement("div", {
-          class: "divider"
-        }), _react.default.createElement("label", {
-          className: "plot"
-        }, _react.default.createElement("input", {
-          className: "plotVisibility",
-          type: "checkbox"
-        }), _react.default.createElement("span", {
-          className: "plotName"
-        }, "Newer"), _react.default.createElement("div", {
-          class: "divider"
-        })), _react.default.createElement("label", {
-          className: "plot"
-        }, _react.default.createElement("input", {
-          className: "plotVisibility",
-          type: "checkbox"
-        }), _react.default.createElement("span", {
-          className: "plotName"
-        }, "New nested category"), _react.default.createElement("div", {
-          class: "divider"
-        }))), _react.default.createElement("label", {
-          className: "plot"
-        }, _react.default.createElement("input", {
-          className: "plotVisibility",
-          type: "checkbox"
-        }), _react.default.createElement("span", {
-          className: "plotName"
-        }, "New category"), _react.default.createElement("div", {
-          class: "divider"
-        }), _react.default.createElement("label", {
-          className: "plot"
-        }, _react.default.createElement("input", {
-          className: "plotVisibility",
-          type: "checkbox"
-        }), _react.default.createElement("span", {
-          className: "plotName"
-        }, "New category"), _react.default.createElement("div", {
-          class: "divider"
-        }), _react.default.createElement("label", {
-          className: "plot"
-        }, _react.default.createElement("input", {
-          className: "plotVisibility",
-          type: "checkbox"
-        }), _react.default.createElement("span", {
-          className: "plotName"
-        }, "New category"), _react.default.createElement("div", {
-          class: "divider"
-        }), _react.default.createElement("label", {
-          className: "plot"
-        }, _react.default.createElement("input", {
-          className: "plotVisibility",
-          type: "checkbox"
-        }), _react.default.createElement("span", {
-          className: "plotName"
-        }, "New category"), _react.default.createElement("div", {
-          class: "divider"
-        }), _react.default.createElement("label", {
-          className: "plot"
-        }, _react.default.createElement("input", {
-          className: "plotVisibility",
-          type: "checkbox"
-        }), _react.default.createElement("span", {
-          className: "plotName"
-        }, "New category"), _react.default.createElement("div", {
-          class: "divider"
-        })))), _react.default.createElement("label", {
-          className: "plot"
-        }, _react.default.createElement("input", {
-          className: "plotVisibility",
-          type: "checkbox"
-        }), _react.default.createElement("span", {
-          className: "plotName"
-        }, "New category"), _react.default.createElement("div", {
-          class: "divider"
-        }))), _react.default.createElement("label", {
-          className: "plot"
-        }, _react.default.createElement("input", {
-          className: "plotVisibility",
-          type: "checkbox"
-        }), _react.default.createElement("span", {
-          className: "plotName"
-        }, "New category"), _react.default.createElement("div", {
-          class: "divider"
-        })))), _react.default.createElement("label", {
-          className: "plot"
-        }, _react.default.createElement("input", {
-          className: "plotVisibility",
-          type: "checkbox"
-        }), _react.default.createElement("span", {
-          className: "plotName"
-        }, "Name of yet another category"), _react.default.createElement("div", {
-          class: "divider"
-        }))))
-      );
+      return _react.default.createElement("div", {
+        id: "plotsWrap"
+      }, _react.default.createElement(_CheckboxTree.default, {
+        checked: this.props.checkedCookieTrails,
+        expanded: expanded,
+        noCascade: true,
+        nodes: this.treeNodes,
+        onCheck: this.onCheck,
+        onExpand: this.onExpand,
+        showNodeIcon: false
+      })) // <div id="plotsWrap">
+      //   <div id="plots">
+      //     <div class="bar"></div>
+      //
+      //     <label className="plot">
+      //       <input className="plotVisibility" type="checkbox"/>
+      //       <span className="plotName">Name of a category</span>
+      //       <div class="divider"></div>
+      //
+      //         <label className="plot">
+      //           <input className="plotVisibility" type="checkbox"/>
+      //           <span className="plotName">New category</span>
+      //           <div class="divider"></div>
+      //
+      //             <label className="plot">
+      //               <input className="plotVisibility" type="checkbox"/>
+      //               <span className="plotName">Newer</span>
+      //               <div class="divider"></div>
+      //             </label>
+      //
+      //             <label className="plot">
+      //               <input className="plotVisibility" type="checkbox"/>
+      //               <span className="plotName">New nested category</span>
+      //               <div class="divider"></div>
+      //             </label>
+      //         </label>
+      //
+      //         <label className="plot">
+      //           <input className="plotVisibility" type="checkbox"/>
+      //           <span className="plotName">New category</span>
+      //           <div class="divider"></div>
+      //
+      //           <label className="plot">
+      //             <input className="plotVisibility" type="checkbox"/>
+      //             <span className="plotName">New category</span>
+      //             <div class="divider"></div>
+      //
+      //             <label className="plot">
+      //               <input className="plotVisibility" type="checkbox"/>
+      //               <span className="plotName">New category</span>
+      //               <div class="divider"></div>
+      //               <label className="plot">
+      //                 <input className="plotVisibility" type="checkbox"/>
+      //                 <span className="plotName">New category</span>
+      //                 <div class="divider"></div>
+      //                 <label className="plot">
+      //                   <input className="plotVisibility" type="checkbox"/>
+      //                   <span className="plotName">New category</span>
+      //                   <div class="divider"></div>
+      //                 </label>
+      //               </label>
+      //             </label>
+      //
+      //             <label className="plot">
+      //               <input className="plotVisibility" type="checkbox"/>
+      //               <span className="plotName">New category</span>
+      //               <div class="divider"></div>
+      //             </label>
+      //
+      //           </label>
+      //
+      //           <label className="plot">
+      //             <input className="plotVisibility" type="checkbox"/>
+      //             <span className="plotName">New category</span>
+      //             <div class="divider"></div>
+      //           </label>
+      //
+      //         </label>
+      //
+      //     </label>
+      //
+      //   <label className="plot">
+      //     <input className="plotVisibility" type="checkbox"/>
+      //     <span className="plotName">Name of yet another category</span>
+      //     <div class="divider"></div>
+      //   </label>
+      //
+      //   </div>
+      // </div>
+      ;
     } //instantiate phaser game after render
 
   }, {
@@ -88012,7 +91768,7 @@ function (_Component) {
 
 var _default = ChartNavigator;
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","chart.js":"../node_modules/chart.js/dist/Chart.js","react-redux":"../node_modules/react-redux/es/index.js","./../../global_constants":"global_constants.js","react-checkbox-tree":"../node_modules/react-checkbox-tree/lib/index.browser.js","react-checkbox-tree/src/scss/react-checkbox-tree.scss":"../node_modules/react-checkbox-tree/src/scss/react-checkbox-tree.scss","font-awesome/scss/font-awesome.scss":"../node_modules/font-awesome/scss/font-awesome.scss"}],"redux/actions/trail_viewer.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","chart.js":"../node_modules/chart.js/dist/Chart.js","react-redux":"../node_modules/react-redux/es/index.js","./../../global_constants":"global_constants.js","./checkboxes/CheckboxTree":"cookie-trail/components/checkboxes/CheckboxTree.js","react-checkbox-tree/src/scss/react-checkbox-tree.scss":"../node_modules/react-checkbox-tree/src/scss/react-checkbox-tree.scss","font-awesome/scss/font-awesome.scss":"../node_modules/font-awesome/scss/font-awesome.scss"}],"redux/actions/trail_viewer.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -92523,7 +96279,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56842" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56531" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
