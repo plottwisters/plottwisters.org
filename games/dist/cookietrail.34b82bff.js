@@ -189,7 +189,7 @@ var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"./../img/book-closed.png":[["book-closed.14f7a4f2.png","img/book-closed.png"],"img/book-closed.png"],"./../img/breadcrumb-gray.png":[["breadcrumb-gray.adef6eb5.png","img/breadcrumb-gray.png"],"img/breadcrumb-gray.png"],"./../img/book-open.png":[["book-open.0b774545.png","img/book-open.png"],"img/book-open.png"],"./../img/breadcrumb.png":[["breadcrumb.f3b87f38.png","img/breadcrumb.png"],"img/breadcrumb.png"],"_css_loader":"../../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./../img/book-closed.png":[["book-closed.14f7a4f2.png","img/book-closed.png"],"img/book-closed.png"],"./../img/expand.png":[["expand.6a38621e.png","img/expand.png"],"img/expand.png"],"./../img/breadcrumb-gray.png":[["breadcrumb-gray.adef6eb5.png","img/breadcrumb-gray.png"],"img/breadcrumb-gray.png"],"./../img/book-open.png":[["book-open.0b774545.png","img/book-open.png"],"img/book-open.png"],"./../img/breadcrumb.png":[["breadcrumb.f3b87f38.png","img/breadcrumb.png"],"img/breadcrumb.png"],"_css_loader":"../../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -217,7 +217,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56531" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63469" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -20,7 +20,7 @@
 #plotsWrap {
   // border: 1px solid red;
   height: 40%;
-  overflow-y: scroll;
+  overflow-y: auto;
   overflow-x: hidden;
 }
 
@@ -60,11 +60,22 @@
     outline: none;
   }
 
+  .expandCarrot {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 14px;
+    height: 8px;
+    background: url('../img/expand.png') no-repeat right center;
+    background-size: 100% auto;
+  }
+
   .plotName {
     display: block;
     padding: 10px 0;
     min-height: 20px;
     color: #9d948c;
+    font-size: 0.9em;
   }
 
     .plot .plot .plotName {

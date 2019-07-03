@@ -72,97 +72,98 @@ class ChartNavigator extends Component {
   render() {
     const { checked, expanded } = this.state;
     return (
-      <div id="plotsWrap">
-        <CheckboxTree
-          checked={this.props.checkedCookieTrails}
-          expanded={expanded}
-          noCascade
-          nodes={this.treeNodes}
-          onCheck={this.onCheck}
-          onExpand={this.onExpand}
-          showNodeIcon={false}
-        />
-      </div>
-
       // <div id="plotsWrap">
-      //   <div id="plots">
-      //     <div class="bar"></div>
-      //
-      //     <label className="plot">
-      //       <input className="plotVisibility" type="checkbox"/>
-      //       <span className="plotName">Name of a category</span>
-      //       <div class="divider"></div>
-      //
-      //         <label className="plot">
-      //           <input className="plotVisibility" type="checkbox"/>
-      //           <span className="plotName">New category</span>
-      //           <div class="divider"></div>
-      //
-      //             <label className="plot">
-      //               <input className="plotVisibility" type="checkbox"/>
-      //               <span className="plotName">Newer</span>
-      //               <div class="divider"></div>
-      //             </label>
-      //
-      //             <label className="plot">
-      //               <input className="plotVisibility" type="checkbox"/>
-      //               <span className="plotName">New nested category</span>
-      //               <div class="divider"></div>
-      //             </label>
-      //         </label>
-      //
-      //         <label className="plot">
-      //           <input className="plotVisibility" type="checkbox"/>
-      //           <span className="plotName">New category</span>
-      //           <div class="divider"></div>
-      //
-      //           <label className="plot">
-      //             <input className="plotVisibility" type="checkbox"/>
-      //             <span className="plotName">New category</span>
-      //             <div class="divider"></div>
-      //
-      //             <label className="plot">
-      //               <input className="plotVisibility" type="checkbox"/>
-      //               <span className="plotName">New category</span>
-      //               <div class="divider"></div>
-      //               <label className="plot">
-      //                 <input className="plotVisibility" type="checkbox"/>
-      //                 <span className="plotName">New category</span>
-      //                 <div class="divider"></div>
-      //                 <label className="plot">
-      //                   <input className="plotVisibility" type="checkbox"/>
-      //                   <span className="plotName">New category</span>
-      //                   <div class="divider"></div>
-      //                 </label>
-      //               </label>
-      //             </label>
-      //
-      //             <label className="plot">
-      //               <input className="plotVisibility" type="checkbox"/>
-      //               <span className="plotName">New category</span>
-      //               <div class="divider"></div>
-      //             </label>
-      //
-      //           </label>
-      //
-      //           <label className="plot">
-      //             <input className="plotVisibility" type="checkbox"/>
-      //             <span className="plotName">New category</span>
-      //             <div class="divider"></div>
-      //           </label>
-      //
-      //         </label>
-      //
-      //     </label>
-      //
-      //   <label className="plot">
-      //     <input className="plotVisibility" type="checkbox"/>
-      //     <span className="plotName">Name of yet another category</span>
-      //     <div class="divider"></div>
-      //   </label>
-      //
-      //   </div>
+      //   <CheckboxTree
+      //     checked={this.props.checkedCookieTrails}
+      //     expanded={expanded}
+      //     noCascade
+      //     nodes={this.treeNodes}
+      //     onCheck={this.onCheck}
+      //     onExpand={this.onExpand}
+      //     showNodeIcon={false}
+      //   />
       // </div>
+
+      <div id="plotsWrap">
+        <div id="plots">
+          <div class="bar"></div>
+
+          <label className="plot">
+            <input className="plotVisibility" type="checkbox"/>
+            <span className="plotName">Name of a category</span>
+            <div className="expandCarrot"></div>
+            <div class="divider"></div>
+
+              <label className="plot">
+                <input className="plotVisibility" type="checkbox"/>
+                <span className="plotName">New category</span>
+                <div class="divider"></div>
+
+                  <label className="plot">
+                    <input className="plotVisibility" type="checkbox"/>
+                    <span className="plotName">Newer</span>
+                    <div class="divider"></div>
+                  </label>
+
+                  <label className="plot">
+                    <input className="plotVisibility" type="checkbox"/>
+                    <span className="plotName">New nested category</span>
+                    <div class="divider"></div>
+                  </label>
+              </label>
+
+              <label className="plot">
+                <input className="plotVisibility" type="checkbox"/>
+                <span className="plotName">New category</span>
+                <div class="divider"></div>
+
+                <label className="plot">
+                  <input className="plotVisibility" type="checkbox"/>
+                  <span className="plotName">New category</span>
+                  <div class="divider"></div>
+
+                  <label className="plot">
+                    <input className="plotVisibility" type="checkbox"/>
+                    <span className="plotName">New category</span>
+                    <div class="divider"></div>
+                    <label className="plot">
+                      <input className="plotVisibility" type="checkbox"/>
+                      <span className="plotName">New category</span>
+                      <div class="divider"></div>
+                      <label className="plot">
+                        <input className="plotVisibility" type="checkbox"/>
+                        <span className="plotName">New category</span>
+                        <div class="divider"></div>
+                      </label>
+                    </label>
+                  </label>
+
+                  <label className="plot">
+                    <input className="plotVisibility" type="checkbox"/>
+                    <span className="plotName">New category</span>
+                    <div class="divider"></div>
+                  </label>
+
+                </label>
+
+                <label className="plot">
+                  <input className="plotVisibility" type="checkbox"/>
+                  <span className="plotName">New category</span>
+                  <div class="divider"></div>
+                </label>
+
+              </label>
+
+          </label>
+
+        <label className="plot">
+          <input className="plotVisibility" type="checkbox"/>
+          <span className="plotName">Name of yet another category</span>
+          <div class="divider"></div>
+        </label>
+
+        </div>
+      </div>
     );
   }
 
