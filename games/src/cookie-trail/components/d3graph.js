@@ -24,19 +24,14 @@ function handleLineMouseOut(d) {
   resetOpacity(this);
 }
 
-function decreaseOpacity(line) {
-  console.log(line.parentNode);
-  for (let sibling of line.parentNode.parentNode.children) {
-    sibling.style.opacity = 0.3;
-  }
-  line.parentNode.style.opacity = 1;
+function decreaseOpacity(g) {
+  d3.selectAll('#lines .lineContainer').transition()
+    .duration(200).style('opacity', 0.15);
+  g.transition().duration(300).style('opacity', 1);
 }
 
 function resetOpacity(line) {
-  for (let sibling of line.parentNode.parentNode.children) {
-    sibling.style.opacity = 1;
-  }
-  line.parentNode.style.opacity = 1;
+    d3.selectAll('#lines .lineContainer').style('opacity', 1);
 }
 
 function lineGenerator(lineData, g, params) {
@@ -60,7 +55,7 @@ function lineGenerator(lineData, g, params) {
         .style("left", (d3.event.offsetX) + "px")
         .style("top", (d3.event.offsetY - 28) + "px");
 
-      decreaseOpacity(this);
+      decreaseOpacity(g);
     })
     .on("mouseout", handleLineMouseOut);
 
@@ -88,9 +83,16 @@ function extendMaxTime(minTime, maxTime) {
 function extendMinTime(minTime, maxTime) {
     return minTime - 0.1 * (maxTime - minTime)
 }
+function extendMaxH(minTime, maxTime) {
+  return maxTime + 0.2 * (maxTime - minTime)
+}
+
+function extendMinH(minTime, maxTime) {
+    return minTime - 0.2 * (maxTime - minTime)
+}
 
 
-export function updateD3graph(minTime, maxTime, lines, container) {
+export function updateD3graph(minTime, maxTime, minHeight, maxHeight, lines, container) {
   container.innerHTML = "";
   let width = container.clientWidth;
   let height = container.clientHeight;
@@ -144,14 +146,14 @@ var margin = {top: 20, right: 30, bottom: 20, left: 30};
 
       axis.select("path").attr("marker-end", "url(#arrowLeft)").attr("marker-start", "url(#arrowRight)");
     let yScale = d3.scaleLinear()
-    .domain([0, 1]) // input
+    .domain([extendMaxH(minHeight , maxHeight), extendMinH(minHeight , maxHeight)]) // input
     .range([height, 0]); // output
 
   let params = {xScale, yScale};
   let lineGroup;
-  let linesGroup =   svgRoot.append("g");
+  let linesGroup =   svgRoot.append("g").attr("id", "lines");
   for(let lineData of lines) {
-      lineGroup = linesGroup.append("g");
+      lineGroup = linesGroup.append("g").attr("class", "lineContainer");
       lineGenerator(lineData, lineGroup, params);
   }
 
