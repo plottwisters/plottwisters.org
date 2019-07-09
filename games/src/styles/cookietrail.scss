@@ -52,7 +52,7 @@
   }
 
     .plot .plot { margin-left: 0; }
-    .plot .plot .plot { margin-left: 10px; }
+    .plot .plot .plot { margin-left: 0px; }
 
   .plotVisibility {
     position: absolute;
@@ -87,6 +87,13 @@
       padding: 10px 0 10px 20px;
       background: url('../img/breadcrumb-gray.png') no-repeat left center;
       background-size: 15px auto;
+    }
+
+
+    .plot .plot .plot .plotName {
+      padding: 10px 0 10px 30px;
+      background: url('../img/breadcrumb-gray.png') no-repeat left center;
+      background-size: 23px 6px !important;
     }
 
     .plotVisibility:checked {
