@@ -40,7 +40,6 @@ export const uiConfig = {
     forceSameDevice: false,
     emailLinkSignIn: function() {
       return {
-        //           url: 'http://localhost:1234?url',
         handleCodeInApp: true
       };
     }
