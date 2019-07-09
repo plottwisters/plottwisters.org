@@ -91676,7 +91676,7 @@ function (_Component) {
           id: "plots"
         }, _react.default.createElement("div", {
           class: "bar"
-        }), _react.default.createElement("label", {
+        }), _react.default.createElement("div", {
           className: "plot"
         }, _react.default.createElement("input", {
           className: "plotVisibility",
@@ -91687,97 +91687,7 @@ function (_Component) {
           className: "expandCarrot"
         }), _react.default.createElement("div", {
           class: "divider"
-        }), _react.default.createElement("label", {
-          className: "plot"
-        }, _react.default.createElement("input", {
-          className: "plotVisibility",
-          type: "checkbox"
-        }), _react.default.createElement("span", {
-          className: "plotName"
-        }, "New category"), _react.default.createElement("div", {
-          class: "divider"
-        }), _react.default.createElement("label", {
-          className: "plot"
-        }, _react.default.createElement("input", {
-          className: "plotVisibility",
-          type: "checkbox"
-        }), _react.default.createElement("span", {
-          className: "plotName"
-        }, "Newer"), _react.default.createElement("div", {
-          class: "divider"
         })), _react.default.createElement("label", {
-          className: "plot"
-        }, _react.default.createElement("input", {
-          className: "plotVisibility",
-          type: "checkbox"
-        }), _react.default.createElement("span", {
-          className: "plotName"
-        }, "New nested category"), _react.default.createElement("div", {
-          class: "divider"
-        }))), _react.default.createElement("label", {
-          className: "plot"
-        }, _react.default.createElement("input", {
-          className: "plotVisibility",
-          type: "checkbox"
-        }), _react.default.createElement("span", {
-          className: "plotName"
-        }, "New category"), _react.default.createElement("div", {
-          class: "divider"
-        }), _react.default.createElement("label", {
-          className: "plot"
-        }, _react.default.createElement("input", {
-          className: "plotVisibility",
-          type: "checkbox"
-        }), _react.default.createElement("span", {
-          className: "plotName"
-        }, "New category"), _react.default.createElement("div", {
-          class: "divider"
-        }), _react.default.createElement("label", {
-          className: "plot"
-        }, _react.default.createElement("input", {
-          className: "plotVisibility",
-          type: "checkbox"
-        }), _react.default.createElement("span", {
-          className: "plotName"
-        }, "New category"), _react.default.createElement("div", {
-          class: "divider"
-        }), _react.default.createElement("label", {
-          className: "plot"
-        }, _react.default.createElement("input", {
-          className: "plotVisibility",
-          type: "checkbox"
-        }), _react.default.createElement("span", {
-          className: "plotName"
-        }, "New category"), _react.default.createElement("div", {
-          class: "divider"
-        }), _react.default.createElement("label", {
-          className: "plot"
-        }, _react.default.createElement("input", {
-          className: "plotVisibility",
-          type: "checkbox"
-        }), _react.default.createElement("span", {
-          className: "plotName"
-        }, "New category"), _react.default.createElement("div", {
-          class: "divider"
-        })))), _react.default.createElement("label", {
-          className: "plot"
-        }, _react.default.createElement("input", {
-          className: "plotVisibility",
-          type: "checkbox"
-        }), _react.default.createElement("span", {
-          className: "plotName"
-        }, "New category"), _react.default.createElement("div", {
-          class: "divider"
-        }))), _react.default.createElement("label", {
-          className: "plot"
-        }, _react.default.createElement("input", {
-          className: "plotVisibility",
-          type: "checkbox"
-        }), _react.default.createElement("span", {
-          className: "plotName"
-        }, "New category"), _react.default.createElement("div", {
-          class: "divider"
-        })))), _react.default.createElement("label", {
           className: "plot"
         }, _react.default.createElement("input", {
           className: "plotVisibility",
@@ -96318,7 +96228,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63469" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51878" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

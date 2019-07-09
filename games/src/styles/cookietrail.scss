@@ -90,11 +90,11 @@
       outline: none;
     }
 
-    .plotVisibility:checked + .plotName {
+    .plotVisibility:checked {
       color: #000;
     }
 
-    .plot .plot .plotVisibility:checked + .plotName {
+    .plot .plot .plotVisibility:checked {
       background: url('../img/breadcrumb.png') no-repeat left center;
       background-size: 15px auto;
     }
