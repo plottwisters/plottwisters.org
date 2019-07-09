@@ -146,7 +146,7 @@ var margin = {top: 20, right: 30, bottom: 20, left: 30};
 
       axis.select("path").attr("marker-end", "url(#arrowLeft)").attr("marker-start", "url(#arrowRight)");
     let yScale = d3.scaleLinear()
-    .domain([extendMaxH(minHeight , maxHeight), extendMinH(minHeight , maxHeight)]) // input
+    .domain([extendMinH(minHeight , maxHeight), extendMaxH(minHeight , maxHeight)]) // input
     .range([height, 0]); // output
 
   let params = {xScale, yScale};
