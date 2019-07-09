@@ -169,7 +169,7 @@
 .line {
     fill: none;
     stroke: #000;
-    stroke-width: 2;
+    stroke-width: 3;
 }
 
 .overlay {
@@ -181,6 +181,7 @@
 .dot {
     fill: #000;
     stroke: none;
+    r: 8;
 }
 
 div.desc {

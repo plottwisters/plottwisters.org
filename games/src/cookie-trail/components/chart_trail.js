@@ -31,6 +31,16 @@ class ChartTrail extends Component {
       return;
     let minTimeStamp = this.props.tbosCookieTrail["idroot"][0]["timestamp"];
     let maxTimeStamp = this.props.tbosCookieTrail["idroot"][this.props.tbosCookieTrail["idroot"].length - 1]["timestamp"];
+
+    let pointsSortedByHeight = this.props.tbosCookieTrail["idroot"].sort((a, b)=> {
+      return (0.5 * a["productivity"] + 0.5 * (a["vision"]/this.props.maxCookieVision) ) -(0.5 * b["productivity"] + 0.5 * (b["vision"]/this.props.maxCookieVision)) ;
+    });
+    console.log(pointsSortedByHeight);
+    function findHeight(point, mCV) {
+      return  0.5 * point["productivity"] + 0.5 * (point["vision"]/mCV);
+    }
+    let maxHeight = findHeight(pointsSortedByHeight[pointsSortedByHeight.length -1], this.props.maxCookieVision);
+    let minHeight = findHeight(pointsSortedByHeight[0],this.props.maxCookieVision)
     let allTrails = [];
     for(let cookieTrailId of this.props.checkedCookieTrails) {
       let totalSet = {};
@@ -58,7 +68,7 @@ class ChartTrail extends Component {
     return b.priority - a.priority;
   });
 
-  updateD3graph(minTimeStamp, maxTimeStamp, allTrails, document.getElementById("chartWrap"));
+  updateD3graph(minTimeStamp, maxTimeStamp, minHeight, maxHeight, allTrails, document.getElementById("chartWrap"));
   }
   componentDidMount() {
     this.createChart();
