@@ -4,7 +4,7 @@ import {generateInitialUser, generateInitialTasks} from './init_generators';
 
 let firebaseConfig = {
   apiKey: "AIzaSyBWj5sop-VPiIXKpF2ZTK6S4KSsyBRP2Bs",
-  authDomain: "plottwisters.org"
+  authDomain: "plot-twisters.firebaseapp.com"
   projectId: "plot-twisters"
 };
 firebase.initializeApp(firebaseConfig);
@@ -26,7 +26,7 @@ firebase.firestore().enablePersistence().catch(function(err) {
 
 
 export const uiConfig = {
-  signInSuccessUrl: 'http://localhost:1234/games/dist/two-birds-one-stone',
+  signInSuccessUrl: 'http://plottwisters.org/games/dist/two-birds-one-stone',
   callbacks: {
     uiShown: function() {
       document.getElementById('second-wrap').style.display = 'none';
@@ -34,7 +34,7 @@ export const uiConfig = {
   },
   signInOptions: [{
 
-    signInSuccessUrl: 'http://localhost:1234/games/dist/two-birds-one-stone',
+    signInSuccessUrl: 'http://plottwisters.org/games/dist/two-birds-one-stone',
     provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
     signInMethod: firebase.auth.EmailAuthProvider.EMAIL_LINK_SIGN_IN_METHOD,
     forceSameDevice: false,
