@@ -3,7 +3,7 @@ import 'firebase/firestore';
 import {generateInitialUser, generateInitialTasks} from './init_generators';
 
 let firebaseConfig = {
-  apiKey: "AIzaSyBWj5sop-VPiIXKpF2ZTK6S4KSsyBRP2Bs",
+  apiKey: process.env.API_KEY,
   authDomain: "plot-twisters.firebaseapp.com",
   projectId: "plot-twisters"
 };
