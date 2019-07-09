@@ -14,6 +14,10 @@ class ChartTrail extends Component {
 
 
 
+
+
+
+
   render() {
 
     return (

@@ -92013,6 +92013,13 @@ function (_Component) {
   return Login;
 }(_react.Component);
 
+ui.start('#firebaseui-auth-container', {
+  signInOptions: [{
+    provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
+    signInMethod: firebase.auth.EmailAuthProvider.EMAIL_LINK_SIGN_IN_METHOD
+  }] // Other config options...
+
+});
 var _default = Login;
 exports.default = _default;
 },{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js"}],"../node_modules/gud/index.js":[function(require,module,exports) {
@@ -96545,7 +96552,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65287" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49676" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
