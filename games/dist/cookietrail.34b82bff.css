@@ -1,0 +1,217 @@
+#topBar {
+  display: none;
+}
+
+#trailWrap {
+  position: relative;
+  width: calc(100vw - 16px);
+  height: calc(100vh - 70px);
+  margin: 61px 8px 8px 8px;
+  font: 400 1em/1.25em benton-sans-condensed, sans-serif;
+  letter-spacing: -0.015em;
+  border: 1px solid #000;
+}
+
+#chartWrap {
+  height: 60%;
+  border-bottom: 1px solid #000;
+  text-align: center;
+}
+
+#plotsWrap {
+  height: 40%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+#plots {
+  position: relative;
+  margin: 0 0 10px 0;
+  width: 100%;
+  overflow: hidden;
+}
+
+.bar {
+  position: absolute;
+  left: 42px;
+  height: 6000px;
+  margin-top: -3000px;
+  border-left: 1px solid #000;
+}
+
+.plot {
+  position: relative;
+  display: block;
+  margin-left: 54px;
+  user-select: none;
+}
+
+.plot .plot {
+  margin-left: 0;
+}
+
+.plot .plot .plot {
+  margin-left: 10px;
+}
+
+.plotVisibility {
+  position: absolute;
+  left: -53px;
+  -webkit-appearance: none;
+  background: url("/book-closed.14f7a4f2.png") no-repeat center center;
+  background-size: 22px auto;
+  width: 42px;
+  height: 40px;
+  outline: none;
+}
+
+.expandCarrot {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 14px;
+  height: 8px;
+  background: url("/expand.6a38621e.png") no-repeat right center;
+  background-size: 100% auto;
+}
+
+.plotName {
+  display: block;
+  padding: 10px 0;
+  min-height: 20px;
+  color: #9d948c;
+  font-size: 0.9em;
+}
+
+.plot .plot .plotName {
+  padding: 10px 0 10px 20px;
+  background: url("/breadcrumb-gray.adef6eb5.png") no-repeat left center;
+  background-size: 15px auto;
+}
+
+.plotVisibility:checked {
+  background: url("/book-open.0b774545.png") no-repeat center center;
+  background-size: 32px auto;
+  outline: none;
+}
+
+.plotVisibility:checked + .plotName {
+  color: #000;
+}
+
+.plot .plot .plotVisibility:checked + .plotName {
+  background: url("/breadcrumb.f3b87f38.png") no-repeat left center;
+  background-size: 15px auto;
+}
+
+.divider {
+  width: 6000px;
+  margin-left: -3000px;
+  border-top: 1px solid #000;
+}
+
+@media screen and (min-device-width: 800px) and (min-width: 800px) {
+  #topBar {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 0 10px;
+    width: 100%;
+    height: 50px;
+    font: 500 1.2em/50px benton-sans-compressed, sans-serif;
+    border-bottom: 1px solid #000;
+  }
+
+  #trailWrap {
+    width: calc(100% - 24px);
+    height: calc(100vh - 120px);
+    margin: 65px 12px 10px 12px;
+  }
+
+  #plotsWrap {
+    position: absolute;
+    display: block !important;
+    top: 50px;
+    left: 0;
+    margin: 0;
+    width: 270px;
+    height: calc(100% - 50px);
+  }
+
+  #plots {
+    position: absolute;
+    display: block !important;
+    top: 0;
+    left: 0;
+    width: 270px;
+    border-top: none;
+  }
+
+  #chartWrap {
+    position: absolute;
+    display: block !important;
+    top: 50px;
+    right: 0;
+    margin: 0;
+    width: calc(100% - 270px);
+    height: calc(100% - 50px);
+    border-left: 1px solid #000;
+    border-bottom: none;
+  }
+}
+.line {
+  fill: none;
+  stroke: #000;
+  stroke-width: 3;
+}
+
+.overlay {
+  fill: none;
+  pointer-events: all;
+}
+
+/* Style the dots by assigning a fill and stroke */
+.dot {
+  fill: #000;
+  stroke: none;
+  r: 8;
+}
+
+div.desc {
+  position: absolute;
+  text-align: center;
+  width: 80px;
+  padding: 5px 8px;
+  background: #eae6da;
+  border: 1px solid #000;
+  pointer-events: none;
+}
+
+.x-axis {
+  padding: 0px 20px;
+}
+
+.x-axis line {
+  stroke: black;
+  opacity: 0;
+  shape-rendering: crispEdges;
+  width: 2px;
+}
+
+.x-axis path,
+.x-axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+  stroke-width: 2px;
+}
+
+.x-axis text {
+  font: benton-sans-condensed, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+}
+
+/*# sourceMappingURL=/cookietrail.34b82bff.css.map */

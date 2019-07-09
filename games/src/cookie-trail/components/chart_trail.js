@@ -29,10 +29,13 @@ class ChartTrail extends Component {
   createChart() {
     if(this.props.tbosCookieTrail["idroot"].length == 0)
       return;
-    let minTimeStamp = this.props.tbosCookieTrail["idroot"][0]["timestamp"];
-    let maxTimeStamp = this.props.tbosCookieTrail["idroot"][this.props.tbosCookieTrail["idroot"].length - 1]["timestamp"];
-
-    let pointsSortedByHeight = this.props.tbosCookieTrail["idroot"].sort((a, b)=> {
+      let sortedTbosTimestamp = this.props.tbosCookieTrail["idroot"].sort((a, b)=> {
+        return a["timestamp"] - b["timestamp"];
+      });
+      console.log(sortedTbosTimestamp);
+    let minTimeStamp =sortedTbosTimestamp[0]["timestamp"];
+    let maxTimeStamp = sortedTbosTimestamp[sortedTbosTimestamp.length - 1]["timestamp"];
+    let pointsSortedByHeight = [...this.props.tbosCookieTrail["idroot"]].sort((a, b)=> {
       return (0.5 * a["productivity"] + 0.5 * (a["vision"]/this.props.maxCookieVision) ) -(0.5 * b["productivity"] + 0.5 * (b["vision"]/this.props.maxCookieVision)) ;
     });
     console.log(pointsSortedByHeight);
@@ -55,7 +58,9 @@ class ChartTrail extends Component {
       totalSet["priority"] =  priority;
       console.log(cookieTrailId);
       console.log(this.props.tbosCookieTrail[cookieTrailId]);
-      totalSet["data"] = this.props.tbosCookieTrail[cookieTrailId].map((trail) => {
+      totalSet["data"] = this.props.tbosCookieTrail[cookieTrailId].sort((a, b)=> {
+        return (a["timestamp"] - b["timestamp"])  + 0.1 * ((0.5 * a["productivity"] + 0.5 * (a["vision"]/this.props.maxCookieVision) ) -(0.5 * b["productivity"] + 0.5 * (b["vision"]/this.props.maxCookieVision)));
+      }).map((trail) => {
       return {
         x: trail["timestamp"],
         y: 0.5 * trail["productivity"] + 0.5 * (trail["vision"]/this.props.maxCookieVision),
@@ -65,7 +70,7 @@ class ChartTrail extends Component {
     allTrails.push(totalSet);
   }
   allTrails.sort(function(a, b) {
-    return b.priority - a.priority;
+    return (a.priority - b.priority);
   });
 
   updateD3graph(minTimeStamp, maxTimeStamp, minHeight, maxHeight, allTrails, document.getElementById("chartWrap"));
