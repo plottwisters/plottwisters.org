@@ -11,11 +11,9 @@ class Leaf extends React.Component {
       if(this.props.node.children == undefined) {
         data = [];
       }
-      console.log(this.props.node.children.length, "test");
       let children = data.map((childData)=>(
         <Leaf  key={childData.value} toggleVisibility={this.props.toggleVisibility} toggleExpansion={this.props.toggleExpansion} expandedTrails={this.props.expandedTrails}  checkedTrails={this.props.checkedTrails} node={childData}/>
       ));
-      console.log(this.props.expandedTrails);
       let isExpanded = (this.props.expandedTrails[this.props.node.value]!= undefined);
       return(
       <div className="plot">

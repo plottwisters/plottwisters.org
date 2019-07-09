@@ -1,118 +1,163 @@
-import d3 from 'd3';
-// The number of datapoints
+import * as d3 from "d3";
 
-export function updateD3graph(lines, container) {
+function handleTaskMouseOver(d) { // Add interactivity
+    d3.select('.desc').transition()
+    .duration(200)
+    .style("opacity", 1);
+    d3.select('.desc').html(d.name)
+    .style("left", (d3.event.offsetX) + "px")
+    .style("top", (d3.event.offsetY - 28) + "px");
+}
 
-  let xScale = d3.scaleTime().domain([new Date("3/4/2019"), new Date("8/15/2019")]).range([0, width]); // output
-  let margin = {top: 50, right: 50, bottom: 50, left: 50}
-    , width = window.innerWidth - margin.left - margin.right // Use the window's width
-    , height = window.innerHeight - margin.top - margin.bottom; // Use the window's height
-  let yScale =  d3.scaleTime().domain([0, 1]).range([0, height]);
-  let width = container.width;
-  let height = container.height;
+function handleTaskMouseOut(d) {
+    d3.select('.desc').transition()
+    .duration(200)
+    .style("opacity", 0);
+}
 
-  // 1. Add the SVG to the page
-  var svg = d3.select("body").append("svg")
-      .attr("width", width)
-      .attr("height", height)
-      .attr('viewBox','0 0 '+Math.min(width,height) +' '+Math.min(width,height) )
+
+function handleLineMouseOut(d) {
+  d3.select('.desc').transition()
+    .duration(200)
+    .style("opacity", 0);
+
+  resetOpacity(this);
+}
+
+function decreaseOpacity(line) {
+  console.log(line.parentNode);
+  for (let sibling of line.parentNode.parentNode.children) {
+    sibling.style.opacity = 0.3;
+  }
+  line.parentNode.style.opacity = 1;
+}
+
+function resetOpacity(line) {
+  for (let sibling of line.parentNode.parentNode.children) {
+    sibling.style.opacity = 1;
+  }
+  line.parentNode.style.opacity = 1;
+}
+
+function lineGenerator(lineData, g, params) {
+  let {xScale, yScale} = params;
+  let dataset = lineData["data"];
+  let line = d3.line()
+    .x(function(d) {
+      return xScale(d.x);
+    })
+    .y(function(d) {
+      return yScale(d.y);
+    });
+  g.append("path")
+    .datum(dataset)
+    .attr("class", "line")
+    .attr("d", line).on("mouseover", function() {
+      d3.select('.desc').transition()
+        .duration(200)
+        .style("opacity", 1);
+        d3.select('.desc').html(lineData['label'])
+        .style("left", (d3.event.offsetX) + "px")
+        .style("top", (d3.event.offsetY - 28) + "px");
+
+      decreaseOpacity(this);
+    })
+    .on("mouseout", handleLineMouseOut);
+
+  g.selectAll(".dot")
+    .data(dataset)
+    .enter().append("circle")
+    .attr("class", "dot")
+    .attr("cx", function(d) {
+      return xScale(d.x)
+    })
+    .attr("cy", function(d) {
+      return yScale(d.y)
+    })
+    .attr("r", 6)
+    .on("mouseover", handleTaskMouseOver)
+    .on("mouseout", handleTaskMouseOut);
+
+
+}
+
+function extendMaxTime(minTime, maxTime) {
+  return maxTime + 0.2 * (maxTime - minTime)
+}
+
+function extendMinTime(minTime, maxTime) {
+    return minTime - 0.1 * (maxTime - minTime)
+}
+
+
+export function updateD3graph(minTime, maxTime, lines, container) {
+  container.innerHTML = "";
+  let width = container.clientWidth;
+  let height = container.clientHeight;
+
+  let div = d3.select(container).append("div")
+      .attr("class", "desc")
+      .style("opacity", 0);
+
+var margin = {top: 20, right: 30, bottom: 20, left: 30};
+
+  let svgRoot = d3.select(container).append("svg").attr("width", '100%')
+    .attr("height", '100%')
+    .attr("id", "domChart")
+      .attr('viewBox','0 0 '+ width +' '+height)
       .attr('preserveAspectRatio','xMinYMin')
-      .append("g")
-      .attr("transform", "translate(" + Math.min(width,height) / 2 + "," + Math.min(width,height) / 2 + ")");
+      .append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-  // 3. Call the x axis in a group tag
-  svg.append("g")
-      .attr("class", "x axis")
-      .attr("transform", "translate(0," + height + ")")
-      .call(d3.axisBottom(xScale)); // Create an axis component with d3.axisBottom
+      width = width - margin.left - margin.right;
+      height = height  - margin.top - margin.bottom;
 
 
-  // 9. Append the path, bind the data, and call the line generator
-  svg.append("path")
-      .datum(dataset) // 10. Binds data to the line
-      .attr("class", "line") // Assign a class for styling
-      .attr("d", line); // 11. Calls the line generator
-  // 12. Appends a circle for each datapoint
-  svg.selectAll(".dot")
-      .data(dataset)
-    .enter().append("circle") // Uses the enter().append() method
-      .attr("class", "dot") // Assign a class for styling
-      .attr("cx", function(d) { return xScale(d.x) })
-      .attr("cy", function(d) { return yScale(d.y) })
-      .attr("r", 6)
-      .on("mouseover", handleMouseOver)
-      .on("mouseout", handleMouseOut);
+    // x axis
+    let xScale = d3.scaleTime().domain([extendMinTime(minTime, maxTime), extendMaxTime(minTime , maxTime)]).range([0, width]);
 
+    let axis = svgRoot.append("g")
+        .attr("class", "x-axis")
+        .attr("transform", "translate(0," +(height - 20) + ")")
+        .call(d3.axisBottom(xScale).tickValues(d3.range(minTime,  extendMaxTime(minTime , maxTime) , (maxTime - minTime)/2)).tickPadding(10).tickSizeOuter(0).tickFormat(d3.timeFormat("%-H %p"))); // Create an axis component with d3.axisBottom
+  //  axis.tickSizeOuter(0);
 
+  let marker = svgRoot.append("svg:defs").append("svg:marker")
+    .attr("id", "arrowLeft")
+    .attr("viewBox", "0 -5 10 10")
+    .attr('refY', 0)//so that it comes towards the center.
+    .attr('refX', 3)
+    .attr("markerWidth", 10)
+    .attr("markerHeight", 7)
+    .append("svg:path")
+    .attr("d", "M0,-5L10,0L0,5");
 
-}
-var n = 21;
-function randomDate(start, end) {
-  start = start.getTime();
-  end = end.getTime();
-  var date = new Date(start + Math.random() * (end - start));
-  console.log(date);
-  return date;
-}
-// 8. An array of objects of length N. Each object has key -> value pair, the key being "y" and the value is a random number
-var dataset = d3.range(n).map(function(d) { return {"x":randomDate(new Date("3/4/2019"), new Date("7/8/2019")) , "y": d3.randomUniform(1)() } })
+    let markerRight =svgRoot.append("svg:defs").append("svg:marker")
+      .attr("id", "arrowRight")
+      .attr("viewBox", "0 -5 10 10")
+      .attr('refY', 0)//so that it comes towards the center.
+      .attr('refX', 7)
+      .attr("markerWidth", 10)
+      .attr("markerHeight", 7)
 
+    .append("svg:path")
+      .attr("d", "M10,-5L0,0L10,5");
 
-
-
-
-// 5. X scale will use the index of our data
-var xScale = d3.scaleTime().domain([new Date("3/4/2019"), new Date("8/15/2019")]).range([0, width]); // output
-
-// 6. Y scale will use the randomly generate number
-var yScale = d3.scaleLinear()
+      axis.select("path").attr("marker-end", "url(#arrowLeft)").attr("marker-start", "url(#arrowRight)");
+    let yScale = d3.scaleLinear()
     .domain([0, 1]) // input
     .range([height, 0]); // output
 
-// 7. d3's line generator
-var line = d3.line()
-    .x(function(d) { return xScale(d.x); }) // set the x values for the line generator
-    .y(function(d) { return yScale(d.y); }) // set the y values for the line generator
-//    .curve(d3.curveMonotoneX) // apply smoothing to the line
+  let params = {xScale, yScale};
+  let lineGroup;
+  let linesGroup =   svgRoot.append("g");
+  for(let lineData of lines) {
+      lineGroup = linesGroup.append("g");
+      lineGenerator(lineData, lineGroup, params);
+  }
 
 
 
-   function mousemove() {
-
-     var x0 = x.invert(d3.mouse(this)[0]),
-     i = bisectDate(data, x0, 1),
-     d0 = data[i - 1],
-     d1 = data[i],
-     d = x0 - d0.date > d1.date - x0 ? d1 : d0;
-     focus.attr("transform", "translate(" + x(d.date) + "," + y(d.close) + ")");
-     focus.select("text").text(d);
 }
-   // Create Event Handlers for mouse
-      function handleMouseOver(d) {  // Add interactivity
-            console.log(d3.select(this).attr("r") * 2);
-            // Use D3 to select element, change color and size
-            d3.select(this).attr("r", d3.select(this).attr("r") * 2)
-            .style("fill", "orange");
-
-            // Specify where to put label of text
-            // svg.append("text").attr({
-            //    id: "t" + d.x + "-" + d.y + "-" + i,  // Create an id for text so we can select it later for removing on mouseout
-            //     x: function() { return xScale(d.x) - 30; },
-            //     y: function() { return yScale(d.y) - 15; }
-            // })
-            // .text(function() {
-            //   return [d.x, d.y];  // Value of the text
-            // });
-          }
-
-      function handleMouseOut(d) {
-            // Use D3 to select element, change color back to normal
-            d3.select(this).attr("r", d3.select(this).attr("r") / 2)
-            .style("fill", "#00d4ff");
-
-            // Select text by id and then remove
-            // d3.select("#t" + d.x + "-" + d.y + "-" + i).remove();  // Remove text location
-          }
 function d3Loader() {
 
 }

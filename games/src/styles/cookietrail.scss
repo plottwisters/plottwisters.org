@@ -15,7 +15,11 @@
 #chartWrap {
   height: 60%;
   border-bottom: 1px solid #000;
+  text-align: center;
 }
+
+
+
 
 #plotsWrap {
   // border: 1px solid red;
@@ -161,4 +165,54 @@
     border-bottom: none;
   }
 
+}
+.line {
+    fill: none;
+    stroke: #000;
+    stroke-width: 2;
+}
+
+.overlay {
+  fill: none;
+  pointer-events: all;
+}
+
+/* Style the dots by assigning a fill and stroke */
+.dot {
+    fill: #000;
+    stroke: none;
+}
+
+div.desc {
+    position: absolute;
+    text-align: center;
+    width: 80px;
+    padding: 5px 8px;
+    background: #eae6da;
+    border: 1px solid #000;
+    pointer-events: none;
+}
+
+.x-axis {
+  padding: 0px 20px;
+}
+
+.x-axis line {
+    stroke: black;
+    opacity: 0;
+    shape-rendering: crispEdges;
+    width: 2px;
+}
+.x-axis path,
+.x-axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+  stroke-width: 2px;
+}
+
+.x-axis text {
+    font: benton-sans-condensed, sans-serif;
+    font-weight: 400;
+    font-size: 14px;
 }

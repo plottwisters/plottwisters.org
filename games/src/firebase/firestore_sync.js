@@ -1,8 +1,9 @@
 import {store} from './../store';
+import {getUser} from './../utils';
 import {ActionType} from './../redux/actions/tbos/action_type'
 import {db} from './config';
 
-function createDocFromStore(task, presentData) {
+function createDocFromStore(task, presentData, user) {
   let newDocument={}
   task = task.split("_")[0];
 
@@ -11,19 +12,19 @@ function createDocFromStore(task, presentData) {
         newDocument[key] = presentData[key][task];
     }
   }
-  newDocument["u"] = "userid"; //TODO filler for actual userid
+  newDocument["u"] = user; //TODO filler for actual userid
 
   return newDocument;
 }
 function returnUnderscoreUserId() {
-  return "_userid";
+  return "_" + getUser();
 }
+
 export function syncer(store) {
 
   store.subscribe(() => {
-
+    let user = getUser();
     let data = store.getState().present;
-
     let action = store.getState().lastAction;
     let isUndo = false;
 
@@ -50,7 +51,7 @@ export function syncer(store) {
 
 
     if (createCookie.has(action.type)) {
-      batcher.update(usersCollection.doc("userid"), {
+      batcher.update(usersCollection.doc(user), {
         "mCV": data["maxCookieVision"]
       });
     }
@@ -68,13 +69,11 @@ export function syncer(store) {
           batcher.delete(tasksCollection.doc(task.id));
         } else {
           let newId = tasksCollection.doc()
-          batcher.set(tasksCollection.doc(task.id), createDocFromStore(task.id, data));
+          batcher.set(tasksCollection.doc(task.id), createDocFromStore(task.id, data, user));
         }
       }
 
-      console.log("current root updated, ", createDocFromStore(currentRoot, data));
-
-      batcher.set(tasksCollection.doc(currentRoot), createDocFromStore(currentRoot, data));
+      batcher.set(tasksCollection.doc(currentRoot), createDocFromStore(currentRoot, data, user));
 
       let tempRoot = currentRoot;
 
@@ -103,8 +102,8 @@ export function syncer(store) {
       batcher.update(tasksCollection.doc(action.child), {
         "reverseHiearchy": data["reverseHiearchy"][action.child]
       });
-      batcher.set(tasksCollection.doc(action.parent), createDocFromStore(action.parent, data));
-      batcher.set(tasksCollection.doc(currentRoot), createDocFromStore(currentRoot, data));
+      batcher.set(tasksCollection.doc(action.parent), createDocFromStore(action.parent, data, user));
+      batcher.set(tasksCollection.doc(currentRoot), createDocFromStore(currentRoot, data, user));
     }
 
     if (dragTaskActions.has(action.type)) {
@@ -115,11 +114,12 @@ export function syncer(store) {
     }
 
     if (toggleTrailActions.has(action.type)) {
-      batcher.update(usersCollection.doc("userid"), {
+
+      batcher.update(usersCollection.doc(user), {
         "cT": data["checkedCookieTrails"]
       }); //TODO: userid used as placeholder for actual user id
     }
-
+    console.log(user);
     batcher.commit().then(function() {
       console.log("update succeeded");
     });

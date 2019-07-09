@@ -108,7 +108,7 @@ class TwoBirdsOneStone extends Component {
 
   //add game container and hidden views into DOM
   render() {
-
+    console.log(this.props.checkedCookieTrails);
     return (
 
       <div id="gameWrap">
@@ -139,6 +139,7 @@ class TwoBirdsOneStone extends Component {
 }
 
 function mapStateToProps(state) {
+  
   return state.present;
 }
 

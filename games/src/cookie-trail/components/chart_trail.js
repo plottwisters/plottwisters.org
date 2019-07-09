@@ -2,14 +2,14 @@ import React, {Component} from 'react';
 import Chart from 'chart.js';
 import { connect } from 'react-redux';
 import {TaskState} from './../../global_constants';
-
+import {updateD3graph} from './d3graph';
 class ChartTrail extends Component {
 
 
   //react parent component
   constructor(props) {
     super(props);
-
+    this.createChart = this.createChart.bind(this);
   }
 
 
@@ -19,139 +19,52 @@ class ChartTrail extends Component {
 
 
   render() {
-
     return (
       <div id="chartWrap">
-      <canvas id="chart">
-      </canvas>
+
       </div>
     );
   }
-  randomColorGenerator() {
-    	let r = Math.random() * 255;
-      let g = Math.random() * 255;
-      let b = Math.random() * 255;
-      let a = 1;
-      return ("rgba(" +  r + "," + g + "," + b + "," + a + ")");
-  }
-  componentDidUpdate(prevProps) {
-    for (let cookie of this.props.tbosCookieTrail["idroot"]) {
-      this.rootDatabyTimeMap[cookie["timestamp"]] = cookie;
-      console.log(this.rootDatabyTimeMap[cookie["timestamp"]]);
-    }
-    let newActiveSet = new Set([]);
-    for(let cookieTrailId of this.props.checkedCookieTrails) {
 
-      newActiveSet.add(cookieTrailId);
-      if(this.activeSet.has(cookieTrailId))
-        continue;
+  createChart() {
+    if(this.props.tbosCookieTrail["idroot"].length == 0)
+      return;
+    let minTimeStamp = this.props.tbosCookieTrail["idroot"][0]["timestamp"];
+    let maxTimeStamp = this.props.tbosCookieTrail["idroot"][this.props.tbosCookieTrail["idroot"].length - 1]["timestamp"];
+    let allTrails = [];
+    for(let cookieTrailId of this.props.checkedCookieTrails) {
       let totalSet = {};
       totalSet["label"] = this.props.name[cookieTrailId];
       totalSet["trailId"] = cookieTrailId;
-      let color = this.randomColorGenerator();
-      totalSet["borderColor"] = color;
-
-      totalSet["backgroundColor"] = color;
-      totalSet["pointBorderColor"] = 'rgba(0, 0, 0, 1)';
-      totalSet["pointBackgroundColor"] = 'rgba(255, 255, 255, 1)';
+      let priority = 0;
+      let tempTrailId = cookieTrailId;
+      while(tempTrailId != undefined) {
+        tempTrailId = this.props.reverseHiearchy[tempTrailId];
+        priority+=1;
+      }
+      totalSet["priority"] =  priority;
+      console.log(cookieTrailId);
+      console.log(this.props.tbosCookieTrail[cookieTrailId]);
       totalSet["data"] = this.props.tbosCookieTrail[cookieTrailId].map((trail) => {
+      return {
+        x: trail["timestamp"],
+        y: 0.5 * trail["productivity"] + 0.5 * (trail["vision"]/this.props.maxCookieVision),
+        name: trail["name"]
+      }
+    }, this);
+    allTrails.push(totalSet);
+  }
+  allTrails.sort(function(a, b) {
+    return b.priority - a.priority;
+  });
 
-        return {
-          x: trail["timestamp"],
-          y: 0.5 * trail["productivity"] + 0.5 * (trail["vision"]/this.props.maxCookieVision)
-        }
-      }, this);
-      this.myLineChart.data.datasets.push(totalSet);
-
-
-    }
-    this.myLineChart.data.datasets.reverse();
-    let subtraction = new Set([...this.activeSet].filter(x => !newActiveSet.has(x)));
-
-
-    this.myLineChart.data.datasets = this.myLineChart.data.datasets.filter(trail => !(subtraction.has(trail.trailId)));
-    this.activeSet = newActiveSet;
-
-    this.myLineChart.update();
+  updateD3graph(minTimeStamp, maxTimeStamp, allTrails, document.getElementById("chartWrap"));
   }
   componentDidMount() {
-    let chart = document.getElementById('chart');
-
-    Chart.defaults.global.elements.line = Object.assign(Chart.defaults.global.elements.line,
-      {
-        "fill": false,
-        "cubicInterpolationMode":  "monotone",
-        "tension": 0
-      });
-    Chart.defaults.global.elements.point = Object.assign(Chart.defaults.global.elements.point, {
-      "radius": 10,
-      "borderWidth": 2,
-      "backgroundColor": 'rgba(255, 255, 255, 1)',
-      "hoverRadius": 12,
-      "hoverBorderWidth": 2,
-      "borderColor": 'rgba(0, 0, 0, 1)'
-    });
-
-
-    this.rootDatabyTimeMap = {};
-    for (let cookie of this.props.tbosCookieTrail["idroot"]) {
-      this.rootDatabyTimeMap[cookie["timestamp"]] = cookie;
-    }
-    this.checkedCookieTrails = [];
-    this.activeSet = new Set([]);
-    for(let cookieTrailId of this.props.checkedCookieTrails) {
-
-      let totalSet = {};
-      totalSet["label"] = this.props.name[cookieTrailId];
-      totalSet["trailId"] = cookieTrailId;
-      let color = this.randomColorGenerator();
-      totalSet["borderColor"] = color;
-      totalSet["backgroundColor"] = color;
-      totalSet["pointBorderColor"] = 'rgba(0, 0, 0, 1)';
-      totalSet["pointBackgroundColor"] = 'rgba(255, 255, 255, 1)';
-      totalSet["data"] = this.props.tbosCookieTrail[cookieTrailId].map((trail) => {
-        return {
-          x: trail["timestamp"],
-          y: 0.5 * trail["productivity"] + 0.5 * (trail["vision"]/this.props.maxCookieVision)
-        }
-      }, this);
-      this.checkedCookieTrails.push(totalSet);
-      this.activeSet.add(cookieTrailId);
-      console.log(totalSet);
-    }
-    this.checkedCookieTrails.reverse();
-
-
-
-
-
-    this.myLineChart = new Chart(chart, {
-      type: 'line',
-
-      data: {
-        datasets: this.checkedCookieTrails
-      },
-
-      options: {
-
-        scales: {
-            xAxes: [
-              {
-                type: 'time'
-              }
-            ],
-            yAxes: [{
-                ticks: {
-                    min: 0,
-                    max: 1
-                }
-            }]
-        }
-
-      }
-    });
-
-
+    this.createChart();
+  }
+  componentDidUpdate(prevProps) {
+    this.createChart();
 
   }
 }

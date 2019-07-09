@@ -15,41 +15,9 @@ class ChartNavigator extends Component {
     super(props);
 
 
-    let hiearchy = this.props.hiearchy;
-    let active = this.props.active;
-    let name = this.props.name;
-    let cookieTrail = this.props.tbosCookieTrail;
-
-    function processCurrentName(currentName) {
-      // recursion to generate tree from redux store
-      // map store into what charts.js wants: which is key: { }.
-      let currentRoot = hiearchy[currentName];
-      let childrenNames = [];
-      for(let child in currentRoot) {
-          if(active[child] == TaskState.deleted) {
-            continue;
-          }
-          childrenNames.push(child);
-      }
-      let newTreeNodes = {children: [], className: 'hiearchy-cookie-trail-checkbox', value: currentName, label: name[currentName], isValid: true};
-      let currentChildNode;
-
-      if(childrenNames.length > 0) {
-        for(let childName of childrenNames) {
 
 
-          currentChildNode = processCurrentName(childName);
-          if(currentChildNode.isValid && cookieTrail[childName].length > 0) {
-            newTreeNodes.children.push(currentChildNode);
-          }
-        }
-      } else {
-        newTreeNodes["isValid"] = false;
-      }
-      return newTreeNodes;
-    }
 
-    this.treeNodes = [processCurrentName("idroot")];
     let checked = {};
     for(let trail of this.props.checkedCookieTrails) {
       checked[trail] = trail;
@@ -78,28 +46,63 @@ class ChartNavigator extends Component {
       } else {
         expanded[item] = item;
       }
-      console.log("toggle expansion called");
       this.setState({expanded});
   };
 
+  componentDidUpdate(newProps) {
+  const oldProps = this.props;
+
+  if(this.props.checkedCookieTrails !== newProps.checkedCookieTrails) {
+
+    let checked = {};
+    for(let trail of this.props.checkedCookieTrails) {
+      checked[trail] = trail;
+    }
+    this.setState({   checked })
+  }
+}
 
 
   //add game container and hidden views into DOM
   render() {
+    let hiearchy = this.props.hiearchy;
+    let active = this.props.active;
+    let name = this.props.name;
+    let cookieTrail = this.props.tbosCookieTrail;
+    console.log(cookieTrail);
+    function processCurrentName(currentName) {
+      // recursion to generate tree from redux store
+      // map store into what charts.js wants: which is key: { }.
+      let currentRoot = hiearchy[currentName];
+      let childrenNames = [];
+      for(let child in currentRoot) {
+          if(active[child] == TaskState.deleted) {
+            continue;
+          }
+          childrenNames.push(child);
+      }
+      let newTreeNodes = {children: [], className: 'hiearchy-cookie-trail-checkbox', value: currentName, label: name[currentName], isValid: true};
+      let currentChildNode;
+
+      if(childrenNames.length > 0) {
+        for(let childName of childrenNames) {
+
+
+          currentChildNode = processCurrentName(childName);
+          if(currentChildNode.isValid && cookieTrail[childName].length > 0) {
+            newTreeNodes.children.push(currentChildNode);
+          }
+        }
+      } else {
+        newTreeNodes["isValid"] = false;
+      }
+      return newTreeNodes;
+    }
+    this.treeNodes = [processCurrentName("idroot")];
     const { checked, expanded } = this.state;
-    console.log("state," , this.state);
+    console.log(checked);
     return (
-      // <div id="plotsWrap">
-      //   <CheckboxTree
-      //     checked={this.props.checkedCookieTrails}
-      //     expanded={expanded}
-      //     noCascade
-      //     nodes={this.treeNodes}
-      //     onCheck={this.onCheck}
-      //     onExpand={this.onExpand}
-      //     showNodeIcon={false}
-      //   />
-      // </div>
+
 
       <div id="plotsWrap">
         <div id="plots">
@@ -111,10 +114,7 @@ class ChartNavigator extends Component {
   }
 
   //instantiate phaser game after render
-  componentDidMount() {
 
-
-  }
 
   //commented out for now - this is not important as long as there is no need for the
   //immediate dom parent of the phaser game to rerender - but may be important

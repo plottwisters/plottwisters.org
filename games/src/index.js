@@ -7,12 +7,14 @@ import { BrowserRouter as Router, Route, Link,  Switch, NavLink } from "react-ro
 import { Provider } from 'react-redux';
 import {store, getTasksThunk} from './store';
 import registerServiceWorker from './registerServiceWorker';
+import * as firebaseui from 'firebaseui';
+import {getUser} from './utils';
+import {uiConfig, auth} from './firebase/config';
 
 //registry of all games - or different urls
 let globalGameRegistry = {
   "two-birds-one-stone":TwoBirdsOneStone,
-  "cookie-trail": CookieTrail,
-  "login": Login
+  "cookie-trail": CookieTrail
 }
 
 
@@ -31,7 +33,7 @@ class App extends Component {
       let simplified = "/" + original;
       let link = (
         <NavLink key={original} className="" to={simplified}>
-          {original}
+          {original.split('-').join(' ')}
         </NavLink>
       );
       let route = (<Route path={simplified} key={simplified}  component={globalGameRegistry[original]} />);
@@ -58,16 +60,20 @@ class App extends Component {
     return (
       <Provider store={store}>
         <Router basename={process.env.PUBLIC_URL}>
+
           <div id="wrap">
+            <div id="second-wrap">
             <nav>
               {renderedGamesLinks}
             </nav>
+
             <div>
 
               <Switch>
                 {routes}
               </Switch>
             </div>
+          </div>
           </div>
         </Router>
       </Provider>
@@ -76,7 +82,14 @@ class App extends Component {
   }
 
   componentDidMount() {
-      store.dispatch(getTasksThunk())
+    var ui = new firebaseui.auth.AuthUI(auth);
+    let user = getUser();
+    if(user == null) {
+
+        ui.start('#wrap', uiConfig);
+      
+    }
+      store.dispatch(getTasksThunk());
   }
 }
 

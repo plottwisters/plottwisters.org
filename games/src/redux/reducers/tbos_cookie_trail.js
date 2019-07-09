@@ -33,8 +33,8 @@ function makeDataPoint(category, state, stopBoolean, timestamp){
   return {"productivity": calculateProductivityScore(category, state), "vision": calculateCategoryVisionScore(category, state), "timestamp":timestamp, "stop": stopBoolean}
 }
 
-function makeDataPointv2(category, state, stopBoolean, timestamp) {
-  return {"productivity": calculateProductivityScore("idroot", state), "vision": calculateCategoryVisionScorev2(category, state), "timestamp":timestamp, "stop": stopBoolean}
+function makeDataPointv2(category, state, stopBoolean, timestamp, name) {
+  return {"productivity": calculateProductivityScore("idroot", state), "vision": calculateCategoryVisionScorev2(category, state), name, "timestamp":timestamp, "stop": stopBoolean}
 }
 
 function anyActiveTasks(state, currentTask) {
@@ -86,8 +86,9 @@ export default function tbosCookieTrail(state = {}, action) {
             activeChildren = true;
           }
         }
+        let name = state["name"][action.taskId];
         if(!activeChildren) {
-          newDataPoint = makeDataPointv2(currentTrailToUpdate,state, false, timestamp);
+          newDataPoint = makeDataPointv2(currentTrailToUpdate,state, false, timestamp, name);
           newMax = Math.max(state["maxCookieVision"], newDataPoint["vision"]);
           currentTask = state["reverseHiearchy"][currentTrailToUpdate];
           while(currentTask != undefined) {

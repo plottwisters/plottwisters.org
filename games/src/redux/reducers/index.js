@@ -26,7 +26,8 @@ function tbosReducers(state = {}, action) {
     nameToTasks: nameToTasks(state.nameToTasks, action),
     maxCookieVision: state["maxCookieVision"],
     position: position(state.position, action),
-    lastAction: lastAction(state.lastAction, action)
+    lastAction: lastAction(state.lastAction, action),
+    checkedCookieTrails: checkedCookieTrails(state.checkedCookieTrails, action)
   }
 
   intermediateResults["taskAggregates"] = state["taskAggregates"];
@@ -40,7 +41,8 @@ function tbosReducers(state = {}, action) {
 function reducers(state = {}, action) {
 
   let firstResult = tbosReducers(state, action);
-  return Object.assign(firstResult, {checkedCookieTrails: checkedCookieTrails(state.checkedCookieTrails, action)});
+
+  return firstResult;
 }
 
 export default function undoableState(state = {}, action) {

@@ -42,13 +42,56 @@ nav {
   nav a {
     display: inline-block;
     margin: 0;
-    width: 33.3%;
+    width: 50%;
     height: 50px;
     font: 500 0.9em/50px benton-sans-compressed, sans-serif;
     text-transform: uppercase;
     text-align: center;
     border-left: 1px solid #000;
     border-bottom: 1px solid #000;
+  }
+
+  .firebaseui-container {
+    text-align: center;
+    padding: 50px;
+    height: 100%;
+
+    font: 500 0.9em/50px benton-sans-compressed, sans-serif;
+    label {
+      display: none;
+    }
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    form {
+      margin-bottom: 40px;
+    }
+    .firebaseui-id-secondary-link {
+      display: none;
+    }
+    input {
+      border: 1px solid black;
+      padding: 15px;
+      font-family: benton-sans-compressed, sans-serif;
+      font-size: 1.3em;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      margin-top: 20px;
+      width: 300px;
+    }
+    input:focus {
+      outline: none;
+    }
+    .firebaseui-id-submit {
+        display: block;
+        margin: auto;
+        width: 100px;
+        background: #68bd64;
+        border-right: none;
+        margin-top: 20px;
+        font: 500 1.2em/50px benton-sans-compressed, sans-serif;
+        text-align: center;
+      }
   }
 
     nav a.active, nav a:hover {
@@ -269,7 +312,7 @@ nav {
 }
 
 .bird-stone.gaggle:hover .stone {
-  background: #f5f2ed; 
+  background: #f5f2ed;
 
 }
 
@@ -415,5 +458,7 @@ nav {
     height: 54px;
     background: url('../img/add.png') no-repeat;
   }
+
+
 
     #addBird:hover, #redo.teased { background: url('../img/add-hover.png') no-repeat; }

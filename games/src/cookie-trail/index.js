@@ -13,6 +13,7 @@ class CookieTrail extends Component {
     super(props);
     const { dispatch } = props;
     this.boundActionCreators = bindActionCreators(cookieTrailActionCreators, dispatch);
+
   }
 
 
@@ -20,7 +21,7 @@ class CookieTrail extends Component {
 
   //add game container and hidden views into DOM
   render() {
-
+    
     return (
       <div id="trailWrap">
         <div id="topBar"></div>
