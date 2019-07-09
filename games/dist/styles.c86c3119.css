@@ -1,0 +1,482 @@
+* {
+  padding: 0px;
+  margin: 0px;
+}
+
+body {
+  margin: 0;
+  color: #000;
+  background: #eeeae3 url("/bg.c04a5f46.jpg") fixed;
+  background-size: 800px auto;
+}
+
+div {
+  box-sizing: border-box;
+}
+
+a, a:active, a:visited {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  border: none;
+}
+
+#wrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  margin: 0 0 10px 0;
+  width: 100vw;
+  height: 50px;
+  background: #d4ccbf;
+  z-index: 100;
+}
+
+nav a {
+  display: inline-block;
+  margin: 0;
+  width: 50%;
+  height: 50px;
+  font: 500 0.9em/50px benton-sans-compressed, sans-serif;
+  text-transform: uppercase;
+  text-align: center;
+  border-left: 1px solid #000;
+  border-bottom: 1px solid #000;
+}
+
+.firebaseui-container {
+  text-align: center;
+  padding: 50px;
+  height: 100%;
+  font: 500 0.9em/50px benton-sans-compressed, sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.firebaseui-container label {
+  display: none;
+}
+.firebaseui-container form {
+  margin-bottom: 40px;
+}
+.firebaseui-container .firebaseui-id-secondary-link {
+  display: none;
+}
+.firebaseui-container input {
+  border: 1px solid black;
+  padding: 15px;
+  font-family: benton-sans-compressed, sans-serif;
+  font-size: 1.3em;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  margin-top: 20px;
+  width: 300px;
+}
+.firebaseui-container input:focus {
+  outline: none;
+}
+.firebaseui-container .firebaseui-id-submit {
+  display: block;
+  margin: auto;
+  width: 100px;
+  background: #68bd64;
+  border-right: none;
+  margin-top: 20px;
+  font: 500 1.2em/50px benton-sans-compressed, sans-serif;
+  text-align: center;
+}
+
+nav a.active, nav a:hover {
+  background: #eeeae3 url("/bg.c04a5f46.jpg") fixed;
+  background-size: 800px auto;
+  border-left: 1px solid #000;
+}
+
+nav a:hover {
+  border-bottom: 1px solid #000;
+}
+
+nav a.active {
+  border-bottom: none;
+}
+
+nav a:first-child {
+  margin: 0 -1px 0 0;
+  border-left: none;
+}
+
+nav a:last-child {
+  margin: 0 0 0 -1px;
+}
+
+#gameWrap {
+  position: relative;
+  width: auto;
+  width: calc(100vw - 16px);
+  height: calc(100vh - 70px);
+  margin: 61px 8px 8px 8px;
+  font: 400 1em/1.25em benton-sans-condensed, sans-serif;
+  letter-spacing: -0.015em;
+  border: 1px solid #000;
+}
+
+#breadcrumb {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: 0 10px;
+  width: calc(100% - 50px);
+  height: 50px;
+  font: 500 1.2em/50px benton-sans-compressed, sans-serif;
+  border-bottom: 1px solid #000;
+}
+
+#breadcrumb span:first-child {
+  display: inline;
+  margin: 0;
+  padding: 0;
+  background: none;
+}
+
+#breadcrumb span {
+  display: inline-block;
+  margin-left: 7px;
+  padding-left: 27px;
+  color: #9d948c;
+  background: url("/breadcrumb-gray.adef6eb5.png") no-repeat left center;
+  background-size: 20px auto;
+  cursor: pointer;
+}
+
+#breadcrumb span:last-child {
+  color: #000;
+  background: url("/breadcrumb.f3b87f38.png") no-repeat left center;
+  background-size: 20px auto;
+  text-decoration: underline;
+  cursor: text;
+}
+
+#breadcrumb span:first-child {
+  background-image: none;
+}
+
+#breadcrumb span:hover {
+  text-decoration: underline;
+}
+
+#flip {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50px;
+  height: 50px;
+  background: url("/flip-list.e0d40566.png") no-repeat center center;
+  background-size: 60% auto;
+  border-left: 1px solid #000;
+  border-bottom: 1px solid #000;
+  cursor: pointer;
+}
+
+#list {
+  display: none;
+  margin: 50px 0 0 0;
+  padding: 15px 0 60px;
+  height: calc(100% - 40px);
+  overflow: auto;
+}
+
+#list .list-item {
+  display: block;
+  padding: 2px 5px 7px 12px;
+  cursor: grab;
+}
+
+#list .list-item .checkbox {
+  display: inline-block;
+  vertical-align: top;
+  -webkit-appearance: none;
+  margin: 0px 12px 5px 0;
+  width: 20px;
+  height: 20px;
+  background: #eeeae3;
+  border: 1px solid #000;
+  border-radius: 20px;
+}
+
+#list .list-item .checkbox:checked {
+  background: #68bd64;
+}
+
+#list .list-item .itemName, #list .list-item .categoryName {
+  vertical-align: top;
+  display: inline-block;
+  width: calc(100% - 40px);
+  padding: 0 0 3px;
+  border-bottom: 1px solid #cfc0b1;
+}
+
+#list .list-item .categoryCount {
+  margin: 0 6px 0 0;
+  padding: 2px 6px 0;
+  background: #ece8dd;
+  font: 500 1em/1em benton-sans-compressed, sans-serif;
+  border: 1px solid black;
+  border-radius: 4px;
+}
+
+#list .list-item .categoryName {
+  padding: 0 0 8px;
+  font-weight: 500;
+}
+
+#listActions {
+  position: absolute;
+  display: none;
+  bottom: 0;
+  width: 100%;
+  border-top: 1px solid black;
+}
+
+#listActions #deleteTask, #listActions #completeTask {
+  display: inline-block;
+  width: 50%;
+  height: 50px;
+  font: 500 1.2em/50px benton-sans-compressed, sans-serif;
+  text-align: center;
+}
+
+#listActions #deleteTask {
+  background: #ece8dd;
+  border-right: 1px solid black;
+}
+
+#listActions #completeTask {
+  background: #68bd64;
+  border-right: none;
+}
+
+#listActions #addNew {
+  width: 100%;
+  height: 50px;
+  background: #ece8dd;
+  font: 500 1em/50px benton-sans-compressed, sans-serif;
+  text-align: center;
+}
+
+.addTaskName {
+  background: url("/add-list.2cb3d962.png") no-repeat left center;
+  background-size: 17px auto;
+  border: none;
+  width: calc(100% - 61px);
+  margin: -5px 0 0 15px;
+  padding: 10px 5px 7px 28px;
+  font: 400 1em/1.2em benton-sans-condensed, sans-serif;
+  border-bottom: 1px solid #cfc0b1;
+  outline: none;
+}
+
+#game {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: calc(100vh - 60px);
+  margin-top: 50px;
+}
+
+#tbos-canvas {
+  width: 100%;
+  height: 100%;
+}
+
+.bird-stone {
+  display: block;
+  position: absolute;
+  width: 100px;
+  text-align: center;
+  cursor: grab;
+  z-index: 1;
+}
+
+.bird-stone.gaggle {
+  width: 120px;
+}
+
+.bird-stone.gaggle.group {
+  width: 130px;
+}
+
+.bird-stone.gaggle:hover .stone {
+  background: #f5f2ed;
+}
+
+.bird-stone.highlight .stone {
+  background: #f2da7c;
+}
+
+.bird-stone.current .stone {
+  background: #f5f2ed;
+}
+
+.grabbing {
+  cursor: "grabbing";
+}
+
+.bird {
+  display: inline-block;
+  margin: 0 0 -15px 0;
+  width: 70px;
+  height: 55px;
+  background: url("/single-bird-1.3b2e8e5e.png") no-repeat center bottom;
+  background-size: 100% auto !important;
+  /* border: 1px solid #000; */
+}
+
+.bird-stone.gaggle.couple .bird {
+  margin: 0 0 -30px;
+  width: 90px;
+  height: 73px;
+  background-image: url("/couple-bird-1.1e73b784.png") no-repeat;
+}
+
+.bird-stone.gaggle.group .bird {
+  margin: 0 0 -20px;
+  width: 130px;
+  height: 106px;
+  background-image: url("/gaggle-bird-1.6d59a38e.png") no-repeat;
+}
+
+.stone {
+  display: inline-block;
+  position: relative;
+  margin: 0 0 -5px 0;
+  width: 100px;
+  height: 100px;
+  background: #ece8dd;
+  background-size: 400px auto;
+  border: 1px solid #000;
+  border-radius: 100px;
+}
+
+.bird-stone.gaggle .stone {
+  width: 120px;
+  height: 120px;
+  box-shadow: 1px 1px 0 #000;
+}
+
+.taskName {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  text-align: center;
+}
+
+.bird-stone .taskCount {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 0 6px 0 0;
+  padding: 4px 6px 2px;
+  background: #ece8dd;
+  font: 500 1.1em/1em benton-sans-compressed, sans-serif;
+  border: 1px solid black;
+  box-shadow: 1px 1px 0 #000;
+  border-radius: 6px;
+}
+
+.categoryName:hover > .categoryCount {
+  background: #DFD4C6 !important;
+  border: 3px solid black;
+}
+
+.categoryName:hover {
+  cursor: pointer;
+}
+
+#back, #trash, #checkmark, #undo, #addBird, #redo {
+  position: absolute;
+  background-size: 100% auto !important;
+  cursor: pointer;
+}
+
+#back {
+  top: 7px;
+  left: 7px;
+  width: 54px;
+  height: 54px;
+  background: url("/back.c2df9823.png") no-repeat;
+}
+
+#back:hover, #back.teased {
+  background: url("/back-hover.daee29d1.png") no-repeat;
+}
+
+#trash {
+  bottom: 75px;
+  left: 13px;
+  width: 55px;
+  height: 72px;
+  background: url("/trash.be1686b2.png") no-repeat;
+}
+
+#checkmark {
+  bottom: 75px;
+  right: 10px;
+  width: 60px;
+  height: 68px;
+  background: url("/checkmark.fe812768.png") no-repeat;
+}
+
+#trash:hover, #trash.teased, #checkmark:hover, #checkmark.teased {
+  transform: rotate(-10deg);
+}
+
+#undo {
+  top: 74px;
+  right: 18px;
+  width: 30px;
+  height: 32px;
+  background: url("/undo.f547b8fd.png") no-repeat;
+}
+
+#undo:hover {
+  background: url("/undo-hover.4f0b93c1.png") no-repeat;
+}
+
+#redo {
+  top: 126px;
+  right: 18px;
+  width: 30px;
+  height: 32px;
+  background: url("/redo.bf6cf8f5.png") no-repeat;
+}
+
+#redo:hover {
+  background: url("/redo-hover.2c529042.png") no-repeat;
+}
+
+#addBird {
+  top: 7px;
+  right: 7px;
+  width: 54px;
+  height: 54px;
+  background: url("/add.c64df968.png") no-repeat;
+}
+
+#addBird:hover, #redo.teased {
+  background: url("/add-hover.b3367594.png") no-repeat;
+}
+
+/*# sourceMappingURL=/styles.c86c3119.css.map */
