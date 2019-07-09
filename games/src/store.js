@@ -129,43 +129,56 @@ let data = { //TODO: each time a user is created this should be the starting sch
   "lastAction": {'type': 'NONE'}
 };
 
-let tasks = db.collection('tasks');
+let doc = db.collection('todos')
+var testdata = {
+  "hiearchy": {
+    "idroot": {}
+  },
+  "name": {
+    
+    "idroot": "Your Main Trail"
+  },
+  "active": {
+    
+  },
+  "reverseHiearchy":{
+    
+  },
+  "tbosRootPath": ["idroot"],
+  "checkedCookieTrails": ["idroot"],
+  "nameToTasks": {
+  },
+  "taskAggregates": {
+    }
+}
 
-let users = db.collection("users");
 export function getTasksThunk() {
   return dispatch => {
-
-  tasks.where("u", "==", "userid").get().then((coll) => { //TODO: userid used as filler for userid
-
+  doc.where('user_id', '==', document.cookie.replace('uid=', '')).get().then((coll) => {
     coll.forEach((doc) => {
-
-      let docId = doc.id;
-      docId = docId.split('_')[0]
-      let docData = doc.data();
-      console.log(docData);
-      if(data["nameToTasks"][docData["name"]] == undefined) {
-          data["nameToTasks"][docData["name"]] = [docId];
-      } else {
-
-          data["nameToTasks"][docData["name"]].push(docId);
-      }
-      for(let key in docData) {
-        if(key != 'u')
-          data[key][docId] = docData[key];
-      }
-    })
-    users.doc("userid").get().then((userDoc) => { //todo userid is filler
-        let userData = userDoc.data();
-        data['checkedCookieTrails'] = userData['cT'];
-        data['maxCookieVision'] = userData['mCV'];
-    }).then(() => {
-        dispatch(getTasks(data));
-      })
+      testdata['hiearchy']['idroot'][doc.id] = doc.id;
+      testdata['hiearchy'][doc.id] = {};
+      testdata['name'][doc.id] = doc.data()['text'];
+      testdata['active'][doc.id] = TaskState.active;
+      testdata['reverseHiearchy'][doc.id] = "idroot";
+      testdata['taskAggregates'][doc.id] = {
+        "completed": 0,
+        "deleted": 0,
+        "total": 1,
+        "moved": 0
+      };
+      testdata['nameToTasks'][doc.data()['text']] = doc.id;
+      
+   })
+   
+  })
+  .then(() => {
+    dispatch(getTasks(testdata));
   })
   }
- }
+}
 
 
 var store = createStore(twisterLandReducers, data, applyMiddleware(thunkMiddleware));
-syncer(store);
+// syncer(store);
 export {store};

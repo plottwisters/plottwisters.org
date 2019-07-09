@@ -13,6 +13,7 @@ import AddTask from './components/add_task';
 import CustomDragLayer from './components/tbos_drag_canvas';
 import Breadcrumbs from './components/breadcrumbs';
 import { getTasksThunk } from '../store'
+import * as firebaseApp from '../firebase/config'
 
 class TwoBirdsOneStone extends Component {
 
@@ -94,7 +95,17 @@ class TwoBirdsOneStone extends Component {
 
   /*drag and drop functionality*/
 
-
+  componentDidMount() { 
+    // console.log(document.cookie.replace('uid=', ''));
+     
+    if(document.cookie.length <= 0) { 
+      console.log("no cookies");
+      firebaseApp.logIn();
+    }
+    else {
+      console.log("has cookies");
+    }
+  }
 
   //if component updates change focus based on component's focused state
   //for focusing checklist view on clicking add button

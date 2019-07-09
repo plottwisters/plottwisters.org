@@ -2,6 +2,7 @@ import {store} from './../store';
 import {ActionType} from './../redux/actions/tbos/action_type'
 import {db} from './config';
 
+var user_id = document.cookie.replace('uid=', '');
 function createDocFromStore(task, presentData) {
   let newDocument={}
   task = task.split("_")[0];
@@ -10,12 +11,12 @@ function createDocFromStore(task, presentData) {
         newDocument[key] = presentData[key][task];
     }
   }
-  newDocument["u"] = "userid"; //TODO filler for actual userid
+  newDocument["u"] = user_id; //TODO filler for actual userid
 
   return newDocument;
 }
 function returnUnderscoreUserId() {
-  return "_userid";
+  return "_" + user_id;
 }
 export function syncer(store) {
 
@@ -49,7 +50,7 @@ export function syncer(store) {
 
 
     if (createCookie.has(action.type)) {
-      batcher.update(usersCollection.doc("userid"), {
+      batcher.update(usersCollection.doc(user_id), {
         "mCV": data["maxCookieVision"]
       });
     }
@@ -110,7 +111,7 @@ export function syncer(store) {
     }
 
     if (toggleTrailActions.has(action.type)) {
-      batcher.update(usersCollection.doc("userid"), {
+      batcher.update(usersCollection.doc(user_id), {
         "cT": data["checkedCookieTrails"]
       }); //TODO: userid used as placeholder for actual user id
     }

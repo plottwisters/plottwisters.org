@@ -8,8 +8,15 @@ class Login extends Component {
     }
 
   render() {
+    // if(document.cookie.length <= 0) { 
+    //   firebaseApp.logIn();
+    // }
+    console.log("login page")
+    console.log(document.cookie);
+    
     return (
       <div className="boop">
+        <h1>hello</h1>
       </div>
     );
   }
