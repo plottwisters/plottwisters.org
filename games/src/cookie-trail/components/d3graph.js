@@ -120,7 +120,7 @@ var margin = {top: 20, right: 30, bottom: 20, left: 30};
     let axis = svgRoot.append("g")
         .attr("class", "x-axis")
         .attr("transform", "translate(0," +(height - 20) + ")")
-        .call(d3.axisBottom(xScale).tickValues(d3.range(minTime,  extendMaxTime(minTime , maxTime) , (maxTime - minTime)/2)).tickPadding(10).tickSizeOuter(0).tickFormat(d3.timeFormat("%-H %p"))); // Create an axis component with d3.axisBottom
+        .call(d3.axisBottom(xScale).tickValues(d3.range(minTime,  extendMaxTime(minTime , maxTime) , (maxTime - minTime)/2)).tickPadding(10).tickSizeOuter(0).tickFormat(d3.timeFormat("%-I %p"))); // Create an axis component with d3.axisBottom
   //  axis.tickSizeOuter(0);
 
   let marker = svgRoot.append("svg:defs").append("svg:marker")
