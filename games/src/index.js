@@ -5,7 +5,7 @@ import CookieTrail from './cookie-trail';
 import Login from './login';
 import { BrowserRouter as Router, Route, Link,  Switch, NavLink } from "react-router-dom";
 import { Provider } from 'react-redux';
-import {store, getTasksThunk} from './store';
+import {store, getTasksThunk} from './firebase/store';
 import registerServiceWorker from './registerServiceWorker';
 import * as firebaseui from 'firebaseui';
 import {getUser} from './utils';
@@ -87,7 +87,7 @@ class App extends Component {
     if(user == null) {
 
         ui.start('#wrap', uiConfig);
-      
+
     }
       store.dispatch(getTasksThunk());
   }

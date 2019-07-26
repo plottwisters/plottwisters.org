@@ -35,19 +35,28 @@
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
     "redux-undo": "^1.0.0-beta9-9-7",
+    "serve": "^11.1.0",
     "uuid": "^3.3.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.5.0",
-    "@babel/plugin-proposal-class-properties": "^7.4.4",
-    "@babel/preset-env": "^7.5.3",
+    "@babel/core": "^7.5.5",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
     "@babel/preset-react": "^7.0.0",
     "babel-core": "^6.26.3",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "cssnano": "^4.1.10",
-    "parcel-plugin-sw-precache": "^1.1.1",
-    "sass": "^1.21.0"
+    "parcel-bundler": "^1.12.3",
+    "parcel-plugin-sw-cache": "^0.3.1",
+    "sass": "^1.22.7"
   },
+  "cache": {
+        "disablePlugin": false,
+        "inDev": false,
+        "strategy": "default",
+        "clearDist": true
+    },
+
   "homepage": "https://www.plottwisters.org/games/dist"
 }

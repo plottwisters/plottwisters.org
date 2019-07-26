@@ -16,7 +16,7 @@ function StaticBird(props) {
  }
 
   const birdStyles = {
-     backgroundImage: "url(img/" + birdGroup + "-bird-" + birdImgType + ".png)"
+     backgroundImage: "url(assets/img/" + birdGroup + "-bird-" + birdImgType + ".png)"
   }
   return(
     <div className={'bird-stone ' + classType}>
@@ -30,7 +30,7 @@ function StaticBird(props) {
 
 function comparator(currProps, prevProps) {
   if(!(currProps.name == prevProps.name && currProps.birdImgType == prevProps.birdImgType  &&
-    currProps.id == prevProps.id && currProps.count == prevProps.count 
+    currProps.id == prevProps.id && currProps.count == prevProps.count
     && currProps.isCat == prevProps.isCat)) {
       return false;
 

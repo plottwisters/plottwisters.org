@@ -1,4 +1,4 @@
-import {store} from './../store';
+import {store} from './store';
 import {getUser} from './../utils';
 import {ActionType} from './../redux/actions/tbos/action_type'
 import {db} from './config';
