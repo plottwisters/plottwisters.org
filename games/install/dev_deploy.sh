@@ -1,4 +1,4 @@
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
-rm DIR/../dist/*.js
-rm DIR/../dist/*.map
-parcel DIR/../src/index.html  --out-dir DIR/../dist/
+rm -rf $DIR/../dist/
+parcel build $DIR/../src/index.html $DIR/../src/assets/styles/*  $DIR/../src/assets/img/* --no-cache --out-dir $DIR/../dist/ --public-url '/games/dist' 
+serve $DIR/../../
