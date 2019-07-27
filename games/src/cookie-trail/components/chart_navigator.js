@@ -6,7 +6,7 @@ import {TaskState} from './../../global_constants';
 import Leaf from './jenny-attempt/Leaf';
 import CheckboxTree from './checkboxes/CheckboxTree';
 import 'react-checkbox-tree/src/scss/react-checkbox-tree.scss';
-import 'font-awesome/scss/font-awesome.scss';
+
 class ChartNavigator extends Component {
 
 
