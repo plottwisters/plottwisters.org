@@ -1,61 +1,48 @@
 {
-  "name": "games-plottwister",
-  "version": "1.0.0",
-  "description": "Games for Plot Twisters",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC",
+  "name": "games-two",
+  "version": "0.1.0",
+  "private": true,
   "dependencies": {
-
-    "babel-plugin-transform-class-properties": "^6.24.1",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "chart.js": "^2.8.0",
     "d3": "^5.9.7",
     "firebase": "^6.2.4",
     "firebaseui": "^4.0.0",
     "firestore-export-import": "^0.2.3",
     "memoize-one": "^5.0.4",
-    "preact": "^8.4.2",
-    "preact-compat": "^3.18.5",
+    "node-sass": "^4.12.0",
+    "package.json": "^2.0.1",
     "react": "^16.8.6",
-    "react-addons-update": "^15.6.2",
-    "react-checkbox-tree": "^1.5.1",
     "react-dnd": "^8.0.3",
     "react-dnd-html5-backend": "^8.0.3",
-    "react-dnd-multi-backend": "^3.2.1",
-    "react-dnd-touch-backend": "^0.8.3",
     "react-dom": "^16.8.6",
     "react-redux": "^7.0.3",
     "react-router-dom": "^5.0.0",
     "react-router-redux": "^4.0.8",
+    "react-scripts": "3.0.1",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
     "redux-undo": "^1.0.0-beta9-9-7",
-    "serve": "^11.1.0",
     "uuid": "^3.3.2"
   },
-  "devDependencies": {
-    "lodash.template": "^4.5.0",
-    "@babel/core": "^7.5.5",
-    "@babel/plugin-proposal-class-properties": "^7.5.5",
-    "@babel/preset-env": "^7.5.5",
-    "@babel/preset-react": "^7.0.0",
-    "babel-core": "^6.26.3",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-react": "^6.24.1",
-    "cssnano": "^4.1.10",
-    "parcel-bundler": "^1.12.3",
-    "parcel-plugin-sw-cache": "^0.3.1",
-    "sass": "^1.22.7"
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build  && mv build dist",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
-  "cache": {
-    "disablePlugin": false,
-    "inDev": false,
-    "strategy": "default",
-    "clearDist": true
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   },
   "homepage": "https://www.plottwisters.org/games/dist"
 }

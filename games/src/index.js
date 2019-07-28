@@ -10,7 +10,7 @@ import registerServiceWorker from './registerServiceWorker';
 import * as firebaseui from 'firebaseui';
 import {getUser} from './utils';
 import {uiConfig, auth} from './firebase/config';
-
+import './styles/index.scss'
 //registry of all games - or different urls
 let globalGameRegistry = {
   "two-birds-one-stone":TwoBirdsOneStone,

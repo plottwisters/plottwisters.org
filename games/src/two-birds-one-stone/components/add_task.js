@@ -39,7 +39,7 @@ export default class AddTask extends Component {
   }
 
   handleSubmit(event) {
-    props.actionCreatorcreateNewTask(this.state.value);
+    this.props.actionCreatorcreateNewTask(this.state.value);
     this.setState({value:''});
     event.preventDefault();
   }

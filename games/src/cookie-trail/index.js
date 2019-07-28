@@ -5,6 +5,7 @@ import ChartTrail from './components/chart_trail.js';
 import ChartNavigator from './components/chart_navigator.js';
 import * as cookieTrailActionCreators from './../redux/actions/trail_viewer.js';
 import {bindActionCreators} from 'redux';
+import './../styles/cookietrail.scss'
 class CookieTrail extends Component {
 
 
@@ -21,7 +22,7 @@ class CookieTrail extends Component {
 
   //add game container and hidden views into DOM
   render() {
-    
+
     return (
       <div id="trailWrap">
         <div id="topBar"></div>

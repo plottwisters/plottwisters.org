@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import Chart from 'chart.js';
 import { connect } from 'react-redux';
 import {TaskState} from './../../global_constants';
 import {updateD3graph} from './d3graph';

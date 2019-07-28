@@ -1,11 +1,7 @@
 import React, {Component} from 'react';
-import Chart from 'chart.js';
 import { connect } from 'react-redux';
 import {TaskState} from './../../global_constants';
-// import CheckboxTree from 'react-checkbox-tree';
 import Leaf from './jenny-attempt/Leaf';
-import CheckboxTree from './checkboxes/CheckboxTree';
-import 'react-checkbox-tree/src/scss/react-checkbox-tree.scss';
 
 class ChartNavigator extends Component {
 
@@ -72,7 +68,6 @@ class ChartNavigator extends Component {
     console.log(cookieTrail);
     function processCurrentName(currentName) {
       // recursion to generate tree from redux store
-      // map store into what charts.js wants: which is key: { }.
       let currentRoot = hiearchy[currentName];
       let childrenNames = [];
       for(let child in currentRoot) {
