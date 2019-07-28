@@ -12,6 +12,7 @@ export default function taskAggregates(state= {}, action) {
   let newState = state["taskAggregates"];
   let reverseHiearchy = state["reverseHiearchy"];
   let currentTask = action.currentRoot;
+  let currentTotal;
   switch(action.type) {
     case ActionType.CREATE_TASK_COLLISION:
 
@@ -116,7 +117,7 @@ export default function taskAggregates(state= {}, action) {
         newState[task.id] =  createAggregate();
       }
       let totalTasksAdded = action.tasks.length;
-      let currentTotal;
+
       while(currentTask != undefined) {
         currentTotal = newState[currentTask]["total"];
         newState[currentTask] = {...newState[currentTask], "total":(currentTotal + totalTasksAdded)};
