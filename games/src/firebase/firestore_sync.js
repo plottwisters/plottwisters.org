@@ -119,7 +119,7 @@ export function syncer(store) {
         "cT": data["checkedCookieTrails"]
       }); //TODO: userid used as placeholder for actual user id
     }
-    console.log(user);
+    
     batcher.commit().then(function() {
       console.log("update succeeded");
     });

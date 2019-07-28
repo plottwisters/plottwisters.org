@@ -65,7 +65,7 @@ class ChartNavigator extends Component {
     let active = this.props.active;
     let name = this.props.name;
     let cookieTrail = this.props.tbosCookieTrail;
-    console.log(cookieTrail);
+    
     function processCurrentName(currentName) {
       // recursion to generate tree from redux store
       let currentRoot = hiearchy[currentName];
