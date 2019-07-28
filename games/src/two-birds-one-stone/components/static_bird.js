@@ -16,8 +16,9 @@ function StaticBird(props) {
  }
 
   const birdStyles = {
-     backgroundImage: "url(assets/img/" + birdGroup + "-bird-" + birdImgType + ".png)"
+     backgroundImage:'url('+ process.env.PUBLIC_URL + '/dynamic-img/' + birdGroup + '-bird-' + birdImgType + '.png)'
   }
+
   return(
     <div className={'bird-stone ' + classType}>
     <div className='bird' style={birdStyles}></div>

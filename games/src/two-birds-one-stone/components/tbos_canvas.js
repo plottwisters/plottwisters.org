@@ -1,4 +1,4 @@
-import {dndItemTypes} from '../tbos_constants';
+import {dndItemTypes} from './../tbos_constants';
 import {useDrop} from 'react-dnd';
 import React, {Component} from 'react';
 import Bird from './bird.js';
@@ -15,19 +15,26 @@ function TbosCanvas(props)  {
       }
     });
 
-    function generateHook(type) {
-      return useDrop({
-          accept: dndItemTypes.BIRD,
-          drop(props, monitor, component) {
-            return {type}
-          },
-          collect: monitor=>({
-            isOver: monitor.isOver()
-          })
-        });
-    }
-    let [checkmarkProps, checkmarkHook] = generateHook(dndItemTypes.CHECKMARK);
-    let [trashProps, trashHook] = generateHook(dndItemTypes.TRASH);
+
+
+    let [checkmarkProps, checkmarkHook]  = useDrop({
+        accept: dndItemTypes.BIRD,
+        drop(props, monitor, component) {
+          return {type: dndItemTypes.CHECKMARK}
+        },
+        collect: monitor=>({
+          isOver: monitor.isOver()
+        })
+      });
+    let [trashProps, trashHook] = useDrop({
+        accept: dndItemTypes.BIRD,
+        drop(props, monitor, component) {
+          return {type: dndItemTypes.TRASH}
+        },
+        collect: monitor=>({
+          isOver: monitor.isOver()
+        })
+      });
 
   function birdClickListener(id) {
       let leaf = (props.taskAggregates[id]["total"] - props.taskAggregates[id]["deleted"] -  props.taskAggregates[id]["completed"]) == 1;
