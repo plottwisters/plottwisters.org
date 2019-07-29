@@ -1,7 +1,7 @@
 //usage instructions
 //npm i -g  firestore-export-import
 //node backup.js
-const serviceAccount = require('./plot-twisters-firebase-adminsdk-8xln0-972c49733b.json');
+const serviceAccount = require('/Users/adityaaggarwal/Documents/2018/CodingProjects/plottwisters-firestore-backup/plot-twisters-firebase-adminsdk-8xln0-972c49733b.json');
 const firestoreService = require('firestore-export-import');
 const fs = require('fs');
 // Initiate Firebase App

@@ -38,6 +38,7 @@ export function syncer(store) {
     if(currentRoot == "idroot") {
       currentRoot += returnUnderscoreUserId();
     }
+
     let batcher = db.batch();
     let tasksCollection = db.collection('tasks');
     let usersCollection = db.collection('users');
@@ -119,7 +120,7 @@ export function syncer(store) {
         "cT": data["checkedCookieTrails"]
       }); //TODO: userid used as placeholder for actual user id
     }
-    
+
     batcher.commit().then(function() {
       console.log("update succeeded");
     });
