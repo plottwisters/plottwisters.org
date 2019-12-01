@@ -2,12 +2,17 @@
   position: relative;
   width: 100vw;
   max-width: 800px;
-  margin: 2vw auto;
-  padding: 20px 0 20px; /* 50px when language bar avail */
+  margin: 15px auto 0;
+  padding: 50px 0 0;
   text-align: center;
   z-index: 100;
   /* overflow: hidden; */
 }
+
+  .wrap.wrap-underpath {
+    margin: 20px auto 50px;
+    padding: 0;
+  }
 
 #title {
   margin: 0 auto 10px;
@@ -16,6 +21,16 @@
   width: 93%;
   padding-bottom: 14%;
 }
+
+  #title h1 { display: none; }
+
+  h2.tagline {
+    margin: 0.5em auto;
+    font-weight: 400;
+    font-size: 5.55vw;
+    text-transform: none;
+    text-align: center;
+  }
 
   /* #title:hover {
     background: url('../img/title-hover.gif') no-repeat;
@@ -51,17 +66,17 @@
 
     #folders {
       position: absolute;
-      top: 80vw;
-      left: 15px;
-      width: 115px;
+      top: 98vw;
+      left: 10px;
+      width: 105px;
       z-index: 100;
     }
 
     #email-jenny {
       position: absolute;
-      top: 88vw;
-      right: 7px;
-      width: 41px;
+      top: 104vw;
+      right: 2px;
+      width: 44px;
       z-index: 100;
     }
 
@@ -75,68 +90,182 @@
     top: 0;
     right: 0;
     width: 50px;
-    height: 50px;
+    height: 45px;
     border-left: 1px solid black;
     background: url('../img/refresh.png') no-repeat;
     background-size: 30px;
-    background-position: 10px 10px;
+    background-position: 10px 7px;
   }
 
     .refresh:hover {
       background: url('../img/refresh-hover.png') no-repeat;
       background-size: 30px;
-      background-position: 10px 10px;
+      background-position: 10px 7px;
     }
+
+.thinkTank {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  background: url('../img/thinkTankbg-seamless.png') fixed repeat;
+  background-size: 200% auto;
+  height: 360px;
+  width: 100%;
+  border-bottom: 2px solid #000;
+}
+
+  .thinkTankCall {
+    margin: 0 auto;
+    padding: 30px 20px;
+    font-size: 7vw;
+    line-height: 1.65em;
+    text-align: center;
+  }
+
+    .thinkTankCall span {
+      padding: 2px 4px;
+      background: #f6f4ef;
+      border: 1px solid #e9e2d7;
+      border-radius: 4px;
+    }
+
+        .thinkTankCall span:hover {
+          background: #fff;
+          border: 1px solid #e0dad1;
+        }
+
+  .thinkTankScreen {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    width: 85vw;
+    padding-bottom: 240px;
+    /* border: 1px solid red; */
+    background: url('../img/thinkTank-ss.png') no-repeat;
+    background-size: 100% auto;
+  }
+
+  .thinkTankArrow {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 30px;
+    width: 110px;
+    height: 115px;
+    background: url('../img/magnifying.gif') no-repeat;
+    background-size: 90% auto;
+  }
+
+@media screen
+			and (min-device-width: 420px)
+			and (min-width: 420px) {
+
+        h2.tagline {
+          width: 80vw;
+          font-size: 4.5vw;
+        }
+
+        #folders {
+          width: 140px;
+          top: 107vw;
+        }
+
+        #email-jenny {
+          width: 60px;
+          top: 113vw;
+        }
+
+        .thinkTankCall {
+          font-size: 1.7em;
+        }
+
+}
 
 @media screen
     and (min-device-width: 605px)
     and (min-width: 605px) {
 
       .wrap {
-        padding: 40px 0 20px;
+        padding: 55px 0 20px;
         max-width: 600px;
       }
 
       #title { width: 100%; }
 
+      h2.tagline {
+        text-align: left;
+      }
+
       .hero { background-size: 100% auto; }
 
       #folders {
         width: 165px;
-        top: 485px;
-        left: 20px;
+        top: 540px;
+        left: 25px;
       }
 
       #email-jenny {
-        width: 61px;
-        top: 525px;
+        width: 60px;
+        top: 580px;
         right: 15px;
       }
 
-      h4.tagline {
+      h2.tagline {
         display: block;
-        font-size: 20.2px;
-        letter-spacing: 0.015em;
-        margin: 15px 0 10px;
+        font-size: 21.7px;
+        line-height: 29px;
+        letter-spacing: 0.01em;
+        margin: 20px 0 15px;
+        width: 385px;
+        /* border: 1px solid red; */
       }
 
-      h4.tagline .mobile-toggle { display: inline; }
 
-  @media screen
-      and (min-device-width: 860px)
-      and (min-width: 860px) {
-        .wrap {
-          padding: 20px 0;
+  .thinkTank {
+    background: url('../img/thinkTankbg-seamless.png') fixed repeat;
+    background-size: 100% auto;
+    height: 400px;
+  }
+
+    .thinkTankCall {
+      padding: 30px 20px;
+      font-size: 1.6em;
+    }
+
+    .thinkTankScreen {
+      max-width: 630px;
+      padding-bottom: 340px;
+      background: url('../img/thinkTank-ss-short.png') no-repeat;
+      background-size: 100% auto;
+    }
+
+    .thinkTankArrow {
+      bottom: 50px;
+    }
+}
+
+@media screen
+    and (min-device-width: 860px)
+    and (min-width: 860px) {
+
+      .wrap {
+        margin-top: 25px;
+        padding: 20px 0;
+      }
+
+      #folders { top: 500px; }
+
+      #email-jenny { top: 540px; }
+
+    .thinkTank {
+      background: url('../img/thinkTankbg-seamless.png') fixed repeat;
+      background-size: 1050px auto;
+      height: 480px;
+    }
+
+        .thinkTankScreen {
+          max-width: 630px;
+          padding-bottom: 420px;
         }
-        #folders { top: 465px; }
-
-        #email-jenny { top: 505px; }
-      }
-
-  @media screen
-      and (min-device-width: 960px)
-      and (min-width: 960px) {
-
-      }
-
 }

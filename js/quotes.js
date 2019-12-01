@@ -8,11 +8,11 @@ var quotes = [
     person: "Abu Bakr"
   },
   {
-    quote: "School is the beginning of the child's life work",
+    quote: "School is the beginning of the child's life work.",
     person: "Eleanor Roosevelt"
   },
   {
-    quote: "Part of the education of every child is to show it as many as possible of the various types of lives which make up the world around it.",
+    quote: "Part of the education of every child is to show as many of the various types of lives which make up the world around it.",
     person: "Eleanor Roosevelt"
   },
   {
@@ -26,10 +26,6 @@ var quotes = [
   {
     quote: "Everything you make returns to the Earth as food or poison.",
     person: "Slow Factory"
-  },
-  {
-    quote: "Shallow men believe in luck and circumstance. Strong men believe in cause and effect.",
-    person: "Ralph Waldo Emerson"
   },
   {
     quote: "The ultimate, hidden truth of the world is that it is something that we make, and could just as easily make differently.",

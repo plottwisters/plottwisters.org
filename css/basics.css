@@ -4,7 +4,7 @@
 
 	body {
 		margin: 0;
-		font-family: freight-text-pro, serif;
+		font-family: benton-sans, system-ui;
 		background: #eae6da url('../img/bg.jpg') fixed repeat;
 		background-size: 800px auto;
 		overflow-x: hidden;
@@ -12,10 +12,15 @@
 
 	p {
 		margin: 0.7em 0;
-		font-size: 1.1em;
+		font-size: 1em;
+		font-size: 500;
 		line-height: 1.6em;
 		text-align: left;
 	}
+
+		strong {
+			font-weight: 600 !important;
+		}
 
 		a { color: #000; }
 
@@ -28,8 +33,8 @@
 
 	.imgHover:hover .popup-left, .imgHover:hover .popup-right { display: none; }
 
-	h1, h2, h4 {
-		font-family: benton-sans-compressed, sans-serif;
+	h1, h2, h4, h6 {
+		font-family: benton-sans-condensed, sans-serif;
 	}
 
 	a { text-decoration: none; }
@@ -49,9 +54,9 @@
 		}
 
 	h2 {
-		margin: 7px 0 0 7px;
+		margin: 7px 0 0;
 		font-weight: 500;
-		font-size: 1.1em;
+		font-size: 1.2em;
 		text-align: left;
 	}
 
@@ -65,30 +70,54 @@
 
 	h4 {
 		margin: 0.5em 0;
-		font-weight: 500;
+		font-weight: 400;
 		font-size: 4.76vw;
-		text-transform: uppercase;
+		text-transform: none;
 	}
 
-		h4.tagline .mobile-toggle { display: none; }
+	h5 {
+		margin: 20px auto -5px;
+		width: 95%;
+		font-family: freight-text-pro, serif;
+		font-size: 1.25em;
+		font-weight: 300;
+		font-style: italic;
+		letter-spacing: 0.015em;
+		text-align: center;
+	}
+
+	h6 {
+		margin: 7px 0 0 7px;
+		font-weight: 400;
+		font-size: 1.1em;
+		text-align: center;
+	}
 
 	img { max-width: 100%; }
+
+	.externalLinkOut {
+		display: inline-block;
+		width: 25px;
+		height: 20px;
+		background: url('../img/open.png') no-repeat right -7px bottom;
+		background-size: 30px auto;
+	}
 
 	blockquote {
 		margin: 20px auto;
 		width: 90%;
-		font-size: 1.6em;
-		letter-spacing: 0.015em;
+		font-family: freight-text-pro, serif;
+		font-size: 1.5em;
 		line-height: 1.4em;
-		font-weight: 300 !important;
-		font-style: italic;
+		font-weight: 300;
+		/* font-style: italic; */
 		text-align: center;
 	}
 
 		.byline {
 			margin: 15px 0 0 0;
 			font-style: normal;
-			font-size: 0.7em;
+			font-size: 0.9em;
 			text-align: right;
 		}
 
@@ -98,12 +127,9 @@
 		appearance: none;
 		border: none;
 		box-sizing: border-box;
-		border-radius: 0;
 	}
 
-		input:focus { outline: none; }
-
-	#version-id { display: none; }
+		input:focus, button:focus { outline: none; }
 
 	select#language {
 		position: absolute;
@@ -115,14 +141,15 @@
 		-webkit-appearance: none;
    	-moz-appearance: none;
    	appearance: none;
-		background: url('../img/popup-up.png') no-repeat;
+		background: #ede7e1 url('../img/printables-tab.png') no-repeat;
 		background-size: 16px auto;
 		background-position: 74px 10px;
-		font-family: benton-sans-compressed, sans-serif;
+		font-family: benton-sans-condensed, sans-serif;
 		font-size: 1.15em;
 		font-weight: 500;
 		border: 1px solid black;
 		border-radius: 0;
+		box-shadow: 0px 0px 2px rgba(0,0,0,0.15);
 		z-index: 101;
 	}
 
@@ -139,19 +166,32 @@
         width: 100vw;
         max-width: 800px;
         margin: 0 auto;
-        padding: 50px 0 20px;
+        padding: 120px 0 20px;
         text-align: center;
         z-index: 100;
       }
 
+			#footer span.email {
+				display: block;
+				margin: 5px 0 15px;
+				font-size: 1.1em;
+				font-weight: 400;
+				text-align: center;
+			}
+
+				#footer span.email a {
+					font-weight: 500;
+					text-decoration: none;
+					border-bottom: 1px solid #000; }
+
 			#footer .email-signup {
-				padding: 260px 0 60px 0;
+				padding: 200px 0 40px 0;
 			}
 
 			#footer input {
 				border: 1px solid black;
 				padding: 15px;
-				font-family: benton-sans-compressed, sans-serif;
+				font-family: benton-sans-condensed, sans-serif;
 				font-size: 1.3em;
 				font-weight: 500;
 				letter-spacing: 0.01em;
@@ -160,12 +200,12 @@
 				#footer input.email, #footer input.submit {
 					display: block;
 					margin: auto;
-					width: 300px;
+					width: 280px;
 					background: #eae6da;
 				}
 
 				#footer input.submit {
-					width: 300px;
+					width: 280px;
 					background: #19426b;
 					color: #fff;
 					border-top: none;
@@ -174,6 +214,7 @@
 			#footer .copy {
 				text-align: center;
 			}
+
 
 	@media screen
 			and (min-device-width: 605px)
@@ -185,7 +226,7 @@
 					position: absolute;
 					width: 115px;
 					padding: 5px;
-					top: 30%;
+					top: 15%;
 					background: url('../img/bg.jpg') fixed repeat;
 					font-size: 13px;
 					border: 1px solid black;
@@ -222,26 +263,7 @@
 				h2 { font-size: 1.4em; }
 				h3 { font-size: 1.6em; }
 
-		@media screen
-				and (min-device-width: 860px)
-				and (min-width: 860px) {
-
-					select#language {
-						position: fixed;
-					}
+				#footer h5 {
+					margin: 0 0 20px;
 				}
-
-		@media screen
-				and (min-device-width: 960px)
-				and (min-width: 960px) {
-					#version-id {
-						display: block;
-						position: fixed;
-						bottom: 15px;
-						right: 15px;
-						font-size: 0.9em;
-						text-align: right;
-					}
-				}
-
 	}
