@@ -195,6 +195,7 @@
 				font-size: 1.3em;
 				font-weight: 500;
 				letter-spacing: 0.01em;
+				border-radius: 0;
 			}
 
 				#footer input.email, #footer input.submit {
