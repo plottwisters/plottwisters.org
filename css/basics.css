@@ -216,6 +216,22 @@
 				text-align: center;
 			}
 
+			  #mc_embed_signup {
+			    margin:auto;
+			    width:300px;
+			    background:none;
+			    clear:left;
+			    font:14px freight-text-pro, serif;
+			  }
+
+			  #mc_embed_signup #mc-embedded-subscribe-form div.mce_inline_error {
+			    width: 279px;
+			    background: none !important;
+			    box-sizing: border-box;
+			    text-align: center;
+			    margin: 0 !important;
+			  }
+
 
 	@media screen
 			and (min-device-width: 605px)
