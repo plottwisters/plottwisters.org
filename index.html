@@ -1,54 +1,54 @@
 <!DOCTYPE html>
 
 <head>
-	<title>Plot Twisters | K-12 Journey Building, Self-Reflection, and Mindfulness Tools for Students and Educators</title>
+	<title>Plot Twisters</title>
 	<meta name="google-site-verification" content="iAwSBJScrljiil2hzjOPVJ2DCeG8oRlA6GxDcWu9yYc" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel='shortcut icon' type='image/x-icon' href='img/favicon.png'>
 
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 
-	<script
-  src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
-  integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
-  crossorigin="anonymous"></script>
-
 	<link rel="stylesheet" href="https://use.typekit.net/vbx0ney.css">
 
 	<link rel="stylesheet" href="css/basics.css">
 	<link rel="stylesheet" href="css/home.css">
-	<link rel="stylesheet" href="css/home-audio.css">
-	<link rel="stylesheet" href="css/home-path.css">
 	<link rel="stylesheet" href="css/home-modules.css">
 	<link rel="stylesheet" href="css/home-journal.css">
+
+	<script>
+	$(document).ready(function(){
+			$("a[href^='#']").click(function(e) {
+			e.preventDefault();
+
+			var position = $($(this).attr("href")).offset().top;
+
+			$("body, html").animate({
+				scrollTop: position
+			} );
+			});
+	});
+	</script>
 
 </head>
 
 <body>
 
-	<select id="language">
+	<!-- <select id="language">
 	  <option selected="selected" value="english">English</option>
-	  <option value="spanish">Spanish (coming soon!)</option>
-	</select>
+	  <option value="spanish">Spanish</option>
+	  <option value="mandarin">Mandarin</option>
+	  <option value="french">French</option>
+	</select> -->
+
+	<div id="version-id">
+		Version 0.1.0<br>
+		Updated September 12, 2019<br>
+		Soft Launch: November 2019
+	</div>
 
 	<div class="wrap">
-		<div id="title">
-			<h1>Plot Twisters</h1>
-		</div>
-		<h2 class="tagline">The Education Technology studio that cares about your journey as a healthy human.</h2>
-
-		<audio id="audio" controls="controls">
-		  <source src="src/audio-intro.mp3" type="audio/mpeg" />
-		</audio>
-
-		<div class="audio">
-			<button id="playAudio" class="inactive" onclick="onPlay()">
-				<span>Play our audio intro!</span>
-			</button>
-			<div id="timeline">
-				<div id="playhead"></div>
-			</div>
-		</div>
+		<div id="title"></div>
+		<h4 class="tagline">Reflection activities to open the story of your <span class="mobile-toggle">education, career, and </span>life.</h4>
 
 		<div class="hero">
 			<div id="floats" data-tilt>
@@ -60,219 +60,143 @@
 		</div>
 
 		<div id="folders" class="imgHover">
-			<a href="games/dist/two-birds-one-stone" target="_blank">
+			<!-- <a href="cookie/index.html"> -->
 				<img class="static" src="img/folders.png" alt="Cookie Trail Files">
 				<img class="hover" src="img/folders-hover.png" alt="Cookie Trail Files">
-				<div class="popup-left hover" style="width:80px;left:-105px;">Explore our early demo.</div>
-			</a>
+				<div class="popup-left hover" style="width:100px;left:-125px;"><em><strong>Cookie Trail Files:</strong></em> Coming Spring 2020.</div>
+			<!-- </a> -->
 		</div>
 
 		<div id="email-jenny" class="imgHover">
 			<a href="#footer">
 				<img class="static" src="img/email.png" alt="Email Jenny">
 				<img class="hover" src="img/email-hover.png" alt="Email Jenny">
-				<div class="popup-right hover" style="width:60px;right:-75px;">Get email updates!</div>
+				<div class="popup-right hover">Get email updates!</div>
 			</a>
 		</div>
 
-	</div>
-
-		<div class="path">
-			<div class="leftSide"></div>
-			<div class="rightSide"></div>
-
-			<h4>What's your journey? Where's it going?</h4>
-			<!-- <h4>The education technology studio for healthy students.</h4> -->
-			<!-- <h4>The 21st century education technology studio.</h4> -->
-
-			<h2>Plot Twisters makes <span class="highlight">personal journey building tools</span> for K-12 students to reflect on their values, curiosities, and goals over time.</h2>
-
-			<div class="toggleStudentTeacher">
-				<div class="studentsCan"><h2>Students can...</h2></div>
-				<div class="teachersCan"><h2>Teachers can...</h2></div>
-
-				<div class="studentsCanExplained">
-					<div class="prop">
-						<img class="prop-thumb" src="img/studentsCan-1-track.gif" alt="Students can track their personal education journeys on the Plot Twisters platform.">
-						<h6 class="wider">Track their personal education journey</h6>
-					</div>
-					<div class="prop">
-						<img class="prop-thumb" src="img/studentsCan-2-reflect.gif" alt="Students can reflect on their interests and skills with our minigames.">
-						<h6>Reflect on their interests and skills</h6>
-					</div>
-					<div class="prop">
-						<img class="prop-thumb" src="img/studentsCan-3-explore.gif" alt="Students can explore a database of diverse, fulfilled role models.">
-						<h6>Explore journeys of diverse role models</h6>
-					</div>
-					<div class="prop">
-						<img class="prop-thumb" src="img/studentsCan-4-manage.gif" alt="Students can manage and organize their to-do lists and goals in their education journey.">
-						<h6>Manage goals for their journey</h6>
-					</div>
-				</div>
-
-				<div class="teachersCanExplained">
-					<div class="prop">
-						<img class="prop-thumb" src="img/teachersCan-1-follow.gif" alt="Teachers can follow along with their students' learning and reflections in and out of school.">
-						<h6>Follow the journeys of their students</h6>
-					</div>
-					<div class="prop">
-						<img class="prop-thumb" src="img/teachersCan-2-assign.gif" alt="Teachers can better understand their students' habits and skills to customize their teaching.">
-						<h6>Assign projects based on individual needs</h6>
-					</div>
-					<div class="prop">
-						<img class="prop-thumb" src="img/teachersCan-3-support.gif" alt="Teachers can communicate with their students based on how they reflected on a project.">
-						<h6 class="wider">Personally support the growth of each student</h6>
-					</div>
-					<div class="prop">
-						<img class="prop-thumb" src="img/teachersCan-4-talk.gif" alt="Teachers can share with their students diverse role models and pressing challenges currently facing Earth.">
-						<h6 class="wider">Talk about role models and real world challenges</h6>
-					</div>
-				</div>
-			</div>
-
-			<h5 class="pointsIntro">At Plot Twisters, we want to...</h5>
-			<div class="point">
-				<h2>1. &nbsp;&nbsp;Research and communicate what work <em>really</em> is to young people.</h2>
-				<p>Plot Twisters is creating fun, imaginative tools to explain the rapidly changing landscape of work to young people. Schools struggle to explain "creativity" and "complex problems solving" skills clearly to students, even though 40% of jobs now require them. We break them down into simple metaphors and show examples in their real, everyday schoolwork.</p>
-			</div>
-
-			<div class="point">
-				<h2>2. &nbsp;&nbsp;Introduce diverse role models and career journeys from an early age.</h2>
-				<p>Dreaming big should be accessible to all students. By exploring diverse role model journeys as they build their own journey, Plot Twisters helps them notice trends in their own values, skills, and roles. We provide a platform for students to discover and set goals.</p>
-			</div>
-
-			<div class="point">
-				<h2>3. &nbsp;&nbsp;Empower student to be the protagonists of their education.</h2>
-				<p>Unlike career and personality tests, Plot Twisters is not prescriptive. Students decide for themselves what their journey is, and where it's going. Plot Twisters empowers students to discover the values, skills, roles, and causes that are meaningful to them.</p>
-			</div>
-
-			<div class="point">
-				<h2>4. &nbsp;&nbsp;"Think globally, act locally."</h2>
-				<p>Pressing challenges from environmental waste to health inequity affect every person on Earth, so navigating these issues will be the classwork of the future. Plot Twisters introduces this seed of global citizenship in every student's journey, and serves as an example social enterprise.</p>
-			</div>
-
-			<div class="point">
-				<h2>5. &nbsp;&nbsp;Practice using technology safely and mindfully.</h2>
-				<p>As we build tools for digitally sharing education and career stories, Plot Twisters is focused on instilling healthy relationships with building identities online. We carefully curate mindful role models and are transparent about our interface design choices.</p>
-			</div>
-
-			<div class="point">
-				<h2>6. &nbsp;&nbsp;Design for students and educators by working with them directly.</h2>
-				<p>Plot Twisters is an educational technology studio that treats each school as a long-term client. We know how different every learning environment can be, so we visit and customize our tools specifically for each classroom.</p>
-			</div>
-
-			<h2 class="launchDate"><span class="highlight"><a href="mailto:studio@plottwisters.org">We'd love your wisdom! &nbsp;<img src="img/email-inline.png" width="25" alt=""></a></span></h2>
-
-		</div>
-
-		<div class="thinkTank">
-			<h2 class="thinkTankCall"><a href="https://www.notion.so/plottwisters/Plot-Twisters-Think-Tank-6a55f88cdc3b40fc87b0e3f2ce88eb14" target="_blank"><span>Check out our internal Think Tank Knowledgebase. <div class="externalLinkOut"></div></span></a></h2>
-			<a href="https://www.notion.so/plottwisters/Plot-Twisters-Think-Tank-6a55f88cdc3b40fc87b0e3f2ce88eb14" target="_blank"><div class="thinkTankScreen"></div>
-			<div class="thinkTankArrow"  id="progress"></div></a>
-		</div>
-
-		<div class="wrap wrap-underpath">
 		<div class="modules">
-			<h5>Peek at our work-in-progress?</h5>
-			<div class="block demo">
-				<h2>Worksheets & Demo</h2>
-				<h3>Test our ideas on paper and online.</h3>
-				<div class="action-buttons">
-					<div class="printables-tab">
-						<a class="printable">Worksheet Testers</a>
-						<div class="printables-list">
-							<a href="worksheets/homework-plot-twister.pdf" target="_blank" class="printable">Homework Plot Twister</a>
-							<a href="worksheets/quick-foldable.pdf" target="_blank" class="printable">Quick Foldable</a>
-							<a href="worksheets/long-foldable.pdf" target="_blank" class="printable">Long Foldable</a>
-							<a href="worksheets/gift-tagger.pdf" target="_blank" class="printable">Gift Tagger</a>
-							<a href="worksheets/cookie-trail-calculator.pdf" target="_blank" class="printable">Cookie Trail Calculator</a>
-							<!-- <a href="#" class="printable download-all">Download All</a> -->
+				<div class="block threes feelings-designer">
+					<h2>Feelings Designer</h2>
+					<h3>Make a pattern to match how you feel.</h3>
+					<div class="action-buttons unready">
+						<div class="printable">Coming soon</div>
+						<!-- <a href="#" class="printable">Printable</a>
+						<a href="#" class="open">Create now</a> -->
+					</div>
+				</div>
+				<div class="block threes five-second-futures">
+					<h2 class="fsf">Five Second Futures</h2>
+					<h3>You wake up in a new life. What do you do?</h3>
+					<div class="action-buttons unready">
+						<div class="printable">Coming soon</div>
+						<!-- <a href="#" class="printable">Printable</a>
+						<a href="#" class="open">Create now</a> -->
+					</div>
+				</div>
+				<div class="block threes happy-lemons">
+					<h2>Lemonade Mixer</h2>
+					<h3>Find where your work habits fall on a spectrum.</h3>
+					<div class="action-buttons unready">
+						<div class="printable">Coming soon</div>
+						<!-- <a href="#" class="printable">Printable</a>
+						<a href="#" class="open">Create now</a> -->
+					</div>
+				</div>
+
+				<div class="block twos double">
+					<div class="block inner busy-bee">
+						<h2>Busy Bee?</h2>
+						<h3>Exercises to help manage your priorities.</h3>
+						<div class="action-buttons unready">
+							<div class="printables-tab">
+								<div class="printable">Coming soon</div>
+								<div class="printables-list">
+									<div class="printable">Make a Plate</div>
+									<div class="printable">Two Birds One Stone</div>
+									<div class="printable download-all">Download All</div>
+								</div>
+							</div>
+							<!-- <a href="#" class="open">Let's play</a> -->
 						</div>
 					</div>
-					<a href="https://www.plottwisters.org/games/dist/two-birds-one-stone" target="_blank" class="open">See Demo</a>
-				</div>
-			</div>
-			<div class="block plot-twister-profiles">
-				<h2>Plot Twister Profiles</h2>
-				<h3>Stories of you and your role models.</h3>
-				<div class="action-buttons">
-					<a href="https://www.notion.so/plottwisters/Plot-Twister-Profiles-25d28ab4ce1d46de8cbd554abeca1d72" target="_blank" class="open">Our Notion</a>
-					<a href="profile-hardcode-simple" target="_blank" class="open">See Development</a>
-				</div>
-			</div>
-				<div class="block gift-tagger">
-					<h2>Gift Tagger</h2>
-					<h3>What are your <strong>personal values</strong>?</h3>
-					<div class="action-buttons">
-						<a href="https://www.notion.so/plottwisters/1-Gift-Tagger-5758442c9906415897963dacc212ed8f" target="_blank" class="open">Our Notion</a>
+					<div class="block inner protagonist-pages">
+						<h2>Protagonist Pages</h2>
+						<h3>What's your story? Where's it going?</h3>
+						<div class="action-buttons unready">
+							<div class="printables-tab">
+								<div class="printable">Coming soon</div>
+								<div class="printables-list">
+									<div class="printable">Adjective Ad-Lib</div>
+									<div class="printable">Party Guest</div>
+									<div class="printable">Favorites</div>
+									<div class="printable">Cookie Trail</div>
+									<div class="printable download-all">Download All</div>
+								</div>
+							</div>
+							<!-- <a href="#" class="open">Start now</a> -->
+						</div>
 					</div>
 				</div>
-				<div class="block hat-counter">
-					<h2>Hat Counter</h2>
-					<h3>What <strong>areas of knowledge</strong> do you practice?</h3>
-					<div class="action-buttons">
-						<a href="https://www.notion.so/plottwisters/2-Hat-Counter-77e79deb1f4c4bef98e674786df4c7e7" target="_blank" class="open">Our Notion</a>
-					</div>
-				</div>
-				<div class="block recipe-mixer">
-					<h2>Recipe Mixer</h2>
-					<h3>What are your <strong>ideal work settings</strong>?</h3>
-					<!-- <h3>Find where your work habits fall on a spectrum.</h3> -->
-					<div class="action-buttons">
-						<a href="https://www.notion.so/plottwisters/3-Recipe-Mixer-e363f04bac6b4eb18f838af00019d1ea" target="_blank" class="open">Our Notion</a>
-					</div>
-				</div>
-				<div class="block cookie-trails">
-					<h2>Cookie Trails</h2>
-					<h3>Explore and manage your <strong>life goals.</strong></h3>
-					<!-- <h3>Visualize and manage <strong>your time spent.</strong></h3> -->
-					<div class="action-buttons">
-						<a href="https://www.notion.so/plottwisters/Cookie-Trails-67000c288b0b4ad6bdd2e2ce0354163b" target="_blank" class="open">Our Notion</a>
+				<div class="block twos plottwister">
+					<h2>The Homework Plot Twister</h2>
+					<h3>Reflect on your work for a project, assignment, or event you made happen.</h3>
+					<div class="action-buttons unready">
+						<div class="printables-tab">
+							<a href="/one-page-twister-draft.pdf" target="_blank" class="printable">Project Reflection (draft)</a>
+						</div>
+						<!-- <a href="activities/homework.html" target="_blank" class="open">Do it online</a> -->
 					</div>
 				</div>
 
-
-			<div class="block extra-credit">
-				<h2>Extra Credit</h2>
-				<a href="https://www.notion.so/plottwisters/Plot-Twisters-Think-Tank-6a55f88cdc3b40fc87b0e3f2ce88eb14" target="_blank">
+			<div class="block one journal">
+				<a href="#"><h2 class="open open-journal">Jenny's Journal</h2></a>
+				<a href="#">
 					<div class="entry">
 						<img style="background: rgba(111, 206, 199, 0.1);" class="thumb" src="img/journal/coffee-tea-560.png">
 						<div class="words">
-							<h2>Read Our Research</h2>
-							<h3>We're always learning.</h3>
+							<h2>"Meeting People Halfway"</h2>
+							<h3>How can I listen better?</h3>
 						</div>
 					</div>
 				</a>
 
-				<a href="https://github.com/plottwisters" target="_blank">
+				<a href="#">
 					<div class="entry">
 						<img style="background: rgba(247, 216, 139, 0.1);" class="thumb" src="img/journal/orange-peel-560.png">
 						<div class="words">
-							<h2>Explore Our Codebase</h2>
-							<h3>Engineers at work.</h3>
+							<h2>"Peel An Orange"</h2>
+							<h3>What's perfection to me?</h3>
 						</div>
 					</div>
 				</a>
 
-				<a href="http://www.jenny.world/" target="_blank">
+				<a href="#">
 					<div class="entry" style="border: none;">
 						<img style="background: rgba(203, 153, 224, 0.1);" class="thumb" src="img/journal/flowers-560.png">
 						<div class="words">
-							<h2>Meet Jenny</h2>
-							<h3>Our founder and director.</h3>
+							<h2>"A Flower's Environment"</h2>
+							<h3>What makes me grow?</h3>
 						</div>
 					</div>
 				</a>
+
 				<div style="clear:both"></div>
 			</div>
-			<div class="block quotes">
+
+			<div class="block one">
 				<h2>Wise Words</h2>
 				<div class="refresh"></div>
 				<blockquote>
 					"<span id="quote"></span>"
 					<div class="byline">&mdash; <span id="person"></span></div>
 				</blockquote>
+
 			</div>
+
+			<!-- <div class="block one">
+				<h2>Guestbook</h2>
+			</div> -->
 
 		</div>
 
@@ -280,19 +204,39 @@
 
 	<div id="footer">
 		<div class="footer-wrap">
-			<div class="email-signup">
-					<input type="email" value="" placeholder="Your email address" class="email">
-					<input type="submit" value="Get occasional updates!" name="subscribe" class="submit">
-			</div>
 
-			<span class="email">Our email is <a href="mailto:studio@plottwisters.org">studio@plottwisters.org</a>.</span>
 
-			<span class="copy">&#169; 2019 Plot Twisters. All rights reserved.</span>
+									<!-- Begin Mailchimp Signup Form -->
+						<!-- <link href="//cdn-images.mailchimp.com/embedcode/classic-10_7.css" rel="stylesheet" type="text/css"> -->
+						<style type="text/css">
+							#mc_embed_signup{ margin:auto;width:300px; background:none; clear:left; font:14px freight-text-pro, serif; }
+							/* Add your own Mailchimp form style overrides in your site stylesheet or in this style block.
+							   We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+						</style>
+						<div id="mc_embed_signup" class="email-signup">
+						<form action="https://jennyzhang.us12.list-manage.com/subscribe/post?u=c741ea090b78c61048be95723&amp;id=7fdfea5144" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+						    <div id="mc_embed_signup_scroll">
+
+						<div class="mc-field-group">
+							<!-- <label for="mce-EMAIL">Email Address </label> -->
+							<input type="email" value="" placeholder="Your email address" name="EMAIL" class="required email" id="mce-EMAIL">
+						</div>
+						    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_c741ea090b78c61048be95723_7fdfea5144" tabindex="-1" value=""></div>
+						    <div class="clear"><input type="submit" value="Subscribe for updates." name="subscribe" id="mc-embedded-subscribe" class="submit"></div>
+						    <div id="mce-responses" class="clear">
+								<div class="response" id="mce-error-response" style="background:none;color:#000;display:none"></div>
+								<div class="response" id="mce-success-response" style="background:none;color:#000;display:none"></div>
+							</div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+							</div>
+						</form>
+						</div>
+						<script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script><script type='text/javascript'>(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';fnames[3]='ADDRESS';ftypes[3]='address';fnames[4]='PHONE';ftypes[4]='phone';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
+						<!--End mc_embed_signup -->
+
+			<span class="copy">&#169; Jenny Liu Zhang, 2019.</span>
 		</div>
 	</div>
 
-<script src="js/jenny.js"></script>
-<script src="js/audio.js"></script>
 <script src="js/tilt.js"></script>
 <script src="js/quotes.js"></script>
 </body>
