@@ -4,6 +4,14 @@ var quotes = [
     person: "Dolly Parton"
   },
   {
+    quote: "Life is a dancer, and you are the dance.",
+    person: "Eckhart Tolle"
+  },
+  {
+    quote: "The mind is like an umbrella. It's most useful when open.",
+    person: "Walter Gropius"
+  },
+  {
     quote: "Without knowledge, action is useless and knowledge without action is futile.",
     person: "Abu Bakr"
   },
