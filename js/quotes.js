@@ -12,6 +12,22 @@ var quotes = [
     person: "Walter Gropius"
   },
   {
+    quote: "We have no firm hold on any knowledge or philosophy that can lift us out of our difficulties.",
+    person: "Anne Sullivan"
+  },
+  {
+    quote: "A strenuous effort must be made to train young people to think for themselves and take independent charge of their lives.",
+    person: "Anne Sullivan"
+  },
+  {
+    quote: "You think that because you understand 'one' that you must therefore understand 'two,' because one and one make two. But you forget that you must also understand 'and.'",
+    person: "Sufi teaching"
+  },
+  {
+    quote: "Without knowledge, action is useless and knowledge without action is futile.",
+    person: "Abu Bakr"
+  },
+  {
     quote: "Without knowledge, action is useless and knowledge without action is futile.",
     person: "Abu Bakr"
   },
@@ -42,6 +58,10 @@ var quotes = [
   {
     quote: "The world is full of magic things, patiently waiting for our senses to grow sharper!",
     person: "William Butler Yeats"
+  },
+  {
+    quote: "A single metaphor can give birth to love.",
+    person: "Milan Kundera"
   }
 ];
 
