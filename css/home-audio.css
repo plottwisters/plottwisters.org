@@ -114,14 +114,15 @@
     #playAudio.inactive, #playAudio.active {
       -webkit-appearance: none !important;
       display: block;
-      width: 210px;
-      height: 58px;
+      width: 190px;
+      height: 80px;
       padding: 6px 0 4px 9px;
       background: url('../img/speaker.png') no-repeat;
       background-size: 38px auto;
-      background-position: right 8px center;
+      background-position: right 8px top 10px;
       font-family: benton-sans, sans-serif;
       font-size: 1em;
+      line-height: 1.4em;
       text-align: left;
       border: 2px solid #000;
     }
@@ -131,22 +132,24 @@
         position: absolute;
         top: 8px;
         left: 10px;
-        width: 80%;
+        width: 50%;
         font-size: 1em;
+        line-height: 1.34em;
       }
 
     #playAudio.active {
       display: block;
       background: #bae17c url('../img/speaker-on.gif') no-repeat;
       background-size: 38px auto;
-      background-position: right 8px center;
+      background-position: right 8px top 10px;
     }
 
   #timeline {
     position: absolute;
-    top: 20px;
+    top: auto;
+    bottom: 13px;
     left: 10px;
-  	width: 137px;
+  	width: 167px;
   	height: 3px;
   	background: #222325;
   	margin-top: 20px;

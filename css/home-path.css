@@ -15,7 +15,7 @@
 .path h2 {
   margin: 50px auto 30px;
   text-align: center;
-  font-size: 6vw;
+  font-size: 7vw;
   width: 85%;
   /* font-weight: 400; */
 }
@@ -185,7 +185,7 @@ h5.pointsIntro {
 
       .path h2 {
         margin: 15px auto 25px;
-        font-size: 4.5vw;
+        font-size: 5vw;
       }
 
       .path h2.launchDate {
@@ -246,11 +246,12 @@ h5.pointsIntro {
     .path h4 {
       margin: 20px auto 10px;
       font-size: 1.3em;
+      width: 560px;
     }
 
     .path h2 {
       margin: 20px auto 30px;
-      width: 600px;
+      width: 500px;
       font-size: 1.35em;
       line-height: 1.5em;
     }
@@ -341,8 +342,8 @@ h5.pointsIntro {
 
           .path h2 {
             margin: 20px auto 50px;
-            font-size: 1.55em;
-            width: 680px;
+            font-size: 1.85em;
+            width: 620px;
           }
 
         .toggleStudentTeacher {

@@ -32,6 +32,11 @@
     text-align: center;
   }
 
+  h4 {
+    /* max-width: 400px; */
+    /* border: 1px solid red; */
+  }
+
   /* #title:hover {
     background: url('../img/title-hover.gif') no-repeat;
     background-size: 100% auto;
@@ -213,11 +218,11 @@
 
       h2.tagline {
         display: block;
-        font-size: 21.7px;
-        line-height: 29px;
+        font-size: 20px;
+        line-height: 28px;
         letter-spacing: 0.01em;
         margin: 20px 0 15px;
-        width: 385px;
+        width: 400px;
         /* border: 1px solid red; */
       }
 
