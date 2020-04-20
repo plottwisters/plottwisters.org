@@ -71,15 +71,15 @@
 
     #folders {
       position: absolute;
-      top: 98vw;
-      left: 10px;
-      width: 105px;
+      top: 99.5vw;
+      left: 6px;
+      width: 115px;
       z-index: 100;
     }
 
     #email-jenny {
       position: absolute;
-      top: 104vw;
+      top: 113vw;
       right: 2px;
       width: 44px;
       z-index: 100;
@@ -173,12 +173,12 @@
 
         #folders {
           width: 140px;
-          top: 107vw;
+          top: 108vw;
         }
 
         #email-jenny {
           width: 60px;
-          top: 113vw;
+          top: 118vw;
         }
 
         .thinkTankCall {
@@ -205,14 +205,14 @@
       .hero { background-size: 100% auto; }
 
       #folders {
-        width: 165px;
-        top: 540px;
-        left: 25px;
+        width: 180px;
+        top: 525px;
+        left: 10px;
       }
 
       #email-jenny {
         width: 60px;
-        top: 580px;
+        top: 600px;
         right: 15px;
       }
 
@@ -259,9 +259,9 @@
         padding: 20px 0;
       }
 
-      #folders { top: 500px; }
+      #folders { top: 495px; }
 
-      #email-jenny { top: 540px; }
+      #email-jenny { top: 570px; }
 
     .thinkTank {
       background: url('../img/thinkTankbg-seamless.png') fixed repeat;
