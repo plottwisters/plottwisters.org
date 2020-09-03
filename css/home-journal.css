@@ -1,0 +1,113 @@
+/* ------------ Jenny's Journal */
+
+/* .open-journal:hover {
+	background: #fff url('../img/open.png') no-repeat;
+	background-size: 30px auto;
+	background-position: right center;
+} */
+
+.extra-credit {
+	margin: 10px 0 17px 0.8vw;
+}
+			.entry {
+				margin: 0;
+				padding: 0;
+				display: table-cell;
+				width: 99vw;
+				background: rgba(255,255,255,0.4) url('../img/open.png') no-repeat right 0px top 13px;
+				background-size: 24px auto;
+				border-bottom: 1px solid black;
+			}
+
+			.entry:hover {
+				background: rgba(255, 255, 255, 0.6) url('../img/open.png') no-repeat right 2px top 13px;
+				background-size: 30px auto;
+			}
+
+			.entry .words {
+				vertical-align: middle;
+				display: inline-block;
+				margin: 0 0 0 2px;
+				padding: 10px 0 10px 5px;
+				width: auto;
+			}
+
+				.entry h2 {
+					font-size: 1.05em;
+					margin: 0 0 0px;
+					width: auto;
+					padding: 0 0px 0 0;
+					border: none;
+				}
+
+				.entry h3 {
+					margin: 0;
+					max-width: none;
+					font-size: 0.85em;
+				}
+
+			.entry .thumb {
+				vertical-align: middle;
+				display: inline-block;
+				width: 34vw;
+				border-right: 1px solid black;
+			}
+
+				.entry .thumb img { width: 100%; }
+
+@media screen
+			and (min-device-width: 360px)
+			and (min-width: 360px) {
+
+			.entry h2 {
+				font-size: 1.25em;
+			}
+
+			.entry h3 {
+				font-size: 0.9em;
+			}
+
+}
+
+@media screen
+    and (min-device-width: 605px)
+    and (min-width: 605px) {
+
+      /* ------------ Jenny's Journal */
+      							.entry {
+      								float: left;
+      								width: 197.6px;
+											background: rgba(255,255,255,0.4) url('../img/open.png') no-repeat right 0px bottom 50px;
+											background-size: 24px auto;
+      								border: none;
+      								border-right: 1px solid black;
+      							}
+
+											.entry:hover {
+												background: rgba(255, 255, 255, 0.6) url('../img/open.png') no-repeat right 0px bottom 50px;
+												background-size: 24px auto;
+											}
+
+      								.entry .words {
+      									margin: 0;
+      									padding: 15px 10px;
+      									border: none;
+      								}
+
+      									.entry h2 {
+      										font-size: 1.1em;
+													width: 100%;
+      									}
+
+      									.entry h3 {
+      										font-size: 0.95em;
+													text-align: left;
+      									}
+
+      								.entry .thumb {
+                        width: 100%;
+      									border: none;
+      									border-bottom: 1px solid black;
+      								}
+
+}

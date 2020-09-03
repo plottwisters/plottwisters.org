@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/games/dist/static/css/main.d2584066.chunk.css",
+    "main.js": "/games/dist/static/js/main.81905c7c.chunk.js",
+    "main.js.map": "/games/dist/static/js/main.81905c7c.chunk.js.map",
+    "runtime~main.js": "/games/dist/static/js/runtime~main.2813f7c9.js",
+    "runtime~main.js.map": "/games/dist/static/js/runtime~main.2813f7c9.js.map",
+    "static/js/2.5ce6a3e5.chunk.js": "/games/dist/static/js/2.5ce6a3e5.chunk.js",
+    "static/js/2.5ce6a3e5.chunk.js.map": "/games/dist/static/js/2.5ce6a3e5.chunk.js.map",
+    "index.html": "/games/dist/index.html",
+    "precache-manifest.54c40dd9929bf29aea591d00df4300d1.js": "/games/dist/precache-manifest.54c40dd9929bf29aea591d00df4300d1.js",
+    "service-worker.js": "/games/dist/service-worker.js",
+    "static/css/main.d2584066.chunk.css.map": "/games/dist/static/css/main.d2584066.chunk.css.map",
+    "static/media/index.scss": "/games/dist/static/media/undo.d74ecabb.png",
+    "static/media/cookietrail.scss": "/games/dist/static/media/book-open.38aea8b5.png"
+  }
+}

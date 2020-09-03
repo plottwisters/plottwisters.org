@@ -1,0 +1,326 @@
+/* ---------- MODULES ---------- */
+
+		.modules {
+			margin: 5vw auto;
+			width: 96%;
+		}
+
+		/* all */
+		.modules .block {
+			position: relative;
+			border: 1px solid black;
+			height: 210px; /* will change */
+			margin-right: 0.5vw;
+		}
+
+		.row:last-child {
+			margin-right: 0;
+		}
+
+		/* threes */
+		.threes {
+			display: inline-block;
+			width: 30.5vw;
+		}
+
+			.threes:last-child { margin-right: 0; }
+
+			.threes h3 {
+				max-width: 122px;
+				font-size: 0.95em;
+			}
+
+		/* twos */
+		.twos.double {
+			border: none;
+		}
+
+		.twos {
+			display: inline-block;
+			margin: 10px 0 0 0;
+		}
+
+			.twos:last-child { margin-right: 0; }
+
+			.twos h3 {
+        max-width: 120px;
+				font-size: 0.95em;
+			}
+
+      .twos.plottwister h3 {
+        max-width: 260px;
+      }
+
+		.double {
+			width: 30vw;
+			height: 400px !important;
+		}
+
+		.double .inner {
+			width: 99%;
+			height: 200px !important; /* will change */
+		}
+
+		.double .inner:first-child {
+			margin: -0.5vw 0 1.5vw !important;
+		}
+
+		.double .inner:last-child {
+			margin-bottom: 0;
+		}
+
+		.twos.plottwister {
+			float: right;
+			margin: 8px 0.5vw 8px 0.5vw;
+			width: 63vw;
+			height: 410px !important;
+		}
+
+			.twos.plottwister h2 {
+				font-size: 1.3em;
+				margin-bottom: 2px;
+			}
+
+		/* ones */
+		.one {
+			clear: both;
+			width: 94.7vw;
+			height: auto !important;
+			margin: 0 auto 1.8vw;
+			text-align: left;
+		}
+
+			.one h2 {
+				margin: 0;
+				padding: 8px 0 8px 10px;
+				font-size: 1.5em;
+				border-bottom: 1px solid black;
+			}
+
+		/* ---------- MODULE ACTIONS ---------- */
+
+		.action-buttons {
+			position: absolute;
+			bottom: 0;
+			margin-top: 20px;
+			width: 100%;
+		}
+
+			.action-buttons .printable, .action-buttons .open, .printables-list {
+				display: block;
+				height: 40px;
+				line-height: 2.5em;
+				border-top: 1px solid black;
+				background: #e9e2d7;
+				font-family: benton-sans-compressed, sans-serif;
+				font-weight: 500;
+				font-size: 1em;
+				text-align: left;
+				padding-left: 10px;
+				text-decoration: none;
+			}
+
+			.open, .action-buttons .open {
+				background: #f4f1eb url('../img/open.png') no-repeat;
+				background-size: 30px auto;
+				background-position: right center;
+			}
+
+			.action-buttons .open:hover, .open:hover {
+				background: #fff url('../img/open.png') no-repeat;
+				background-size: 30px auto;
+				background-position: right center;
+			}
+
+      .action-buttons .printable:hover {
+        background: #dfd4c6;
+      }
+
+
+/* ---------- HOMEWORK TWISTER PRINTABLE HOVER ---------- */
+.printables-list {
+  display: none;
+  position: absolute;
+  left: -1px;
+  width: 100%;
+  z-index: 100;
+  padding: 0;
+}
+
+.twos.plottwister .action-buttons .printable {
+  background: #f7d889 url('../img/printables-tab.png') no-repeat;
+  background-size: 30px auto;
+  background-position: right center;
+}
+.twos.plottwister .action-buttons .printable:hover {
+  background: #ffe3a4 url('../img/printables-tab.png') no-repeat;
+  background-size: 30px auto;
+  background-position: right center;
+}
+
+  .twos.plottwister .action-buttons .printables-list .printable {
+    margin: 0;
+    clear: both;
+    background: #f7d889;
+    border: 1px solid black;
+    border-top: none;
+  }
+
+  .twos.plottwister .action-buttons .printables-list .printable:hover {
+    margin: 0;
+    background: #ffe3a4;
+  }
+
+.twos.plottwister .action-buttons .printables-tab:hover .printables-list {
+  display: block;
+}
+
+
+
+@media screen
+			and (min-device-width: 605px)
+			and (min-width: 605px) {
+
+        /* ---------- MODULES ---------- */
+
+        				.modules {
+        					margin: 8px 0;
+        					width: 100%;
+        				}
+
+        				/* all */
+        				.modules .block {
+        					border: 2px solid black;
+        					height: 170px;
+        					margin: 0 5px 0 0;
+        				}
+
+        				/* threes */
+        				.threes {
+        					width: 190px;
+        				}
+
+                  .threes h2 { font-size: 1.3em; }
+
+        					.threes h3 { max-width: 150px; }
+
+        					.threes:last-child { margin-right: 0; }
+
+        				/* twos */
+
+        				.twos.double { border: none; }
+
+        				.twos {
+        					display: inline-block;
+        					width: 292px;
+        					height: auto !important;
+        					margin: 10px 0 10px !important;
+        				}
+
+                .twos h3 { max-width: none; }
+
+        				.twos:last-child { margin-right: 0; }
+
+        				.twos.double {
+        					float: left;
+        					margin: 10px 0 0 0;
+        				}
+
+        				.double .inner {
+        					width: 100%;
+        					height: 170px !important; /* will change */
+        				}
+
+        				.double .inner:first-child {
+        					margin: 0 0 10px 0 !important;
+        				}
+
+        				.twos.plottwister {
+        					margin: 10px 0 0 0;
+        					width: 292px;
+        					height: 354px !important; /* will change */
+        				}
+
+                  .plottwister h2 {
+                    font-size: 1.6em !important;
+                  }
+
+        				/* ones */
+        				.one {
+        					width: 595px;
+        					/* height: 180px !important; /* will change */
+        					margin: 0 0 10px !important;
+        				}
+
+        /* ---------- MODULE ACTIONS ---------- */
+
+        					.action-buttons .printable, .action-buttons .open {
+        						display: inline-block;
+        						float: left;
+        						height: 40px;
+        						line-height: 2.3em;
+        						font-size: 1.1em;
+        					}
+
+        					.action-buttons .printable {
+        						width: 64px;
+        						border-right: 1px solid black;
+        					}
+
+        					.action-buttons .open {
+        						width: 105px;
+        						background: #f4f1eb url('../img/open.png') no-repeat;
+        						background-size: 30px auto;
+        						background-position: right center;
+        					}
+
+                  .double .action-buttons .open { width: 207px; }
+
+/* ---------- HOMEWORK TWISTER PRINTABLE HOVER ---------- */
+
+  .plottwister .action-buttons .printable { width: 100px; }
+  .plottwister .action-buttons .open { width: 171px; }
+
+  .printables-list {
+    top: 40px;
+    width: 142px;
+  }
+
+  .printables-list .printable {
+    display: block !important;
+    width: 130px !important;
+  }
+
+}
+
+/* ---------- BACKGROUND IMAGES ---------- */
+
+.feelings-designer {
+  background: url('../img/feelings-designer.png') no-repeat;
+  background-size: 190px auto;
+  background-position: 0 0;
+}
+
+.five-second-futures {
+  background: url('../img/five-second-futures.png') no-repeat;
+  background-size: 190px auto;
+  background-position: 0 20px;
+}
+
+.happy-lemons {
+  background: url('../img/happy-lemons.png') no-repeat;
+  background-size: 190px auto;
+  background-position: 10px 10px;
+}
+
+.make-your-plate {
+  background: url('../img/make-your-plate.png') no-repeat;
+  background-size: 292px auto;
+  background-position: 5px 10px;
+}
+
+.plottwister {
+  background: rgba(255, 227, 164, 0.4) url('../img/plottwister.png') no-repeat;
+  background-size: 297px auto;
+  background-position: 0 30px;
+}
