@@ -1,5 +1,6 @@
 header {
-       background: #F8C73E;
+       background: #F8C73E url('../images/seamless.png');
+       background-size: 800px auto;
 }
 
 .logo {
@@ -152,9 +153,9 @@ main .block {
        .tagline {
              display: block;
              position: absolute;
-             left: 70px;
+             left: 65px;
              bottom: 0px;
-             width: 245px;
+             width: auto;
              text-align: left;
              font: normal 1em/1.33em 'benton-sans-condensed-regular', sans-serif;
              /* border: 1px solid red; */
@@ -324,9 +325,9 @@ main .block {
               .tagline {
                     display: block;
                     position: absolute;
-                    left: 90px;
+                    left: 88px;
                     bottom: 0px;
-                    width: 310px;
+                    width: auto;
                     text-align: left;
                     font: normal 1.35em/1.2em 'benton-sans-condensed-regular', sans-serif;
                     /* border: 1px solid red; */

@@ -3,10 +3,6 @@
 
 */
 
-html {
-       scroll-behavior: smooth;
-}
-
 body {
       margin: 0;
       padding: 0;
@@ -120,27 +116,6 @@ header.section {
                      display: block;
                      font: normal 1.5em 'freight-text-light-italic', serif;
               }
-
-      .logo {
-            width: 265px;
-            margin: 0;
-            padding: 0px 0 0px 45px;
-            font: normal 2.4em/1.25em 'benton-sans-compressed-bold', sans-serif;
-            text-align: left;
-            background: url('../images/logo.png') no-repeat;
-            background-position: left -3px center;
-            background-size: auto 90%;
-            /* border: 1px solid red; */
-      }
-
-      .tagline {
-            display: block;
-            width: 255px;
-            margin: 0;
-            padding: 7px 10px 0 5;
-            text-align: left;
-            font: normal 0.8em/1.33em 'benton-sans-condensed-regular', sans-serif;
-      }
 
 }
 

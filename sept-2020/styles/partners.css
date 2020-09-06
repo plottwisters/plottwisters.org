@@ -1,7 +1,7 @@
 #partners {
        margin: 0;
        padding: 20px 0 40px;
-       background: url('../images/seamless.png');
+       background: #F8C73E url('../images/seamless.png');
        background-size: 800px auto;
        border-top: 2px solid #000;
 }
