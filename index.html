@@ -1,320 +1,306 @@
-<!DOCTYPE html>
-
+<html>
 <head>
-	<title>Plot Twisters · K-12 Journey Building and Self-Reflection Tools for Students and Educators</title>
-	<meta name="google-site-verification" content="iAwSBJScrljiil2hzjOPVJ2DCeG8oRlA6GxDcWu9yYc" />
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel='shortcut icon' type='image/x-icon' href='img/favicon.png'>
+       <script async src="https://www.googletagmanager.com/gtag/js?id=UA-177347122-1"></script>
+       <script>
+         window.dataLayer = window.dataLayer || [];
+         function gtag(){dataLayer.push(arguments);}
+         gtag('js', new Date());
 
-	<meta property="og:title" content="Plot Twisters · K-12 Journey Tools for Students and Educators">
-<meta property="og:description" content="Plot Twisters is an Education Technology studio. We are transforming youth education into a personalized, digital adventure.">
-<meta property="og:image" content="https://www.plottwisters.org/img/thumbnail.gif">
-<meta property="og:audio" content="https://www.plottwisters.org/src/audio-intro.mp3" />
-<meta property="og:url" content="https://www.plottwisters.org/">
-<meta name="og:type" content="website"/>
+         gtag('config', 'UA-177347122-1');
+       </script>
 
-<meta name="twitter:title" content="Plot Twisters · K-12 Journey Tools for Students and Educators">
-<meta name="twitter:description" content="Plot Twisters is an Education Technology studio. We are transforming youth education into a personalized, digital adventure.">
-<meta name="twitter:image" content="https://www.plottwisters.org/img/thumbnail.gif">
-<meta name="twitter:card" content="summary_large_image">
+      <title>Plot Twisters · K-12 Education Technology · Studio Journey Building and Self-Reflection Tools for Students and Educators</title>
 
-	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<script
-  src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
-  integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
-  crossorigin="anonymous"></script>
+      <link rel="stylesheet" href="sept-2020/styles/fonts.css">
+      <link rel="stylesheet" href="sept-2020/styles/basics.css">
+      <link rel="stylesheet" href="sept-2020/styles/audio.css">
 
-	<link rel="stylesheet" href="https://use.typekit.net/vbx0ney.css">
-
-	<link rel="stylesheet" href="css/basics.css">
-	<link rel="stylesheet" href="css/home.css">
-	<link rel="stylesheet" href="css/home-audio.css">
-	<link rel="stylesheet" href="css/home-path.css">
-	<link rel="stylesheet" href="css/home-modules.css">
-	<link rel="stylesheet" href="css/home-journal.css">
-
+      <link rel="stylesheet" href="sept-2020/styles/grid.css">
+      <link rel="stylesheet" href="sept-2020/styles/hello.css">
+      <link rel="stylesheet" href="sept-2020/styles/partners.css">
+      <link rel="stylesheet" href="sept-2020/styles/people.css">
 </head>
 
 <body>
 
-	<select id="language">
-	  <option selected="selected" value="english">English</option>
-	  <option value="spanish">Spanish (coming soon!)</option>
-	</select>
+<!-- start grid.css -->
+      <section class="grid">
+            <header>
+                   <div class="logotype">
+                         <a class="logo" href="#">Plot Twisters</a>
+                         <div class="tagline">The Education Technology studio.</div>
+                  </div>
 
-	<div class="wrap">
-		<div id="title">
-			<h1>Plot Twisters</h1>
-		</div>
-		<h2 class="tagline">Plot Twisters is an Education Technology studio. We are transforming youth education into a <span class="highlight">personal, project-based adventure.</span></h2>
+                  <!-- <audio id="audio" controls="controls">
+                        <source src="audio-intro-1.mp3" type="audio/mpeg" />
+                      </audio>
 
-		<audio id="audio" controls="controls">
-		  <source src="src/audio-intro.mp3" type="audio/mpeg" />
-		</audio>
+                      <div class="audio">
+                            <button id="playAudio" class="inactive" onclick="onPlay()">
+                                  <span>Play our audio intro!</span>
+                            </button>
+                            <div id="timeline">
+                                  <div id="playhead"></div>
+                            </div>
+                      </div> -->
 
-		<div class="audio">
-			<button id="playAudio" class="inactive" onclick="onPlay()">
-				<span>Play our audio intro!</span>
-			</button>
-			<div id="timeline">
-				<div id="playhead"></div>
-			</div>
-		</div>
+            </header>
 
-		<div class="hero">
-			<div id="floats" data-tilt>
-				<img data-tilt class="chat-right" src="img/chat-right.png" alt="">
-				<img data-tilt class="chat-left" src="img/chat-left.png" alt="">
-				<img data-tilt class="debris" src="img/debris.png" alt="">
-				<img data-tilt class="trail" src="img/trail.png" alt="">
-			</div>
-		</div>
+            <main>
+                   <div class="block top">
+                          <h3 class="greetings">
+                                 <span class="greetings-date">Fall 2020:</span>
+                                 We're researching about trauma narratives and digital gardens.
+                          </h3>
+                  </div>
 
-		<div id="folders" class="imgHover">
-			<a href="#">
-				<img class="static" src="img/playbutton.png" alt="Play!">
-				<img class="hover" src="img/playbutton-hover.png" alt="Play!">
-				<div class="popup-left hover" style="width:80px;left:-105px;">Coming very soon.</div>
-			</a>
-		</div>
+                  <div class="block wide bg-book">
+                  </div>
 
-		<div id="email-jenny" class="imgHover">
-			<a href="#footer">
-				<img class="static" src="img/email.png" alt="Email Jenny">
-				<img class="hover" src="img/email-hover.png" alt="Email Jenny">
-				<div class="popup-right hover" style="width:60px;right:-75px;">Get email updates!</div>
-			</a>
-		</div>
+                  <a class="block bg-robin" href="#hello">
+                         <h1 class="hello-block-title">Hello &amp; Welcome!</h1>
+                  </a>
 
-	</div>
+                  <div class="block">
+                  </div>
 
-		<div class="path">
-			<div class="leftSide"></div>
-			<div class="rightSide"></div>
+                  <a class="block bg-cream thinktank-hover" href="https://www.notion.so/plottwisters/Plot-Twisters-Think-Tank-6a55f88cdc3b40fc87b0e3f2ce88eb14" target="_blank">
+                         <h1 class="thinktank-block-title">Think Tank <img src="sept-2020/images/link-out.png" class="thinktank-external"></h1>
+                  </a>
 
-			<h4 style="max-width: 500px;">In the next 10 years, human work will require more creativity, collaboration, and self-understanding.</h4>
-			<h2>Plot Twisters is making <span class="highlight">student journey tools</span> that will bridge young people with the future of work.</h2>
+                  <a class="block bg-yellow" href="#partners">
+                     <h1 class="projectpartners-block-title">Project Partners</h1>
+                  </a>
 
-			<div class="toggleStudentTeacher">
-				<div class="studentsCan"><h2>Students can...</h2></div>
-				<div class="teachersCan"><h2>Teachers can...</h2></div>
+                  <div class="block wide bg-fields">
+                  </div>
 
-				<div class="studentsCanExplained">
-					<div class="prop">
-						<img class="prop-thumb" src="img/studentsCan-1-track.gif" alt="Students can track their personal education journeys on the Plot Twisters platform.">
-						<h6 class="wider">Track their personal education journey</h6>
-					</div>
-					<div class="prop">
-						<img class="prop-thumb" src="img/studentsCan-2-reflect.gif" alt="Students can reflect on their interests and skills with our minigames.">
-						<h6>Reflect on their interests and skills</h6>
-					</div>
-					<div class="prop">
-						<img class="prop-thumb" src="img/studentsCan-3-explore.gif" alt="Students can explore a database of diverse, fulfilled role models.">
-						<h6>Explore journeys of diverse role models</h6>
-					</div>
-					<div class="prop">
-						<img class="prop-thumb" src="img/studentsCan-4-manage.gif" alt="Students can manage and organize their to-do lists and goals in their education journey.">
-						<h6>Manage goals for their journey</h6>
-					</div>
-				</div>
+                  <div class="block bg-earth" style="border-radius: 0 0 0 6px;">
+                  </div>
 
-				<div class="teachersCanExplained">
-					<div class="prop">
-						<img class="prop-thumb" src="img/teachersCan-1-follow.gif" alt="Teachers can follow along with their students' learning and reflections in and out of school.">
-						<h6>Follow the journeys of their students</h6>
-					</div>
-					<div class="prop">
-						<img class="prop-thumb" src="img/teachersCan-2-assign.gif" alt="Teachers can better understand their students' habits and skills to customize their teaching.">
-						<h6>Assign projects based on individual needs</h6>
-					</div>
-					<div class="prop">
-						<img class="prop-thumb" src="img/teachersCan-3-support.gif" alt="Teachers can communicate with their students based on how they reflected on a project.">
-						<h6 class="wider">Personally support the growth of each student</h6>
-					</div>
-					<div class="prop">
-						<img class="prop-thumb" src="img/teachersCan-4-talk.gif" alt="Teachers can share with their students diverse role models and pressing challenges currently facing Earth.">
-						<h6 class="wider">Talk about role models and real world challenges</h6>
-					</div>
-				</div>
-			</div>
+                  <div class="block">
+                  </div>
 
-			<h5 class="pointsIntro">At Plot Twisters, we want to...</h5>
-			<div class="point">
-				<h2>Equip students to think critically about and take ownership of their personal narratives.</h2>
-				<p>Plot Twisters builds tools that support students to discover what they love. We envision a world where young people are encouraged to be inquisitive and confident, so they may pursue what excites them. Our tools make personal reflection fun and approachable, so students can learn from every plot point on their journey. If you’re curious about our product design process, please reach out for a walkthrough!</p>
-			</div>
+                  <a class="block bg-orange" href="#people">
+                         <h1 class="people-block-title">People!</h1>
+                  </a>
 
-			<div class="point">
-				<h2>Cultivate inclusive and diverse learning environments.</h2>
-				<p>Plot Twisters makes dreaming big accessible to as many students as possible. We envision a world where all students are excited to learn. We appreciate every student’s perspective, and build tools with as many needs in mind as possible. Our approach is audio, visual, and tactile, and we’re constantly learning in our Think Tank (reach out to us!). Additionally, our tools are free for students. We also operate financially on a sliding scale, so we may work at a discounted or pro-bono rate with communities or individuals that might not afford them otherwise.</p>
-			</div>
+                  <a class="block bg-purple" href="mailto:studio@plottwisters.org" style="border-radius: 0 0 6px 0;">
+                         <h1 class="contact-block-title">Get in touch with our studio!</h1>
+                  </a>
+            </main>
 
-			<div class="point">
-				<h2>Encourage practices for good health at a young age.</h2>
-				<p>Students should understand that health is multi-dimensional from a young age, and carry the value of health through their entire lives. At Plot Twisters, we create tools and resources that cultivate the mental, emotional, and physical wellbeing of students. If you’re interested in supporting our product design process, please reach out to us.</p>
-			</div>
+    </section>
+<!-- end grid.css -->
 
-			<div class="point">
-				<h2>Inspire students to understand and take action toward challenges in their communities.</h2>
-				<p>Plot Twisters empowers students to Plot Twisters envisions a world in which students understand the challenges in their community. Our storytelling tools enable students to become aware of the world around them, and practice empathy it. We emphasize that taking action is a practice and encourage students to address their communities, whether locally or globally. If you’re interested in supporting our product design process, please reach out to us.</p>
-			</div>
+<!-- start hello.css -->
+       <section id="hello">
+              <div class="wrap skinny-wrap">
+                     <img src="sept-2020/images/logo.png" class="hey-logo">
+                     <h1 class="hey-title">Hey! Thanks for stopping by.</h1>
+                     <p>Plot Twisters is <a href="#people">a team of people</a> that creates technology to enhance digital literacy and self-reflection in youth education. We work with students, educators, and organizations that serve young people and their growth.</p>
+                     <h1 class="hey-title">We make digital tools to support young people as they build their journeys.</h1>
+                     <p>Most of our time is spent researching in <a href="https://www.notion.so/plottwisters/Plot-Twisters-Think-Tank-6a55f88cdc3b40fc87b0e3f2ce88eb14" target="_blank">our Think Tank</a> and designing online experiences. We create role model reports, design self-reflection activities, and mentor students as they explore their strengths and values, in career and life.</p>
+                     <p>Our studio officially launched in January 2020 in North America. Today, our team is spread over three continents and six timezones.</p>
+              </div>
+       </section>
+<!-- end hello.css -->
 
-			<div class="point">
-				<h2>Equip schools, educators, and teachers to faciliate student journeys.</h2>
-				<p>Plot Twisters envisions the educational experience as more than just moving from subject to subject, grade to grade. We support educators and parents directly as they create activities, lesson plans, and frameworks that connect the plot points in a student’s journey. If you’re an educator or parent interested in planning our lessons, we have our first Zoom Table Summit this summer. Reach out to us if you’re interested.</p>
-			</div>
+<!-- start partners.css -->
+       <section id="partners">
+              <div class="wrap">
+                     <header class="section partners-label">
+                           <h2>Good times with our</h2>
+                           <h1 class="partners-title">Project Partners</h1>
+                    </header>
+             </div>
 
-			<h2 class="launchDate"><span class="highlight"><a href="mailto:studio@plottwisters.org">We'd love your wisdom! &nbsp;<img src="img/email-inline.png" width="25" alt=""></a></span></h2>
+              <div class="projects">
+                    <article class="project-partner">
+                           <h3 class="project-partner-title">The EMPOWER Lab</h3>
+                          <a href="http://www.drishametzger.com/research" target="_blank">
+                                 <img width="70%" class="project-partner-logo" src="sept-2020/images/empowerlab.jpg">
+                          </a>
+                          <p class="project-partner-desc">
+                               The EMPOWER Lab is the lab at the University of Georgia that researches interpersonal and racial trauma in the Black community. Together, we're developing an online psychoeducation experience for youth healing from racial trauma called the Racial Trauma CARE Package.
+                          </p>
+                    </article>
 
-		</div>
+                    <article class="project-partner">
+                           <h3 class="project-partner-title">Let's Talk LD</h3>
+                           <a href="https://www.letstalkld.org/" target="_blank">
+                                 <img width="45%" class="project-partner-logo" src="sept-2020/images/letstalkld.jpg">
+                          </a>
+                          <p class="project-partner-desc">
+                               Let's Talk LD gathers and trains educators dedicated to neurodiversity. Young neurodiverse students often lack resources for self-advocacy in personal and professional development. We collaborate regularly with their leadership and community of practice as we build our tools, to ensure our approach creates opportunities for students with learning, social-communication, and attentional differences.
+                          </p>
+                    </article>
 
-		<div class="thinkTank">
-			<h2 class="thinkTankCall"><a href="https://www.notion.so/plottwisters/Plot-Twisters-Think-Tank-6a55f88cdc3b40fc87b0e3f2ce88eb14" target="_blank"><span>Check out our internal Think Tank Knowledge Base. <div class="externalLinkOut"></div></span></a></h2>
-			<a href="https://www.notion.so/plottwisters/Plot-Twisters-Think-Tank-6a55f88cdc3b40fc87b0e3f2ce88eb14" target="_blank"><div class="thinkTankScreen"></div>
-			<div class="thinkTankArrow"  id="progress"></div></a>
-		</div>
+                    <article class="project-partner">
+                           <h3 class="project-partner-title">verynice</h3>
+                           <a href="https://www.verynice.co/" target="_blank">
+                                  <img width="55%" class="project-partner-logo" src="sept-2020/images/verynice.jpg">
+                          </a>
+                          <p class="project-partner-desc">
+                               verynice, in addition to being a social enterprise and design strategy studio, publishes educational toolkits about creative journeys, design, and teamwork. Currently, we're preparing to collaborate on a creative journey building toolkit for students to reflect on their lifestyle and career goals, to publish in 2021.
+                          </p>
+                    </article>
+             </div>
+       </section>
+<!-- end partners.css -->
 
-		<div class="wrap wrap-underpath">
-		<div class="modules">
-			<h5>Peek at our work-in-progress?</h5>
-			<div class="block demo">
-				<h2>Current Releases</h2>
-				<h3>Our commercial products.</h3>
-				<div class="action-buttons">
-					<a href="https://www.figma.com/file/YJ0ey4DvoszpPaaI6VntxA/Studio-Map?node-id=0%3A1" target="_blank" class="open">Studio map</a>
-					<a href="http://www.gumroad.com/plottwisters" target="_blank" class="open">Gumroad Goodies</a>
-				</div>
-			</div>
-			<div class="block plot-twister-profiles">
-				<h2>Role Model Reports</h2>
-				<h3>People you can look up to.</h3>
-				<div class="action-buttons">
-					<a href="#" class="open">Rolemodelreports.com</a>
-					<a href="mailto:studio@plottwisters.org" target="_blank" class="open">Request a Role Model</a>
-				</div>
-			</div>
-				<div class="block cookie-trails">
-					<h2>Cookie Cards</h2>
-					<h3>What are the experiences in your <strong>journey?</strong> </h3>
-					<!-- <h3>Visualize and manage <strong>your time spent.</strong></h3> -->
-					<div class="action-buttons">
-						<a href="https://www.notion.so/plottwisters/Cookie-Cards-38369adcf31b427aa9e24988da2136fd" target="_blank" class="open">Our Notion</a>
-					</div>
-				</div>
-				<div class="block gift-tagger">
-					<h2>Gifts</h2>
-					<h3>What are your <strong>personal values</strong>?</h3>
-					<div class="action-buttons">
-						<a href="https://www.notion.so/plottwisters/Gifts-9dd57f7167fb423582ddf7e4255be7fe" target="_blank" class="open">Our Notion</a>
-					</div>
-				</div>
-				<div class="block hat-counter">
-					<h2>Hats</h2>
-					<h3>What <strong>roles</strong> do you play and practice?</h3>
-					<div class="action-buttons">
-						<a href="https://www.notion.so/plottwisters/Hats-6d02f038e2f54af8b13ce2541d210ebd" target="_blank" class="open">Our Notion</a>
-					</div>
-				</div>
-				<div class="block recipe-mixer">
-					<h2>Trip Activities</h2>
-					<h3>What are your <strong>ideal work settings</strong>?</h3>
-					<!-- <h3>Find where your work habits fall on a spectrum.</h3> -->
-					<div class="action-buttons">
-						<a href="https://www.notion.so/plottwisters/Trip-Activities-d78aa6652bf84b1197ca1657742152e9" target="_blank" class="open">Our Notion</a>
-					</div>
-				</div>
-				
+<!-- start people.css -->
+      <section id="people">
+            <div class="wrap skinny-wrap">
+                  <header class="section people-label">
+                         <h2>It's always about the</h2>
+                         <h1 class="people-title">People!</h1>
+                  </header>
 
+                  <h3>Our current studio team</h3>
+                  <p>Plot Twisters is a completely remote studio. We work together digitally, discussing product visions in Slack, reading books together on Zoom, and sharing late-night reflections about all of it in Discord.</p>
+            </div>
 
-			<div class="block extra-credit">
-				<h2>Extra Credit</h2>
-				<a href="https://www.notion.so/plottwisters/Plot-Twisters-Think-Tank-6a55f88cdc3b40fc87b0e3f2ce88eb14" target="_blank">
-					<div class="entry">
-						<img style="background: rgba(111, 206, 199, 0.1);" class="thumb" src="img/journal/coffee-tea-560.png">
-						<div class="words">
-							<h2>Read Our Research</h2>
-							<h3>We're always learning.</h3>
-						</div>
-					</div>
-				</a>
+            <div class="team">
+                  <article class="team-player">
+                        <img class="team-player-photo" src="sept-2020/images/jenny.jpg">
+                        <div class="team-player-desc">
+                              <h4>Jenny Liu Zhang</h4>
+                              <span>Playmaker</span>
+                              <span class="team-player-location">Renton, USA</span>
+                        </div>
+                  </article>
 
-				<a href="https://github.com/plottwisters" target="_blank">
-					<div class="entry">
-						<img style="background: rgba(247, 216, 139, 0.1);" class="thumb" src="img/journal/orange-peel-560.png">
-						<div class="words">
-							<h2>Explore Our Codebase</h2>
-							<h3>Engineers at work.</h3>
-						</div>
-					</div>
-				</a>
+                  <article class="team-player">
+                        <img class="team-player-photo" src="sept-2020/images/cat.jpg">
+                        <div class="team-player-desc">
+                              <h4>Cat Chang</h4>
+                              <span>Whelming</span>
+                              <span class="team-player-location">Melbourne, Australia</span>
+                        </div>
+                  </article>
 
-				<a href="http://www.linkedin.com/in/jennyliuzhang" target="_blank">
-					<div class="entry" style="border: none;">
-						<img style="background: rgba(203, 153, 224, 0.1);" class="thumb" src="img/journal/flowers-560.png">
-						<div class="words">
-							<h2>Meet Jenny</h2>
-							<h3>Our founder and director.</h3>
-						</div>
-					</div>
-				</a>
-				<div style="clear:both"></div>
-			</div>
-			<div class="block quotes">
-				<h2>Wise Words</h2>
-				<div class="refresh"></div>
-				<blockquote>
-					"<span id="quote"></span>"
-					<div class="byline">&mdash; <span id="person"></span></div>
-				</blockquote>
-			</div>
+                  <article class="team-player">
+                        <img class="team-player-photo" src="sept-2020/images/melissa.jpg">
+                        <div class="team-player-desc">
+                              <h4>Melissa Regalado</h4>
+                              <span>Idea Hamster</span>
+                              <span class="team-player-location">Salt Lake City, USA</span>
+                        </div>
+                  </article>
 
-		</div>
+                  <article class="team-player">
+                        <img class="team-player-photo" src="sept-2020/images/rem.jpg">
+                        <div class="team-player-desc">
+                              <h4>Rem Weber</h4>
+                              <span>Good Sport</span>
+                              <span class="team-player-location">Los Angeles, USA</span>
+                        </div>
+                  </article>
 
-	</div>
+                  <article class="team-player">
+                        <img class="team-player-photo" src="sept-2020/images/rahul.jpg">
+                        <div class="team-player-desc">
+                              <h4>Rahul Reddy</h4>
+                              <span>Tastemaker</span>
+                              <span class="team-player-location">Los Angeles, USA</span>
+                        </div>
+                  </article>
 
-	<div id="footer">
-		<div class="footer-wrap">
+                  <article class="team-player">
+                        <img class="team-player-photo" src="sept-2020/images/amanda.jpg">
+                        <div class="team-player-desc">
+                              <h4>Amanda Curtis</h4>
+                              <span>Local Academic</span>
+                              <span class="team-player-location">Oxford, UK</span>
+                        </div>
+                  </article>
+
+                  <article class="team-player">
+                        <img class="team-player-photo" src="sept-2020/images/aditya.jpg">
+                        <div class="team-player-desc">
+                              <h4>Aditya Aggarwal</h4>
+                              <span>Tinkerer</span>
+                              <span class="team-player-location">Seattle, USA</span>
+                        </div>
+                  </article>
 
 
-												<!-- Begin Mailchimp Signup Form -->
-									<!-- <link href="//cdn-images.mailchimp.com/embedcode/classic-10_7.css" rel="stylesheet" type="text/css"> -->
-									<style type="text/css">
-										#mc_embed_signup{ margin:auto;width:300px; background:none; clear:left; font:14px freight-text-pro, serif; }
-										/* Add your own Mailchimp form style overrides in your site stylesheet or in this style block.
-										   We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
-									</style>
-									<div id="mc_embed_signup" class="email-signup">
-									<form action="https://jennyzhang.us12.list-manage.com/subscribe/post?u=c741ea090b78c61048be95723&amp;id=7fdfea5144" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-									    <div id="mc_embed_signup_scroll">
+                  <article class="team-player">
+                        <img class="team-player-photo" src="sept-2020/images/karla.jpg">
+                        <div class="team-player-desc">
+                              <h4>Karla Leung</h4>
+                              <span>Doodling</span>
+                              <span class="team-player-location">Los Angeles, USA</span>
+                        </div>
+                  </article>
 
-									<div class="mc-field-group">
-										<!-- <label for="mce-EMAIL">Email Address </label> -->
-										<input type="email" value="" placeholder="Your email address" name="EMAIL" class="required email" id="mce-EMAIL">
-									</div>
-									    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_c741ea090b78c61048be95723_7fdfea5144" tabindex="-1" value=""></div>
-									    <div class="clear"><input type="submit" value="Subscribe for updates." name="subscribe" id="mc-embedded-subscribe" class="submit"></div>
-									    <div id="mce-responses" class="clear">
-											<div class="response" id="mce-error-response" style="background:none;color:#000;display:none"></div>
-											<div class="response" id="mce-success-response" style="background:none;color:#000;display:none"></div>
-										</div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-										</div>
-									</form>
-									</div>
-									<script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script><script type='text/javascript'>(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';fnames[3]='ADDRESS';ftypes[3]='address';fnames[4]='PHONE';ftypes[4]='phone';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
-									<!--End mc_embed_signup -->
+                  <article class="team-player">
+                        <img class="team-player-photo" src="sept-2020/images/katelin.jpg">
+                        <div class="team-player-desc">
+                              <h4>Katelin Walsch</h4>
+                              <span>Having Fun</span>
+                              <span class="team-player-location">Houston, USA</span>
+                        </div>
+                  </article>
 
+            </div>
 
-			<span class="email">Our email is <a href="mailto:studio@plottwisters.org">studio@plottwisters.org</a>.</span>
+            <div class="wrap skinny-wrap">
+                  <h3>Thank you for crossing our Cookie Trail.</h3>
+                  <p>Plot Twisters is grateful for wisdom, resources, and enthusiasm from:</p>
+            </div>
 
-			<span class="copy">&#169; 2020 Plot Twisters LLC. All rights reserved.</span>
-		</div>
-	</div>
+            <div class="wrap credits">
+                  <ul class="credits-list">
+                         <li>Abigail Africa</li>
+                        <li>Adena Bauer</li>
+                        <li>Amanda Curtis</li>
+                        <li>Andrew Jiang</li>
+                        <li>Andrew Loh</li>
+                        <li>Austin Bauer</li>
+                        <li>Avni Barman</li>
+                        <li>Ben Stanfield</li>
+                        <li>Brian Le</li>
+                        <li>Brianna Doyle</li>
+                        <li>Calvin LeGassick</li>
+                        <li>Drake Rehfeld</li>
+                        <li>Erica Muhl</li>
+                        <li>Erik Rocha</li>
+                        <li>Hal Pan</li>
+                        <li>Irfan Faizullabhoy</li>
+                        <li>Jake Catt</li>
+                        <li>Jarquale Stewart-Jackson</li>
+                        <li>Jesse Chand</li>
+                        <li>Kelsi Yu</li>
+                        <li>Landon Brand</li>
+                        <li>Louis Harboe</li>
+                        <li>Margaret Spencer</li>
+                        <li>Martin Anquetil</li>
+                        <li>Matthew Manos</li>
+                        <li>Melisa Seah</li>
+                        <li>Miki Reynolds</li>
+                        <li>Mimi Tran Zambetti</li>
+                        <li>Monique Manaloto</li>
+                        <li>Navo Emmanuel</li>
+                        <li>Neel Bhoophalam</li>
+                        <li>Nguyen Huynh</li>
+                        <li>Nick Stares</li>
+                        <li>Pratima Manga</li>
+                        <li>Sagar Ramesh</li>
+                        <li>Samantha Rehr</li>
+                        <li>Sara Ma</li>
+                        <li>Stephen Chen</li>
+                        <li>Suraya Shivji</li>
+                        <li>Troy Harwood</li>
+                        <li>Yanling Wang</li>
+                  </ul>
+            </div>
 
-<script src="js/jenny.js"></script>
-<script src="js/audio.js"></script>
-<script src="js/tilt.js"></script>
-<script src="js/quotes.js"></script>
+      </section>
+<!-- end people.css -->
+
 </body>
-
 </html>

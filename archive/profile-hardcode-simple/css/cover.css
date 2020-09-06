@@ -1,0 +1,144 @@
+#cover {
+  background: #3e71da;
+  background-image: url('../img/shading.png'), url('../img/studentuniverse.png');
+  background-size: 300px auto, 280px auto;
+  background-attachment: fixed, scroll;
+  height: 400px;
+  text-align: center;
+  border-bottom: 2px solid #000;
+}
+
+h1, h2 {
+  display: inline-block;
+  padding: 8px 10px 5px;
+  color: #fff;
+  background: #335cb2;
+  border: 1px solid rgba(0,0,0,0.4);
+}
+
+#protagonistName { margin: 25px 0 15px; }
+#protagonistTitle { margin: 15px 0 25px; }
+
+#protagonistTitle .articles {
+  position: relative;
+  top: -0.2em;
+}
+
+#protagonistFrame {
+  position: relative;
+  margin: auto;
+  width: 85%;
+  max-width: 400px;
+  height: 225px;
+  background: #eae6da url('../img/bg.jpg') fixed repeat;
+	background-size: 800px auto;
+  border: 1px solid #000;
+}
+
+#protagonistBackground {
+  position: absolute;
+  top: 15px;
+  left: 14px;
+  width: calc(100% - 30px);
+  height: 193px;
+  background:  #e8c340;
+  background-image: url('../img/grid.png'), url('../img/bloomingflowers.gif');
+  background-size: 10px auto, auto 105%;
+  background-repeat: repeat, no-repeat;
+  background-position: center center, center calc(100% + 20px);
+  border: 1px solid #000;
+}
+
+.labels {
+  position: absolute;
+  width: 120px;
+  font: 500 1.05em/1em benton-sans-compressed, sans-serif;
+  z-index: 10;
+}
+
+.labels span {
+  display: inline-block;
+  margin: -1px 0 0 0;
+  padding: 5px 6px 4px;
+  background: #eae6da;
+  border: 1px solid #000;
+}
+
+  .labels span:first-child { margin: 0; }
+
+  .labels span.child { background: #e5d593; }
+
+  .labels.left {
+    top: 20px;
+    left: 0;
+    text-align: left;
+  }
+
+    .labels.left span {
+      border-left: none;
+    }
+
+  .labels.right {
+    bottom: 20px;
+    right: 0;
+    text-align: right;
+  }
+
+    .labels.right span {
+      border-right: none;
+    }
+
+#protagonist {
+  position: absolute;
+  bottom: 0px;
+  left: 14px;
+  width: calc(100% - 30px);
+  height: 210px;
+  background: url('../img/jenny.png') no-repeat calc(50% + 6px) bottom;
+  background-size: auto 100%;
+}
+
+@media screen
+		and (min-device-width: 768px)
+		and (min-width: 768px) {
+
+      #cover {
+        height: 550px;
+        background-size: 350px auto, 300px auto;
+      }
+
+      #protagonistName {
+        font-size: 2.6em;
+      }
+
+      #protagonistTitle {
+        font-size: 3.2em;
+      }
+
+      #protagonistFrame {
+        width: 65%;
+        max-width: 640px;
+        height: 335px;
+      }
+
+      #protagonistBackground {
+        top: 20px;
+        left: 19px;
+        width: calc(100% - 40px);
+        height: 293px;
+      }
+
+      .labels {
+        font-size: 1.25em;
+      }
+
+        .labels.left { top: 40px; }
+        .labels.right { bottom: 40px; }
+
+      #protagonist {
+        left: 19px;
+        width: calc(100% - 40px);
+        height: 305px;
+      }
+
+}

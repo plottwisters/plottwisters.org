@@ -1,0 +1,96 @@
+/*
+Hey! The fonts used on the Plot Twisters studio website are declared in this file.
+
+       Benton Sans Compressed Bold
+              'benton-sans-compressed-bold'
+              Used for: Logotype
+
+       Benton Sans Compressed Medium
+              'benton-sans-compressed-medium'
+              Used for: All caps subtitles
+
+       Benton Sans Condensed Regular
+              'benton-sans-condensed-regular'
+              Used for: Notable paragraphs
+
+       Benton Sans Condensed Medium
+              'benton-sans-condensed-medium'
+              Used for: Notable paragraphs (bold text)
+
+       Benton Sans Medium
+              'benton-sans-condensed-medium'
+              Used for: Titles for your run-of-the-mill paragraphs
+
+       ITC Franklin Gothic LT Book
+              'itc-franklin-gothic-lt-book'
+              Used for: Your run-of-the-mill paragraphs
+
+       Freight Text Light Italic
+              'freight-text-light-italic'
+              Used for: Special titles (when they're bigger)
+
+       Freight Text Book Italic
+              'freight-text-book-italic'
+              Used for: Special titles (when they appear smaller)
+
+--------------------------------------------------------------------------------------------------
+Decorative fonts:
+
+       Larish Neue
+              'larish-neue-semibold'
+
+       Larish Neue Italic
+              'larish-neue-semibold-italic'
+
+*/
+
+
+@font-face {
+       font-family: 'benton-sans-compressed-bold';
+       src: url('../fonts/benton-sans-compressed-bold.otf');
+}
+
+@font-face {
+       font-family: 'benton-sans-compressed-medium';
+       src: url('../fonts/benton-sans-compressed-medium.otf');
+}
+
+@font-face {
+       font-family: 'benton-sans-condensed-regular';
+       src: url('../fonts/benton-sans-condensed-regular.otf');
+}
+
+@font-face {
+       font-family: 'benton-sans-condensed-medium';
+       src: url('../fonts/benton-sans-condensed-medium.otf');
+}
+
+@font-face {
+       font-family: 'benton-sans-medium';
+       src: url('../fonts/benton-sans-medium.otf');
+}
+
+@font-face {
+       font-family: 'itc-franklin-gothic-lt-book';
+       src: url('../fonts/itc-franklin-gothic-lt-book.ttf');
+}
+
+@font-face {
+       font-family: 'freight-text-light-italic';
+       src: url('../fonts/freight-text-light-italic.otf');
+}
+
+@font-face {
+       font-family: 'freight-text-book-italic';
+       src: url('../fonts/freight-text-book-italic.otf');
+}
+
+@font-face {
+       font-family: 'larish-neue-semibold';
+       src: url('../fonts/larish-neue-semibold.otf');
+}
+
+@font-face {
+       font-family: 'larish-neue-semibold-italic';
+       src: url('../fonts/larish-neue-semibold-italic.otf');
+}

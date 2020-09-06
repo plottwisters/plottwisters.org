@@ -1,0 +1,38 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	font-family: freight-text-pro, serif;
+	background: #eae6da url('../img/bg.jpg') fixed repeat;
+	background-size: 800px auto;
+	overflow-x: hidden;
+}
+
+h1 {
+  font: bold 1.8em/1em benton-sans-compressed, sans-serif;
+  text-transform: uppercase;
+}
+
+.articles {
+  font: 300 italic 0.75em freight-text-pro, sans-serif;
+  text-transform: none;
+  // border: 1px solid red;
+}
+
+h2 {
+  font: 600 1.6em/1em benton-sans-compressed, sans-serif;
+  text-transform: uppercase;
+}
+
+h3 {
+  font: 600 1.6em/1em benton-sans-compressed, sans-serif;
+  text-transform: none;
+}
+
+h4 {
+  font: 300 italic 1.5em freight-text-pro, sans-serif;
+}

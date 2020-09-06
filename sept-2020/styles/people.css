@@ -1,0 +1,154 @@
+#people {
+      margin: 0;
+      padding: 20px 0 40px;
+      background: #FDFBF7;
+      border-top: 2px solid #000;
+}
+
+       .people-label {
+              background: #F0952E;
+       }
+
+              .people-title {
+                     font: normal 2em 'benton-sans-condensed-medium', sans-serif;
+                     letter-spacing: -0.02em;
+              }
+
+      .about-logo {
+            display: block;
+            margin: 5px auto 20px;
+            width: 80px;
+      }
+
+      .team {
+            display: block;
+            margin: 30px 0 40px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      }
+
+      .team-player {
+            padding: 15px 10px 15px 15px;
+            width: 100%;
+            background: #fff;
+            font-size: 0.9em;
+            border-bottom: 1px solid #ccc;
+      }
+
+            .team-player-photo {
+                  display: inline-block;
+                  margin: 0 15px 0 0;
+                  width: 80px;
+                  height: 80px;
+                  vertical-align: middle;
+            }
+
+            .team-player-desc {
+                  display: inline-block;
+                  margin: 0;
+                  padding: 0 0 5px;
+                  text-align: left;
+                  vertical-align: middle;
+            }
+
+                  span {
+                        display: block;
+                        margin-bottom: 4px;
+                  }
+
+                  .team-player-location { color: #888; }
+
+      .credits-list {
+            column-count: 2;
+            margin: 30px auto;
+            padding: 0 15px;
+            vertical-align: top;
+            font-size: 1em;
+      }
+
+            .credits-list li {
+                  margin: 0 0 7px;
+                  padding: 0;
+                  list-style-type: none;
+            }
+
+@media screen
+    and (min-width: 700px) {
+
+       #people {
+           margin: 0;
+           padding: 20px 20px 40px;
+       }
+
+              .people-title {
+                     font: normal 4.4em 'benton-sans-condensed-medium', sans-serif;
+                     letter-spacing: -0.02em;
+              }
+
+       .team {
+              display: block;
+              width: 670px;
+              margin: 20px auto 40px;
+              box-shadow: none;
+       }
+
+       .team-player {
+           display: inline-block;
+           width: 195px;
+           margin: 12px;
+           padding: 15px 10px;
+           font-size: 0.9em;
+           border-bottom: none;
+           box-shadow: 0px 1px 5px rgba(0,0,0,0.15);
+       }
+
+           .team-player-photo {
+                 width: 164px;
+                 height: 164px;
+                 margin: 2px 5px 5px;
+           }
+
+           .team-player-desc {
+                  display: block;
+                 margin: auto;
+                 padding: 5px 15px;
+                 text-align: center;
+                 /* border: 1px solid red; */
+           }
+
+                 span {
+                        font-size: 1em;
+                       margin-bottom: 7px;
+                 }
+
+                 .team-player-location {
+                        margin-bottom: 2px;
+                 }
+
+       .credits-list {
+              column-count: 3;
+              text-align: center;
+       }
+}
+
+@media screen
+      and (min-width: 1000px) {
+
+             /* .team {
+                    width: 893px;
+             } */
+
+             .credits-list {
+                   width: 900px;
+                   column-count: 4;
+                   text-align: center;
+             }
+}
+
+/* @media screen
+      and (min-width: 1200px) {
+
+             .team {
+                    width: 1117px;
+             }
+
+} */

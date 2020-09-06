@@ -1,0 +1,381 @@
+/* ---------- MODULES ---------- */
+
+		.modules {
+			margin: 5vw auto;
+			width: 96%;
+      text-align: center;
+		}
+
+			.modules h5 {
+				font-size: 8vw;
+				margin: 10px 0 20px;
+				width: 100%;
+			}
+
+		/* all */
+		.block {
+			position: relative;
+			border: 1px solid black;
+			height: 170px; /* will change */
+			margin: 0 2px 6px 0;
+			padding-top: 2px;
+		}
+
+		.gift-tagger, .hat-counter, .recipe-mixer, .cookie-trails, .plot-twister-profiles, .demo {
+			display: inline-block;
+			width: 46vw;
+		}
+
+		.plot-twister-profiles, .demo {
+			height: 265px;
+		}
+
+		.block h2 {
+			margin-left: 7px;
+			font-size: 1.05em;
+			line-height: 1.25em;
+			height: 28px;
+		}
+
+			.block:last-child { margin-right: 0; }
+
+			.block h3 {
+				max-width: 100px;
+				font-size: 0.85em;
+				font-weight: 500;
+			}
+
+				.plot-twister-profiles h3, .demo h3 {
+					max-width: 80%;
+				}
+
+		.extra-credit, .quotes {
+			clear: both;
+			width: 93.7vw;
+			height: auto !important;
+			margin: 0 auto 1.8vw;
+			text-align: left;
+		}
+
+			.extra-credit h2, .quotes h2 {
+				margin: 0;
+				padding: 8px 0 5px 10px;
+				font-size: 1.25em;
+				border-bottom: 1px solid black;
+			}
+
+		.quotes {
+			margin: 0 0 0 0.8vw;
+		}
+
+		/* ---------- MODULE ACTIONS ---------- */
+
+		.action-buttons {
+			position: absolute;
+			bottom: 0;
+			margin-top: 20px;
+			width: 100%;
+		}
+
+			.action-buttons .printable, .action-buttons .open, .printables-list {
+				display: block;
+				height: 40px;
+				line-height: 2.5em;
+				border-top: 1px solid black;
+				background: #faf3e6;
+				font-family: benton-sans-condensed, sans-serif;
+				font-weight: 500;
+				font-size: 0.95em;
+				text-align: left;
+				padding-left: 7px;
+				text-decoration: none;
+			}
+
+			.open, .action-buttons .open {
+				background: #f7f2e9 url('../img/open.png') no-repeat;
+				background-size: 22px auto;
+				background-position: right center;
+			}
+
+			.action-buttons .open:hover, .open:hover {
+				background: #bae17c url('../img/open.png') no-repeat;
+				background-size: 22px auto;
+				background-position: right center;
+			}
+
+      .action-buttons .printable:hover {
+        background: #ffd349;
+      }
+
+
+/* ---------- PRINTABLES LIST HOVER ---------- */
+.printables-list {
+  display: none;
+  position: absolute;
+	margin: 1px 0 0 0;
+  left: -1px;
+  width: 101%;
+	height: auto;
+  z-index: 100;
+  padding: 0;
+}
+
+.action-buttons .printables-tab .printable {
+  background: #e9e2d7 url('../img/printables-tab.png') no-repeat;
+  background-size: 14px auto;
+  background-position: right 8px center;
+}
+.action-buttons .printables-tab .printable:hover {
+  background: #dfd4c6 url('../img/printables-tab.png') no-repeat;
+  background-size: 14px auto;
+  background-position: right 8px center;
+}
+
+  .action-buttons .printables-tab .printables-list .printable {
+    margin: 0;
+    clear: both;
+    background: #e9e2d7;
+    border: 1px solid black;
+    border-top: none;
+  }
+
+  .action-buttons .printables-tab .printables-list .printable:hover {
+    margin: 0;
+    background: #f4da96;
+  }
+
+    .action-buttons .printables-tab .printables-list .download-all { background: #ffd349; }
+
+    .action-buttons .printables-tab .printables-list .download-all:hover { background: #efc335; }
+
+.printables-tab:hover .printables-list {
+  display: block;
+}
+
+/* ---------- plot twister specifically ---------- */
+
+@media screen
+			and (min-device-width: 365px)
+			and (min-width: 365px) {
+
+			.block h2 {
+				font-size: 1.25em;
+				height: 30px;
+			}
+
+			.block h3 {
+				font-size: 0.95em;
+			}
+
+			.extra-credit h2, .quotes h2 {
+				font-size: 1.25em;
+			}
+
+}
+
+@media screen
+			and (min-device-width: 410px)
+			and (min-width: 410px) {
+
+				.block h2 {
+					font-size: 1.35em;
+				}
+
+			.modules h5 {
+				font-size: 1.7em;
+			}
+
+}
+
+@media screen
+			and (min-device-width: 605px)
+			and (min-width: 605px) {
+
+        /* ---------- MODULES ---------- */
+
+        				.modules {
+        					margin: 8px 0;
+        					width: 100%;
+        				}
+
+								.modules h5 {
+									font-size: 2.1em;
+								}
+
+        				/* all */
+        				.block {
+        					border: 2px solid black;
+        					height: 200px;
+        					margin: 0 4px 10px 0;
+        				}
+
+									.plot-twister-profiles, .recipe-mixer {
+										margin-right: 0;
+									}
+
+        				/* threes */
+        				.gift-tagger, .hat-counter, .recipe-mixer, .cookie-trails, .plot-twister-profiles, .demo  {
+                  padding: 5px 0;
+        					width: 140px;
+        				}
+
+                  .block h2 {
+										margin: 7px 0 0;
+                    font-size: 1.5em;
+                    text-align: center;
+                  }
+
+        					.block h3 {
+                    margin: auto;
+										font-size: 0.9em;
+										max-width: 70%;
+                    text-align: center;
+                  }
+
+									.plot-twister-profiles, .demo {
+										width: 292px;
+										height: 260px;
+									}
+
+										.plot-twister-profiles h3, .demo h3 {
+											max-width: 100%;
+										}
+
+        				/* ones */
+        				.extra-credit, .quotes {
+        					width: 595px;
+        					margin: 0 0 10px !important;
+        				}
+
+								.extra-credit h2, .quotes h2 {
+									margin: 0;
+									text-align: left;
+									padding: 8px 0 5px 10px;
+								}
+
+        /* ---------- MODULE ACTIONS ---------- */
+
+							.action-buttons {
+								width: 133px;
+							}
+
+        					.action-buttons .open {
+        						display: inline-block;
+        						float: left;
+        						height: 40px;
+        						line-height: 2.1em;
+        						font-size: 1.2em;
+        					}
+
+        					.action-buttons .printable {
+        						width: 100%;
+										font-size: 1.2em;
+										line-height: 2.2em;
+        						border-right: 1px solid black;
+        					}
+
+        					.action-buttons .open {
+        						width: 100%;
+        						background: #f4f1eb url('../img/open.png') no-repeat;
+        						background-size: 22px auto;
+        						background-position: right center;
+        					}
+
+									.demo .action-buttons, .plot-twister-profiles .action-buttons {
+										width: 285px;
+									}
+
+/* ---------- HOMEWORK TWISTER PRINTABLE HOVER ---------- */
+
+  .printables-list {
+    top: 40px;
+    width: 100%;
+  }
+
+  .printables-list .printable {
+    display: block !important;
+    width: 100%;
+		font-weight: 400;
+  }
+
+}
+
+/* ---------- BACKGROUND IMAGES ---------- */
+
+.demo {
+  background: url('../img/modules-demo.png') no-repeat;
+  background-size: 140px auto;
+  background-position: left 45% top 55%;
+}
+
+.plot-twister-profiles {
+  background: url('../img/modules-profiles.png') no-repeat;
+  background-size: 160px auto;
+  background-position: left 55% top 55%;
+}
+
+.gift-tagger {
+  background: url('../img/modules-gifts.png') no-repeat;
+  background-size: 48% auto;
+  background-position: 90% 56%;
+}
+
+.hat-counter {
+  background: url('../img/modules-hats.png') no-repeat;
+  background-size: 43% auto;
+  background-position: 93% 59%;
+}
+
+.recipe-mixer {
+  background: url('../img/modules-recipes.png') no-repeat;
+  background-size: 34% auto;
+  background-position: 96% 51%;
+}
+
+.cookie-trails {
+  background: url('../img/modules-cookie.png') no-repeat;
+  background-size: 40% auto;
+  background-position: 91% 55%;
+}
+
+@media screen
+			and (min-device-width: 605px)
+			and (min-width: 605px) {
+
+
+				.demo {
+					background: url('../img/modules-demo.png') no-repeat;
+					background-size: 170px auto;
+					background-position: left 45% bottom 70px;
+				}
+
+				.plot-twister-profiles {
+					background: url('../img/modules-profiles.png') no-repeat;
+					background-size: 180px auto;
+					background-position: left 50% bottom 70px;
+				}
+
+        .gift-tagger {
+          background: url('../img/modules-gifts.png') no-repeat;
+          background-size: 70px auto;
+          background-position: left 42% bottom 49px;
+        }
+
+        .hat-counter {
+          background: url('../img/modules-hats.png') no-repeat;
+          background-size: 62px auto;
+          background-position: left 48% bottom 52px;
+        }
+
+        .recipe-mixer {
+          background: url('../img/modules-recipes.png') no-repeat;
+          background-size: 42px auto;
+          background-position: left 54% bottom 50px;
+        }
+
+        .cookie-trails {
+          background: url('../img/modules-cookie.png') no-repeat;
+          background-size: 54px auto;
+          background-position: left 44% bottom 49px;
+        }
+}

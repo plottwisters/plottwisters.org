@@ -1,0 +1,6 @@
+games/node_modules
+games/.cache
+games/dist/*.map
+games/src/.cache
+*.DS_Store
+.directory

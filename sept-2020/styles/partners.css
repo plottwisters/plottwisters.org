@@ -1,0 +1,116 @@
+#partners {
+       margin: 0;
+       padding: 20px 0 40px;
+       background: url('../images/seamless.png');
+       background-size: 800px auto;
+       border-top: 2px solid #000;
+}
+
+       .partners-label {
+              background: #F9E4B0;
+       }
+
+              .partners-title {
+                     font: normal 1.7em 'larish-neue-semibold-italic', serif;
+                     letter-spacing: 0.02em;
+              }
+
+.projects {
+      display: block;
+      margin: 40px 0;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.project-partner {
+      padding: 15px;
+      width: 100%;
+      background: #F6F2E7;
+      border-bottom: 1px solid #E5D9BB;
+}
+
+       .project-partner-title {
+              display: inline-block;
+              margin: 15px 0;
+              padding: 0 0 10px;
+              border-bottom: 2px solid #E5D9BB;
+       }
+
+       .project-partner-logo {
+              display: block;
+              margin: 15px auto 25px;
+              max-width: 180px;
+              box-shadow: 0 0 6px rgba(0,0,0,0.07);
+              border-radius: 8px;
+       }
+
+
+@media screen
+    and (min-width: 700px) {
+
+       #partners {
+           margin: 0;
+           padding: 20px 20px 40px;
+           background-size: 1200px auto;
+       }
+
+              .partners-title {
+                     font: normal 3em 'larish-neue-semibold-italic', serif;
+                     letter-spacing: 0.02em;
+              }
+
+       .projects {
+              margin: 20px auto;
+              width: 690px;
+              box-shadow: none;
+              /* border: 1px solid red; */
+       }
+
+              .project-partner {
+                  display: inline-block;
+                  margin: 0 0 20px;
+                  padding: 10px 20px 25px;
+                  box-shadow: 0px 1px 5px rgba(0,0,0,0.15);
+              }
+
+                     .project-partner-title {
+                            display: block;
+                            margin: 15px 0 25px;
+                     }
+
+                     .project-partner-logo {
+                            vertical-align: top;
+                            display: inline-block;
+                            margin: 0;
+                            max-width: 130px;
+                     }
+
+                     .project-partner-desc {
+                            vertical-align: top;
+                            display: inline-block;
+                            margin: 0 0 15px 20px;
+                            width: 490px;
+
+                     }
+}
+
+
+@media screen
+    and (min-width: 1000px) {
+
+           .projects {
+                  width: 800px;
+           }
+
+                     .project-partner-logo {
+                            margin: 0 0 0 15px;
+                            max-width: 160px;
+                     }
+
+                     .project-partner-desc {
+                            margin: 0 0 15px 30px;
+                            width: 540px;
+                            font-size: 1.05em;
+                            /* border: 1px solid red; */
+                     }
+
+}
