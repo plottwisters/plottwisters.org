@@ -15,12 +15,34 @@
        text-align: left;
 }
 
+.public-thinktank-link {
+       display: block;
+       margin: 30px auto 10px;
+       padding: 20px 20px 15px;
+       width: 90%;
+       background: #FDFBF7;
+       font: 400 1.4em/1.5em 'benton-sans-condensed-medium', sans-serif;
+       letter-spacing: 0.015em;
+       text-align: center;
+       color: #000;
+       -webkit-appearance: none;
+       -moz-appearance: none;
+       border: none;
+       border-radius: 50px;
+       box-shadow: 0 2px 6px rgba(0,0,0,0.07);
+}
+
 @media screen
     and (min-width: 700px) {
 
            #hello {
                   margin: 60px 0 0 0;
                   border-top: 2px solid #000;
+          }
+
+          .public-thinktank-link {
+                 margin: 30px auto 40px;
+                 border-radius: 100px;
           }
 
 }
