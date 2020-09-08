@@ -144,11 +144,11 @@
              }
 }
 
-/* @media screen
-      and (min-width: 1200px) {
+@media screen
+      and (min-width: 1480px) {
 
              .team {
                     width: 1117px;
              }
 
-} */
+}

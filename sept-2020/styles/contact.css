@@ -23,6 +23,7 @@
               width: 100%;
               background: #FDFBF7;
               font: normal 1.1em 'itc-franklin-gothic-lt-book', sans-serif;
+              border-radius: 0;
               border: 2px solid #000;
        }
 
