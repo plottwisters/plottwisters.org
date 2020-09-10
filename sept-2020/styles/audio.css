@@ -2,96 +2,96 @@
 
 .audio {
   display: block;
-  position: absolute;
-  left: 10px;
-  top: -12px;
+  position: relative;
+  margin: 15px auto 5px;
+  width: 70px;
 }
 
 #playAudio.inactive, #playAudio.active {
   -webkit-appearance: none !important;
   display: block;
-  width: 13vw;
-  height: 13vw;
-  background: url('../images/speaker.png') no-repeat;
-  background-size: 10vw auto;
+  width: 70px;
+  height: 60px;
+  background: #ffcc32 url('../images/speaker.png') no-repeat;
+  background-size: 38px auto;
   background-position: center center;
   border: none;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  border-radius: 50px;
 }
 
 #playAudio.active {
-  display: block;
   background: #F9E4B0 url('../images/speaker-on.gif') no-repeat;
-  background-size: 10vw auto;
+  background-size: 38px auto;
   background-position: center center;
-  border: 1px solid #000;
-  box-shadow: 0px 0px 2px rgba(0,0,0,0.15);
 }
 
-#playAudio span, #timeline, #playhead { display: none; }
+#playAudio span, #timeline, #playhead {
+       display: none;
+}
 
 @media screen
-    and (min-device-width: 420px)
-    and (min-width: 420px) {
+    and (min-device-width: 700px)
+    and (min-width: 700px) {
 
-  .audio {
-    display: block;
-    position: relative;
-    margin: 15px auto 15px;
-    width: 93%;
-    top: auto;
-    right: auto;
-    left: auto;
-  }
-
-  #playAudio.inactive, #playAudio.active {
-    -webkit-appearance: none !important;
-    display: block;
-    width: 100%;
-    height: 58px;
-    padding: 6px 0 4px 9px;
-    background: url('../images/speaker.png') no-repeat;
-    background-size: 38px auto;
-    background-position: right 8px center;
-    font-family: ../images-sans, sans-serif;
-    font-size: 1em;
-    text-align: left;
-    border: 1px solid #000;
-  }
-
-    #playAudio span {
+    .audio {
+      margin: 0;
       display: block;
       position: absolute;
-      top: 8px;
-      left: 12px;
-      font-size: 0.9em;
+      top: 4px;
+      right: 0;
+      width: auto;
     }
 
-  #playAudio.active {
+    #playAudio.inactive, #playAudio.active {
+    -webkit-appearance: none !important;
     display: block;
-    background: #F9E4B0 url('../images/speaker-on.gif') no-repeat;
-    background-size: 38px auto;
-    background-position: right 8px center;
-  }
+      width: 220px;
+      height: 60px;
+      padding: 6px 0 4px 9px;
+      background: url('../images/speaker.png') no-repeat;
+      background-size: 38px auto;
+      background-position: left 8px center;
+      font-family: 'itc-franklin-gothic-lt-book', sans-serif;
+      border: 2px solid #000;
+      box-shadow: none;
+      border-radius: 8px;
+    }
+
+    #playAudio.active {
+      background: #F9E4B0 url('../images/speaker-on.gif') no-repeat;
+      background-size: 38px auto;
+      background-position: left 8px center;
+    }
+
+    #playAudio span {
+           display: block;
+           position: absolute;
+           top: 11px;
+           left: 60px;
+           font-size: 1.1em;
+           letter-spacing: 0.005em;
+    }
 
   #timeline {
-    display: block;
-    position: absolute;
-    top: 18px;
-    left: 12px;
-    width: calc(100% - 75px);
-    height: 2px;
-    background: #222325;
-    margin-top: 20px;
-    float: left;
-    border-radius: 15px;
+       display: block;
+       position: absolute;
+       top: 20px;
+       left: 60px;
+       width: 140px;
+       height: 2px;
+       background: #222325;
+       margin-top: 20px;
+       float: left;
+       border-radius: 15px;
   }
 
   #playhead {
     display: block;
-    width: 12px;
-    height: 12px;
+    width: 16px;
+    height: 16px;
     border-radius: 20px;
-    margin-top: -6px;
+    margin-top: -8px;
     background: #fff;
     border: 1px solid #000;
   }
@@ -99,78 +99,44 @@
 }
 
 @media screen
-    and (min-device-width: 605px)
-    and (min-width: 605px) {
+      and (min-width: 1000px) {
 
-    .audio {
-      margin: 0;
-      display: block;
-      position: absolute;
-      top: 159px;
-      right: 0;
-      width: auto;
-    }
+             #playAudio.inactive, #playAudio.active {
+               width: 280px;
+               height: 62px;
+               background: url('../images/speaker.png') no-repeat;
+               background-size: 39px auto;
+               background-position: left 8px center;
+               font-family: 'itc-franklin-gothic-lt-book', sans-serif;
+               border: 2px solid #000;
+               box-shadow: none;
+               border-radius: 8px;
+             }
 
-    #playAudio.inactive, #playAudio.active {
-      -webkit-appearance: none !important;
-      display: block;
-      width: 210px;
-      height: 58px;
-      padding: 6px 0 4px 9px;
-      background: url('../images/speaker.png') no-repeat;
-      background-size: 38px auto;
-      background-position: right 8px center;
-      font-family: benton-sans, sans-serif;
-      font-size: 1em;
-      text-align: left;
-      border: 2px solid #000;
-    }
+             #playAudio.active {
+               background: #F9E4B0 url('../images/speaker-on.gif') no-repeat;
+               background-size: 39px auto;
+               background-position: left 8px center;
+             }
 
-      #playAudio span {
-        display: block;
-        position: absolute;
-        top: 8px;
-        left: 10px;
-        width: 80%;
-        font-size: 1em;
-      }
+             #playAudio span {
+                    top: 11px;
+                    left: 64px;
+                    font-size: 1.25em;
+                    letter-spacing: 0.01em;
+             }
 
-    #playAudio.active {
-      display: block;
-      background: #F9E4B0 url('../images/speaker-on.gif') no-repeat;
-      background-size: 38px auto;
-      background-position: right 8px center;
-    }
-
-  #timeline {
-    position: absolute;
-    top: 20px;
-    left: 10px;
-  	width: 137px;
-  	height: 3px;
-  	background: #222325;
-  	margin-top: 20px;
-  	float: left;
-  	border-radius: 15px;
-  }
-
-  #playhead {
-  	width: 12px;
-  	height: 12px;
-  	border-radius: 20px;
-  	margin-top: -6px;
-  	background: #fff;
-    border: 1px solid #000;
-  }
-
-}
-
-@media screen
-    and (min-device-width: 860px)
-    and (min-width: 860px) {
-
-    .audio {
-      top: 0px;
-    }
+             #timeline {
+                  display: block;
+                  position: absolute;
+                  top: 24px;
+                  left: 64px;
+                  width: 200px;
+                  height: 2px;
+                  background: #222325;
+                  margin-top: 20px;
+                  float: left;
+                  border-radius: 15px;
+             }
 
 }

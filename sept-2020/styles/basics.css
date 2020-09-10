@@ -49,6 +49,11 @@ h4 {
       font: 500 1.2em/1em 'benton-sans-medium', sans-serif;
 }
 
+button:focus {
+       border: none;
+       outline: none;
+}
+
 .wrap {
       width: 90vw;
       margin: 20px auto;
@@ -79,6 +84,31 @@ header.section {
        }
 
 
+.social {
+       display: inline-block;
+       /* border: 1px solid red; */
+}
+
+       .social a {
+              display: inline-block;
+              margin: 0 10px 0 0;
+              height: 24px;
+              width: auto;
+              opacity: 0.8;
+              transition: opacity .4s ease-in-out;
+              -moz-transition: opacity .4s ease-in-out;
+              -webkit-transition: opacity .4s ease-in-out;
+       }
+
+              .social a:hover {
+                     opacity: 1;
+              }
+
+              .social a img { height: 100%; }
+
+       .social a:last-child {
+              margin: 0;
+       }
 
 @media screen
       and (min-width: 700px) {

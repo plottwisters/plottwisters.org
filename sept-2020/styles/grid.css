@@ -1,4 +1,5 @@
 header {
+       position: relative;
        background: #F8C73E url('../images/seamless.png');
        background-size: 800px auto;
 }
@@ -30,6 +31,10 @@ header {
       padding: 0 10px;
       text-align: center;
       font: normal 5vw 'benton-sans-condensed-regular', sans-serif;
+}
+
+header .social {
+       display: none;
 }
 
 main {
@@ -294,23 +299,23 @@ main .block {
              }
 
              header {
-                    height: 95px;
-                    margin: 15px 0;
+                    height: 100px;
+                    margin: 15px 0 25px;
              }
 
                      header.section { height: auto; }
 
              .logotype {
-                    height: 90px;
+                    height: 95px;
                     margin-left: -7px;
              }
 
               .logo {
-                    width: 420px;
-                    height: 90px;
+                    width: 440px;
+                    height: 100px;
                     margin: 0;
-                    padding: 0px 0 0px 97px;
-                    font: normal 3.4em/1.25em 'benton-sans-compressed-bold', sans-serif;
+                    padding: 0px 0 0px 105px;
+                    font: normal 3.65em/1.25em 'benton-sans-compressed-bold', sans-serif;
                     text-align: left;
                     background: url('../images/logo.png') no-repeat;
                     background-position: left -3px center;
@@ -325,12 +330,40 @@ main .block {
               .tagline {
                     display: block;
                     position: absolute;
-                    left: 88px;
-                    bottom: 0px;
+                    left: 97px;
+                    bottom: -5px;
                     width: auto;
                     text-align: left;
-                    font: normal 1.35em/1.2em 'benton-sans-condensed-regular', sans-serif;
+                    font: normal 1.5em/1.2em 'benton-sans-condensed-regular', sans-serif;
                     /* border: 1px solid red; */
+              }
+
+       header .social {
+              display: block;
+              position: absolute;
+              right: 0;
+              top: 79px;
+       }
+
+              header .social a {
+                     display: inline-block;
+                     margin: 0 10px 0 0;
+                     height: 24px;
+                     width: auto;
+                     opacity: 0.8;
+                     transition: opacity .4s ease-in-out;
+                     -moz-transition: opacity .4s ease-in-out;
+                     -webkit-transition: opacity .4s ease-in-out;
+              }
+
+                     header .social a:hover {
+                            opacity: 1;
+                     }
+
+                     header .social a img { height: 100%; }
+
+              header .social a:last-child {
+                     margin: 0;
               }
 
        main {

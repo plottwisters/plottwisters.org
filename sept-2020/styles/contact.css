@@ -44,10 +44,42 @@
               box-shadow: 0 2px 6px rgba(0,0,0,0.2);
        }
 
+#contact .social {
+       display: block;
+       margin: 70px 0 15px;
+       text-align: center;
+}
+
+#contact .social a {
+       display: inline-block;
+       margin: 0 18px 0 0;
+       height: 28px;
+       width: auto;
+       opacity: 0.3;
+       transition: opacity .4s ease-in-out;
+       -moz-transition: opacity .4s ease-in-out;
+       -webkit-transition: opacity .4s ease-in-out;
+}
+
+       #contact .social a:hover {
+              opacity: 1;
+       }
+
+       #contact .social a img { height: 100%; }
+
+#contact .social a:last-child {
+       margin: 0;
+}
+
+.music-credit {
+       text-align: center;
+       opacity: 0.5;
+}
+
 @media screen
       and (min-width: 700px) {
 
              #contact {
-                    padding: 40px 0 60px;
+                    padding: 40px 0 50px;
 
 }
