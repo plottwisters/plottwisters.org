@@ -133,9 +133,9 @@
 @media screen
       and (min-width: 1000px) {
 
-             /* .team {
+             .team {
                     width: 893px;
-             } */
+             }
 
              .credits-list {
                    width: 900px;

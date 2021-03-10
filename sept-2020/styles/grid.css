@@ -290,32 +290,32 @@ main .block {
 }
 
 @media screen
-      and (min-width: 1000px) {
+      and (min-width: 1200px) {
 
              .grid {
-                   max-width: 1480px;
+                     width: 1110px;
                    margin: 30px auto 20px;
                    /* border: 1px solid red; */
              }
 
              header {
-                    height: 100px;
+                    height: 80px;
                     margin: 15px 0 25px;
              }
 
                      header.section { height: auto; }
 
              .logotype {
-                    height: 95px;
+                    height: 75px;
                     margin-left: -7px;
              }
 
               .logo {
                     width: 440px;
-                    height: 100px;
+                    height: 80px;
                     margin: 0;
-                    padding: 0px 0 0px 105px;
-                    font: normal 3.65em/1.25em 'benton-sans-compressed-bold', sans-serif;
+                    padding: 0px 0 0px 85px;
+                    font: normal 3.3em/1.25em 'benton-sans-compressed-bold', sans-serif;
                     text-align: left;
                     background: url('../images/logo.png') no-repeat;
                     background-position: left -3px center;
@@ -330,11 +330,11 @@ main .block {
               .tagline {
                     display: block;
                     position: absolute;
-                    left: 97px;
-                    bottom: -5px;
+                    left: 77px;
+                    bottom: -10px;
                     width: auto;
                     text-align: left;
-                    font: normal 1.5em/1.2em 'benton-sans-condensed-regular', sans-serif;
+                    font: normal 1.3em/1.2em 'benton-sans-condensed-regular', sans-serif;
                     /* border: 1px solid red; */
               }
 
@@ -342,13 +342,13 @@ main .block {
               display: block;
               position: absolute;
               right: 0;
-              top: 79px;
+              top: 66px;
        }
 
               header .social a {
                      display: inline-block;
-                     margin: 0 10px 0 0;
-                     height: 24px;
+                     margin: 0 7px 0 0;
+                     height: 18px;
                      width: auto;
                      opacity: 0.75;
                      transition: opacity .4s ease-in-out;
@@ -372,22 +372,35 @@ main .block {
        }
 
        main .block {
-             max-height: 267px;
+             height: 200px;
        }
 
        .block.top {
               height: 70px;
        }
 
+       .hello-block-title { font-size: 2.8em; }
+
+       .thinktank-block-title { font-size: 3em; }
+
+       .projectpartners-block-title { font-size: 3.2em; }
+
+       .people-block-title { font-size: 4em; }
+
+       .contact-block-title {
+              font-size: 2em;
+              width: 82%;
+       }
+
        h3.greetings {
-             font: normal 1.5em/0.7em 'benton-sans-condensed-regular', sans-serif;
+             font: normal 1.4em/0.7em 'benton-sans-condensed-regular', sans-serif;
        }
 
        .thinktank-external {
               width: 24px;
        }
 }
-@media screen
+/* @media screen
       and (min-width: 1480px) {
 
        .hello-block-title { font-size: 3.5em; }
@@ -414,4 +427,4 @@ main .block {
               width: 82%;
        }
 
-}
+} */

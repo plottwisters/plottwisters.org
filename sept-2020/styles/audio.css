@@ -103,10 +103,10 @@
 
              #playAudio.inactive, #playAudio.active {
                width: 280px;
-               height: 62px;
+               height: 52px;
                background: url('../images/speaker.png') no-repeat;
-               background-size: 39px auto;
-               background-position: left 8px center;
+               background-size: 34px auto;
+               background-position: left 10px center;
                font-family: 'itc-franklin-gothic-lt-book', sans-serif;
                border: 2px solid #000;
                box-shadow: none;
@@ -120,18 +120,18 @@
              }
 
              #playAudio span {
-                    top: 11px;
-                    left: 64px;
-                    font-size: 1.25em;
+                    top: 9px;
+                    left: 62px;
+                    font-size: 1.1em;
                     letter-spacing: 0.01em;
              }
 
              #timeline {
                   display: block;
                   position: absolute;
-                  top: 24px;
-                  left: 64px;
-                  width: 200px;
+                  top: 17px;
+                  left: 62px;
+                  width: 203px;
                   height: 2px;
                   background: #222325;
                   margin-top: 20px;
