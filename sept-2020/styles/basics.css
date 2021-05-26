@@ -41,6 +41,7 @@ img { max-width: 100%; }
               margin: 12px 0;
               padding: 0 0 0 5px;
               font: 600 1.15em/1.3em 'itc-franklin-gothic-lt-book', sans-serif;
+              letter-spacing: 0.015em;
        }
 
 h2 {
