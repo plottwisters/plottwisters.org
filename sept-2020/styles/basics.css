@@ -31,6 +31,18 @@ p {
 
 img { max-width: 100%; }
 
+.skinny-wrap ul {
+       margin: 20px 5px 20px 30px;
+       padding: 0 20px 0 0;
+       text-align: left;
+}
+
+       .skinny-wrap ul li {
+              margin: 12px 0;
+              padding: 0 0 0 5px;
+              font: 600 1.15em/1.3em 'itc-franklin-gothic-lt-book', sans-serif;
+       }
+
 h2 {
       margin: 0.5em 0;
       font: 300 italic 1.7em 'freight-text-light-italic', serif;
@@ -124,7 +136,7 @@ header.section {
       }
 
        .skinny-wrap {
-             width: 560px;
+             width: 680px;
        }
 
        header {
