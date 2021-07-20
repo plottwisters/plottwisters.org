@@ -229,6 +229,10 @@ main .block {
                      letter-spacing: 0.05em;
               }
 
+              h3.greetings a {
+                     text-decoration: underline;
+              }
+
        .hello-block-title {
               margin: 0;
               position: absolute;
