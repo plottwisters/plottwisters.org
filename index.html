@@ -1,401 +1,468 @@
 <html>
 <head>
-      <title>Jenny Liu Zhang · Web Development, UX/UI Design, Graphic Design</title>
+       <script async src="https://www.googletagmanager.com/gtag/js?id=UA-177347122-1"></script>
+       <script>
+         window.dataLayer = window.dataLayer || [];
+         function gtag(){dataLayer.push(arguments);}
+         gtag('js', new Date());
 
-      <link rel='shortcut icon' type='image/x-icon' href=''>
+         gtag('config', 'UA-177347122-1');
+       </script>
+
+      <title>Plot Twisters · Reimagining learning, work, and play</title>
+
+      <link rel='shortcut icon' type='image/x-icon' href='favicon.png'>
       <meta name="viewport" content="width=device-width, initial-scale=1">
 
-      <meta property="og:title" content="Jenny Liu Zhang · Web Development, UX/UI Design, Graphic Design">
-      <meta property="og:description" content="">
-      <meta property="og:image" content="">
-      <meta property="og:url" content="">
+      <meta property="og:title" content="Plot Twisters · Reimagining learning, work, and play">
+      <meta property="og:description" content="Plot Twisters is an online community of researchers, designers, and technologists creating opportunities for self-reflection, especially for young people. We are growing a movement for self-motivated education and work.">
+      <meta property="og:image" content="https://www.plottwisters.org/thumbnail.gif">
+      <meta property="og:url" content="https://www.plottwisters.org/">
       <meta name="og:type" content="website"/>
 
-      <meta name="twitter:title" content="Jenny Liu Zhang · Web Development, UX/UI Design, Graphic Design">
-      <meta name="twitter:description" content="">
-      <meta name="twitter:image" content="">
+      <meta name="twitter:title" content="Plot Twisters · Reimagining learning, work, and play">
+      <meta name="twitter:description" content="Plot Twisters is an online community of researchers, designers, and technologists creating opportunities for self-reflection, especially for young people. We are growing a movement for self-motivated education and work.">
+      <meta name="twitter:image" content="https://www.plottwisters.org/thumbnail.gif">
       <meta name="twitter:card" content="summary_large_image">
 
-      <link rel="stylesheet" href="styles/basics.css">
-      <link rel="stylesheet" href="styles/fonts.css">
+      <link rel="stylesheet" href="sept-2020/styles/fonts.css">
+      <link rel="stylesheet" href="sept-2020/styles/basics.css">
+      <link rel="stylesheet" href="sept-2020/styles/audio.css">
 
-      <link rel="stylesheet" href="styles/header.css">
-      <link rel="stylesheet" href="styles/introduction.css">
-      <link rel="stylesheet" href="styles/skills.css">
-      <link rel="stylesheet" href="styles/work.css">
-      <link rel="stylesheet" href="styles/testimonials.css">
-      <link rel="stylesheet" href="styles/costcalculator.css">
+      <link rel="stylesheet" href="sept-2020/styles/grid.css">
+      <link rel="stylesheet" href="sept-2020/styles/hello.css">
+      <link rel="stylesheet" href="sept-2020/styles/partners.css">
+      <link rel="stylesheet" href="sept-2020/styles/people.css">
+      <link rel="stylesheet" href="sept-2020/styles/contact.css">
 
       <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="  crossorigin="anonymous"></script>
 
+      <script>
+      $(document).ready(function() {
+        $("a").on('click', function(event) {
+
+          if (this.hash !== "") {
+            event.preventDefault();
+            var hash = this.hash;
+            $('html, body').animate({
+              scrollTop: $(hash).offset().top
+            }, 800, function(){
+              window.location.hash = hash;
+            });
+          }
+        });
+
+      });
+       </script>
 </head>
 
 <body>
-      <section class="header">
-            <div class="header-group-centered">
-                  <h1 class="jenny-liu-zhang">Jenny Liu Zhang</h1>
-                  <div class="nav-header">
-                        <a class="nav-link" href="#introduction">Intro</a>
-                        <a class="nav-link" href="#skills">Skills</a class="nav-link">
-                        <a class="nav-link" href="#work">Select Work</a class="nav-link">
-                        <a class="nav-link" href="#testimonials">Testimonials</a class="nav-link">
-                        <a class="nav-link" href="#costcalculator">Cost Calculator</a class="nav-link">
+
+<!-- start grid.css -->
+      <section class="grid">
+            <header>
+                   <div class="logotype">
+                         <a class="logo" href="/">Plot Twisters</a>
+                         <div class="tagline">Reimagining learning, work, and play.</div>
                   </div>
 
-                  <div class="header-group">
-                        <div class="skills-notebook">
-                              <a href="#skills">
-                              <span class="skills-notebook___mono-label">Skills I'm Most Hired For:</span>
-                              <div class="skills-notebook___skills">
-                                    <span class="skills-notebook___skill webdev">Web Development</span>
-                                    <span class="skills-notebook___skill productstrat">Product Strategy</span>
-                                    <span class="skills-notebook___skill uxui">UX/UI Design</span>
-                                    <span class="skills-notebook___skill graphicdesign">Graphic Design</span>
-                                    <span class="skills-notebook___skill photomanip">Photo Manipulation</span>
-                                    <span class="skills-notebook___skill illustration">Illustration</span>
-                              </div>
-                              </a>
-                        </div>
+                  <audio id="audio" controls="controls">
+                        <source src="sept-2020/scrollingmusic.mp3" type="audio/mpeg" />
+                      </audio>
 
-                        <div class="updates">
-                              <div class="freelance-stickynote">
-                                    <span class="updates___mono-label">Freelance Status:</span>
-                                    <span class="updates___normal-label">Accepting inquiries for projects to start in 2022</span>
-                              </div>
+                      <div class="audio">
+                            <button id="playAudio" class="inactive">
+                                  <span>Mood music, anyone?</span>
+                            </button>
+                            <div id="timeline">
+                                  <div id="playhead"></div>
+                            </div>
+                      </div>
 
-                              <div class="dailyfocus-cloud">
-                                    <span class="updates___mono-label">Daily Focus:</span>
-                                    <span class="updates___normal-label">Creating <a href="http://www.plottwisters.org/" target="_blank">Plot Twisters</a> and <a href="http://www.jenny.world/" target="_blank">microblogging</a></span>
-                              </div>
+                      <div class="social">
+                            <a href="https://twitter.com/plottwistersorg" target="_blank">
+                                   <img src="sept-2020/images/twitter.png">
+                            </a>
+                            <a href="http://instagram.com/plottwistersorg" target="_blank">
+                                   <img src="sept-2020/images/insta.png">
+                            </a>
+                            <a href="https://www.linkedin.com/company/plottwisters" target="_blank">
+                                   <img src="sept-2020/images/linkedin.png">
+                            </a>
+                            <a href="https://github.com/plottwisters" target="_blank">
+                                   <img src="sept-2020/images/github.png">
+                            </a>
+                     </div>
 
-                              <div class="setting-postcard">
-                                    <span class="updates___mono-label">Setting:</span>
-                                    <span class="updates___normal-label">Barcelona, Spain<br>10:44pm CEST</span>
-                              </div>
-                        </div>
+            </header>
 
+            <main>
+                   <div class="block top">
+                          <h3 class="greetings">
+                                 <span class="greetings-date">Summer 2021:</span>
+                                 We're researching (<a href="https://www.notion.so/plottwisters/Plot-Twisters-Think-Tank-6a55f88cdc3b40fc87b0e3f2ce88eb14" target="_blank">see Think Tank</a>) and codifying our values.
+                          </h3>
                   </div>
-            </div>
-      </section>
 
-      <section id="introduction" class="introduction">
-            <div class="wrap">
-                  <h2 class="introduction___serif-label">Welcome!</h2>
-                  <div class="jennyphoto"></div>
-                  <p class="introduction___paragraph">
-                        My name is Jenny, and I'm a digital creator. I'm a strong visual thinker and my work style is meticulous, thoughtful, and imaginative. I only commit to projects when I am certain I will add value.
-                  </p>
-                  <p class="introduction___paragraph">
-                        These days I spend most of my time creating <a href="http://www.plottwisters.org/" target="_blank">Plot Twisters</a>, an initiative to reimagine how young people learn, work, and play. I enjoy joining teams as a freelancer when I have time on top of that. If you'd like to collaborate, please reach out using my <a href="#costcalculator">Cost Calculator</a> or <a href="#">send me an email</a>.
-                  </p>
+                  <div class="block wide bg-book">
+                  </div>
+
+                  <a class="block bg-robin" href="#hello">
+                         <h1 class="hello-block-title">Hello &amp; Welcome!</h1>
+                  </a>
+
+                  <div class="block">
+                  </div>
+
+                  <a class="block bg-cream thinktank-hover" href="https://www.notion.so/plottwisters/Plot-Twisters-Think-Tank-6a55f88cdc3b40fc87b0e3f2ce88eb14" target="_blank">
+                         <h1 class="thinktank-block-title">Think Tank <img src="sept-2020/images/link-out.png" class="thinktank-external"></h1>
+                  </a>
+
+                  <a class="block bg-yellow" href="#partners">
+                     <h1 class="projectpartners-block-title">Project Partners</h1>
+                  </a>
+
+                  <div class="block wide bg-fields">
+                  </div>
+
+                  <div class="block bg-earth" style="border-radius: 0 0 0 6px;">
+                  </div>
+
+                  <div class="block">
+                  </div>
+
+                  <a class="block bg-orange" href="#people">
+                         <h1 class="people-block-title">People!</h1>
+                  </a>
+
+                  <a class="block bg-purple" href="#contact" style="border-radius: 0 0 6px 0;">
+                         <h1 class="contact-block-title">Get in touch with our studio!</h1>
+                  </a>
+            </main>
+
+    </section>
+<!-- end grid.css -->
+
+<!-- start hello.css -->
+       <section id="hello">
+              <div class="wrap skinny-wrap">
+                     <img src="sept-2020/images/logo.png" class="hey-logo">
+                     <h1 class="hey-title">Hey! Welcome to our website.</h1>
+                     <p>Plot Twisters is an online community of <a href="#people">researchers, designers, and technologists</a> creating opportunities for self-reflection, especially for young people. We are growing a movement for self-motivated education and work, and empowering people to tell their own stories.</p>
+                     <p>We see a huge problem: people of all ages lack freedom to engage with their personal narratives and social boundaries to make genuinely self-motivated decisions. Our systems fail to actively nurture our capacities for critical decision-making, self-reflection, and consent. This low regard for human agency starts at a young age in modern schooling and credentialization, then continues into labor institutions that reward select strengths. This problem perpetuates the systems of oppression in many humanitarian issues of today.</p>
+                     <h1 class="hey-title">We want people to have agency over their own stories.</h1>
+                     <p>Plot Twisters is united by a core vision: a society where people have the freedom to tell their own stories, pursue their own curiosities, and make their own decisions. Our first step is to imagine tools that people could use to empower their senses of self. Over the last 18 months, we have been researching and developing tools for self-reflection, metacognition, personal narrative building, and the critical thinking and expression of emotions and needs.</p>
+                     <p>We have skin in the game: we are imagining resources that we need for ourselves and our own communities. We believe change happens through one thousand small actions, and we're inspired by how, even through conflicts and misunderstandings, we've still been able to create deeply meaningful friendships and products with people so physically distant (many of us have never met in person!). We are gathering, organizing, and creating together to increase our collective imagination—the first step in visionary change.</p>
+                     <h1 class="hey-title">We are in the research and development phase.</h1>
+                     <p>We're building up to the full launch of our digital self-reflection playground. Currently, most of our time is spent researching in <a href="https://www.notion.so/plottwisters/Plot-Twisters-Think-Tank-6a55f88cdc3b40fc87b0e3f2ce88eb14" target="_blank">our Think Tank</a> and prototyping frameworks and experiences related to the following topics:</p>
+                     <ul>
+                           <li>Emotional awareness and literacy</li>
+                           <li>Metacognition and critical thinking</li>
+                           <li>Trauma-focused education</li>
+                           <li>Community identity building</li>
+                           <li>Consensual governance</li>
+                           <li>Racial healing and socialization</li>
+                           <li>Nonviolent communication</li>
+                           <li>Transformative justice</li>
+                     </ul>
+                     <p>We're also creating role model reports, designing self-reflection activities, and mentoring students as they explore their strengths and values, in career and life.</p>
+                     <p>Our community officially launched in January 2020 in North America. Today, our team is spread over three continents and six timezones.</p>
+
+                     <a class="public-thinktank-link" href="https://www.notion.so/plottwisters/Welcome-to-Plot-Twisters-0a0612573ca64483825919fdc6f63214" target="_blank">
+                            See our public Think Tank updates! <img src="sept-2020/images/link-out.png" class="partner-link-external">
+                     </a>
+              </div>
+       </section>
+<!-- end hello.css -->
+
+<!-- start partners.css -->
+       <section id="partners">
+              <div class="wrap">
+                     <header class="section partners-label">
+                           <h2>Good times with our</h2>
+                           <h1 class="partners-title">Project Partners</h1>
+                    </header>
+             </div>
+
+              <div class="projects">
+                    <article class="project-partner">
+                           <h3 class="project-partner-title">The EMPOWER Lab</h3>
+                          <a href="http://www.drishametzger.com/research" target="_blank">
+                                 <img width="70%" class="project-partner-logo" src="sept-2020/images/empowerlab.jpg">
+                          </a>
+                          <p class="project-partner-desc">
+                               The EMPOWER Lab at the University of Georgia researches interpersonal and racial trauma. The EMPOWER Lab supports our team understanding of trauma-focused cognitive behavioral therapy (TF-CBT) and racial socialization. We support the EMPOWER Lab by developing the website and illustrations for their online psychoeducation experience for young people healing from racial trauma.
+                               <br>
+                               <a class="partner-link" style="background: #FA8881" href="http://www.drishametzger.com/research" target="_blank">
+                                      Visit The EMPOWER Lab <img src="sept-2020/images/link-out.png" class="partner-link-external">
+                               </a>
+                          </p>
+                    </article>
+
+                    <article class="project-partner">
+                           <h3 class="project-partner-title">Let's Talk LD</h3>
+                           <a href="https://www.letstalkld.org/" target="_blank">
+                                 <img width="45%" class="project-partner-logo" src="sept-2020/images/letstalkld.jpg">
+                          </a>
+                          <p class="project-partner-desc">
+                               Let's Talk LD gathers and trains educators dedicated to neurodiversity. Young neurodiverse students often lack access to resources for personal and professional development. We seek advice from their leadership as we build our personal storytelling tools. Our goal is to build with the needs of students with learning, social communication, and attentional differences in mind.
+                               <br>
+                               <a class="partner-link" style="background: #D6C5F4" href="https://www.letstalkld.org/" target="_blank">
+                                      Visit Let's Talk LD <img src="sept-2020/images/link-out.png" class="partner-link-external">
+                               </a>
+                          </p>
+                    </article>
+
+                    
+                    <article class="project-partner">
+                           <h3 class="project-partner-title">Media Enterprise Design Lab (MEDlab)</h3>
+                           <a href="https://www.colorado.edu/lab/medlab/2021/07/13/meet-excavations-cohort" target="_blank">
+                                  <img width="55%" class="project-partner-logo" src="sept-2020/images/medlab.jpg">
+                          </a>
+                          <p class="project-partner-desc">
+                               MEDlab at the University of Colorado Boulder researches how media-driven organizations govern themselves. In partnership with King's College London, MEDlab has formed a cohort of technologists, researchers, and community organizers to "excavate" methods for governing online communities. As an online organization, we are collaborating with others in the cohort to further develop our framework for interdependent learning and work.
+                               <br>
+                               <a class="partner-link" style="background: #fff" href="https://www.colorado.edu/lab/medlab/2021/07/13/meet-excavations-cohort" target="_blank">
+                                      Visit MEDlab: Excavations Cohort <img src="sept-2020/images/link-out.png" class="partner-link-external">
+                               </a>
+                          </p>
+                    </article>
+             </div>
+
+<!-- 
+                    <article class="project-partner">
+                           <h3 class="project-partner-title">verynice</h3>
+                           <a href="https://www.verynice.co/" target="_blank">
+                                  <img width="55%" class="project-partner-logo" src="sept-2020/images/verynice.jpg">
+                          </a>
+                          <p class="project-partner-desc">
+                               verynice, in addition to being a social enterprise and design strategy studio, publishes educational toolkits about creativity, design, and teamwork. Currently, we're collaborating on a creative journey building toolkit for students to reflect on their memories, curiosities, and goals, to publish in 2021.
+                               <br>
+                               <a class="partner-link" style="background: #FFAD50" href="https://www.verynice.co/" target="_blank">
+                                      Visit verynice <img src="sept-2020/images/link-out.png" class="partner-link-external">
+                               </a>
+                          </p>
+                    </article>
+             </div> -->
+
+             <div class="wrap skinny-wrap">
+                    <a class="collaborate-link" href="#contact">
+                           Interested in collaborating?
+                    </a>
+             </div>
+       </section>
+<!-- end partners.css -->
+
+<!-- start people.css -->
+      <section id="people">
+            <div class="wrap skinny-wrap">
+                  <header class="section people-label">
+                         <h2>It's always about the</h2>
+                         <h1 class="people-title">People!</h1>
+                  </header>
+
+                  <h3>Our Summer 2021 team</h3>
+                  <p>Plot Twisters is a completely remote studio that works together digitally. We record product brainstorms in Figma and Notion, share resources on Slack, and discuss reflections about all of it on FaceTime and Zoom.</p>
             </div>
 
-            <div class="rounded-corner">
-                  <blockquote class="introduction___testimonial">“Jenny is my go-to person for creative and consumer. She has the unique ability to bring her own direction to the table while iterating on feedback with intention and speed.”</blockquote>
-                  <span class="introduction___testimonial-name">Suraya Shivji, Founder & CEO of HAGS</span>
+            <div class="team">
+                  <article class="team-player">
+                        <img class="team-player-photo" src="sept-2020/images/portraits/jenny.jpg">
+                        <div class="team-player-desc">
+                              <h4>Jenny Liu Zhang</h4>
+                              <span>Playmaker</span>
+                              <span class="team-player-location">San Francisco, USA</span>
+                        </div>
+                  </article>
+
+                  <article class="team-player">
+                        <img class="team-player-photo" src="sept-2020/images/portraits/cat.jpg">
+                        <div class="team-player-desc">
+                              <h4>Cat Chang</h4>
+                              <span>Whelming</span>
+                              <span class="team-player-location">Melbourne, Australia</span>
+                        </div>
+                  </article>
+
+                  <article class="team-player">
+                        <img class="team-player-photo" src="sept-2020/images/portraits/melissa.jpg">
+                        <div class="team-player-desc">
+                              <h4>Melissa Regalado</h4>
+                              <span>Idea Hamster</span>
+                              <span class="team-player-location">Salt Lake City, USA</span>
+                        </div>
+                  </article>
+
+                  <article class="team-player">
+                        <img class="team-player-photo" src="sept-2020/images/portraits/amanda.jpg">
+                        <div class="team-player-desc">
+                              <h4>Amanda Curtis</h4>
+                              <span>Local Academic</span>
+                              <span class="team-player-location">Oxford, UK</span>
+                        </div>
+                  </article>
+
+                  <article class="team-player">
+                        <img class="team-player-photo" src="sept-2020/images/portraits/isaac.jpg">
+                        <div class="team-player-desc">
+                              <h4>Isaac Gilles</h4>
+                              <span>Flourisher</span>
+                              <span class="team-player-location">Washington D.C., USA</span>
+                        </div>
+                  </article>
+
+                  <article class="team-player">
+                        <img class="team-player-photo" src="sept-2020/images/portraits/joanna.jpg">
+                        <div class="team-player-desc">
+                              <h4>Joanna Shan</h4>
+                              <span>Always Learning</span>
+                              <span class="team-player-location">San Francisco, USA</span>
+                        </div>
+                  </article>
+
+                  <article class="team-player">
+                        <img class="team-player-photo" src="sept-2020/images/portraits/shanna.jpg">
+                        <div class="team-player-desc">
+                              <h4>Shanna Finnigan</h4>
+                              <span>Making Stuff</span>
+                              <span class="team-player-location">Los Angeles, USA</span>
+                        </div>
+                  </article>
+
+                  <article class="team-player">
+                        <img class="team-player-photo" src="sept-2020/images/portraits/karla.jpg">
+                        <div class="team-player-desc">
+                              <h4>Karla Leung</h4>
+                              <span>Doodling</span>
+                              <span class="team-player-location">Los Angeles, USA</span>
+                        </div>
+                  </article>
+
+                  <article class="team-player">
+                        <img class="team-player-photo" src="sept-2020/images/portraits/sanjana.jpg">
+                        <div class="team-player-desc">
+                              <h4>Sanjana Galgalikar</h4>
+                              <span>Inspiration Gatherer</span>
+                              <span class="team-player-location">Renton, USA</span>
+                        </div>
+                  </article>
+
+                  <article class="team-player">
+                        <img class="team-player-photo" src="sept-2020/images/portraits/nick.jpg">
+                        <div class="team-player-desc">
+                              <h4>Nick Stares</h4>
+                              <span>Friendly Iconoclast</span>
+                              <span class="team-player-location">San Francisco, USA</span>
+                        </div>
+                  </article>
+
             </div>
 
-            <div class="wrap">
-                  <h2 class="introduction___mono-label">Industries I've Previously Worked With</h2>
-                  <p class="industries___paragraph">I already have some market context, operational research, and understanding of the potential stakeholders in the following fields:</p>
-                  <ul class="industries-list">
-                        <li>Aerospace & Aviation</li>
-                        <li>Beauty & Makeup</li>
-                        <li>Charity Organizations</li>
-                        <li>Clinical Psychology</li>
-                        <li>Consumer Media</li>
-                        <li>Education Technology</li>
-                        <li>Environmental Sustainability</li>
-                        <li>Entertainment</li>
-                        <li>Events Planning</li>
-                        <li>Journalism</li>
-                        <li>Non-Profit Organizations</li>
-                        <li>Online Communities</li>
-                        <li>Personal Blogging</li>
-                        <li>Professional Services</li>
-                        <li>Public Health</li>
-                        <li>Social Media</li>
-                        <li>Software as a Service (SaaS)</li>
-                        <li>Video Games</li>
+            <div class="wrap skinny-wrap">
+                  <h3>Thank you for crossing our Cookie Trail.</h3>
+                  <p>Plot Twisters is grateful for wisdom, resources, and enthusiasm from:</p>
+            </div>
+
+            <div class="wrap credits">
+                  <ul class="credits-list">
+                        <li>Abigail Africa</li>
+                        <li>Adena Bauer</li>
+                        <li>Aditya Aggarwal</li>
+                        <li>Adriana Parker</li>
+                        <li>Aleenah Ansari</li>
+                        <li>Alex Duffy</li>
+                        <li>Andrew Jiang</li>
+                        <li>Andrew Loh</li>
+                        <li>Austin Bauer</li>
+                        <li>Avni Barman</li>
+                        <li>Barbara Jauregui Wurst</li>
+                        <li>Ben Stanfield</li>
+                        <li>Brian Le</li>
+                        <li>Brianna Doyle</li>
+                        <li>Calvin LeGassick</li>
+                        <li>Drake Rehfeld</li>
+                        <li>Erica Muhl</li>
+                        <li>Erik Rocha</li>
+                        <li>Hal Pan</li>
+                        <li>Irfan Faizullabhoy</li>
+                        <li>Jake Catt</li>
+                        <li>Jarquale Stewart-Jackson</li>
+                        <li>Jesse Chand</li>
+                        <li>Karen Johnson</li>
+                        <li>Katelin Walsch</li>
+                        <li>K.D. Harris</li>
+                        <li>Kelsi Yu</li>
+                        <li>Landon Brand</li>
+                        <li>Liam Maddox</li>
+                        <li>Louis Harboe</li>
+                        <li>Margaret Spencer</li>
+                        <li>Martin Anquetil</li>
+                        <li>Matthew Manos</li>
+                        <li>Melisa Seah</li>
+                        <li>Miki Reynolds</li>
+                        <li>Mimi Tran Zambetti</li>
+                        <li>Mira Dhingra</li>
+                        <li>Monique Manaloto</li>
+                        <li>Navo Emmanuel</li>
+                        <li>Neel Bhoophalam</li>
+                        <li>Nguyen Huynh</li>
+                        <li>Pratima Manga</li>
+                        <li>Racquel Fygenson</li>
+                        <li>Rahul Reddy</li>
+                        <li>Rem Weber</li>
+                        <li>Sagar Ramesh</li>
+                        <li>Samantha Rehr</li>
+                        <li>Sara Ma</li>
+                        <li>Stephen Chen</li>
+                        <li>Suraya Shivji</li>
+                        <li>Trent Jones</li>
+                        <li>Troy Harwood</li>
+                        <li>Yanling Wang</li>
                   </ul>
             </div>
-      </section>
-
-      <section class="skills">
-            <h2  id="skills" class="skills___serif-label">Skills</h2>
-            <div class="skills-grid">
-                  <div class="skill">
-                        <div class="skill-icon lego"></div>                   
-                        <h3 class="skills-title">Web Development</h3>
-                        <p class="skills-desc">I design and develop responsive websites in HTML, CSS, and JavaScript. I specialize in CMS frameworks like Webflow, Shopify, Squarespace, and WordPress.</p>
-                  </div>
-                  <div class="skill">
-                        <div class="skill-icon thoughtbubble"></div>
-                        <h3 class="skills-title">Product Strategy</h3>
-                        <p class="skills-desc">I ask questions to steer hazy ideas toward clear product outlines. I facilitate design discovery sessions to break down scope, stakeholders, competitive value, and intentions.</p>
-                  </div>
-                  <div class="skill">
-                        <div class="skill-icon toggle"></div>
-                        <h3 class="skills-title">UX/UI Design</h3>
-                        <p class="skills-desc">I think through the nitty-gritty decisions a user might make, then design them into visual maps and mobile/web mockups. I brainstorm on paper and design UI in Figma.</p>
-                  </div>
-                  <div class="skill">
-                        <div class="skill-icon picture"></div>
-                        <h3 class="skills-title">Graphic Design</h3>
-                        <p class="skills-desc">I transform aesthetic inclinations into polished branding, logos, pitch decks, and layouts for web and print. I am advanced in Photoshop, Illustrator, InDesign, and Figma.</p>
-                  </div>
-                  <div class="skill">
-                        <div class="skill-icon sparkle"></div>
-                        <h3 class="skills-title">Photo Manipulation</h3>
-                        <p class="skills-desc">I use Photoshop to create surreal compositions, retouch photos, and cut objects and people out onto transparent backgrounds. I am trusted with hard details, like hair.</p>
-                  </div>
-                  <div class="skill">
-                        <div class="skill-icon palette"></div>
-                        <h3 class="skills-title">Illustration</h3>
-                        <p class="skills-desc">I create both hand-drawn and vector artwork for web and print, as well as frame-by-frame GIF animations. I specialize in line drawings (like on this website) and mixed media.</p>
-                  </div>
-            </div>
-      </section>
-
-      <section id="work" class="work">
-            <div class="wrap">
-                  <h2 class="work___serif-label">Select Work</h2>
-                  <p class="work___paragraph">For more work samples beyond the four projects below, please send me an email.</p>
-            </div>
-
-            <div class="project">
-                  <div class="project-grid grid-bread">
-                        <div class="project-title title-bread">
-                              <div class="project-title-sticky">
-                                    <h3 class="project-title___heading">Wright Electric</h3>
-                                    <p class="project-title-desc">A sharp informational website for Wright Electric, a zero-emissions commercial airplane company.</p>
-                                    <h4 class="project-title___mono-label">Skills Hired For:</h4>
-                                    <div class="list-of-skills">
-                                          <span class="project-title-skill webdev">Web Development</span>
-                                          <ul class="project-skill-list">
-                                                <li>Responsive Webflow site with custom HTML, CSS, and JavaScript</li>
-                                                <li>Parallax scroll animations</li>
-                                          </ul>
-                                          <span class="project-title-skill uxui">UX/UI Design</span>
-                                          <ul class="project-skill-list">
-                                                <li>Site map and navigation design</li>
-                                                <li>Layout architecture</li>
-                                          </ul>
-                                          <span class="project-title-skill graphicdesign">Graphic Design</span>
-                                          <ul class="project-skill-list">
-                                                <li>Logo and branding</li>
-                                                <li>Decorative mixed media graphics</li>
-                                          </ul>
-                                          <span class="project-title-skill photomanip">Photo Manipulation</span>
-                                          <ul class="project-skill-list">
-                                                <li>Cutouts of renderings</li>
-                                          </ul>
-                                          <span class="project-title-skill illustration">Illustration</span>
-                                          <ul class="project-skill-list">
-                                                <li>Line art illustrations</li>
-                                          </ul>
-                                    </div>
-                              </div>
-                        </div>
-
-                        <div class="notebook-spine"></div>
-
-                        <div class="project-content content-bread">
-                              <img class="main-image" src="images/wrightlong.jpg" alt="A sharp informational website for Wright Electric, a zero-emissions commercial airplane company.">
-                              <div class="two-images">
-                                    <img class="duo-image" src="images/wrightmobile.jpg" alt="Mobile screen of the Wright Electric website.">
-                                    <img class="duo-image" src="images/wright2.jpg" alt="Homepage of the Wright Electric website.">
-                              </div>
-                        </div>
-                  </div>
-            </div>
-
-            <div class="project">
-                  <div class="project-grid grid-butter">
-
-                        <div class="project-title title-butter">
-                              <div class="project-title-sticky">
-                                    <h3 class="project-title___heading">SOSHE Beauty</h3>
-                                    <p class="project-title-desc">An elegant eCommerce storefront for SOSHE Beauty, a refillable makeup brand.</p>
-                                    <h4 class="project-title___mono-label">Skills Hired For:</h4>
-                                    <div class="list-of-skills">
-                                          <span class="project-title-skill webdev">Web Development</span>
-                                          <ul class="project-skill-list">
-                                                <li>Responsive Shopify theme with custom HTML, CSS, JavaScript, and Liquid logic</li>
-                                                <li>Modular layout blocks</li>
-                                          </ul>
-                                          <span class="project-title-skill productstrat">Product Strategy</span>
-                                          <ul class="project-skill-list">
-                                                <li>Scope of subscription features</li>
-                                                <li>Brand messaging and presentation</li>
-                                          </ul>
-                                          <span class="project-title-skill uxui">UX/UI Design</span>
-                                          <ul class="project-skill-list">
-                                                <li>Site map and navigation design</li>
-                                          </ul>
-                                          <span class="project-title-skill photomanip">Photo Manipulation</span>
-                                          <ul class="project-skill-list">
-                                                <li>Photo animations</li>
-                                          </ul>
-                                          <span class="project-title-skill illustration">Illustration</span>
-                                          <ul class="project-skill-list">
-                                                <li>Hand-drawn illustrations and animations</li>
-                                          </ul>
-                                    </div>
-                              </div>
-                        </div>
-                       
-                        <div class="notebook-spine"></div>
-
-                        <div class="project-content content-butter">
-                              <img class="main-image" src="images/soshe2.jpg" alt="An elegant eCommerce storefront for SOSHE Beauty, a refillable makeup brand.">
-                              <div class="two-images">
-                                    <img class="duo-image" src="images/soshephone.jpg" alt="Mobile screen of the SOSHE store.">
-                                    <img class="duo-image" src="images/soshe4.jpg" alt="Product page in the SOSHE store.">
-                              </div>
-                        </div>
-
-                  </div>
-            </div>
-
-            <div class="project">
-                  <div class="project-grid grid-bread">
-                        <div class="project-title title-bread">
-                              <div class="project-title-sticky">
-                                    <h3 class="project-title___heading">verynice</h3>
-                                    <p class="project-title-desc">A playful online face for verynice, an award-winning design strategy practice in Los Angeles, CA.</p>
-                                    <h4 class="project-title___mono-label">Skills Hired For:</h4>
-                                    <div class="list-of-skills">
-                                          <span class="project-title-skill webdev">Web Development</span>
-                                          <ul class="project-skill-list">
-                                                <li>Responsive Webflow site with custom HTML, CSS, and JavaScript</li>
-                                          </ul>
-                                          <span class="project-title-skill uxui">UX/UI Design</span>
-                                          <ul class="project-skill-list">
-                                                <li>Site map and navigation design</li>
-                                                <li>Layout architecture</li>
-                                          </ul>
-                                          <span class="project-title-skill graphicdesign">Graphic Design</span>
-                                          <ul class="project-skill-list">
-                                                <li>Logo and branding</li>
-                                                <li>Decorative mixed media graphics</li>
-                                          </ul>
-                                          <span class="project-title-skill photomanip">Photo Manipulation</span>
-                                          <ul class="project-skill-list">
-                                                <li>Cutouts of photos</li>
-                                                <li>Color treatment</li>
-                                          </ul>
-                                          <span class="project-title-skill illustration">Illustration</span>
-                                          <ul class="project-skill-list">
-                                                <li>Hand-drawn illustrations</li>
-                                          </ul>
-                                    </div>
-                              </div>
-                        </div>
-
-                        <div class="notebook-spine"></div>
-
-                        <div class="project-content content-bread">
-                              <img class="main-image" src="images/verynice-crop-fade-more.jpg" alt="A playful online face for verynice, an award-winning design strategy practice in Los Angeles, CA.">
-                              <div class="two-images">
-                                    <img class="duo-image" src="images/verynice3.jpg" alt="Snapshot of the impact pgae on the verynice website.">
-                                    <img class="duo-image" src="images/phone.jpg" alt="Mobile screen of the verynice website.">
-                              </div>
-                        </div>
-                  </div>
-            </div>
-
-            <div class="project">
-                  <div class="project-grid grid-butter">
-
-                        <div class="project-title title-butter">
-                              <div class="project-title-sticky">
-                                    <h3 class="project-title___heading">Al Jazeera Contrast</h3>
-                                    <p class="project-title-desc">A minimal media portfolio for AJ Contrast, Al Jazeera's immersive storytelling studio.</p>
-                                    <h4 class="project-title___mono-label">Skills Hired For:</h4>
-                                    <div class="list-of-skills">
-                                          <span class="project-title-skill webdev">Web Development</span>
-                                          <ul class="project-skill-list">
-                                                <li>Responsive Squarespace template design</li>
-                                                <li>360&#176; video integration</li>
-                                          </ul>
-                                          <span class="project-title-skill productstrat">Product Strategy</span>
-                                          <ul class="project-skill-list">
-                                                <li>Scope of film portfolio features</li>
-                                                <li>Brand integration</li>
-                                          </ul>
-                                          <span class="project-title-skill uxui">UX/UI Design</span>
-                                          <ul class="project-skill-list">
-                                                <li>Site map and navigation design</li>
-                                                <li>Layout architecture</li>
-                                          </ul>
-                                    </div>
-                              </div>
-                        </div>
-                       
-                        <div class="notebook-spine"></div>
-
-                        <div class="project-content content-butter">
-                              <img class="main-image" src="images/ajcontrast-home.jpg" alt="An elegant eCommerce storefront for SOSHE Beauty, a refillable makeup brand.">
-                              <div class="two-images">
-                                    <img class="duo-image" src="images/ajcontrast2.jpg" alt="Mobile screen of the SOSHE store.">
-                                    <img class="duo-image" src="images/ajphone.jpg" alt="Product page in the SOSHE store.">
-                              </div>
-                        </div>
-
-                  </div>
-            </div>
 
       </section>
+<!-- end people.css -->
 
-      <section id="testimonials" class="testimonials">
-            <h2 class="testimonials___serif-label">Testimonials</h2>
-            
-            <div class="testimonials-grid">
+<!-- start contact.css -->
 
-                  <div class="testimonial">
-                        <blockquote class="testimonial-content">
-                              “Jenny is my go-to person for creative and consumer.”
-                        </blockquote>
-                        <span class="testimonial-name">
-                              Suraya Shivji, Founder & CEO of HAGS
-                        </span>
-                  </div>
+       <section id="contact">
 
-                  <div class="testimonial">
-                        <blockquote class="testimonial-content">
-                              “Jenny's attention to detail really pays off.”
-                        </blockquote>
-                        <span class="testimonial-name">
-                              Suraya Shivji, Founder & CEO of HAGS
-                        </span>
-                  </div>
+              <div class="wrap skinny-wrap">
+                    <h1 class="contact-title">Get in touch!</h1>
+                    <p>Plot Twisters is always down to have a great conversation. Our whole team has access to our inbox, which we check weekly.</p>
+              </div>
 
-                  <div class="testimonial">
-                        <blockquote class="testimonial-content">
-                              “An amazing designer.”
-                        </blockquote>
-                        <span class="testimonial-name">
-                              Suraya Shivji, Founder & CEO of HAGS
-                        </span>
-                  </div>
+              <form class="wrap form" action="https://formspree.io/xdowqgja" method="POST">
+                     <input type="text" name="name" placeholder="Name">
+                     <input type="text" name="email" placeholder="Email">
+                     <input type="text" name="subject" placeholder="Subject">
+                     <textarea name="message" rows="5" placeholder="Your message"></textarea>
 
-                  <div class="testimonial">
-                        <blockquote class="testimonial-content">
-                              “Jenny has excellent judgment. I trust her to make the most important decisions on my projects. Her intuition is rare.”
-                        </blockquote>
-                        <span class="testimonial-name">
-                              Suraya Shivji, Founder & CEO of HAGS
-                        </span>
-                  </div>
+                	<button type="submit">Leave a message!</button>
+              </form>
 
-            </div>
-      </section>
 
-      <section class="costcalculator">
-            <h2  id="costcalculator" class="costcalc___serif-label">Cost Calculator</h2>
-            
-      </section>
+              <div class="social">
+                    <a href="https://twitter.com/plottwistersorg" target="_blank">
+                           <img src="sept-2020/images/twitter.png">
+                    </a>
+                    <a href="http://instagram.com/plottwistersorg" target="_blank">
+                           <img src="sept-2020/images/insta.png">
+                    </a>
+                    <a href="https://www.linkedin.com/company/plottwisters" target="_blank">
+                           <img src="sept-2020/images/linkedin.png">
+                    </a>
+                    <a href="https://github.com/plottwisters" target="_blank">
+                           <img src="sept-2020/images/github.png">
+                    </a>
+             </div>
+
+             <p class="music-credit">Music by <a href="https://incompetech.com/music/royalty-free/index.html?collection=15&page=0" target="_blank">Kevin MacLeod</a>.</p>
+       </section>
+<!-- end contact.css -->
+
+<script src="sept-2020/scripts/audio.js"></script>
 
 </body>
 </html>
